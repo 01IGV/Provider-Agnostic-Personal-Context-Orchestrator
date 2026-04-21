@@ -11,58 +11,45 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-At the moment, there are **no known code-level implementation defects yet**, because the repository is still in the pre-code implementation stage.
+The repository now has its first materialized package (`core-foundation`) and is no longer in pure pre-code state.
 
-However, there are important current implementation constraints and risks that should remain visible before coding begins.
+There are no detected code defects in the new foundation package at this stage, but several implementation risks and constraints remain active.
 
 ---
 
 ## Current Known Issues and Constraints
 
-### 1. No materialized code packages yet
-- **Layer / Area:** repository-wide
+### 1. Only first package is materialized
+- **Layer / Area:** repository-wide implementation depth
 - **Status:** open
 - **Severity:** medium
-- **Description:** the repository has strong canonical documentation, but no actual implementation packages yet.
-- **Impact:** the next coding pass must create the initial workspace and semantic package skeleton before any contour logic can be implemented.
-- **Recommended next action:** create workspace scaffolding and `packages/core-foundation` as the first bounded implementation pass.
+- **Description:** workspace scaffold and `packages/core-foundation` exist, but the rest of the planned package sequence is still missing.
+- **Impact:** the system cannot execute canonical behavior yet; only semantic primitives are available.
+- **Recommended next action:** implement `packages/core-domain` as the next bounded pass.
 
 ### 2. Risk of storage-first implementation drift
 - **Layer / Area:** implementation sequencing
 - **Status:** open
 - **Severity:** high
-- **Description:** without strict adherence to the documented implementation order, a coding agent may start from persistence or data-backend convenience rather than canonical semantics.
-- **Impact:** this would weaken provider-neutral architecture and blur contour boundaries early.
-- **Recommended next action:** enforce the documented sequence: `core-foundation` -> `core-domain` -> `persistence-contracts` -> `governance` before contour-heavy code.
+- **Description:** subsequent passes may drift into concrete persistence before domain/governance boundaries are stable.
+- **Impact:** provider-neutral architecture and contour boundaries can weaken early.
+- **Recommended next action:** enforce sequence `core-foundation` -> `core-domain` -> `persistence-contracts` -> `governance` before contour-heavy code.
 
 ### 3. Risk of provider-first implementation drift
 - **Layer / Area:** provider neutrality
 - **Status:** open
 - **Severity:** high
-- **Description:** because the system is intended to connect to MCP-hosted environments such as Codex and ChatGPT-like hosts, there is a risk that early implementation becomes shaped around one host/runtime.
-- **Impact:** canonical semantics could quietly become provider-shaped.
-- **Recommended next action:** keep provider-specific logic out of early packages and defer provider adapters until canonical contours and contracts already exist.
+- **Description:** MCP/API/provider-specific implementation may appear too early and leak host-specific assumptions into core layers.
+- **Impact:** canonical semantics may become provider-shaped.
+- **Recommended next action:** keep provider logic out of early packages and defer adapters until canonical contours and contracts exist.
 
 ### 4. Risk of monolithic package collapse
 - **Layer / Area:** repository structure
 - **Status:** open
-- **Severity:** high
-- **Description:** a coding agent may attempt to create one broad `core` package instead of the semantically separated packages already specified.
-- **Impact:** read/pack/write/handoff/governance boundaries would become harder to preserve.
-- **Recommended next action:** enforce the documented package family structure from the first workspace pass.
-
-### 5. Execution-documentation protocol not yet exercised in practice
-- **Layer / Area:** implementation continuity
-- **Status:** open
-- **Severity:** low
-- **Description:** the execution-documentation protocol now exists in documentation, but it has not yet been used by a real coding pass.
-- **Impact:** the first coding pass is the first real test of whether reporting discipline is followed correctly.
-- **Recommended next action:** require the first coding pass to produce:
-  - one execution report,
-  - an update to `CURRENT_IMPLEMENTATION_STATE.md`,
-  - and an update to this file if new issues appear.
-
----
+- **Severity:** medium
+- **Description:** as more code appears, there is still risk of collapsing contour/governance concerns into broad core packages.
+- **Impact:** architectural legibility and authority boundaries degrade.
+- **Recommended next action:** preserve package ownership boundaries exactly as documented.
 
 ## Update Policy
 

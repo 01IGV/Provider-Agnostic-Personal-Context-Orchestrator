@@ -1,0 +1,14 @@
+{
+  "name": "provider-agnostic-personal-context-orchestrator",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc -b"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

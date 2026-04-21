@@ -11,27 +11,27 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has its first materialized package (`core-foundation`) and is no longer in pure pre-code state.
+The repository now has two materialized packages: `core-foundation` and `core-domain`.
 
-There are no detected code defects in the new foundation package at this stage, but several implementation risks and constraints remain active.
+No concrete code-level defects are currently confirmed for these packages, but key sequencing and architecture risks remain active.
 
 ---
 
 ## Current Known Issues and Constraints
 
-### 1. Only first package is materialized
+### 1. Only early semantic layers are materialized
 - **Layer / Area:** repository-wide implementation depth
 - **Status:** open
 - **Severity:** medium
-- **Description:** workspace scaffold and `packages/core-foundation` exist, but the rest of the planned package sequence is still missing.
-- **Impact:** the system cannot execute canonical behavior yet; only semantic primitives are available.
-- **Recommended next action:** implement `packages/core-domain` as the next bounded pass.
+- **Description:** `core-foundation` and `core-domain` exist, but persistence contracts, governance, and contour packages are still missing.
+- **Impact:** canonical behavior is modelled semantically but not yet executable through read/pack/write/handoff flows.
+- **Recommended next action:** implement `packages/persistence-contracts` as the next bounded pass.
 
 ### 2. Risk of storage-first implementation drift
 - **Layer / Area:** implementation sequencing
 - **Status:** open
 - **Severity:** high
-- **Description:** subsequent passes may drift into concrete persistence before domain/governance boundaries are stable.
+- **Description:** subsequent passes may drift into concrete persistence before contracts and governance boundaries are stable.
 - **Impact:** provider-neutral architecture and contour boundaries can weaken early.
 - **Recommended next action:** enforce sequence `core-foundation` -> `core-domain` -> `persistence-contracts` -> `governance` before contour-heavy code.
 

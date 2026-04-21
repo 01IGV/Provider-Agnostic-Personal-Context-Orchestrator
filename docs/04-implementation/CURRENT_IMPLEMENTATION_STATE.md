@@ -11,20 +11,20 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 1 in progress: canonical foundations materialized (first bounded pass completed).**
+**Layer 2 reached: canonical foundations and canonical domain entity layer materialized.**
 
-The repository has moved from documentation-only pre-code readiness to the first code baseline.
+The repository now has the first two implementation packages in the documented sequence.
 
 ---
 
 ## Current Strongest Completed Layer
 
-The strongest completed layer is now:
+The strongest completed code layers are now:
 
-1. canonical documentation layer
-2. first code baseline in `packages/core-foundation`
+1. `packages/core-foundation`
+2. `packages/core-domain`
 
-`core-foundation` now materializes the shared semantic primitives required by the implementation sequence.
+`core-domain` now contains canonical entity families, discriminators, record distinctions, and relation-friendly type shapes built on `core-foundation` primitives.
 
 ---
 
@@ -32,16 +32,16 @@ The strongest completed layer is now:
 
 The repository now has:
 - workspace scaffold for package-based implementation;
-- first package `packages/core-foundation`;
-- canonical scope, lifecycle/status, visibility, decision, contour, label, ID, metadata, and error-family vocabularies;
-- base package exports for reuse by later layers.
+- `packages/core-foundation` semantic primitives;
+- `packages/core-domain` canonical entity and record-family layer;
+- canonical vs derived distinctions at the type/discriminator layer;
+- base package exports for downstream layers.
 
 The repository still does **not** have:
-- `core-domain`;
 - persistence contracts;
-- governance package;
+- governance package implementation;
 - operational contour packages (`read-path`, `pack-loop`, `write-path`, `handoff`);
-- integration/provider surfaces.
+- integration/provider surfaces and system assembly.
 
 ---
 
@@ -49,8 +49,8 @@ The repository still does **not** have:
 
 The preferred early implementation sequence remains:
 
-1. `core-foundation` (done in first bounded pass)
-2. `core-domain`
+1. `core-foundation` (done)
+2. `core-domain` (done)
 3. `persistence-contracts`
 4. `governance`
 5. `read-path`
@@ -67,45 +67,41 @@ The preferred early implementation sequence remains:
 ## Current Architectural Guardrails
 
 The next coding pass must preserve these guardrails:
-- do not start with provider-specific logic;
-- do not start with concrete persistence implementation;
-- do not implement MCP/API handlers before canonical contours and governance exist;
-- do not collapse memory and state into one type;
-- do not collapse multiple authority layers into one monolithic package.
+- do not introduce provider-specific behavior into core packages;
+- do not introduce MCP/API handlers before contours and governance are stable;
+- do not add concrete persistence implementation before persistence contracts;
+- keep memory and state strictly separate in models and downstream behavior;
+- keep canonical semantics separate from projected/provider semantics.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution-documentation protocol is now **actively exercised**:
-
-- first bounded-pass execution report has been created;
-- this file has been updated to current code reality;
-- known-issues file has been refreshed.
+Execution documentation protocol is exercised across two bounded implementation passes:
+- `2026-04-21-01-core-foundation-skeleton.md`
+- `2026-04-21-02-core-domain-canonical-entities.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after the first pass:
-- only `core-foundation` is materialized;
-- no domain entities yet;
-- no runtime behavior (read/pack/write/handoff) yet;
-- no governance engine behavior yet.
+Current limits after the second pass:
+- no persistence contracts yet;
+- no governance decision engine behavior yet;
+- no read/pack/write/handoff behavior yet;
+- no integration or provider-adapter behavior yet.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** materialize `packages/core-domain` using the canonical data model and `core-foundation` primitives.
-
-The pass should remain domain-semantic only and still avoid persistence/integration/provider logic.
+**Bounded Pass:** materialize `packages/persistence-contracts` as canonical repository/store interfaces only, with no concrete database implementation.
 
 ---
 
 ## Notes for Next Agent or Session
 
 When resuming:
-- import and reuse `@orchestrator/core-foundation` as the only semantic source;
-- implement `core-domain` entities with explicit memory vs state separation;
-- keep the next pass bounded to domain models and exports.
+- reuse `@orchestrator/core-foundation` and `@orchestrator/core-domain` without redefining semantics;
+- keep the next pass contract-first (interfaces/abstractions only);
+- continue strict separation between canonical semantics and runtime/provider concerns.

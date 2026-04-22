@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 2 reached: canonical foundations and canonical domain entity layer materialized.**
+**Layer 3 reached: canonical foundations, canonical domain, and persistence contract abstractions materialized.**
 
-The repository now has the first two implementation packages in the documented sequence.
+The repository now has the first three packages from the canonical sequence.
 
 ---
 
@@ -23,8 +23,9 @@ The strongest completed code layers are now:
 
 1. `packages/core-foundation`
 2. `packages/core-domain`
+3. `packages/persistence-contracts`
 
-`core-domain` now contains canonical entity families, discriminators, record distinctions, and relation-friendly type shapes built on `core-foundation` primitives.
+`persistence-contracts` now provides canonical repository/store/query/index interfaces without concrete persistence adapters.
 
 ---
 
@@ -33,15 +34,14 @@ The strongest completed code layers are now:
 The repository now has:
 - workspace scaffold for package-based implementation;
 - `packages/core-foundation` semantic primitives;
-- `packages/core-domain` canonical entity and record-family layer;
-- canonical vs derived distinctions at the type/discriminator layer;
-- base package exports for downstream layers.
+- `packages/core-domain` canonical entity layer;
+- `packages/persistence-contracts` abstraction layer for persistence contracts.
 
 The repository still does **not** have:
-- persistence contracts;
 - governance package implementation;
 - operational contour packages (`read-path`, `pack-loop`, `write-path`, `handoff`);
-- integration/provider surfaces and system assembly.
+- integration/provider surfaces and system assembly;
+- any concrete persistence adapter implementation.
 
 ---
 
@@ -51,7 +51,7 @@ The preferred early implementation sequence remains:
 
 1. `core-foundation` (done)
 2. `core-domain` (done)
-3. `persistence-contracts`
+3. `persistence-contracts` (done)
 4. `governance`
 5. `read-path`
 6. `pack-loop`
@@ -67,41 +67,42 @@ The preferred early implementation sequence remains:
 ## Current Architectural Guardrails
 
 The next coding pass must preserve these guardrails:
-- do not introduce provider-specific behavior into core packages;
-- do not introduce MCP/API handlers before contours and governance are stable;
-- do not add concrete persistence implementation before persistence contracts;
-- keep memory and state strictly separate in models and downstream behavior;
-- keep canonical semantics separate from projected/provider semantics.
+- do not introduce concrete database adapters before governance and contour layers are stable;
+- do not mix repository contracts with orchestration/service logic;
+- do not introduce MCP/API handlers before canonical contour packages;
+- keep memory and state strictly separate in downstream logic;
+- keep provider/runtime concerns outside core and persistence-contract layers.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across two bounded implementation passes:
+Execution documentation protocol is exercised across three bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
+- `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after the second pass:
-- no persistence contracts yet;
+Current limits after the third pass:
 - no governance decision engine behavior yet;
 - no read/pack/write/handoff behavior yet;
-- no integration or provider-adapter behavior yet.
+- no integration or provider-adapter behavior yet;
+- no concrete persistence adapters yet (intentional at this phase).
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** materialize `packages/persistence-contracts` as canonical repository/store interfaces only, with no concrete database implementation.
+**Bounded Pass:** materialize `packages/governance` with policy/decision/admissibility abstractions and governance authority logic, while still avoiding contour behavior implementation.
 
 ---
 
 ## Notes for Next Agent or Session
 
 When resuming:
-- reuse `@orchestrator/core-foundation` and `@orchestrator/core-domain` without redefining semantics;
-- keep the next pass contract-first (interfaces/abstractions only);
-- continue strict separation between canonical semantics and runtime/provider concerns.
+- reuse `@orchestrator/core-foundation`, `@orchestrator/core-domain`, and `@orchestrator/persistence-contracts` without redefining semantics;
+- keep governance explicit and separate from persistence contracts;
+- continue strict dependency direction from semantic/domain/contracts toward behavior layers.

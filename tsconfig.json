@@ -6,6 +6,9 @@
     },
     {
       "path": "./packages/core-domain"
+    },
+    {
+      "path": "./packages/persistence-contracts"
     }
   ]
 }

@@ -33,6 +33,9 @@
     },
     {
       "path": "./packages/provider-adapters"
+    },
+    {
+      "path": "./packages/system-assembly"
     }
   ]
 }

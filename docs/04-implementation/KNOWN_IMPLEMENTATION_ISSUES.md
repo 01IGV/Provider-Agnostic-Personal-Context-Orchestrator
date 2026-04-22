@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has eleven materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, `integration-contracts`, and `provider-adapters`.
+The repository now has twelve materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, `integration-contracts`, `provider-adapters`, and `system-assembly`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -50,6 +50,14 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Description:** with surface contracts now present, there is pressure to add concrete adapters before provider/system assembly layers stabilize.
 - **Impact:** contracts can be bypassed and architecture can lock into early storage assumptions.
 - **Recommended next action:** keep concrete persistence deferred until provider-adapters and system-assembly stabilization.
+
+### 5. Risk of system-assembly boundary drift
+- **Layer / Area:** system assembly boundaries
+- **Status:** open
+- **Severity:** high
+- **Description:** now that `system-assembly` exists, there is elevated risk of turning composition/wiring primitives into runtime handler or transport execution behavior.
+- **Impact:** assembly layer can become a hidden runtime orchestration layer and blur separation between contracts and execution.
+- **Recommended next action:** keep `system-assembly` contract-first and move all runtime handler/transport execution to explicit downstream runtime layers.
 
 ## Update Policy
 

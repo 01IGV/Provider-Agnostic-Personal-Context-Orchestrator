@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 7 entered: `provider-adapters` edge projection/normalization semantics are now materialized on top of completed core/contour/trust/integration layers.**
+**Layer 8 entered: `system-assembly` composition/wiring semantics are now materialized on top of completed core/contour/trust/integration/adapter layers.**
 
-The repository now has eleven packages from the canonical sequence.
+The repository now has twelve packages from the canonical sequence.
 
 ---
 
@@ -32,8 +32,9 @@ The strongest completed code layers are now:
 9. `packages/audit-eval`
 10. `packages/integration-contracts`
 11. `packages/provider-adapters`
+12. `packages/system-assembly`
 
-`provider-adapters` now provides edge projection and normalization primitives for provider/runtime profiles, canonical-to-projected bundle/tool forms, normalized output envelopes, adapter error normalization, and canonical writeback-envelope bridge shapes.
+`system-assembly` now provides composition root, dependency registry, module/capability wiring primitives, assembly validation shapes, bootstrap contracts, and orchestrator assembly result models.
 
 ---
 
@@ -51,12 +52,13 @@ The repository now has:
 - `packages/handoff` continuity-transfer contour primitives;
 - `packages/audit-eval` trust-layer contracts;
 - `packages/integration-contracts` provider-neutral surface contract layer;
-- `packages/provider-adapters` edge projection/normalization layer.
+- `packages/provider-adapters` edge projection/normalization layer;
+- `packages/system-assembly` composition/wiring layer.
 
 The repository still does **not** have:
-- `packages/system-assembly`;
 - any concrete persistence adapter implementation;
-- runtime MCP/API handler implementations.
+- runtime MCP/API handler implementations;
+- provider SDK transport execution implementations.
 
 ---
 
@@ -75,7 +77,7 @@ The preferred early implementation sequence remains:
 9. `audit-eval` (done)
 10. `integration-contracts` (done)
 11. `provider-adapters` (done)
-12. `system-assembly`
+12. `system-assembly` (done)
 
 ---
 
@@ -88,13 +90,13 @@ The next coding pass must preserve these guardrails:
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport execution;
 - keep `provider-adapters` as edge projection/normalization only, not runtime transport execution;
-- keep provider-specific execution behavior isolated to future assembly/runtime layers.
+- keep `system-assembly` as composition/wiring only, not runtime execution layer.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across eleven bounded passes:
+Execution documentation protocol is exercised across twelve bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -106,22 +108,23 @@ Execution documentation protocol is exercised across eleven bounded passes:
 - `2026-04-22-07-audit-eval-traces-and-quality-contracts.md`
 - `2026-04-22-08-integration-contracts-surface-shapes.md`
 - `2026-04-22-09-provider-adapters-projection-and-normalization.md`
+- `2026-04-22-10-system-assembly-composition-and-wiring.md`
 
 ---
 
 ## Current Known Implementation Limits
 
 Current limits after this pass:
-- no system-assembly package yet;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
-- no provider SDK transport execution yet.
+- no provider SDK transport execution yet;
+- no runtime transport/integration handler layer yet.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** materialize `packages/system-assembly` as composition and orchestration-boundary scaffolding that wires canonical layers without collapsing boundaries or introducing full runtime transport execution.
+**Bounded Pass:** execute a boundary-hardening pass across integration/provider/assembly contracts before introducing runtime handlers, to prevent execution drift into contract layers.
 
 ---
 
@@ -130,4 +133,5 @@ Current limits after this pass:
 When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
+- treat `system-assembly` as composition/wiring contracts and primitives;
 - preserve strict separation between shape/primitives layers and runtime execution layers.

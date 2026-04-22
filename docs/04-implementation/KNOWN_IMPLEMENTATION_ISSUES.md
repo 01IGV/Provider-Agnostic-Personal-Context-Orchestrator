@@ -11,45 +11,45 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has four materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, and `governance`.
+The repository now has five materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, and `read-path`.
 
-No concrete code-level defects are currently confirmed for these packages, but key sequencing and architecture risks remain active.
+No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
 ---
 
 ## Current Known Issues and Constraints
 
-### 1. Contour behavior packages are not yet materialized
-- **Layer / Area:** repository-wide implementation depth
+### 1. Remaining contour packages are not yet materialized
+- **Layer / Area:** implementation depth
 - **Status:** open
 - **Severity:** medium
-- **Description:** semantic, contract, and governance layers exist, but contour behavior layers (`read-path`, `pack-loop`, `write-path`, `handoff`) are still missing.
-- **Impact:** system behavior is still non-executable at operational loop level.
-- **Recommended next action:** implement `packages/read-path` as the next bounded pass.
+- **Description:** `read-path` exists, but `pack-loop`, `write-path`, and `handoff` contour packages are still missing.
+- **Impact:** full canonical execution loop is not yet materialized end-to-end.
+- **Recommended next action:** implement `packages/pack-loop` as the next bounded pass.
 
-### 2. Risk of storage-first implementation drift
-- **Layer / Area:** implementation sequencing
+### 2. Risk of contour boundary drift
+- **Layer / Area:** contour separation
 - **Status:** open
 - **Severity:** high
-- **Description:** there is ongoing risk of jumping into concrete adapters before contour packages are stabilized.
-- **Impact:** architecture can collapse into implementation-first persistence decisions.
-- **Recommended next action:** enforce sequence `governance` -> contours -> integration -> provider adapters, while keeping concrete adapters deferred.
+- **Description:** once the first contour exists, there is elevated risk of leaking pack/write/handoff logic into `read-path`.
+- **Impact:** contour invariants degrade and auditability weakens.
+- **Recommended next action:** keep pack/write/handoff responsibilities isolated to their dedicated packages.
 
 ### 3. Risk of provider-first implementation drift
 - **Layer / Area:** provider neutrality
 - **Status:** open
 - **Severity:** high
-- **Description:** MCP/API/provider-specific implementation may appear too early and leak host-specific assumptions into core layers.
+- **Description:** MCP/API/provider-specific implementation may appear too early and leak host-specific assumptions into contour/core layers.
 - **Impact:** canonical semantics may become provider-shaped.
-- **Recommended next action:** keep provider logic out of current layers and defer adapters until canonical contours and integration contracts exist.
+- **Recommended next action:** defer integration/provider layers until contour packages stabilize.
 
-### 4. Risk of monolithic package collapse
-- **Layer / Area:** repository structure
+### 4. Risk of premature concrete persistence adapters
+- **Layer / Area:** persistence strategy
 - **Status:** open
 - **Severity:** medium
-- **Description:** as contour code appears, there is still risk of collapsing governance and contour concerns into broad packages.
-- **Impact:** architectural legibility and authority boundaries degrade.
-- **Recommended next action:** preserve package ownership boundaries exactly as documented.
+- **Description:** with contours now appearing, there is pressure to add concrete adapters before contour behavior stabilizes.
+- **Impact:** contracts can be bypassed and architecture can lock into early storage assumptions.
+- **Recommended next action:** keep concrete persistence deferred until contour + governance paths are stable.
 
 ## Update Policy
 

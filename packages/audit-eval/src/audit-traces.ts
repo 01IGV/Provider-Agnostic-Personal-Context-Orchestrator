@@ -6,6 +6,7 @@ import type {
   RuntimeInvocationRecord,
   SummaryArtifact
 } from "@orchestrator/core-domain";
+import type { IntegrationSurfaceType } from "@orchestrator/integration-contracts";
 import type {
   PolicyEvaluationResult,
   ScopeGovernanceResult,
@@ -47,7 +48,7 @@ import type {
 } from "@orchestrator/handoff";
 import type { AuditActorContext, AuditComponent, AuditEntityLink, AuditTraceContext } from "./types.js";
 
-export type InvocationSurfaceType = "mcp" | "api";
+export type InvocationSurfaceType = IntegrationSurfaceType;
 
 export interface RequestAuditShape {
   invocation_surface: InvocationSurfaceType;

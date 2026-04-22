@@ -29,6 +29,15 @@ const mapRejectionReason = (reason: string | undefined): WriteRejectionVocabular
   if (reason === "reject_low_confidence") {
     return "reject_low_confidence";
   }
+  if (reason === "reject_visibility") {
+    return "reject_visibility";
+  }
+  if (reason === "reject_capability") {
+    return "reject_capability";
+  }
+  if (reason === "reject_transfer") {
+    return "reject_transfer";
+  }
   return "reject_invalid";
 };
 

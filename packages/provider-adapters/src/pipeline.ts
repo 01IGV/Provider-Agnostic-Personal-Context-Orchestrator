@@ -18,6 +18,7 @@ import type {
   ProviderAdapterProfile
 } from "./types.js";
 import type { ProviderAdapterProfileBuilder } from "./profiles.js";
+import { validateToolOperationConsistency, type ContractConsistencyResult } from "./consistency.js";
 
 export interface ProviderAdapterPipelineInput {
   provider_profile: ProviderProfile;
@@ -36,6 +37,7 @@ export interface ProviderAdapterPipelineResult {
   adapter_profile: ProviderAdapterProfile;
   bundle_projection: CanonicalProjectedBundleDistinction;
   tool_projection: CanonicalProjectedToolDistinction[];
+  contract_consistency: ContractConsistencyResult;
   normalized_output?: NormalizedOutputEnvelope;
   canonical_writeback_envelope?: CanonicalWritebackEnvelope;
 }
@@ -58,6 +60,11 @@ export const createProviderAdapterPipeline = (
 ): ProviderAdapterPipeline => {
   return {
     run(input: ProviderAdapterPipelineInput): ProviderAdapterPipelineResult {
+      const contractConsistency = validateToolOperationConsistency({
+        operation_contracts: input.operation_contracts,
+        canonical_tools: input.canonical_tools
+      });
+
       const adapterProfile = deps.profile_builder.build({ provider_profile: input.provider_profile });
       const plan = deps.projection_planner.plan({
         profile: adapterProfile,
@@ -82,7 +89,8 @@ export const createProviderAdapterPipeline = (
         return {
           adapter_profile: adapterProfile,
           bundle_projection: bundleProjection,
-          tool_projection: toolProjection
+          tool_projection: toolProjection,
+          contract_consistency: contractConsistency
         };
       }
 
@@ -104,6 +112,7 @@ export const createProviderAdapterPipeline = (
         adapter_profile: adapterProfile,
         bundle_projection: bundleProjection,
         tool_projection: toolProjection,
+        contract_consistency: contractConsistency,
         normalized_output: normalizedOutput,
         canonical_writeback_envelope: canonicalWritebackEnvelope
       };

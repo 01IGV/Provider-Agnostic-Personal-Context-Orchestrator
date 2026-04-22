@@ -81,6 +81,7 @@ export const CONTINUITY_CANDIDATE_FAMILIES = [
   "workflow_checkpoint",
   "unresolved_conflicts",
   "artifact_refs",
+  "recent_handoffs",
   "recent_summaries",
   "recent_bundles"
 ] as const;

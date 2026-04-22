@@ -7,6 +7,9 @@ export interface PackInputShape {
   subject_id: ReadRequestEnvelope["subject_id"];
   session_id?: ReadRequestEnvelope["session_id"];
   workflow_id?: ReadRequestEnvelope["workflow_id"];
+  target_runtime?: ReadRequestEnvelope["target_runtime"];
+  target_provider?: ReadRequestEnvelope["target_provider"];
+  target_model?: ReadRequestEnvelope["target_model"];
   intent_type: string;
   mode: string;
   selected_candidates: RankedSelectionResult["selected_candidates"];
@@ -44,6 +47,9 @@ export const createPackInputPreparer = (): PackInputPreparer => {
         subject_id: input.request.subject_id,
         ...(input.request.session_id ? { session_id: input.request.session_id } : {}),
         ...(input.request.workflow_id ? { workflow_id: input.request.workflow_id } : {}),
+        ...(input.request.target_runtime ? { target_runtime: input.request.target_runtime } : {}),
+        ...(input.request.target_provider ? { target_provider: input.request.target_provider } : {}),
+        ...(input.request.target_model ? { target_model: input.request.target_model } : {}),
         intent_type: input.intent_type,
         mode: input.mode,
         selected_candidates: input.selected.selected_candidates,

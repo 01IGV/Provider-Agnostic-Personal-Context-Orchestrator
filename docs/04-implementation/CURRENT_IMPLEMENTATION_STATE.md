@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 8 entered: `system-assembly` composition/wiring semantics are now materialized on top of completed core/contour/trust/integration/adapter layers.**
+**Boundary-hardening pass completed across integration/provider/assembly/contour package boundaries after Layer 8 materialization.**
 
 The repository now has twelve packages from the canonical sequence.
 
@@ -34,7 +34,7 @@ The strongest completed code layers are now:
 11. `packages/provider-adapters`
 12. `packages/system-assembly`
 
-`system-assembly` now provides composition root, dependency registry, module/capability wiring primitives, assembly validation shapes, bootstrap contracts, and orchestrator assembly result models.
+`system-assembly` remains the strongest completed layer, and cross-package boundary consistency has been tightened (read→pack target hints, handoff family semantics, write↔governance rejection mapping, provider-adapter contract consistency checks, and shared boundary code reuse).
 
 ---
 
@@ -54,6 +54,14 @@ The repository now has:
 - `packages/integration-contracts` provider-neutral surface contract layer;
 - `packages/provider-adapters` edge projection/normalization layer;
 - `packages/system-assembly` composition/wiring layer.
+
+Recent boundary-hardening outcomes:
+- aligned `read-path` pack-input with `pack-loop` target hints (`target_runtime`/`target_provider`/`target_model`);
+- removed handoff candidate-family overlap by introducing `recent_handoffs`;
+- tightened write-path rejection vocabulary mapping to governance rejection reasons;
+- added adapter tool↔operation contract consistency validation;
+- reduced duplicated boundary typing between `system-assembly` and shared types;
+- aligned audit integration surface type with `integration-contracts`.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -96,7 +104,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across twelve bounded passes:
+Execution documentation protocol is exercised across thirteen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -109,6 +117,7 @@ Execution documentation protocol is exercised across twelve bounded passes:
 - `2026-04-22-08-integration-contracts-surface-shapes.md`
 - `2026-04-22-09-provider-adapters-projection-and-normalization.md`
 - `2026-04-22-10-system-assembly-composition-and-wiring.md`
+- `2026-04-22-11-boundary-hardening-cross-package-consistency.md`
 
 ---
 
@@ -124,7 +133,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** execute a boundary-hardening pass across integration/provider/assembly contracts before introducing runtime handlers, to prevent execution drift into contract layers.
+**Bounded Pass:** design a contracts-first runtime-surface skeleton (handler entrypoint interfaces only) while preserving current contract and contour boundaries.
 
 ---
 

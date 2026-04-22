@@ -153,7 +153,7 @@ export const createContinuityCandidateSelector = (
         for (const handoff of handoffs.items) {
           candidates.push({
             record_id: handoff.handoff_id as DomainEntityId,
-            family: "recent_bundles",
+            family: "recent_handoffs",
             content: handoff.content,
             continuity_weight: 0.3,
             rationale: "previous_handoff_reference"

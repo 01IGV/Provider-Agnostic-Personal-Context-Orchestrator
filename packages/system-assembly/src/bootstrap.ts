@@ -1,6 +1,7 @@
 import type {
   BootstrapContractShape,
   CapabilityRegistrationShape,
+  MissingDependency,
   ModuleWiringShape,
   OrchestratorAssemblyResult,
   RuntimeConfigurationShape
@@ -23,7 +24,7 @@ export interface OrchestratorAssembler {
     configuration: RuntimeConfigurationShape;
     modules: ModuleWiringShape[];
     capabilities: CapabilityRegistrationShape[];
-    required_registry_tokens: Array<{ token: string; required_by_module: string; code: "missing_read_path_pipeline" | "missing_pack_loop_pipeline" | "missing_write_path_pipeline" | "missing_handoff_pipeline" | "missing_provider_adapter_pipeline" | "missing_governance_decision_engine" | "missing_runtime_configuration" }>;
+    required_registry_tokens: Array<{ token: string; required_by_module: string; code: MissingDependency["code"] }>;
     capability_ids_required: string[];
   }): OrchestratorAssemblyResult;
 }

@@ -152,7 +152,10 @@ export const WRITE_REJECTION_VOCABULARY = [
   "reject_scope",
   "reject_policy",
   "reject_low_confidence",
+  "reject_visibility",
   "reject_conflict",
+  "reject_capability",
+  "reject_transfer",
   "reject_duplicate",
   "reject_runtime_mismatch"
 ] as const;

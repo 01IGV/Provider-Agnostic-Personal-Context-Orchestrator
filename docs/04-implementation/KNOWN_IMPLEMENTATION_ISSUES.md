@@ -22,10 +22,10 @@ No concrete code-level defects are currently confirmed for these packages, but a
 ### 1. Risk of surface-contract boundary drift
 - **Layer / Area:** integration contracts boundaries
 - **Status:** open
-- **Severity:** high
+- **Severity:** medium
 - **Description:** now that `integration-contracts` exists, there is elevated risk of mixing surface contract shapes with runtime handler or transport execution behavior.
 - **Impact:** integration contract layer can lose provider-neutrality and become runtime-coupled.
-- **Recommended next action:** keep `integration-contracts` shape-only and move execution behavior to future runtime/adaptation layers.
+- **Recommended next action:** keep `integration-contracts` shape-only and enforce new cross-package consistency checks as runtime surfaces are introduced.
 
 ### 2. Risk of trust-layer boundary drift
 - **Layer / Area:** audit/evaluation layer boundaries
@@ -38,10 +38,10 @@ No concrete code-level defects are currently confirmed for these packages, but a
 ### 3. Risk of provider-adapter boundary drift
 - **Layer / Area:** provider adapter boundaries
 - **Status:** open
-- **Severity:** high
+- **Severity:** medium
 - **Description:** now that `provider-adapters` exists, there is elevated risk of mixing adapter projection/normalization contracts with runtime handler/transport execution behavior.
 - **Impact:** canonical contours and surface contracts can become execution-coupled and provider-shaped.
-- **Recommended next action:** keep `provider-adapters` edge-shape/primitives only; move runtime transport execution to downstream assembly/runtime layers.
+- **Recommended next action:** keep `provider-adapters` edge-shape/primitives only; preserve newly added tool↔operation contract consistency validation in future runtime passes.
 
 ### 4. Risk of premature concrete persistence adapters
 - **Layer / Area:** persistence strategy
@@ -54,10 +54,10 @@ No concrete code-level defects are currently confirmed for these packages, but a
 ### 5. Risk of system-assembly boundary drift
 - **Layer / Area:** system assembly boundaries
 - **Status:** open
-- **Severity:** high
+- **Severity:** medium
 - **Description:** now that `system-assembly` exists, there is elevated risk of turning composition/wiring primitives into runtime handler or transport execution behavior.
 - **Impact:** assembly layer can become a hidden runtime orchestration layer and blur separation between contracts and execution.
-- **Recommended next action:** keep `system-assembly` contract-first and move all runtime handler/transport execution to explicit downstream runtime layers.
+- **Recommended next action:** keep `system-assembly` contract-first, keep shared boundary typing centralized, and introduce runtime layers as separate bounded packages/modules.
 
 ## Update Policy
 

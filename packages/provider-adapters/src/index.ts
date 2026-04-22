@@ -8,4 +8,5 @@ export * from "./output-normalization.js";
 export * from "./writeback-normalization.js";
 export * from "./errors.js";
 export * from "./audit-shapes.js";
+export * from "./consistency.js";
 export * from "./pipeline.js";

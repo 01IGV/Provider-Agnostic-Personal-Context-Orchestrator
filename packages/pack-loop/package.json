@@ -1,0 +1,23 @@
+{
+  "name": "@orchestrator/pack-loop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@orchestrator/core-foundation": "0.1.0",
+    "@orchestrator/core-domain": "0.1.0",
+    "@orchestrator/read-path": "0.1.0"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc --noEmit"
+  }
+}

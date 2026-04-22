@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Runtime boundary-hardening and surface-consistency pass completed across `runtime-surface`, `integration-contracts`, `system-assembly`, and `provider-adapters`.**
+**Internal runtime dispatch skeleton pass completed across `runtime-surface` and `system-assembly`.**
 
-The repository remains at thirteen materialized packages, with tighter runtime-boundary consistency and assembly/linkage guardrails.
+The repository remains at thirteen materialized packages and now includes a first internal dispatch planning skeleton without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is now the runtime-boundary-hardening envelope around `runtime-surface` and adjacent integration/assembly/adapter contracts.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton contracts (lookup/resolution/validation/planning/result normalization), still execution-free.
 
 ---
 
@@ -54,23 +54,23 @@ The repository now has:
 - `packages/audit-eval` trust-layer contracts;
 - `packages/integration-contracts` provider-neutral surface contract layer;
 - `packages/provider-adapters` edge projection/normalization layer;
-- `packages/system-assembly` composition/wiring layer;
-- `packages/runtime-surface` entrypoint and handler-shape skeleton layer.
+- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts;
+- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts.
 
-Recent runtime-boundary-hardening outcomes:
-- aligned `runtime-surface` dispatch intent capability typing with canonical `CapabilityClass`;
-- aligned unsupported-surface and unsupported-mode result shapes with runtime vocabularies;
-- added runtime-to-integration surface error code mapping in `runtime-surface`;
-- added `runtime-surface` contract consistency validator for operation/capability/entrypoint-surface alignment;
-- formalized runtime-surface dependency tokens for assembly assumptions;
-- added `system-assembly` runtime-surface assembly-requirement linkage helper;
-- extended system-assembly missing-dependency vocabulary with runtime-surface-specific codes;
-- added `provider-adapters` runtime-intent boundary linkage helper to preserve contract-only intent handoff.
+Recent internal-dispatch outcomes:
+- added normalized runtime invocation intake shapes in `runtime-surface`;
+- added internal dispatch vocabularies for warning/unsupported/result statuses;
+- added operation lookup and handler resolution primitives;
+- added dependency validation primitives for internal dispatch;
+- added contour invocation boundary contracts and dispatch planning shapes;
+- added normalized internal dispatch result shapes;
+- added internal runtime dispatch pipeline skeleton that plans only and does not execute contour pipelines.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
 - runtime MCP/API handler implementations;
-- provider SDK transport execution implementations.
+- provider SDK transport execution implementations;
+- actual contour invocation execution from internal dispatch.
 
 ---
 
@@ -103,14 +103,14 @@ The next coding pass must preserve these guardrails:
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport execution;
 - keep `provider-adapters` as edge projection/normalization only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring only, not runtime execution layer;
+- keep `system-assembly` as composition/wiring/internal dispatch planning only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape contracts only, not runtime dispatch/transport execution.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across fifteen bounded passes:
+Execution documentation protocol is exercised across sixteen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -126,6 +126,7 @@ Execution documentation protocol is exercised across fifteen bounded passes:
 - `2026-04-22-11-boundary-hardening-cross-package-consistency.md`
 - `2026-04-22-12-runtime-surface-skeleton-and-entrypoint-shapes.md`
 - `2026-04-22-13-runtime-boundary-hardening-and-surface-consistency.md`
+- `2026-04-22-14-internal-runtime-dispatch-skeleton.md`
 
 ---
 
@@ -135,13 +136,14 @@ Current limits after this pass:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no provider SDK transport execution yet;
-- no runtime transport/integration handler layer yet.
+- no external transport/integration handler runtime yet;
+- no actual contour invocation execution in internal dispatch skeleton yet.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** connect runtime-surface consistency outputs into system-assembly validation/reporting flow (contracts-only), still deferring actual handler/transport execution.
+**Bounded Pass:** integrate internal runtime dispatch skeleton with `system-assembly` bootstrap/validation reporting path (contract-level only), still deferring actual contour execution and transport/provider runtime behavior.
 
 ---
 
@@ -150,6 +152,6 @@ Current limits after this pass:
 When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
-- treat `system-assembly` as composition/wiring contracts and primitives;
-- treat `runtime-surface` as entrypoint/handler shape and boundary contracts only;
-- preserve strict separation between shape/primitives layers and runtime execution layers.
+- treat `runtime-surface` as surface/intake contracts only;
+- treat `system-assembly/runtime-dispatch-*` as planning/normalization skeleton only;
+- preserve strict separation between planning contracts and real runtime execution layers.

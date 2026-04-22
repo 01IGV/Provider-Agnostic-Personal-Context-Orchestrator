@@ -67,6 +67,14 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
 - **Recommended next action:** keep `runtime-surface` contract-only, integrate new consistency outputs into assembly validation flow, and isolate concrete handlers/dispatch/transport behavior in future dedicated runtime implementation passes.
 
+### 7. Risk of internal-dispatch skeleton boundary drift
+- **Layer / Area:** system-assembly internal runtime dispatch skeleton
+- **Status:** open
+- **Severity:** medium
+- **Description:** internal dispatch skeleton (`runtime-dispatch-*`) now exists for lookup/resolution/validation/planning; future passes may accidentally evolve this planning layer into real contour invocation or transport execution.
+- **Impact:** `system-assembly` can lose composition/planning-only role and become an implicit runtime execution layer.
+- **Recommended next action:** keep internal dispatch strictly contract/planning-oriented, and isolate any future real contour invocation into an explicitly approved execution-layer pass.
+
 ## Update Policy
 
 This file should be updated when:

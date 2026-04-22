@@ -2,6 +2,7 @@ export * from "./vocabularies.js";
 export * from "./errors.js";
 export * from "./intents.js";
 export * from "./entrypoints.js";
+export * from "./dispatch-intake.js";
 export * from "./handlers.js";
 export * from "./boundaries.js";
 export * from "./registry.js";

@@ -7,3 +7,8 @@ export * from "./validation.js";
 export * from "./composition-root.js";
 export * from "./bootstrap.js";
 export * from "./runtime-surface-linkage.js";
+export * from "./runtime-dispatch-vocabularies.js";
+export * from "./runtime-dispatch-types.js";
+export * from "./runtime-dispatch-resolution.js";
+export * from "./runtime-dispatch-validation.js";
+export * from "./runtime-dispatch-pipeline.js";

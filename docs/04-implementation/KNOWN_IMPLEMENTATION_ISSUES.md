@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has five materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, and `read-path`.
+The repository now has six materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, and `pack-loop`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -23,17 +23,17 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Layer / Area:** implementation depth
 - **Status:** open
 - **Severity:** medium
-- **Description:** `read-path` exists, but `pack-loop`, `write-path`, and `handoff` contour packages are still missing.
+- **Description:** `read-path` and `pack-loop` exist, but `write-path` and `handoff` contour packages are still missing.
 - **Impact:** full canonical execution loop is not yet materialized end-to-end.
-- **Recommended next action:** implement `packages/pack-loop` as the next bounded pass.
+- **Recommended next action:** implement `packages/write-path` as the next bounded pass.
 
 ### 2. Risk of contour boundary drift
 - **Layer / Area:** contour separation
 - **Status:** open
 - **Severity:** high
-- **Description:** once the first contour exists, there is elevated risk of leaking pack/write/handoff logic into `read-path`.
+- **Description:** once multiple contours exist, there is elevated risk of leaking write/handoff behavior into read or pack contours.
 - **Impact:** contour invariants degrade and auditability weakens.
-- **Recommended next action:** keep pack/write/handoff responsibilities isolated to their dedicated packages.
+- **Recommended next action:** keep write-path and handoff responsibilities isolated to their dedicated packages.
 
 ### 3. Risk of provider-first implementation drift
 - **Layer / Area:** provider neutrality

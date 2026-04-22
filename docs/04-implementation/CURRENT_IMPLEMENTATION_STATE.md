@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 4 entered: first contour primitives (`read-path`) are materialized on top of foundation/domain/contracts/governance.**
+**Layer 4 progressed: read-path and pack-loop contour primitives are materialized on top of foundation/domain/contracts/governance.**
 
-The repository now has five packages from the canonical sequence.
+The repository now has six packages from the canonical sequence.
 
 ---
 
@@ -26,8 +26,9 @@ The strongest completed code layers are now:
 3. `packages/persistence-contracts`
 4. `packages/governance`
 5. `packages/read-path`
+6. `packages/pack-loop`
 
-`read-path` now provides request normalization, intent/mode, scope resolution, candidate discovery/filter/rank, and pack-input preparation primitives.
+`pack-loop` now provides strategy selection, section planning, candidate assignment, compression/shaping, and canonical bundle assembly primitives.
 
 ---
 
@@ -39,12 +40,13 @@ The repository now has:
 - `packages/core-domain` canonical entity layer;
 - `packages/persistence-contracts` persistence abstractions;
 - `packages/governance` authority/evaluator primitives;
-- `packages/read-path` selection and acquisition contour primitives.
+- `packages/read-path` selection and acquisition contour primitives;
+- `packages/pack-loop` canonical bundle construction contour primitives.
 
 The repository still does **not** have:
-- `packages/pack-loop`;
 - `packages/write-path`;
 - `packages/handoff`;
+- `packages/audit-eval`;
 - integration/provider surfaces and system assembly;
 - any concrete persistence adapter implementation.
 
@@ -59,7 +61,7 @@ The preferred early implementation sequence remains:
 3. `persistence-contracts` (done)
 4. `governance` (done)
 5. `read-path` (done)
-6. `pack-loop`
+6. `pack-loop` (done)
 7. `write-path`
 8. `handoff`
 9. `audit-eval`
@@ -73,6 +75,7 @@ The preferred early implementation sequence remains:
 
 The next coding pass must preserve these guardrails:
 - do not mix read-path responsibilities into pack-loop/write-path/handoff layers;
+- do not mix pack-loop responsibilities into provider projection or runtime message assembly;
 - do not introduce concrete persistence implementation in contour packages;
 - do not introduce MCP/API handlers before contour packages stabilize;
 - keep runtime/provider logic out of core contour packages;
@@ -82,21 +85,22 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across five bounded passes:
+Execution documentation protocol is exercised across six bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
 - `2026-04-22-02-governance-primitives-and-decisioning.md`
 - `2026-04-22-03-read-path-primitives-and-selection.md`
+- `2026-04-22-04-pack-loop-strategy-and-bundle-assembly.md`
 
 ---
 
 ## Current Known Implementation Limits
 
 Current limits after this pass:
-- no pack-loop contour package yet;
 - no write-path contour package yet;
 - no handoff contour package yet;
+- no audit-eval package yet;
 - no integration/provider layers yet;
 - no concrete persistence adapters yet.
 
@@ -104,13 +108,13 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** materialize `packages/pack-loop` with packing strategy, section planning, assignment, and pack artifact assembly primitives, while keeping provider projection out of scope.
+**Bounded Pass:** materialize `packages/write-path` with write-signal intake, candidate classification/routing, eligibility hooks, and decision-routing primitives, while keeping concrete persistence and integration behavior out of scope.
 
 ---
 
 ## Notes for Next Agent or Session
 
 When resuming:
-- use `@orchestrator/read-path` outputs as the only input contract into `pack-loop`;
-- do not let pack-loop reopen raw discovery as a primary path;
+- consume `@orchestrator/pack-loop` output as canonical bundle artifact;
+- keep provider/runtime projection downstream from pack-loop;
 - preserve strict contour separation and provider-neutral semantics.

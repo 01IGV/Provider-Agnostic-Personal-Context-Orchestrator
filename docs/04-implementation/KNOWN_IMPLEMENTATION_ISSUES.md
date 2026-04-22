@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has nine materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, and `audit-eval`.
+The repository now has ten materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, and `integration-contracts`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -19,37 +19,37 @@ No concrete code-level defects are currently confirmed for these packages, but a
 
 ## Current Known Issues and Constraints
 
-### 1. Risk of trust-layer boundary drift
+### 1. Risk of surface-contract boundary drift
+- **Layer / Area:** integration contracts boundaries
+- **Status:** open
+- **Severity:** high
+- **Description:** now that `integration-contracts` exists, there is elevated risk of mixing surface contract shapes with runtime handler or transport execution behavior.
+- **Impact:** integration contract layer can lose provider-neutrality and become runtime-coupled.
+- **Recommended next action:** keep `integration-contracts` shape-only and move execution behavior to future runtime/adaptation layers.
+
+### 2. Risk of trust-layer boundary drift
 - **Layer / Area:** audit/evaluation layer boundaries
 - **Status:** open
 - **Severity:** high
-- **Description:** now that `audit-eval` exists, there is elevated risk of mixing trust contracts with runtime monitoring, transport integration, or provider execution behavior.
-- **Impact:** `audit-eval` can drift from canonical trust/quality contracts into runtime-specific implementation logic.
-- **Recommended next action:** keep `audit-eval` type/contract focused and move any execution/runtime behavior to future integration/provider packages.
-
-### 2. Risk of contour boundary drift
-- **Layer / Area:** contour separation
-- **Status:** open
-- **Severity:** high
-- **Description:** once all core contours exist, there is elevated risk of leaking integration/provider behavior into contour packages.
-- **Impact:** contour invariants degrade and auditability weakens.
-- **Recommended next action:** keep integration/provider responsibilities isolated to dedicated future packages.
+- **Description:** `audit-eval` may drift into runtime monitoring or integration execution behavior.
+- **Impact:** trust contracts can lose canonical portability.
+- **Recommended next action:** keep `audit-eval` contract/quality-model focused.
 
 ### 3. Risk of provider-first implementation drift
 - **Layer / Area:** provider neutrality
 - **Status:** open
 - **Severity:** high
-- **Description:** MCP/API/provider-specific implementation may appear too early and leak host-specific assumptions into core layers.
+- **Description:** provider-specific behavior may leak into contracts/contours before `provider-adapters` boundaries are established.
 - **Impact:** canonical semantics may become provider-shaped.
-- **Recommended next action:** defer integration/provider layers until audit-eval and contracts layers stabilize.
+- **Recommended next action:** implement `provider-adapters` next and isolate provider-specific logic there.
 
 ### 4. Risk of premature concrete persistence adapters
 - **Layer / Area:** persistence strategy
 - **Status:** open
 - **Severity:** medium
-- **Description:** with core contours now present, there is pressure to add concrete adapters before trust/integration behavior stabilizes.
+- **Description:** with surface contracts now present, there is pressure to add concrete adapters before provider/system assembly layers stabilize.
 - **Impact:** contracts can be bypassed and architecture can lock into early storage assumptions.
-- **Recommended next action:** keep concrete persistence deferred until trust layer and integration contracts are stable.
+- **Recommended next action:** keep concrete persistence deferred until provider-adapters and system-assembly stabilization.
 
 ## Update Policy
 

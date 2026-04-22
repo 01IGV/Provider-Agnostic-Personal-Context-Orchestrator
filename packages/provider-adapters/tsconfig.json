@@ -26,6 +26,9 @@
     },
     {
       "path": "../audit-eval"
+    },
+    {
+      "path": "../runtime-surface"
     }
   ],
   "include": [

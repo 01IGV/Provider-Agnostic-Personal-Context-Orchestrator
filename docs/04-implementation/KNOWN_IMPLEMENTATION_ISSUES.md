@@ -62,10 +62,10 @@ No concrete code-level defects are currently confirmed for these packages, but a
 ### 6. Risk of runtime-surface boundary drift
 - **Layer / Area:** runtime-surface boundaries
 - **Status:** open
-- **Severity:** high
-- **Description:** now that `runtime-surface` exists, there is elevated risk of mixing entrypoint/handler shape contracts with concrete MCP/API handlers, dispatch runtime, or provider transport execution.
-- **Impact:** runtime-surface can become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
-- **Recommended next action:** keep `runtime-surface` contract-only, and isolate concrete handlers/dispatch/transport behavior in future dedicated runtime implementation passes.
+- **Severity:** medium
+- **Description:** runtime-boundary hardening introduced new consistency/linkage guardrails (`runtime-surface` consistency validator, assembly dependency tokens, provider-intent boundary linkage), but risk remains that future runtime passes mix entrypoint/handler shape contracts with concrete MCP/API handlers, dispatch runtime, or provider transport execution.
+- **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
+- **Recommended next action:** keep `runtime-surface` contract-only, integrate new consistency outputs into assembly validation flow, and isolate concrete handlers/dispatch/transport behavior in future dedicated runtime implementation passes.
 
 ## Update Policy
 

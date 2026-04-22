@@ -1,5 +1,5 @@
 import type { IsoDateTimeString } from "@orchestrator/core-foundation";
-import type { OperationFamily } from "@orchestrator/integration-contracts";
+import type { CapabilityClass, OperationFamily } from "@orchestrator/integration-contracts";
 import type {
   HandlerDispatchIntentType,
   HandlerExecutionIntentType,
@@ -27,7 +27,7 @@ export interface RuntimeDispatchIntentShape {
   operation_id: string;
   dispatch_intent_type: HandlerDispatchIntentType;
   target_handler_id?: string;
-  requested_capability_class?: string;
+  requested_capability_class?: CapabilityClass;
   reason?: string;
 }
 

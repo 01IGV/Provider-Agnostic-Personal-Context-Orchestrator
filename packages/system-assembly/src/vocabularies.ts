@@ -34,6 +34,8 @@ export const MISSING_DEPENDENCY_CODES = [
   "missing_write_path_pipeline",
   "missing_handoff_pipeline",
   "missing_provider_adapter_pipeline",
+  "missing_runtime_surface_registry",
+  "missing_runtime_surface_consistency",
   "missing_governance_decision_engine",
   "missing_runtime_configuration"
 ] as const;

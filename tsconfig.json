@@ -32,13 +32,13 @@
       "path": "./packages/integration-contracts"
     },
     {
+      "path": "./packages/runtime-surface"
+    },
+    {
       "path": "./packages/provider-adapters"
     },
     {
       "path": "./packages/system-assembly"
-    },
-    {
-      "path": "./packages/runtime-surface"
     }
   ]
 }

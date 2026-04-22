@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has ten materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, and `integration-contracts`.
+The repository now has eleven materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, `integration-contracts`, and `provider-adapters`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -35,13 +35,13 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Impact:** trust contracts can lose canonical portability.
 - **Recommended next action:** keep `audit-eval` contract/quality-model focused.
 
-### 3. Risk of provider-first implementation drift
-- **Layer / Area:** provider neutrality
+### 3. Risk of provider-adapter boundary drift
+- **Layer / Area:** provider adapter boundaries
 - **Status:** open
 - **Severity:** high
-- **Description:** provider-specific behavior may leak into contracts/contours before `provider-adapters` boundaries are established.
-- **Impact:** canonical semantics may become provider-shaped.
-- **Recommended next action:** implement `provider-adapters` next and isolate provider-specific logic there.
+- **Description:** now that `provider-adapters` exists, there is elevated risk of mixing adapter projection/normalization contracts with runtime handler/transport execution behavior.
+- **Impact:** canonical contours and surface contracts can become execution-coupled and provider-shaped.
+- **Recommended next action:** keep `provider-adapters` edge-shape/primitives only; move runtime transport execution to downstream assembly/runtime layers.
 
 ### 4. Risk of premature concrete persistence adapters
 - **Layer / Area:** persistence strategy

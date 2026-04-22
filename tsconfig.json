@@ -9,6 +9,9 @@
     },
     {
       "path": "./packages/persistence-contracts"
+    },
+    {
+      "path": "./packages/governance"
     }
   ]
 }

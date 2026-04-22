@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has three materialized packages: `core-foundation`, `core-domain`, and `persistence-contracts`.
+The repository now has four materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, and `governance`.
 
 No concrete code-level defects are currently confirmed for these packages, but key sequencing and architecture risks remain active.
 
@@ -19,21 +19,21 @@ No concrete code-level defects are currently confirmed for these packages, but k
 
 ## Current Known Issues and Constraints
 
-### 1. Only canonical semantic and contract layers are materialized
+### 1. Contour behavior packages are not yet materialized
 - **Layer / Area:** repository-wide implementation depth
 - **Status:** open
 - **Severity:** medium
-- **Description:** foundational semantics, domain entities, and persistence contracts exist, but governance and contour behavior layers are still missing.
-- **Impact:** system behavior is still non-executable at orchestration level.
-- **Recommended next action:** implement `packages/governance` as the next bounded pass.
+- **Description:** semantic, contract, and governance layers exist, but contour behavior layers (`read-path`, `pack-loop`, `write-path`, `handoff`) are still missing.
+- **Impact:** system behavior is still non-executable at operational loop level.
+- **Recommended next action:** implement `packages/read-path` as the next bounded pass.
 
 ### 2. Risk of storage-first implementation drift
 - **Layer / Area:** implementation sequencing
 - **Status:** open
 - **Severity:** high
-- **Description:** after introducing persistence contracts, there is elevated risk of jumping directly into concrete adapters before governance and contour packages.
+- **Description:** there is ongoing risk of jumping into concrete adapters before contour packages are stabilized.
 - **Impact:** architecture can collapse into implementation-first persistence decisions.
-- **Recommended next action:** enforce sequence `persistence-contracts` -> `governance` -> contours, and keep adapters deferred.
+- **Recommended next action:** enforce sequence `governance` -> contours -> integration -> provider adapters, while keeping concrete adapters deferred.
 
 ### 3. Risk of provider-first implementation drift
 - **Layer / Area:** provider neutrality
@@ -41,13 +41,13 @@ No concrete code-level defects are currently confirmed for these packages, but k
 - **Severity:** high
 - **Description:** MCP/API/provider-specific implementation may appear too early and leak host-specific assumptions into core layers.
 - **Impact:** canonical semantics may become provider-shaped.
-- **Recommended next action:** keep provider logic out of current layers and defer adapters until canonical contours and contracts exist.
+- **Recommended next action:** keep provider logic out of current layers and defer adapters until canonical contours and integration contracts exist.
 
 ### 4. Risk of monolithic package collapse
 - **Layer / Area:** repository structure
 - **Status:** open
 - **Severity:** medium
-- **Description:** as more code appears, there is still risk of collapsing contour/governance concerns into broad packages.
+- **Description:** as contour code appears, there is still risk of collapsing governance and contour concerns into broad packages.
 - **Impact:** architectural legibility and authority boundaries degrade.
 - **Recommended next action:** preserve package ownership boundaries exactly as documented.
 

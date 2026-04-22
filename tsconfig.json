@@ -36,6 +36,9 @@
     },
     {
       "path": "./packages/system-assembly"
+    },
+    {
+      "path": "./packages/runtime-surface"
     }
   ]
 }

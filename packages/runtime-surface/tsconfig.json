@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "references": [
+    {
+      "path": "../core-foundation"
+    },
+    {
+      "path": "../integration-contracts"
+    },
+    {
+      "path": "../read-path"
+    },
+    {
+      "path": "../pack-loop"
+    },
+    {
+      "path": "../write-path"
+    },
+    {
+      "path": "../handoff"
+    }
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
+}

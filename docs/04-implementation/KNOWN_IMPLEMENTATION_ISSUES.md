@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has twelve materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, `integration-contracts`, `provider-adapters`, and `system-assembly`.
+The repository now has thirteen materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, `audit-eval`, `integration-contracts`, `provider-adapters`, `system-assembly`, and `runtime-surface`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -58,6 +58,14 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Description:** now that `system-assembly` exists, there is elevated risk of turning composition/wiring primitives into runtime handler or transport execution behavior.
 - **Impact:** assembly layer can become a hidden runtime orchestration layer and blur separation between contracts and execution.
 - **Recommended next action:** keep `system-assembly` contract-first, keep shared boundary typing centralized, and introduce runtime layers as separate bounded packages/modules.
+
+### 6. Risk of runtime-surface boundary drift
+- **Layer / Area:** runtime-surface boundaries
+- **Status:** open
+- **Severity:** high
+- **Description:** now that `runtime-surface` exists, there is elevated risk of mixing entrypoint/handler shape contracts with concrete MCP/API handlers, dispatch runtime, or provider transport execution.
+- **Impact:** runtime-surface can become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
+- **Recommended next action:** keep `runtime-surface` contract-only, and isolate concrete handlers/dispatch/transport behavior in future dedicated runtime implementation passes.
 
 ## Update Policy
 

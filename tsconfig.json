@@ -18,6 +18,9 @@
     },
     {
       "path": "./packages/pack-loop"
+    },
+    {
+      "path": "./packages/write-path"
     }
   ]
 }

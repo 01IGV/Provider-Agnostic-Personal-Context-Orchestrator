@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has six materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, and `pack-loop`.
+The repository now has seven materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, and `write-path`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -19,21 +19,21 @@ No concrete code-level defects are currently confirmed for these packages, but a
 
 ## Current Known Issues and Constraints
 
-### 1. Remaining contour packages are not yet materialized
+### 1. Remaining contour package is not yet materialized
 - **Layer / Area:** implementation depth
 - **Status:** open
 - **Severity:** medium
-- **Description:** `read-path` and `pack-loop` exist, but `write-path` and `handoff` contour packages are still missing.
+- **Description:** `read-path`, `pack-loop`, and `write-path` exist, but `handoff` contour package is still missing.
 - **Impact:** full canonical execution loop is not yet materialized end-to-end.
-- **Recommended next action:** implement `packages/write-path` as the next bounded pass.
+- **Recommended next action:** implement `packages/handoff` as the next bounded pass.
 
 ### 2. Risk of contour boundary drift
 - **Layer / Area:** contour separation
 - **Status:** open
 - **Severity:** high
-- **Description:** once multiple contours exist, there is elevated risk of leaking write/handoff behavior into read or pack contours.
+- **Description:** once three contours exist, there is elevated risk of leaking handoff/integration behavior into read/pack/write packages.
 - **Impact:** contour invariants degrade and auditability weakens.
-- **Recommended next action:** keep write-path and handoff responsibilities isolated to their dedicated packages.
+- **Recommended next action:** keep handoff and integration responsibilities isolated to dedicated packages.
 
 ### 3. Risk of provider-first implementation drift
 - **Layer / Area:** provider neutrality
@@ -47,7 +47,7 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Layer / Area:** persistence strategy
 - **Status:** open
 - **Severity:** medium
-- **Description:** with contours now appearing, there is pressure to add concrete adapters before contour behavior stabilizes.
+- **Description:** with multiple contours now present, there is pressure to add concrete adapters before contour behavior stabilizes.
 - **Impact:** contracts can be bypassed and architecture can lock into early storage assumptions.
 - **Recommended next action:** keep concrete persistence deferred until contour + governance paths are stable.
 

@@ -71,9 +71,9 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Layer / Area:** system-assembly internal runtime dispatch skeleton
 - **Status:** open
 - **Severity:** medium
-- **Description:** internal dispatch skeleton (`runtime-dispatch-*`) now exists for lookup/resolution/validation/planning; future passes may accidentally evolve this planning layer into real contour invocation or transport execution.
+- **Description:** internal dispatch skeleton now includes readiness reporting/linkage (`runtime-dispatch-reporting` + assembly linkage helper) in addition to lookup/resolution/validation/planning; future passes may still accidentally evolve these planning/reporting layers into real contour invocation or transport execution.
 - **Impact:** `system-assembly` can lose composition/planning-only role and become an implicit runtime execution layer.
-- **Recommended next action:** keep internal dispatch strictly contract/planning-oriented, and isolate any future real contour invocation into an explicitly approved execution-layer pass.
+- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting-oriented, and isolate any future real contour invocation into an explicitly approved execution-layer pass.
 
 ## Update Policy
 

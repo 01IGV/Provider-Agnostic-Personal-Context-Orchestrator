@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Internal runtime dispatch skeleton pass completed across `runtime-surface` and `system-assembly`.**
+**Dispatch-readiness reporting integration pass completed across `system-assembly` over internal dispatch outputs.**
 
-The repository remains at thirteen materialized packages and now includes a first internal dispatch planning skeleton without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level linkage between internal dispatch outcomes and assembly validation/reporting flow, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton contracts (lookup/resolution/validation/planning/result normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting linkage contracts (lookup/resolution/validation/planning/result normalization/reporting), still execution-free.
 
 ---
 
@@ -65,6 +65,10 @@ Recent internal-dispatch outcomes:
 - added contour invocation boundary contracts and dispatch planning shapes;
 - added normalized internal dispatch result shapes;
 - added internal runtime dispatch pipeline skeleton that plans only and does not execute contour pipelines.
+- added dispatch-readiness status vocabulary and reporting shapes in `system-assembly`;
+- added dispatch-to-assembly validation linkage shapes and unresolved dependency/handler/unsupported-path reporting;
+- added runtime readiness summary and dispatch-status aggregation contracts;
+- added normalized assembly dispatch-readiness reporting helper and assembly-linkage helper.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -110,7 +114,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across sixteen bounded passes:
+Execution documentation protocol is exercised across seventeen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -127,6 +131,7 @@ Execution documentation protocol is exercised across sixteen bounded passes:
 - `2026-04-22-12-runtime-surface-skeleton-and-entrypoint-shapes.md`
 - `2026-04-22-13-runtime-boundary-hardening-and-surface-consistency.md`
 - `2026-04-22-14-internal-runtime-dispatch-skeleton.md`
+- `2026-04-22-15-dispatch-readiness-reporting-and-assembly-linkage.md`
 
 ---
 
@@ -143,7 +148,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** integrate internal runtime dispatch skeleton with `system-assembly` bootstrap/validation reporting path (contract-level only), still deferring actual contour execution and transport/provider runtime behavior.
+**Bounded Pass:** introduce contour-invocation contract gate between dispatch planning outputs and canonical contour boundaries (contract-only), while still deferring actual contour execution and all transport/provider runtime behavior.
 
 ---
 

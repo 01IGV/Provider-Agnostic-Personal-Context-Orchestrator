@@ -30,6 +30,10 @@ export const INTERNAL_DISPATCH_RESULT_STATUSES = [
 
 export type InternalDispatchResultStatus = (typeof INTERNAL_DISPATCH_RESULT_STATUSES)[number];
 
+export const DISPATCH_READINESS_STATUSES = ["ready", "not_ready", "unsupported"] as const;
+
+export type DispatchReadinessStatus = (typeof DISPATCH_READINESS_STATUSES)[number];
+
 export const INTERNAL_DISPATCH_CONTOUR_FAMILIES = [
   "read_path",
   "pack_loop",

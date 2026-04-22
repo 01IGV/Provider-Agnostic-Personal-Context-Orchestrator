@@ -6,10 +6,19 @@ import type {
   OrchestratorAssemblyResult,
   RuntimeConfigurationShape
 } from "./types.js";
+import type { RuntimeInvocationIntakeCompatibility } from "@orchestrator/runtime-surface";
 import type { DependencyRegistry } from "./dependency-registry.js";
 import type { RuntimeConfigurationNormalizer } from "./runtime-config.js";
 import type { CompositionRootBuilder } from "./composition-root.js";
 import type { ModuleCompositionValidator } from "./validation.js";
+import type { IsoDateTimeString } from "@orchestrator/core-foundation";
+import type {
+  NormalizedAssemblyDispatchReadinessReportShape,
+  NormalizedInternalDispatchResultShape
+} from "./runtime-dispatch-types.js";
+import type {
+  AssemblyDispatchReadinessReporter
+} from "./runtime-dispatch-reporting.js";
 
 export interface OrchestratorAssemblerDeps {
   registry: DependencyRegistry;
@@ -27,6 +36,17 @@ export interface OrchestratorAssembler {
     required_registry_tokens: Array<{ token: string; required_by_module: string; code: MissingDependency["code"] }>;
     capability_ids_required: string[];
   }): OrchestratorAssemblyResult;
+}
+
+export interface AssemblyDispatchReadinessLinkageInput {
+  assembly_result: OrchestratorAssemblyResult;
+  dispatch_results: NormalizedInternalDispatchResultShape[];
+  intake_compatibility?: RuntimeInvocationIntakeCompatibility;
+  now?: IsoDateTimeString;
+}
+
+export interface AssemblyDispatchReadinessLinkage {
+  build(input: AssemblyDispatchReadinessLinkageInput): NormalizedAssemblyDispatchReadinessReportShape;
 }
 
 const buildBootstrapContract = (input: {
@@ -86,6 +106,22 @@ export const createOrchestratorAssembler = (deps: OrchestratorAssemblerDeps): Or
         bootstrap_contract: bootstrapContract,
         warnings
       };
+    }
+  };
+};
+
+export const createAssemblyDispatchReadinessLinkage = (
+  deps: { reporter: AssemblyDispatchReadinessReporter }
+): AssemblyDispatchReadinessLinkage => {
+  return {
+    build(input: AssemblyDispatchReadinessLinkageInput): NormalizedAssemblyDispatchReadinessReportShape {
+      return deps.reporter.build({
+        assembly_root_id: input.assembly_result.composition_root.root_id,
+        validation: input.assembly_result.validation,
+        dispatch_results: input.dispatch_results,
+        ...(input.intake_compatibility ? { intake_compatibility: input.intake_compatibility } : {}),
+        ...(input.now ? { now: input.now } : {})
+      });
     }
   };
 };

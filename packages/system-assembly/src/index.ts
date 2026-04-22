@@ -12,3 +12,4 @@ export * from "./runtime-dispatch-types.js";
 export * from "./runtime-dispatch-resolution.js";
 export * from "./runtime-dispatch-validation.js";
 export * from "./runtime-dispatch-pipeline.js";
+export * from "./runtime-dispatch-reporting.js";

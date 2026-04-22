@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 5 entered: canonical foundations, domain model, persistence contracts, and governance primitives are materialized.**
+**Layer 4 entered: first contour primitives (`read-path`) are materialized on top of foundation/domain/contracts/governance.**
 
-The repository now has the first four packages from the canonical sequence.
+The repository now has five packages from the canonical sequence.
 
 ---
 
@@ -25,8 +25,9 @@ The strongest completed code layers are now:
 2. `packages/core-domain`
 3. `packages/persistence-contracts`
 4. `packages/governance`
+5. `packages/read-path`
 
-`governance` now provides evaluator primitives, decisioning contracts, and governance result models without contour orchestration.
+`read-path` now provides request normalization, intent/mode, scope resolution, candidate discovery/filter/rank, and pack-input preparation primitives.
 
 ---
 
@@ -36,11 +37,14 @@ The repository now has:
 - workspace scaffold for package-based implementation;
 - `packages/core-foundation` semantic primitives;
 - `packages/core-domain` canonical entity layer;
-- `packages/persistence-contracts` abstraction layer;
-- `packages/governance` control-authority primitives and decisioning models.
+- `packages/persistence-contracts` persistence abstractions;
+- `packages/governance` authority/evaluator primitives;
+- `packages/read-path` selection and acquisition contour primitives.
 
 The repository still does **not** have:
-- operational contour packages (`read-path`, `pack-loop`, `write-path`, `handoff`);
+- `packages/pack-loop`;
+- `packages/write-path`;
+- `packages/handoff`;
 - integration/provider surfaces and system assembly;
 - any concrete persistence adapter implementation.
 
@@ -54,7 +58,7 @@ The preferred early implementation sequence remains:
 2. `core-domain` (done)
 3. `persistence-contracts` (done)
 4. `governance` (done)
-5. `read-path`
+5. `read-path` (done)
 6. `pack-loop`
 7. `write-path`
 8. `handoff`
@@ -68,43 +72,45 @@ The preferred early implementation sequence remains:
 ## Current Architectural Guardrails
 
 The next coding pass must preserve these guardrails:
-- do not embed governance authority into contour orchestration packages;
-- do not introduce concrete persistence adapters before contour behaviors stabilize;
-- do not introduce MCP/API handlers before canonical contour packages;
-- keep memory and state strictly separate in contour behavior;
-- keep provider/runtime concerns outside core, persistence-contracts, and governance layers.
+- do not mix read-path responsibilities into pack-loop/write-path/handoff layers;
+- do not introduce concrete persistence implementation in contour packages;
+- do not introduce MCP/API handlers before contour packages stabilize;
+- keep runtime/provider logic out of core contour packages;
+- keep governance authority separate from contour execution composition.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across four bounded passes:
+Execution documentation protocol is exercised across five bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
 - `2026-04-22-02-governance-primitives-and-decisioning.md`
+- `2026-04-22-03-read-path-primitives-and-selection.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after the fourth pass:
-- no read/pack/write/handoff contour behavior yet;
-- no integration or provider-adapter behavior yet;
-- no concrete persistence adapters yet (intentional at this phase);
-- no audit-eval package yet as a standalone layer.
+Current limits after this pass:
+- no pack-loop contour package yet;
+- no write-path contour package yet;
+- no handoff contour package yet;
+- no integration/provider layers yet;
+- no concrete persistence adapters yet.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** materialize `packages/read-path` with normalized request intake, scope resolution, candidate discovery/filtering/ranking primitives that call governance/persistence contracts, while staying provider-neutral.
+**Bounded Pass:** materialize `packages/pack-loop` with packing strategy, section planning, assignment, and pack artifact assembly primitives, while keeping provider projection out of scope.
 
 ---
 
 ## Notes for Next Agent or Session
 
 When resuming:
-- reuse `@orchestrator/governance` as authority layer, not as contour executor;
-- wire read-path through governance and persistence-contract abstractions only;
-- preserve strict dependency direction from semantic/domain/contracts/governance toward contour behavior.
+- use `@orchestrator/read-path` outputs as the only input contract into `pack-loop`;
+- do not let pack-loop reopen raw discovery as a primary path;
+- preserve strict contour separation and provider-neutral semantics.

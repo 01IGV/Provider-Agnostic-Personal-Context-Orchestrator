@@ -12,6 +12,9 @@
     },
     {
       "path": "./packages/governance"
+    },
+    {
+      "path": "./packages/read-path"
     }
   ]
 }

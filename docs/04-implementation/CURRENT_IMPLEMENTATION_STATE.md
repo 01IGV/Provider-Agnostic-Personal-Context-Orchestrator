@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Layer 4 contour set completed: read-path, pack-loop, write-path, and handoff primitives are materialized on top of foundation/domain/contracts/governance.**
+**Layer 5 trust layer is now materialized: `audit-eval` contracts are added on top of the completed contour set (`read-path`, `pack-loop`, `write-path`, `handoff`).**
 
-The repository now has eight packages from the canonical sequence.
+The repository now has nine packages from the canonical sequence.
 
 ---
 
@@ -29,8 +29,9 @@ The strongest completed code layers are now:
 6. `packages/pack-loop`
 7. `packages/write-path`
 8. `packages/handoff`
+9. `packages/audit-eval`
 
-`handoff` now provides trigger detection, target-boundary definition, continuity candidate selection, shaping, validation hooks, and canonical handoff artifact assembly primitives.
+`audit-eval` now provides canonical audit trace contracts across request/read/pack/write/handoff/governance/integration/provenance domains and typed quality evaluation result models.
 
 ---
 
@@ -46,9 +47,9 @@ The repository now has:
 - `packages/pack-loop` canonical bundle construction contour primitives;
 - `packages/write-path` candidate-routing and governed-decisioning contour primitives;
 - `packages/handoff` continuity-transfer contour primitives.
+- `packages/audit-eval` trust-layer contracts for audit traces, evaluation result models, quality vocabularies, and contour-spanning linkage/builder primitives.
 
 The repository still does **not** have:
-- `packages/audit-eval`;
 - integration/provider surfaces and system assembly;
 - any concrete persistence adapter implementation.
 
@@ -66,7 +67,7 @@ The preferred early implementation sequence remains:
 6. `pack-loop` (done)
 7. `write-path` (done)
 8. `handoff` (done)
-9. `audit-eval`
+9. `audit-eval` (done)
 10. `integration-contracts`
 11. `provider-adapters`
 12. `system-assembly`
@@ -81,13 +82,14 @@ The next coding pass must preserve these guardrails:
 - do not introduce MCP/API handlers before contour and trust layers stabilize;
 - keep runtime/provider logic out of core contour packages;
 - keep governance authority separate from contour composition;
-- keep handoff as canonical transfer artifact shaping, not runtime/provider transfer execution.
+- keep handoff as canonical transfer artifact shaping, not runtime/provider transfer execution;
+- keep `audit-eval` as contract and quality-trust layer, not runtime monitoring platform behavior.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across eight bounded passes:
+Execution documentation protocol is exercised across nine bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -96,13 +98,13 @@ Execution documentation protocol is exercised across eight bounded passes:
 - `2026-04-22-04-pack-loop-strategy-and-bundle-assembly.md`
 - `2026-04-22-05-write-path-candidate-routing-and-governed-decisioning.md`
 - `2026-04-22-06-handoff-continuity-transfer-primitives.md`
+- `2026-04-22-07-audit-eval-traces-and-quality-contracts.md`
 
 ---
 
 ## Current Known Implementation Limits
 
 Current limits after this pass:
-- no audit-eval package yet;
 - no integration/provider layers yet;
 - no concrete persistence adapters yet.
 
@@ -110,13 +112,13 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** materialize `packages/audit-eval` with audit trace primitives, evaluation result models, quality dimensions, and contour-spanning evaluation contracts.
+**Bounded Pass:** materialize `packages/integration-contracts` with provider-neutral MCP/API contract shapes only, while preserving separation from runtime/provider adapter behavior.
 
 ---
 
 ## Notes for Next Agent or Session
 
 When resuming:
-- treat all four core contours as materialized primitive layers;
-- keep audit/eval as the next trust layer before integration/provider surfaces;
+- treat all four core contours and the audit/eval trust layer as materialized primitive layers;
+- start integration contracts as neutral external surface contracts only;
 - preserve strict contour separation and provider-neutral semantics.

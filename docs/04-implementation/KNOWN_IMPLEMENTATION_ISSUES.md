@@ -11,7 +11,7 @@ It is not a historical bug archive and not a replacement for per-pass execution 
 
 ## Current Status
 
-The repository now has eight materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, and `handoff`.
+The repository now has nine materialized packages: `core-foundation`, `core-domain`, `persistence-contracts`, `governance`, `read-path`, `pack-loop`, `write-path`, `handoff`, and `audit-eval`.
 
 No concrete code-level defects are currently confirmed for these packages, but architecture and sequencing risks remain active.
 
@@ -19,13 +19,13 @@ No concrete code-level defects are currently confirmed for these packages, but a
 
 ## Current Known Issues and Constraints
 
-### 1. Trust layer package is not yet materialized
-- **Layer / Area:** implementation depth
+### 1. Risk of trust-layer boundary drift
+- **Layer / Area:** audit/evaluation layer boundaries
 - **Status:** open
-- **Severity:** medium
-- **Description:** all four core contours are now present, but `audit-eval` package is still missing.
-- **Impact:** full audit/evaluation trust loop is not yet materialized end-to-end.
-- **Recommended next action:** implement `packages/audit-eval` as the next bounded pass.
+- **Severity:** high
+- **Description:** now that `audit-eval` exists, there is elevated risk of mixing trust contracts with runtime monitoring, transport integration, or provider execution behavior.
+- **Impact:** `audit-eval` can drift from canonical trust/quality contracts into runtime-specific implementation logic.
+- **Recommended next action:** keep `audit-eval` type/contract focused and move any execution/runtime behavior to future integration/provider packages.
 
 ### 2. Risk of contour boundary drift
 - **Layer / Area:** contour separation

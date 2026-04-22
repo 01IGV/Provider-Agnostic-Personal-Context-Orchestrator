@@ -24,6 +24,9 @@
     },
     {
       "path": "./packages/handoff"
+    },
+    {
+      "path": "./packages/audit-eval"
     }
   ]
 }

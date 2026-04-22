@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Boundary-hardening pass completed across integration/provider/assembly/contour package boundaries after Layer 8 materialization.**
+**Runtime-surface skeleton pass completed with entrypoint/handler shape contracts and boundary primitives.**
 
-The repository now has twelve packages from the canonical sequence.
+The repository now has thirteen materialized packages, including the first dedicated runtime-surface contract layer.
 
 ---
 
@@ -33,8 +33,9 @@ The strongest completed code layers are now:
 10. `packages/integration-contracts`
 11. `packages/provider-adapters`
 12. `packages/system-assembly`
+13. `packages/runtime-surface`
 
-`system-assembly` remains the strongest completed layer, and cross-package boundary consistency has been tightened (read→pack target hints, handoff family semantics, write↔governance rejection mapping, provider-adapter contract consistency checks, and shared boundary code reuse).
+`runtime-surface` is now the newest completed bounded layer and remains shape-only (entrypoint/handler contracts, registry contracts, boundary contracts, intents, normalized results) without runtime handler/transport execution.
 
 ---
 
@@ -53,15 +54,17 @@ The repository now has:
 - `packages/audit-eval` trust-layer contracts;
 - `packages/integration-contracts` provider-neutral surface contract layer;
 - `packages/provider-adapters` edge projection/normalization layer;
-- `packages/system-assembly` composition/wiring layer.
+- `packages/system-assembly` composition/wiring layer;
+- `packages/runtime-surface` entrypoint and handler-shape skeleton layer.
 
-Recent boundary-hardening outcomes:
-- aligned `read-path` pack-input with `pack-loop` target hints (`target_runtime`/`target_provider`/`target_model`);
-- removed handoff candidate-family overlap by introducing `recent_handoffs`;
-- tightened write-path rejection vocabulary mapping to governance rejection reasons;
-- added adapter tool↔operation contract consistency validation;
-- reduced duplicated boundary typing between `system-assembly` and shared types;
-- aligned audit integration surface type with `integration-contracts`.
+Recent runtime-surface outcomes:
+- added `mcp`/`api`/`generic_runtime` entrypoint request contract families;
+- added entrypoint validation and response contract shapes;
+- added dispatch-intent and execution-intent contract shapes (contract-only);
+- added request-normalization and response-shaping boundary contract shapes;
+- added runtime surface registry, handler dependency, and capability linkage shapes;
+- added missing-handler / unsupported-surface / unsupported-mode result contracts;
+- added orchestration handoff linkage contracts into canonical layers as typed linkage only.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -86,6 +89,7 @@ The preferred early implementation sequence remains:
 10. `integration-contracts` (done)
 11. `provider-adapters` (done)
 12. `system-assembly` (done)
+13. `runtime-surface` (done)
 
 ---
 
@@ -98,13 +102,14 @@ The next coding pass must preserve these guardrails:
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport execution;
 - keep `provider-adapters` as edge projection/normalization only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring only, not runtime execution layer.
+- keep `system-assembly` as composition/wiring only, not runtime execution layer;
+- keep `runtime-surface` as entrypoint and handler-shape contracts only, not runtime dispatch/transport execution.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across thirteen bounded passes:
+Execution documentation protocol is exercised across fourteen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -118,6 +123,7 @@ Execution documentation protocol is exercised across thirteen bounded passes:
 - `2026-04-22-09-provider-adapters-projection-and-normalization.md`
 - `2026-04-22-10-system-assembly-composition-and-wiring.md`
 - `2026-04-22-11-boundary-hardening-cross-package-consistency.md`
+- `2026-04-22-12-runtime-surface-skeleton-and-entrypoint-shapes.md`
 
 ---
 
@@ -133,7 +139,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** design a contracts-first runtime-surface skeleton (handler entrypoint interfaces only) while preserving current contract and contour boundaries.
+**Bounded Pass:** harden runtime-surface dispatch/linkage contracts against `system-assembly` capability registration and validation boundaries without introducing runtime execution handlers.
 
 ---
 
@@ -143,4 +149,5 @@ When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `system-assembly` as composition/wiring contracts and primitives;
+- treat `runtime-surface` as entrypoint/handler shape and boundary contracts only;
 - preserve strict separation between shape/primitives layers and runtime execution layers.

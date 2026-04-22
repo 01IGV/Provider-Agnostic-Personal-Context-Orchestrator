@@ -6,3 +6,4 @@ export * from "./wiring.js";
 export * from "./validation.js";
 export * from "./composition-root.js";
 export * from "./bootstrap.js";
+export * from "./runtime-surface-linkage.js";

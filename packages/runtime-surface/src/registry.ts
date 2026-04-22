@@ -5,6 +5,13 @@ import type {
 } from "./handlers.js";
 import type { RuntimeEntrypointType, RuntimeSurfaceFamily, RuntimeSurfaceMode } from "./vocabularies.js";
 
+export const RUNTIME_SURFACE_DEPENDENCY_TOKENS = [
+  "runtime_surface_registry",
+  "runtime_surface_contract_consistency"
+] as const;
+
+export type RuntimeSurfaceDependencyToken = (typeof RUNTIME_SURFACE_DEPENDENCY_TOKENS)[number];
+
 export interface HandlerCapabilityLinkageShape {
   handler_id: string;
   operation_id: string;

@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Runtime-surface skeleton pass completed with entrypoint/handler shape contracts and boundary primitives.**
+**Runtime boundary-hardening and surface-consistency pass completed across `runtime-surface`, `integration-contracts`, `system-assembly`, and `provider-adapters`.**
 
-The repository now has thirteen materialized packages, including the first dedicated runtime-surface contract layer.
+The repository remains at thirteen materialized packages, with tighter runtime-boundary consistency and assembly/linkage guardrails.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-`runtime-surface` is now the newest completed bounded layer and remains shape-only (entrypoint/handler contracts, registry contracts, boundary contracts, intents, normalized results) without runtime handler/transport execution.
+The strongest current bounded state is now the runtime-boundary-hardening envelope around `runtime-surface` and adjacent integration/assembly/adapter contracts.
 
 ---
 
@@ -57,14 +57,15 @@ The repository now has:
 - `packages/system-assembly` composition/wiring layer;
 - `packages/runtime-surface` entrypoint and handler-shape skeleton layer.
 
-Recent runtime-surface outcomes:
-- added `mcp`/`api`/`generic_runtime` entrypoint request contract families;
-- added entrypoint validation and response contract shapes;
-- added dispatch-intent and execution-intent contract shapes (contract-only);
-- added request-normalization and response-shaping boundary contract shapes;
-- added runtime surface registry, handler dependency, and capability linkage shapes;
-- added missing-handler / unsupported-surface / unsupported-mode result contracts;
-- added orchestration handoff linkage contracts into canonical layers as typed linkage only.
+Recent runtime-boundary-hardening outcomes:
+- aligned `runtime-surface` dispatch intent capability typing with canonical `CapabilityClass`;
+- aligned unsupported-surface and unsupported-mode result shapes with runtime vocabularies;
+- added runtime-to-integration surface error code mapping in `runtime-surface`;
+- added `runtime-surface` contract consistency validator for operation/capability/entrypoint-surface alignment;
+- formalized runtime-surface dependency tokens for assembly assumptions;
+- added `system-assembly` runtime-surface assembly-requirement linkage helper;
+- extended system-assembly missing-dependency vocabulary with runtime-surface-specific codes;
+- added `provider-adapters` runtime-intent boundary linkage helper to preserve contract-only intent handoff.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -109,7 +110,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across fourteen bounded passes:
+Execution documentation protocol is exercised across fifteen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -124,6 +125,7 @@ Execution documentation protocol is exercised across fourteen bounded passes:
 - `2026-04-22-10-system-assembly-composition-and-wiring.md`
 - `2026-04-22-11-boundary-hardening-cross-package-consistency.md`
 - `2026-04-22-12-runtime-surface-skeleton-and-entrypoint-shapes.md`
+- `2026-04-22-13-runtime-boundary-hardening-and-surface-consistency.md`
 
 ---
 
@@ -139,7 +141,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** harden runtime-surface dispatch/linkage contracts against `system-assembly` capability registration and validation boundaries without introducing runtime execution handlers.
+**Bounded Pass:** connect runtime-surface consistency outputs into system-assembly validation/reporting flow (contracts-only), still deferring actual handler/transport execution.
 
 ---
 

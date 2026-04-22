@@ -6,6 +6,7 @@ export * from "./bundle-projection.js";
 export * from "./tool-projection.js";
 export * from "./output-normalization.js";
 export * from "./writeback-normalization.js";
+export * from "./runtime-intent-linkage.js";
 export * from "./errors.js";
 export * from "./audit-shapes.js";
 export * from "./consistency.js";

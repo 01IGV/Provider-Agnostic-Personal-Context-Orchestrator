@@ -16,7 +16,8 @@
     { "path": "../handoff" },
     { "path": "../audit-eval" },
     { "path": "../integration-contracts" },
-    { "path": "../provider-adapters" }
+    { "path": "../provider-adapters" },
+    { "path": "../runtime-surface" }
   ],
   "include": [
     "src/**/*.ts"

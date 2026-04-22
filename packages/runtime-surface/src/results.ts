@@ -3,6 +3,7 @@ import type { RuntimeSurfaceErrorShape } from "./errors.js";
 import type { RuntimeHandlerResultShape } from "./handlers.js";
 import type { RuntimeDispatchIntentShape, RuntimeExecutionIntentShape } from "./intents.js";
 import type { RuntimeSurfaceRegistryLookup } from "./registry.js";
+import type { RuntimeSurfaceFamily, RuntimeSurfaceMode } from "./vocabularies.js";
 
 export interface MissingHandlerResultShape {
   request_id: string;
@@ -13,14 +14,14 @@ export interface MissingHandlerResultShape {
 
 export interface UnsupportedSurfaceResultShape {
   request_id: string;
-  requested_surface_family: string;
+  requested_surface_family: RuntimeSurfaceFamily;
   dispatch_intent: RuntimeDispatchIntentShape;
   error: RuntimeSurfaceErrorShape & { error_code: "unsupported_surface" };
 }
 
 export interface UnsupportedModeResultShape {
   request_id: string;
-  requested_mode: string;
+  requested_mode: RuntimeSurfaceMode;
   dispatch_intent: RuntimeDispatchIntentShape;
   error: RuntimeSurfaceErrorShape & { error_code: "unsupported_mode" };
 }

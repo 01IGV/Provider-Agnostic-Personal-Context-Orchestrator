@@ -4,6 +4,7 @@ import type { OperationContractShape } from "@orchestrator/integration-contracts
 import type { PackLoopPrimitivePipeline } from "@orchestrator/pack-loop";
 import type { ProviderAdapterPipeline } from "@orchestrator/provider-adapters";
 import type { ReadPathPrimitivePipeline } from "@orchestrator/read-path";
+import type { RuntimeSurfaceContractConsistencyReport, RuntimeSurfaceRegistryShape } from "@orchestrator/runtime-surface";
 import type { WritePathPrimitivePipeline } from "@orchestrator/write-path";
 import type {
   ArtifactReferenceStore,
@@ -27,6 +28,8 @@ export interface CoreModuleServiceWiring {
   handoff_pipeline?: HandoffPrimitivePipeline;
   governance_decision_engine?: GovernanceDecisionEngine;
   provider_adapter_pipeline?: ProviderAdapterPipeline;
+  runtime_surface_registry?: RuntimeSurfaceRegistryShape;
+  runtime_surface_contract_consistency?: RuntimeSurfaceContractConsistencyReport;
 }
 
 export interface StoreContractWiring {

@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-precheck and handler-boundary contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
+**Delivery-runtime handoff placeholder contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
 
-The repository remains at thirteen materialized packages and now includes contract-level delivery-precheck and handler-boundary readiness artifacts over publication dispatch-intent outcomes, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level delivery-runtime handoff placeholder artifacts over delivery-precheck outcomes, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-binding/dispatch-intent/delivery-precheck normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-binding/dispatch-intent/delivery-precheck/runtime-handoff normalization), still execution-free.
 
 ---
 
@@ -120,6 +120,13 @@ Recent internal-dispatch outcomes:
 - added runtime-surface delivery-precheck envelope contracts;
 - added integration-contracts delivery-precheck linkage contracts and builder;
 - added audit-eval delivery-precheck trace and audit linkage contracts/builders.
+- added delivery-runtime-handoff family/target/status vocabularies in `system-assembly`;
+- added runtime target expectation, handler-invocation placeholder, and precheck-to-runtime-handoff linkage contracts;
+- added ready-to-handoff/blocked/deferred/unavailable/unsupported/partially-ready runtime handoff placeholder contracts;
+- added delivery-runtime-handoff builders that map delivery-precheck outcomes into runtime handoff placeholder contracts;
+- added runtime-surface runtime-handoff placeholder envelope contracts;
+- added integration-contracts runtime-handoff linkage contracts and builder;
+- added audit-eval runtime-handoff trace and audit linkage contracts/builders.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -192,6 +199,7 @@ Execution documentation protocol is exercised across bounded passes:
 - `2026-04-23-22-publication-channel-binding-and-egress-gating-contracts.md`
 - `2026-04-23-23-publication-dispatch-intent-contracts.md`
 - `2026-04-23-24-delivery-precheck-and-handler-boundary-contracts.md`
+- `2026-04-23-25-delivery-runtime-handoff-placeholder-contracts.md`
 
 ---
 
@@ -208,7 +216,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add delivery-runtime handoff placeholder contracts that consume delivery-precheck outcomes and define next-layer handler invocation placeholders while still deferring actual handler/transport execution.
+**Bounded Pass:** add delivery-runtime execution-attempt placeholder lifecycle contracts that consume runtime handoff placeholders and define bounded attempt-state transitions while still deferring actual handler/transport execution.
 
 ---
 

@@ -7,5 +7,6 @@ export * from "./handlers.js";
 export * from "./boundaries.js";
 export * from "./registry.js";
 export * from "./results.js";
+export * from "./reconciled-outcomes.js";
 export * from "./linkage.js";
 export * from "./consistency.js";

@@ -19,3 +19,6 @@ export * from "./contour-invocation-gate.js";
 export * from "./execution-handoff-vocabularies.js";
 export * from "./execution-handoff-types.js";
 export * from "./execution-handoff.js";
+export * from "./execution-result-reconciliation-vocabularies.js";
+export * from "./execution-result-reconciliation-types.js";
+export * from "./execution-result-reconciliation.js";

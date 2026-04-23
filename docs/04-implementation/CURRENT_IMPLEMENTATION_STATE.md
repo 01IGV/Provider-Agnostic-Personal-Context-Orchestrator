@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Execution-handoff contracts and attempt-trace pass completed across `system-assembly` and `audit-eval`.**
+**Execution-result reconciliation contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
 
-The repository remains at thirteen materialized packages and now includes contract-level execution-handoff preparation over contour-gate outputs with attempt trace placeholders, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level reconciliation from execution-handoff placeholder outcomes into runtime-surface/integration/audit-facing normalized contracts, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace contracts (lookup/resolution/validation/planning/reporting/gate/handoff normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation normalization), still execution-free.
 
 ---
 
@@ -78,6 +78,12 @@ Recent internal-dispatch outcomes:
 - added contour execution-attempt, ready/blocked/deferred handoff result, and execution placeholder contracts;
 - added execution handoff builders for gate-to-attempt normalization and handoff summary aggregation;
 - added audit-eval execution-attempt trace and audit-hook linkage contract shapes with trace builder primitive.
+- added execution-result reconciliation vocabularies and status mappings in `system-assembly`;
+- added attempt-result reconciliation, normalized placeholder outcome, and reconciled summary contracts;
+- added runtime-surface reconciled outcome contracts for normalized surface-facing placeholder results;
+- added integration-contracts reconciled response linkage contracts and builder;
+- added audit-eval reconciled outcome linkage contracts and builder;
+- added system-assembly reconciliation builders connecting execution-handoff outputs to runtime-surface/integration/audit-facing normalized contract artifacts.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -123,7 +129,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across nineteen bounded passes:
+Execution documentation protocol is exercised across twenty bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -143,6 +149,7 @@ Execution documentation protocol is exercised across nineteen bounded passes:
 - `2026-04-22-15-dispatch-readiness-reporting-and-assembly-linkage.md`
 - `2026-04-23-16-contour-invocation-gate-contracts.md`
 - `2026-04-23-17-execution-handoff-contracts-and-attempt-traces.md`
+- `2026-04-23-18-execution-result-reconciliation-contracts.md`
 
 ---
 
@@ -159,7 +166,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add execution-intent reconciliation contracts between execution-handoff outcomes and runtime-surface/integration response normalization, while still deferring actual contour execution and all transport/provider runtime behavior.
+**Bounded Pass:** add execution-completion ingress contracts (completion envelope, completion validation, and reconciliation-ingress guards) for future real contour outcomes, while still deferring actual contour execution and all transport/provider runtime behavior.
 
 ---
 

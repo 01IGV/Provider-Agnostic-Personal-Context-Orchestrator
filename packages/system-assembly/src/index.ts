@@ -34,3 +34,6 @@ export * from "./execution-outcome-publication.js";
 export * from "./publication-channel-egress-gating-vocabularies.js";
 export * from "./publication-channel-egress-gating-types.js";
 export * from "./publication-channel-egress-gating.js";
+export * from "./publication-dispatch-intent-vocabularies.js";
+export * from "./publication-dispatch-intent-types.js";
+export * from "./publication-dispatch-intent.js";

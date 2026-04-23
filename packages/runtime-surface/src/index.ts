@@ -11,5 +11,6 @@ export * from "./reconciled-outcomes.js";
 export * from "./finalized-outcomes.js";
 export * from "./publication-egress-envelopes.js";
 export * from "./channel-bound-publication-envelopes.js";
+export * from "./publication-dispatch-intent-envelopes.js";
 export * from "./linkage.js";
 export * from "./consistency.js";

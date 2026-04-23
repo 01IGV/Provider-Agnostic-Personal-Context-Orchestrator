@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Dispatch-readiness reporting integration pass completed across `system-assembly` over internal dispatch outputs.**
+**Contour-invocation gate contract pass completed across `system-assembly` over internal dispatch outputs.**
 
-The repository remains at thirteen materialized packages and now includes contract-level linkage between internal dispatch outcomes and assembly validation/reporting flow, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contour-target resolution and invocation-gate contracts over dispatch planning outputs, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting linkage contracts (lookup/resolution/validation/planning/result normalization/reporting), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate contracts (lookup/resolution/validation/planning/reporting/gate normalization), still execution-free.
 
 ---
 
@@ -69,6 +69,11 @@ Recent internal-dispatch outcomes:
 - added dispatch-to-assembly validation linkage shapes and unresolved dependency/handler/unsupported-path reporting;
 - added runtime readiness summary and dispatch-status aggregation contracts;
 - added normalized assembly dispatch-readiness reporting helper and assembly-linkage helper.
+- added contour-invocation gate vocabularies for blocked/unsupported/missing-boundary statuses;
+- added contour target resolution and dispatch-plan-to-contour linkage shapes;
+- added normalized contour invocation request placeholder contracts for read/pack/write/handoff targets;
+- added contour invocation eligibility/readiness and result expectation placeholder contracts;
+- added contour-invocation gate helpers for target resolution, request normalization, and eligibility summary aggregation.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -114,7 +119,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across seventeen bounded passes:
+Execution documentation protocol is exercised across eighteen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -132,6 +137,7 @@ Execution documentation protocol is exercised across seventeen bounded passes:
 - `2026-04-22-13-runtime-boundary-hardening-and-surface-consistency.md`
 - `2026-04-22-14-internal-runtime-dispatch-skeleton.md`
 - `2026-04-22-15-dispatch-readiness-reporting-and-assembly-linkage.md`
+- `2026-04-23-16-contour-invocation-gate-contracts.md`
 
 ---
 
@@ -148,7 +154,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** introduce contour-invocation contract gate between dispatch planning outputs and canonical contour boundaries (contract-only), while still deferring actual contour execution and all transport/provider runtime behavior.
+**Bounded Pass:** add execution-layer handoff contracts for contour-gate outcomes (attempt/result-trace contracts only), while still deferring actual contour execution and all transport/provider runtime behavior.
 
 ---
 

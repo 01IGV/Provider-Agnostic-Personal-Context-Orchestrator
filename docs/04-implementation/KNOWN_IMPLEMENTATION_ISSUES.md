@@ -67,13 +67,13 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
 - **Recommended next action:** keep `runtime-surface` contract-only, integrate new consistency outputs into assembly validation flow, and isolate concrete handlers/dispatch/transport behavior in future dedicated runtime implementation passes.
 
-### 7. Risk of internal-dispatch, completion-ingress, finalization, and publication/egress boundary drift
+### 7. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, and channel-gating boundary drift
 - **Layer / Area:** system-assembly internal runtime dispatch skeleton
 - **Status:** open
 - **Severity:** medium
-- **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, and execution-outcome publication/egress contracts (`runtime-dispatch-reporting` + contour-gate helpers + execution-handoff helpers + reconciliation helpers + completion-ingress helpers + finalization helpers + publication helpers) in addition to lookup/resolution/validation/planning; future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication layers into real contour invocation, handler runtime, or transport execution.
+- **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, and publication-channel-binding/egress-gating contracts (`runtime-dispatch-reporting` + contour-gate helpers + execution-handoff helpers + reconciliation helpers + completion-ingress helpers + finalization helpers + publication helpers + channel-gating helpers) in addition to lookup/resolution/validation/planning; future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating layers into real contour invocation, handler runtime, or transport execution.
 - **Impact:** `system-assembly` can lose composition/planning-only role and become an implicit runtime execution layer.
-- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication-oriented, and isolate any future real contour invocation or delivery execution into explicitly approved execution-layer passes.
+- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating-oriented, and isolate any future real contour invocation or delivery execution into explicitly approved execution-layer passes.
 
 ## Update Policy
 

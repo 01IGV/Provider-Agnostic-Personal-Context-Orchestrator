@@ -6,3 +6,4 @@ export * from "./linkage.js";
 export * from "./builders.js";
 export * from "./execution-attempt-traces.js";
 export * from "./reconciled-outcome-linkage.js";
+export * from "./execution-completion-ingress-linkage.js";

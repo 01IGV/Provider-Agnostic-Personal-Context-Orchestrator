@@ -37,3 +37,6 @@ export * from "./publication-channel-egress-gating.js";
 export * from "./publication-dispatch-intent-vocabularies.js";
 export * from "./publication-dispatch-intent-types.js";
 export * from "./publication-dispatch-intent.js";
+export * from "./delivery-precheck-vocabularies.js";
+export * from "./delivery-precheck-types.js";
+export * from "./delivery-precheck.js";

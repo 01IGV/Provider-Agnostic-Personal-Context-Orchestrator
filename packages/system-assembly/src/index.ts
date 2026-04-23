@@ -40,3 +40,6 @@ export * from "./publication-dispatch-intent.js";
 export * from "./delivery-precheck-vocabularies.js";
 export * from "./delivery-precheck-types.js";
 export * from "./delivery-precheck.js";
+export * from "./delivery-runtime-handoff-vocabularies.js";
+export * from "./delivery-runtime-handoff-types.js";
+export * from "./delivery-runtime-handoff.js";

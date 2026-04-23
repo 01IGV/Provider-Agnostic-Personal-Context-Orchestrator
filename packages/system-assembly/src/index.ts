@@ -28,3 +28,6 @@ export * from "./execution-completion-ingress.js";
 export * from "./execution-outcome-finalization-vocabularies.js";
 export * from "./execution-outcome-finalization-types.js";
 export * from "./execution-outcome-finalization.js";
+export * from "./execution-outcome-publication-vocabularies.js";
+export * from "./execution-outcome-publication-types.js";
+export * from "./execution-outcome-publication.js";

@@ -25,3 +25,6 @@ export * from "./execution-result-reconciliation.js";
 export * from "./execution-completion-ingress-vocabularies.js";
 export * from "./execution-completion-ingress-types.js";
 export * from "./execution-completion-ingress.js";
+export * from "./execution-outcome-finalization-vocabularies.js";
+export * from "./execution-outcome-finalization-types.js";
+export * from "./execution-outcome-finalization.js";

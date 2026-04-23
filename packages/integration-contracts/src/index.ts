@@ -5,3 +5,4 @@ export * from "./capabilities.js";
 export * from "./errors.js";
 export * from "./linkage.js";
 export * from "./reconciled-response-linkage.js";
+export * from "./finalized-response-linkage.js";

@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Contour-invocation gate contract pass completed across `system-assembly` over internal dispatch outputs.**
+**Execution-handoff contracts and attempt-trace pass completed across `system-assembly` and `audit-eval`.**
 
-The repository remains at thirteen materialized packages and now includes contour-target resolution and invocation-gate contracts over dispatch planning outputs, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level execution-handoff preparation over contour-gate outputs with attempt trace placeholders, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate contracts (lookup/resolution/validation/planning/reporting/gate normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace contracts (lookup/resolution/validation/planning/reporting/gate/handoff normalization), still execution-free.
 
 ---
 
@@ -74,6 +74,10 @@ Recent internal-dispatch outcomes:
 - added normalized contour invocation request placeholder contracts for read/pack/write/handoff targets;
 - added contour invocation eligibility/readiness and result expectation placeholder contracts;
 - added contour-invocation gate helpers for target resolution, request normalization, and eligibility summary aggregation.
+- added execution-handoff status/warning/blocked vocabularies in `system-assembly`;
+- added contour execution-attempt, ready/blocked/deferred handoff result, and execution placeholder contracts;
+- added execution handoff builders for gate-to-attempt normalization and handoff summary aggregation;
+- added audit-eval execution-attempt trace and audit-hook linkage contract shapes with trace builder primitive.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -119,7 +123,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across eighteen bounded passes:
+Execution documentation protocol is exercised across nineteen bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -138,6 +142,7 @@ Execution documentation protocol is exercised across eighteen bounded passes:
 - `2026-04-22-14-internal-runtime-dispatch-skeleton.md`
 - `2026-04-22-15-dispatch-readiness-reporting-and-assembly-linkage.md`
 - `2026-04-23-16-contour-invocation-gate-contracts.md`
+- `2026-04-23-17-execution-handoff-contracts-and-attempt-traces.md`
 
 ---
 
@@ -154,7 +159,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add execution-layer handoff contracts for contour-gate outcomes (attempt/result-trace contracts only), while still deferring actual contour execution and all transport/provider runtime behavior.
+**Bounded Pass:** add execution-intent reconciliation contracts between execution-handoff outcomes and runtime-surface/integration response normalization, while still deferring actual contour execution and all transport/provider runtime behavior.
 
 ---
 

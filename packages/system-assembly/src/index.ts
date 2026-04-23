@@ -16,3 +16,6 @@ export * from "./runtime-dispatch-reporting.js";
 export * from "./contour-invocation-gate-vocabularies.js";
 export * from "./contour-invocation-gate-types.js";
 export * from "./contour-invocation-gate.js";
+export * from "./execution-handoff-vocabularies.js";
+export * from "./execution-handoff-types.js";
+export * from "./execution-handoff.js";

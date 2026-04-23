@@ -8,3 +8,4 @@ export * from "./reconciled-response-linkage.js";
 export * from "./finalized-response-linkage.js";
 export * from "./publication-egress-linkage.js";
 export * from "./channel-bound-egress-linkage.js";
+export * from "./publication-dispatch-intent-linkage.js";

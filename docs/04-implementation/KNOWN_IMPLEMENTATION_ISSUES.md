@@ -67,13 +67,13 @@ No concrete code-level defects are currently confirmed for these packages, but a
 - **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
 - **Recommended next action:** keep `runtime-surface` contract-only, integrate new consistency outputs into assembly validation flow, and isolate concrete handlers/dispatch/transport behavior in future dedicated runtime implementation passes.
 
-### 7. Risk of internal-dispatch skeleton boundary drift
+### 7. Risk of internal-dispatch and completion-ingress boundary drift
 - **Layer / Area:** system-assembly internal runtime dispatch skeleton
 - **Status:** open
 - **Severity:** medium
-- **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, and execution-result reconciliation contracts (`runtime-dispatch-reporting` + contour-gate helpers + execution-handoff helpers + reconciliation helpers) in addition to lookup/resolution/validation/planning; future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation layers into real contour invocation or transport execution.
+- **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, and execution-completion ingress contracts (`runtime-dispatch-reporting` + contour-gate helpers + execution-handoff helpers + reconciliation helpers + completion-ingress helpers) in addition to lookup/resolution/validation/planning; future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress layers into real contour invocation or transport execution.
 - **Impact:** `system-assembly` can lose composition/planning-only role and become an implicit runtime execution layer.
-- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation-oriented, and isolate any future real contour invocation into an explicitly approved execution-layer pass.
+- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress-oriented, and isolate any future real contour invocation into an explicitly approved execution-layer pass.
 
 ## Update Policy
 

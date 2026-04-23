@@ -22,3 +22,6 @@ export * from "./execution-handoff.js";
 export * from "./execution-result-reconciliation-vocabularies.js";
 export * from "./execution-result-reconciliation-types.js";
 export * from "./execution-result-reconciliation.js";
+export * from "./execution-completion-ingress-vocabularies.js";
+export * from "./execution-completion-ingress-types.js";
+export * from "./execution-completion-ingress.js";

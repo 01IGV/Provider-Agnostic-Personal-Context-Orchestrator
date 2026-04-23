@@ -9,5 +9,6 @@ export * from "./registry.js";
 export * from "./results.js";
 export * from "./reconciled-outcomes.js";
 export * from "./finalized-outcomes.js";
+export * from "./publication-egress-envelopes.js";
 export * from "./linkage.js";
 export * from "./consistency.js";

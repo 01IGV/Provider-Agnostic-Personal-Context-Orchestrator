@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Execution-outcome finalization contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
+**Execution-outcome publication/egress contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
 
-The repository remains at thirteen materialized packages and now includes contract-level finalization artifacts that combine accepted completion ingress with reconciliation outputs into finalized surface/integration/audit-facing envelopes, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level publication/egress artifacts that map finalized outcomes into delivery-ready runtime-surface and integration-ready egress envelopes, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication normalization), still execution-free.
 
 ---
 
@@ -95,6 +95,12 @@ Recent internal-dispatch outcomes:
 - added runtime-surface finalized envelope contracts;
 - added integration-contracts finalized response linkage contracts and builder;
 - added audit-eval finalized outcome linkage contracts and builder.
+- added execution-outcome publication vocabularies and status mappings in `system-assembly`;
+- added finalized-outcome-to-publication linkage and blocked/deferred/partial/incomplete publication contracts;
+- added publication builders that map finalized outcomes into delivery-ready/egress-ready contract envelopes;
+- added runtime-surface publication/egress envelope contracts;
+- added integration-contracts publication egress linkage contracts and builder;
+- added audit-eval publication outcome linkage contracts and builder.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -163,6 +169,7 @@ Execution documentation protocol is exercised across bounded passes:
 - `2026-04-23-18-execution-result-reconciliation-contracts.md`
 - `2026-04-23-19-execution-completion-ingress-contracts.md`
 - `2026-04-23-20-execution-outcome-finalization-contracts.md`
+- `2026-04-23-21-execution-outcome-publication-egress-contracts.md`
 
 ---
 
@@ -179,7 +186,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add execution-outcome publication/egress contracts that expose finalized outcome envelopes through runtime-surface/integration publication boundaries while still deferring actual contour execution and MCP/API runtime behavior.
+**Bounded Pass:** add publication channel binding and egress gating contracts that select publication channels and egress gating outcomes while still deferring actual handler/transport execution and MCP/API runtime behavior.
 
 ---
 

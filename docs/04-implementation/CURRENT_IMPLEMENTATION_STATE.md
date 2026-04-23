@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Execution-completion ingress contracts pass completed across `system-assembly` and `audit-eval`.**
+**Execution-outcome finalization contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
 
-The repository remains at thirteen materialized packages and now includes contract-level completion envelope ingress (validation/linkage/classification) into reconciliation boundary inputs, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level finalization artifacts that combine accepted completion ingress with reconciliation outputs into finalized surface/integration/audit-facing envelopes, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization normalization), still execution-free.
 
 ---
 
@@ -89,6 +89,12 @@ Recent internal-dispatch outcomes:
 - added completion-to-reconciliation ingress linkage contracts and completion-ingress summary contracts;
 - added completion-ingress contract builder and summary builder (validation/linkage only);
 - added audit-eval completion-ingress trace and audit-linkage contracts with builders.
+- added execution-outcome finalization vocabularies and status mappings in `system-assembly`;
+- added accepted-completion-to-finalization linkage, partial-finalization, and finalized outcome contracts;
+- added finalization builders that combine completion-ingress + reconciliation into finalized contracts;
+- added runtime-surface finalized envelope contracts;
+- added integration-contracts finalized response linkage contracts and builder;
+- added audit-eval finalized outcome linkage contracts and builder.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -134,7 +140,7 @@ The next coding pass must preserve these guardrails:
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across nineteen bounded passes:
+Execution documentation protocol is exercised across bounded passes:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -156,6 +162,7 @@ Execution documentation protocol is exercised across nineteen bounded passes:
 - `2026-04-23-17-execution-handoff-contracts-and-attempt-traces.md`
 - `2026-04-23-18-execution-result-reconciliation-contracts.md`
 - `2026-04-23-19-execution-completion-ingress-contracts.md`
+- `2026-04-23-20-execution-outcome-finalization-contracts.md`
 
 ---
 
@@ -172,7 +179,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add execution-outcome finalization contracts that combine completion-ingress accepted artifacts with reconciliation outputs into finalized runtime-surface/integration-facing outcome envelopes, while still deferring actual contour execution and all transport/provider runtime behavior.
+**Bounded Pass:** add execution-outcome publication/egress contracts that expose finalized outcome envelopes through runtime-surface/integration publication boundaries while still deferring actual contour execution and MCP/API runtime behavior.
 
 ---
 

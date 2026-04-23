@@ -31,3 +31,6 @@ export * from "./execution-outcome-finalization.js";
 export * from "./execution-outcome-publication-vocabularies.js";
 export * from "./execution-outcome-publication-types.js";
 export * from "./execution-outcome-publication.js";
+export * from "./publication-channel-egress-gating-vocabularies.js";
+export * from "./publication-channel-egress-gating-types.js";
+export * from "./publication-channel-egress-gating.js";

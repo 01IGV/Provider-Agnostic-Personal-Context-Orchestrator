@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Execution-outcome publication/egress contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
+**Publication channel binding and egress gating contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
 
-The repository remains at thirteen materialized packages and now includes contract-level publication/egress artifacts that map finalized outcomes into delivery-ready runtime-surface and integration-ready egress envelopes, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now includes contract-level publication-channel binding and egress-gating artifacts over publication outcomes, still without actual runtime/transport/provider execution.
 
 ---
 
@@ -35,7 +35,7 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication normalization), still execution-free.
+The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-binding normalization), still execution-free.
 
 ---
 
@@ -101,6 +101,12 @@ Recent internal-dispatch outcomes:
 - added runtime-surface publication/egress envelope contracts;
 - added integration-contracts publication egress linkage contracts and builder;
 - added audit-eval publication outcome linkage contracts and builder.
+- added publication channel family, eligibility, and egress gating vocabularies in `system-assembly`;
+- added channel binding result, channel-binding-to-egress linkage, and allowed/blocked/deferred/unsupported/partially-bindable/incomplete egress contracts;
+- added publication channel egress gating builders that map publication outcomes into channel-bound gated contract artifacts;
+- added runtime-surface channel-bound delivery-ready envelope contracts;
+- added integration-contracts channel-bound egress linkage contracts and builder;
+- added audit-eval channel-binding trace and egress-gate audit linkage contracts/builders.
 
 The repository still does **not** have:
 - any concrete persistence adapter implementation;
@@ -170,6 +176,7 @@ Execution documentation protocol is exercised across bounded passes:
 - `2026-04-23-19-execution-completion-ingress-contracts.md`
 - `2026-04-23-20-execution-outcome-finalization-contracts.md`
 - `2026-04-23-21-execution-outcome-publication-egress-contracts.md`
+- `2026-04-23-22-publication-channel-binding-and-egress-gating-contracts.md`
 
 ---
 
@@ -186,7 +193,7 @@ Current limits after this pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add publication channel binding and egress gating contracts that select publication channels and egress gating outcomes while still deferring actual handler/transport execution and MCP/API runtime behavior.
+**Bounded Pass:** add publication dispatch-intent contracts that translate channel-bound egress-gated outcomes into explicit future handler/transport boundary intents while still deferring actual delivery runtime behavior.
 
 ---
 

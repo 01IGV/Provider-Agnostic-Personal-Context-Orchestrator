@@ -11,13 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-runtime execution-attempt outcome publication-preparation contracts pass completed on feature branch and locally verified with `npm run typecheck`.**
+**Publication-preparation-to-dispatch-readiness contracts pass completed on feature branch and locally verified with `npm run typecheck`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-This pass added contract-only preparation from normalized execution-attempt outcome placeholders into publication-ready placeholder envelopes. It also added runtime-surface publication-preparation envelopes, integration-facing publication-preparation linkage, and audit/eval publication-preparation trace/linkage shapes.
+This pass added contract-only preparation from publication-ready placeholder envelopes into dispatch-readiness placeholder contracts. It also added runtime-surface dispatch-readiness envelopes, integration-facing dispatch-readiness linkage, and audit/eval dispatch-readiness trace/linkage shapes.
 
-No runtime handler, delivery runtime, actual publication delivery, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, or actual contour-execution behavior was added.
+No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, or actual contour-execution behavior was added.
 
 ---
 
@@ -39,7 +39,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts.
 
 All of this remains execution-free.
 
@@ -61,7 +61,7 @@ Alignment documents:
 - `docs/01-architecture/08-context-gateway-and-control-plane-architecture.md`
 - `docs/03-governance/03-identity-delegation-and-provenance-specification.md`
 
-The newest publication-preparation pass preserves this alignment by inheriting authority/provenance/delegation placeholders from normalized outcome artifacts and carrying them only as shape-level references:
+The newest dispatch-readiness pass preserves this alignment by inheriting authority/provenance/delegation placeholders from publication-preparation artifacts and carrying them only as shape-level references:
 - `control_plane_boundary: "gateway_control_plane_authority"`
 - `runtime_boundary: "delivery_runtime_no_direct_context_authority"`
 - optional `authority_context_id`
@@ -69,7 +69,7 @@ The newest publication-preparation pass preserves this alignment by inheriting a
 - optional `delegated_authority_ref`
 - optional `provenance_chain_ref`
 
-Publication-preparation additionally marks publication readiness as placeholder-only and explicitly disallows actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, and direct canonical writeback.
+Dispatch-readiness additionally marks dispatch readiness as placeholder-only and explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, and direct canonical writeback.
 
 ---
 
@@ -85,20 +85,22 @@ The repository currently has:
 - `packages/pack-loop` canonical bundle construction contour primitives;
 - `packages/write-path` candidate-routing and governed-decisioning contour primitives;
 - `packages/handoff` continuity-transfer contour primitives;
-- `packages/audit-eval` trust-layer contracts, including normalized execution-attempt outcome and publication-preparation trace/linkage contracts;
-- `packages/integration-contracts` provider-neutral surface contract layer, including normalized execution-attempt outcome and publication-preparation linkage contracts;
+- `packages/audit-eval` trust-layer contracts, including normalized execution-attempt outcome, publication-preparation, and dispatch-readiness trace/linkage contracts;
+- `packages/integration-contracts` provider-neutral surface contract layer, including normalized execution-attempt outcome, publication-preparation, and dispatch-readiness linkage contracts;
 - `packages/provider-adapters` edge projection/normalization layer;
-- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, and outcome publication-preparation contracts;
-- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts, normalized execution-attempt outcome envelopes, and execution-attempt outcome publication-preparation envelopes;
+- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, and publication-preparation-to-dispatch-readiness contracts;
+- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts, normalized execution-attempt outcome envelopes, execution-attempt outcome publication-preparation envelopes, and publication dispatch-readiness envelopes;
 - delivery-runtime execution-attempt lifecycle contracts over runtime handoff placeholders;
 - delivery-runtime execution-attempt outcome placeholder normalization contracts over lifecycle artifacts;
-- delivery-runtime execution-attempt outcome publication-preparation contracts over normalized outcome artifacts.
+- delivery-runtime execution-attempt outcome publication-preparation contracts over normalized outcome artifacts;
+- publication-preparation-to-dispatch-readiness contracts over publication-ready placeholder artifacts.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
 - runtime MCP/API handler implementations;
 - delivery runtime implementation;
 - actual publication delivery implementation;
+- actual dispatch execution implementation;
 - provider SDK transport execution implementations;
 - actual contour invocation execution from internal dispatch;
 - full auth/IAM implementation;
@@ -133,16 +135,16 @@ The next coding pass must preserve these guardrails:
 - do not introduce concrete persistence implementation in contour packages;
 - keep runtime/provider logic out of core contour and trust packages;
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
-- keep `integration-contracts` as surface semantics only, not handler/transport/publication execution;
+- keep `integration-contracts` as surface semantics only, not handler/transport/publication/dispatch execution;
 - keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation only, not runtime execution layer;
+- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication execution;
-- keep publication-preparation as placeholder-only and not proof of actual delivery;
-- preserve the distinction between gateway/control-plane authority and runtime/transport/publication execution;
+- keep publication-preparation and dispatch-readiness as placeholder-only and not proof of actual delivery or dispatch;
+- preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch execution;
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
-- do not interpret execution-attempt lifecycle, normalized outcome, or publication-preparation contracts as permission for handler invocation, delivery execution, or actual publication.
+- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, or dispatch-readiness contracts as permission for handler invocation, delivery execution, actual publication, or actual dispatch.
 
 ---
 
@@ -182,16 +184,18 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-24-29-delivery-runtime-execution-attempt-outcome-normalization-contracts.md`
 - `2026-04-24-30-post-merge-outcome-normalization-verification.md`
 - `2026-04-24-31-delivery-runtime-execution-attempt-outcome-publication-preparation-contracts.md`
+- `2026-04-24-32-publication-preparation-to-dispatch-readiness-contracts.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this publication-preparation pass:
+Current limits after this dispatch-readiness pass:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
+- no actual dispatch execution implementation yet;
 - no provider SDK transport execution yet;
 - no external transport/integration handler runtime yet;
 - no actual contour invocation execution in internal dispatch skeleton yet;
@@ -199,21 +203,18 @@ Current limits after this publication-preparation pass:
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
 - execution-attempt lifecycle artifacts remain contract-only and still do not imply handler/transport execution;
 - normalized execution-attempt outcomes remain placeholder-only and still do not imply actual handler results, delivery results, provider transport results, or proof of actual delivery;
-- publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery.
+- publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
+- dispatch-readiness artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add publication-preparation-to-dispatch-readiness contracts.
+**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation verification sync for dispatch-readiness contracts.
 
-This pass should map publication-ready placeholder envelopes into dispatch-readiness placeholder contracts without actual publication delivery, handler invocation, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
+If the branch is not merged yet, preserve contour and avoid additional implementation widening.
 
-Recommended branch:
-
-`feat/publication-preparation-to-dispatch-readiness-contracts`
-
-The pass must preserve the gateway/control-plane boundary and keep publication-preparation artifacts as placeholder-only, not proof of actual delivery.
+Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 
 ---
 
@@ -223,9 +224,9 @@ When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `runtime-surface` as surface/intake/envelope contracts only;
-- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, and publication-preparation modules as planning/normalization/preparation contract skeletons only;
-- preserve strict separation between planning/normalization/preparation contracts and real runtime execution layers;
+- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, and dispatch-readiness modules as planning/normalization/preparation/readiness contract skeletons only;
+- preserve strict separation between planning/normalization/preparation/readiness contracts and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;
 - treat gateway/control-plane as the authority-bearing context mediation boundary;
 - carry identity, delegation, and provenance through future runtime-adjacent design;
-- do not expand into actual publication delivery, payment rails, settlement, or generic agent framework behavior unless explicitly scoped later.
+- do not expand into actual dispatch execution, actual publication delivery, payment rails, settlement, or generic agent framework behavior unless explicitly scoped later.

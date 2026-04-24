@@ -14,3 +14,4 @@ export * from "./delivery-runtime-handoff-linkage.js";
 export * from "./execution-attempt-lifecycle-linkage.js";
 export * from "./normalized-execution-attempt-outcome-linkage.js";
 export * from "./execution-attempt-outcome-publication-preparation-linkage.js";
+export * from "./publication-dispatch-readiness-linkage.js";

@@ -11,11 +11,11 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-dispatch-intent-to-delivery-dispatch-precheck contracts pass completed on feature branch and locally verified with `npm run typecheck`.**
+**Delivery-chain boundary hardening and consistency review completed on `refactor/delivery-chain-boundary-hardening-and-consistency-review`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-This pass added contract-only preparation from delivery-dispatch intent placeholder contracts into delivery-dispatch precheck placeholder contracts. It also added runtime-surface delivery-dispatch precheck envelopes, integration-facing delivery-dispatch precheck linkage, and audit/eval delivery-dispatch precheck trace/linkage shapes.
+This pass reviewed the delivery-adjacent contract corridor from publication-preparation through dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck. It found and fixed one bounded consistency drift in publication-preparation boundary markers: publication-preparation now explicitly carries the same no-actual-dispatch boundary signal used by later delivery-adjacent layers.
 
 No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, or actual contour-execution behavior was added.
 
@@ -39,7 +39,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening.
 
 All of this remains execution-free.
 
@@ -61,7 +61,7 @@ Alignment documents:
 - `docs/01-architecture/08-context-gateway-and-control-plane-architecture.md`
 - `docs/03-governance/03-identity-delegation-and-provenance-specification.md`
 
-The newest delivery-dispatch precheck pass preserves this alignment by inheriting authority/provenance/delegation placeholders from delivery-dispatch intent artifacts and carrying them only as shape-level references:
+The delivery-adjacent corridor now preserves the authority/provenance/delegation placeholder pattern from publication-preparation through delivery-dispatch precheck:
 - `control_plane_boundary: "gateway_control_plane_authority"`
 - `runtime_boundary: "delivery_runtime_no_direct_context_authority"`
 - optional `authority_context_id`
@@ -69,7 +69,7 @@ The newest delivery-dispatch precheck pass preserves this alignment by inheritin
 - optional `delegated_authority_ref`
 - optional `provenance_chain_ref`
 
-Delivery-dispatch precheck additionally marks precheck readiness as placeholder-only and explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, direct canonical writeback, and runtime permission.
+The corridor also explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, direct canonical writeback, and runtime permission.
 
 ---
 
@@ -95,7 +95,8 @@ The repository currently has:
 - delivery-runtime execution-attempt outcome publication-preparation contracts over normalized outcome artifacts;
 - publication-preparation-to-dispatch-readiness contracts over publication-ready placeholder artifacts;
 - dispatch-readiness-to-delivery-dispatch-intent contracts over dispatch-readiness placeholder artifacts;
-- delivery-dispatch-intent-to-delivery-dispatch-precheck contracts over delivery-dispatch intent placeholder artifacts.
+- delivery-dispatch-intent-to-delivery-dispatch-precheck contracts over delivery-dispatch intent placeholder artifacts;
+- delivery-chain boundary hardening that aligns publication-preparation with the downstream explicit no-actual-dispatch boundary spine.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -189,12 +190,13 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-24-32-publication-preparation-to-dispatch-readiness-contracts.md`
 - `2026-04-24-33-dispatch-readiness-to-delivery-dispatch-intent-contracts.md`
 - `2026-04-24-34-delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts.md`
+- `2026-04-24-35-delivery-chain-boundary-hardening-and-consistency-review.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this delivery-dispatch precheck pass:
+Current limits after this delivery-chain hardening pass:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -207,24 +209,21 @@ Current limits after this delivery-dispatch precheck pass:
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
 - execution-attempt lifecycle artifacts remain contract-only and still do not imply handler/transport execution;
 - normalized execution-attempt outcomes remain placeholder-only and still do not imply actual handler results, delivery results, provider transport results, or proof of actual delivery;
-- publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
+- publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, actual dispatch execution, handler results, delivery results, provider transport results, or proof of actual delivery;
 - dispatch-readiness artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
 - delivery-dispatch intent artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, or proof of actual delivery;
-- delivery-dispatch precheck artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, runtime permission, or proof of actual delivery.
+- delivery-dispatch precheck artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, runtime permission, or proof of actual delivery;
+- local/CI `npm run typecheck` confirmation is still required for this connector-based delivery-chain hardening pass.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** delivery-chain boundary hardening and consistency review.
+**Bounded Pass:** run `npm run typecheck` on branch `refactor/delivery-chain-boundary-hardening-and-consistency-review` in a local checkout or CI-capable environment.
 
-This pass should review the delivery-adjacent contract chain from publication-preparation through dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck for naming drift, status drift, duplicated semantics, boundary overlap, and hidden execution leakage.
+If typecheck passes, preserve contour and do not add another placeholder layer. If typecheck reveals drift, perform one narrow delivery-chain consistency fix pass only.
 
-Recommended branch:
-
-`refactor/delivery-chain-boundary-hardening-and-consistency-review`
-
-The pass must remain contract/review/hardening-only. It must not add actual dispatch execution, publication delivery, handler invocation, delivery runtime, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
+Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 
 ---
 

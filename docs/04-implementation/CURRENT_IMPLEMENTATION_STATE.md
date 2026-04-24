@@ -226,9 +226,15 @@ Current limits after this proof-path pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after end-to-end proof path.
+**Bounded Pass:** repo-first verdict for the next implementation direction after end-to-end non-executing proof path.
 
-Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, or real storage writes unless explicitly scoped by a new bounded implementation pass.
+This pass should determine the strongest next move after the proof path: proof-path hardening, deterministic local proof command, first executable-adjacent seam, or preserve-contour.
+
+Recommended branch:
+
+`docs/repo-first-verdict-after-end-to-end-non-executing-proof-path`
+
+This must be a review/verdict pass only. Do not add runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, or another placeholder layer without a concrete blocker.
 
 ---
 

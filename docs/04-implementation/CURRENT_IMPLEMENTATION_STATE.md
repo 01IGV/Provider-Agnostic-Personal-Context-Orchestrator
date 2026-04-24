@@ -11,11 +11,11 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-runtime execution-attempt lifecycle contracts pass completed on `feat/delivery-runtime-execution-attempt-lifecycle-contracts`.**
+**Delivery-runtime execution-attempt lifecycle contracts pass merged into `main` and post-merge locally verified.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-This pass added contract-only lifecycle attempt shapes over existing delivery-runtime handoff placeholders.
+This pass added contract-only lifecycle attempt shapes over existing delivery-runtime handoff placeholders, and local `npm run typecheck` verification has now been completed successfully.
 
 No runtime handler, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, or actual contour-execution behavior was added.
 
@@ -184,15 +184,13 @@ Current limits after this lifecycle pass:
 - no actual contour invocation execution in internal dispatch skeleton yet;
 - no dedicated type-level identity/delegation/provenance contract package yet;
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
-- execution-attempt lifecycle artifacts are contract-only and require local/CI typecheck confirmation after this connector-based pass.
+- execution-attempt lifecycle artifacts remain contract-only and still do not imply handler/transport execution.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** run `npm run typecheck` on branch `feat/delivery-runtime-execution-attempt-lifecycle-contracts` in a local checkout or CI-capable environment.
-
-If typecheck passes, preserve contour. If typecheck reveals drift, perform one narrow lifecycle consistency / normalization fix pass.
+**Bounded Pass:** add delivery-runtime execution-attempt outcome placeholder normalization contracts (attempt-state -> normalized non-executing runtime outcome linkage), while preserving execution-free boundaries.
 
 Do not proceed to actual delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 

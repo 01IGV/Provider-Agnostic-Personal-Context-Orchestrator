@@ -38,8 +38,9 @@ export type EndToEndNonExecutingProofSourcePackage =
   | "governance"
   | "audit-eval"
   | "integration-contracts"
-  | "system-assembly"
-  | "runtime-surface";
+  | "runtime-surface"
+  | "provider-adapters"
+  | "system-assembly";
 
 export interface EndToEndNonExecutingProofStageShape {
   stage_name: EndToEndNonExecutingProofStageName;

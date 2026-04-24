@@ -33,6 +33,8 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 
 Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `feat/end-to-end-non-executing-proof-path`; the connector-only verification gap is closed before merge.
 
+Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing` passed for `feat/deterministic-local-proof-command`; the connector-only verification gap is closed before merge.
+
 ---
 
 ## Current Known Issues and Constraints

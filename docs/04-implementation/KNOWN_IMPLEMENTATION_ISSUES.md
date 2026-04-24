@@ -31,7 +31,7 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 
 Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `refactor/dispatch-readiness-runtime-boundary-naming-consistency`; the connector-only verification gap is closed before merge.
 
-Connector-based proof-path implementation note (April 24, 2026): end-to-end non-executing proof path was implemented on `feat/end-to-end-non-executing-proof-path`, but local/CI `npm run typecheck` confirmation is still required for this branch.
+Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `feat/end-to-end-non-executing-proof-path`; the connector-only verification gap is closed before merge.
 
 ---
 
@@ -92,14 +92,6 @@ Connector-based proof-path implementation note (April 24, 2026): end-to-end non-
 - **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, and end-to-end proof-path composition in addition to lookup/resolution/validation/planning. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly` can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck execution into explicitly approved execution-layer passes.
-
-### 8. Typecheck confirmation required after end-to-end non-executing proof path implementation
-- **Layer / Area:** repository verification
-- **Status:** open
-- **Severity:** medium
-- **Description:** the end-to-end non-executing proof path implementation was applied through GitHub connector file operations rather than a local git/npm workspace. Full `npm run typecheck` could not be executed in-session.
-- **Impact:** possible TypeScript shape drift may remain until local/CI verification runs.
-- **Recommended next action:** run `npm run typecheck` on branch `feat/end-to-end-non-executing-proof-path`; if failures appear, perform one narrow type/shape fix pass only.
 
 ## Update Policy
 

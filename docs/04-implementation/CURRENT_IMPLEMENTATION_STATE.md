@@ -11,15 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**End-to-end non-executing proof path implemented on `feat/end-to-end-non-executing-proof-path`.**
+**End-to-end non-executing proof path implemented on feature branch and locally verified with `npm run typecheck`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
 This pass materialized a typed proof-composition module in `packages/system-assembly` that composes the existing delivery-adjacent corridor into one deterministic non-executing proof path. It starts from deterministic upstream placeholders and a normalized execution-attempt outcome fixture, then reuses existing builders for publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck.
 
 No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added.
-
-Local/CI `npm run typecheck` confirmation is still required for this connector-based branch before merge.
 
 ---
 
@@ -228,19 +226,9 @@ Current limits after this proof-path pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification for end-to-end non-executing proof path.
+**Bounded Pass:** if this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after end-to-end proof path.
 
-Run:
-
-```bash
-git checkout feat/end-to-end-non-executing-proof-path
-npm install
-npm run typecheck
-```
-
-If typecheck passes, record a docs-only verification sync in this branch before merge.
-
-If typecheck fails, perform one narrow type/shape fix only. Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, or real storage writes.
+Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, or real storage writes unless explicitly scoped by a new bounded implementation pass.
 
 ---
 

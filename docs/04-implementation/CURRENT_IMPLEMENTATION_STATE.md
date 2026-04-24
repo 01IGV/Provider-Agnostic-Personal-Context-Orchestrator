@@ -205,11 +205,15 @@ Current limits after this publication-preparation pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation verification sync for publication-preparation contracts.
+**Bounded Pass:** add publication-preparation-to-dispatch-readiness contracts.
 
-If the branch is not merged yet, preserve contour and avoid additional implementation widening.
+This pass should map publication-ready placeholder envelopes into dispatch-readiness placeholder contracts without actual publication delivery, handler invocation, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
-Do not proceed to actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+Recommended branch:
+
+`feat/publication-preparation-to-dispatch-readiness-contracts`
+
+The pass must preserve the gateway/control-plane boundary and keep publication-preparation artifacts as placeholder-only, not proof of actual delivery.
 
 ---
 

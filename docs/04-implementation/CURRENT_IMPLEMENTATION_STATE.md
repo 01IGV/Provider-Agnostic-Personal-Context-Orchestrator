@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-runtime execution-attempt outcome publication-preparation contracts pass completed on `feat/delivery-runtime-execution-attempt-outcome-publication-preparation-contracts`.**
+**Delivery-runtime execution-attempt outcome publication-preparation contracts pass completed on feature branch and locally verified with `npm run typecheck`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -199,16 +199,15 @@ Current limits after this publication-preparation pass:
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
 - execution-attempt lifecycle artifacts remain contract-only and still do not imply handler/transport execution;
 - normalized execution-attempt outcomes remain placeholder-only and still do not imply actual handler results, delivery results, provider transport results, or proof of actual delivery;
-- publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
-- local/CI `npm run typecheck` confirmation is still required for this connector-based publication-preparation pass.
+- publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** run `npm run typecheck` on branch `feat/delivery-runtime-execution-attempt-outcome-publication-preparation-contracts` in a local checkout or CI-capable environment.
+**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation verification sync for publication-preparation contracts.
 
-If typecheck passes, preserve contour. If typecheck reveals drift, perform one narrow publication-preparation consistency fix pass only.
+If the branch is not merged yet, preserve contour and avoid additional implementation widening.
 
 Do not proceed to actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Dispatch-readiness runtime boundary naming consistency fix completed on `refactor/dispatch-readiness-runtime-boundary-naming-consistency`.**
+**Dispatch-readiness runtime boundary naming consistency fix completed on feature branch and locally verified with `npm run typecheck`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -219,26 +219,17 @@ Current limits after this dispatch-readiness runtime boundary naming consistency
 - publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, actual dispatch execution, handler results, delivery results, provider transport results, or proof of actual delivery;
 - dispatch-readiness artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
 - delivery-dispatch intent artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, or proof of actual delivery;
-- delivery-dispatch precheck artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, runtime permission, or proof of actual delivery;
-- local/CI `npm run typecheck` confirmation is still required for this connector-based dispatch-readiness naming fix.
+- delivery-dispatch precheck artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, runtime permission, or proof of actual delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification for dispatch-readiness runtime boundary naming consistency fix.
+**Bounded Pass:** if this branch is merged, perform a repo-first verdict on whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
 
-Run:
+If the branch is not merged yet, preserve contour and avoid additional implementation widening.
 
-```bash
-git checkout refactor/dispatch-readiness-runtime-boundary-naming-consistency
-npm install
-npm run typecheck
-```
-
-If typecheck passes, record a docs-only verification sync in this branch before merge. After merge, perform a repo-first verdict to determine whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
-
-If typecheck fails, perform one narrow naming-consistency fix only. Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
+Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
 ---
 

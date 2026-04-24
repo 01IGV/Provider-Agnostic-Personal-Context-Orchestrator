@@ -46,3 +46,6 @@ export * from "./delivery-runtime-handoff.js";
 export * from "./delivery-runtime-execution-attempt-lifecycle-vocabularies.js";
 export * from "./delivery-runtime-execution-attempt-lifecycle-types.js";
 export * from "./delivery-runtime-execution-attempt-lifecycle.js";
+export * from "./delivery-runtime-execution-attempt-outcome-normalization-vocabularies.js";
+export * from "./delivery-runtime-execution-attempt-outcome-normalization-types.js";
+export * from "./delivery-runtime-execution-attempt-outcome-normalization.js";

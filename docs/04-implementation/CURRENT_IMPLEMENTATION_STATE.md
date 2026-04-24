@@ -225,11 +225,15 @@ Current limits after this dispatch-readiness runtime boundary naming consistency
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a repo-first verdict on whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
+**Bounded Pass:** repo-first verdict on whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
 
-If the branch is not merged yet, preserve contour and avoid additional implementation widening.
+This pass should determine whether the delivery-adjacent corridor is now sufficiently consistent to move toward an end-to-end non-executing proof path, or whether another bounded consistency pass is still justified.
 
-Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
+Recommended branch:
+
+`docs/repo-first-verdict-before-end-to-end-non-executing-proof-path`
+
+This must be a review/verdict pass only. Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
 ---
 

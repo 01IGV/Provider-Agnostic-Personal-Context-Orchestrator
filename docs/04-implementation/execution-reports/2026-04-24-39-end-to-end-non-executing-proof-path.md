@@ -130,7 +130,7 @@ Updated `packages/system-assembly/src/index.ts` to export:
 - `./end-to-end-non-executing-proof-path.js`
 
 ### 4. Updated rolling docs
-Updated current state and known issues to reflect this connector-based implementation and its verification gap.
+Updated current state and known issues to reflect this implementation and local typecheck verification.
 
 ## Runtime / Action Flags Asserted False
 The proof artifact asserts these remain false:
@@ -167,7 +167,7 @@ The proof artifact asserts these remain false:
 - Pre-write safety check confirmed the target branch existed and `main...feat/end-to-end-non-executing-proof-path` was clean: `ahead_by: 0`, `behind_by: 0`, `files: []`.
 - After the first write, compare confirmed the feature branch was ahead of `main` and `main` was not directly changed.
 - Static connector review was performed across relevant current state docs, package exports, types, and delivery-adjacent builders.
-- Full local `npm run typecheck` could not be executed in this session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+- After connector-based implementation, local `npm install` and `npm run typecheck` were executed successfully before merge.
 
 ## Current Outcome
 The repository now has a single typed proof-composition module that can express an end-to-end non-executing proof path from deterministic upstream placeholders through delivery-adjacent corridor contracts.
@@ -175,26 +175,17 @@ The repository now has a single typed proof-composition module that can express 
 This is the first repo-level artifact that presents the system as one composed non-executing path rather than isolated contract layers.
 
 ## Known Limitations After This Pass
-- Local or CI `npm run typecheck` must still be run for this branch.
 - The proof path is a typed composition module, not a runtime command.
 - Upstream read/pack/write/governance/audit steps remain deterministic placeholder stages and are not contour executions.
 - The proof path does not perform actual runtime, handler, transport, provider SDK, persistence, auth/IAM, payment, dispatch, or delivery behavior.
 
 ## Known Issues Introduced or Updated
-Added a temporary verification gap in `KNOWN_IMPLEMENTATION_ISSUES.md` requiring local/CI `npm run typecheck` for `feat/end-to-end-non-executing-proof-path`.
+- The temporary connector verification gap was closed after local `npm install` and `npm run typecheck` passed before merge.
 
 ## Next Recommended Bounded Step
-Run local verification:
+If this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after end-to-end proof path.
 
-```bash
-git checkout feat/end-to-end-non-executing-proof-path
-npm install
-npm run typecheck
-```
-
-If typecheck passes, perform a docs-only verification sync in this branch before merge.
-
-If typecheck fails, perform one narrow type/shape fix only. Do not add runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, or a new placeholder layer.
+Do not add runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, or a new placeholder layer unless explicitly scoped by a new bounded implementation pass.
 
 ## Notes for Next Agent or Session
 The next agent should treat the new proof path as a contract-composition proof, not as permission to execute runtime behavior.

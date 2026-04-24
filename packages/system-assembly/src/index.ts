@@ -58,3 +58,6 @@ export * from "./publication-preparation-to-dispatch-readiness.js";
 export * from "./dispatch-readiness-to-delivery-dispatch-intent-vocabularies.js";
 export * from "./dispatch-readiness-to-delivery-dispatch-intent-types.js";
 export * from "./dispatch-readiness-to-delivery-dispatch-intent.js";
+export * from "./delivery-dispatch-intent-to-delivery-dispatch-precheck-vocabularies.js";
+export * from "./delivery-dispatch-intent-to-delivery-dispatch-precheck-types.js";
+export * from "./delivery-dispatch-intent-to-delivery-dispatch-precheck.js";

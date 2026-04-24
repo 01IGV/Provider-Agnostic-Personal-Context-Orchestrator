@@ -273,7 +273,7 @@ export const createPublicationDispatchReadinessBuilder = (): PublicationDispatch
         dispatch_readiness_boundary: {
           dispatch_readiness_boundary_status: "dispatch_ready_placeholder_only" as const,
           actual_dispatch_execution_allowed_now: false as const,
-          publication_delivery_allowed_now: false as const,
+          actual_publication_delivery_allowed_now: false as const,
           handler_invocation_allowed_now: false as const,
           delivery_runtime_allowed_now: false as const,
           transport_delivery_allowed_now: false as const,

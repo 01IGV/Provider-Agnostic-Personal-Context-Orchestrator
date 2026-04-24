@@ -41,7 +41,8 @@ export interface RuntimeExecutionAttemptOutcomePublicationPreparationAuthorityCo
 
 export interface RuntimeExecutionAttemptOutcomePublicationPreparationBoundaryShape {
   publication_preparation_boundary_status: "publication_ready_placeholder_only";
-  publication_delivery_allowed_now: false;
+  actual_dispatch_execution_allowed_now: false;
+  actual_publication_delivery_allowed_now: false;
   handler_invocation_allowed_now: false;
   delivery_runtime_allowed_now: false;
   transport_delivery_allowed_now: false;

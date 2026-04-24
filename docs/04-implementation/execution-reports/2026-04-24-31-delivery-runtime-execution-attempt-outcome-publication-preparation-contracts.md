@@ -143,7 +143,10 @@ These fields preserve future identity/delegation/provenance linkage without impl
 - Static repo reading through GitHub connector.
 - Recent outcome-normalization and post-merge verification execution reports reviewed.
 - Package exports were updated for all newly created contract files.
-- Full local `npm run typecheck` could not be executed in this session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+- Initial connector-based implementation could not execute local npm verification in-session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+
+## Local Verification Update
+After connector-based implementation, local `npm install` and `npm run typecheck` were executed successfully before merge.
 
 ## Current Outcome
 The repository can now contractually take a normalized execution-attempt outcome placeholder and prepare a publication-ready placeholder envelope with:
@@ -167,12 +170,11 @@ without actual publication delivery, handler invocation, delivery runtime, trans
 - No concrete persistence adapters.
 - No full identity/delegation/provenance type package yet.
 - Publication-preparation artifacts remain contract-only placeholders pending a future explicitly scoped publication/delivery/runtime layer.
-- `npm run typecheck` still needs to be run in a local checkout or CI-capable environment for this branch.
 
 ## Known Issues Introduced or Updated
-- Updated the current verification constraint in `KNOWN_IMPLEMENTATION_ISSUES.md` to record that this connector-based pass still needs local/CI `npm run typecheck` confirmation.
 - Updated boundary-drift wording to include execution-attempt outcome publication-preparation contracts.
 - No concrete code-level defect was intentionally introduced or confirmed during this pass.
+- The temporary connector-only verification gap was closed after local `npm install` and `npm run typecheck` passed before merge.
 
 ## Commit / Branch Notes
 The pass was performed on:
@@ -182,7 +184,7 @@ The pass was performed on:
 All file-write operations explicitly targeted this branch. Because this environment writes through GitHub connector file operations rather than a local git checkout, each file create/update operation produced its own commit. This prevented a single squashed local commit in-session.
 
 ## Next Recommended Bounded Step
-Run local `npm run typecheck` against `feat/delivery-runtime-execution-attempt-outcome-publication-preparation-contracts`. If it passes, preserve contour. If typecheck reveals drift, perform one narrow publication-preparation consistency fix pass only. Do not proceed to actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+If this branch is merged, perform a narrow post-merge documentation verification sync for publication-preparation contracts. Do not proceed to actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 
 ## Notes for Next Agent or Session
 Treat publication-preparation contracts as normalized-outcome-to-publication-ready-placeholder preparation only. They are not actual publication delivery, handler results, delivery results, provider transport results, payment decisions, IAM decisions, or proof of actual delivery.

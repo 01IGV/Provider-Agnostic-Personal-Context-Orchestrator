@@ -63,7 +63,7 @@ actual_publication_delivery_allowed_now: false as const
 ### docs
 - Created this execution report.
 - Updated `docs/04-implementation/CURRENT_IMPLEMENTATION_STATE.md`.
-- Updated `docs/04-implementation/KNOWN_IMPLEMENTATION_ISSUES.md` to close the residual dispatch-readiness runtime boundary naming drift and add a connector verification note.
+- Updated `docs/04-implementation/KNOWN_IMPLEMENTATION_ISSUES.md` to close the residual dispatch-readiness runtime boundary naming drift.
 
 ## What Was Not Changed
 - No new placeholder layer was added.
@@ -96,11 +96,14 @@ The aligned runtime boundary still explicitly disallows:
 - Pre-write safety check confirmed the target branch existed and `main...refactor/dispatch-readiness-runtime-boundary-naming-consistency` was clean: `ahead_by: 0`, `behind_by: 0`, `files: []`.
 - After the first write, compare confirmed the feature branch was ahead of `main` and `main` was not directly changed.
 - Static connector review confirmed the drift existed in both runtime envelope type and builder emission.
-- Full local `npm run typecheck` could not be executed in this session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+- Initial connector-based implementation could not execute local npm verification in-session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+
+## Local Verification Update
+After connector-based implementation, local `npm install` and `npm run typecheck` were executed successfully before merge.
 
 ## Known Issues Introduced or Updated
 - Closed the residual dispatch-readiness runtime boundary naming drift.
-- Added a temporary connector verification gap requiring local/CI `npm run typecheck` for this branch.
+- Closed the temporary connector verification gap after local `npm install` and `npm run typecheck` passed before merge.
 
 ## Commit / Branch Notes
 All writes were made only to:
@@ -110,12 +113,6 @@ All writes were made only to:
 Because this environment writes through GitHub connector file operations rather than a local git checkout, file operations may produce multiple commits rather than one squashed commit.
 
 ## Next Recommended Bounded Step
-Run local verification on this branch:
+If this branch is merged, perform a repo-first verdict to determine whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
 
-```bash
-git checkout refactor/dispatch-readiness-runtime-boundary-naming-consistency
-npm install
-npm run typecheck
-```
-
-If typecheck passes, record a docs-only verification sync in this branch before merge. After merge, perform a repo-first verdict to determine whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
+Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.

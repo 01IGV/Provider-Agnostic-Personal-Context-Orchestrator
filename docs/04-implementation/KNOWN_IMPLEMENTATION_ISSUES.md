@@ -89,6 +89,14 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 - **Impact:** `system-assembly` can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck execution into explicitly approved execution-layer passes.
 
+### 8. Residual dispatch-readiness runtime boundary naming drift
+- **Layer / Area:** runtime-surface dispatch-readiness boundary
+- **Status:** open
+- **Severity:** low-to-medium
+- **Description:** `packages/runtime-surface/src/publication-dispatch-readiness-envelopes.ts` still uses `publication_delivery_allowed_now: false`, while the hardened upstream publication-preparation and downstream delivery-dispatch intent / delivery-dispatch precheck boundaries use the clearer `actual_publication_delivery_allowed_now: false` naming pattern.
+- **Impact:** the delivery-adjacent corridor is structurally coherent, but this residual naming drift can weaken readability and make an end-to-end non-executing proof path inherit a stale boundary naming pattern.
+- **Recommended next action:** perform one narrow `dispatch-readiness runtime boundary naming consistency fix` before composing an end-to-end non-executing proof path.
+
 ## Update Policy
 
 This file should be updated when:

@@ -11,13 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Dispatch-readiness-to-delivery-dispatch-intent contracts pass completed on feature branch and locally verified with `npm run typecheck`.**
+**Delivery-dispatch-intent-to-delivery-dispatch-precheck contracts pass completed on `feat/delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-This pass added contract-only preparation from dispatch-readiness placeholder contracts into delivery-dispatch intent placeholder contracts. It also added runtime-surface delivery-dispatch intent envelopes, integration-facing delivery-dispatch intent linkage, and audit/eval delivery-dispatch intent trace/linkage shapes.
+This pass added contract-only preparation from delivery-dispatch intent placeholder contracts into delivery-dispatch precheck placeholder contracts. It also added runtime-surface delivery-dispatch precheck envelopes, integration-facing delivery-dispatch precheck linkage, and audit/eval delivery-dispatch precheck trace/linkage shapes.
 
-No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, or actual contour-execution behavior was added.
+No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, or actual contour-execution behavior was added.
 
 ---
 
@@ -39,7 +39,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts.
 
 All of this remains execution-free.
 
@@ -61,7 +61,7 @@ Alignment documents:
 - `docs/01-architecture/08-context-gateway-and-control-plane-architecture.md`
 - `docs/03-governance/03-identity-delegation-and-provenance-specification.md`
 
-The newest delivery-dispatch intent pass preserves this alignment by inheriting authority/provenance/delegation placeholders from dispatch-readiness artifacts and carrying them only as shape-level references:
+The newest delivery-dispatch precheck pass preserves this alignment by inheriting authority/provenance/delegation placeholders from delivery-dispatch intent artifacts and carrying them only as shape-level references:
 - `control_plane_boundary: "gateway_control_plane_authority"`
 - `runtime_boundary: "delivery_runtime_no_direct_context_authority"`
 - optional `authority_context_id`
@@ -69,7 +69,7 @@ The newest delivery-dispatch intent pass preserves this alignment by inheriting 
 - optional `delegated_authority_ref`
 - optional `provenance_chain_ref`
 
-Delivery-dispatch intent additionally marks delivery-dispatch intent readiness as placeholder-only and explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, and direct canonical writeback.
+Delivery-dispatch precheck additionally marks precheck readiness as placeholder-only and explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, direct canonical writeback, and runtime permission.
 
 ---
 
@@ -85,16 +85,17 @@ The repository currently has:
 - `packages/pack-loop` canonical bundle construction contour primitives;
 - `packages/write-path` candidate-routing and governed-decisioning contour primitives;
 - `packages/handoff` continuity-transfer contour primitives;
-- `packages/audit-eval` trust-layer contracts, including normalized execution-attempt outcome, publication-preparation, dispatch-readiness, and delivery-dispatch intent trace/linkage contracts;
-- `packages/integration-contracts` provider-neutral surface contract layer, including normalized execution-attempt outcome, publication-preparation, dispatch-readiness, and delivery-dispatch intent linkage contracts;
+- `packages/audit-eval` trust-layer contracts, including normalized execution-attempt outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck trace/linkage contracts;
+- `packages/integration-contracts` provider-neutral surface contract layer, including normalized execution-attempt outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck linkage contracts;
 - `packages/provider-adapters` edge projection/normalization layer;
-- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, publication-preparation-to-dispatch-readiness, and dispatch-readiness-to-delivery-dispatch-intent contracts;
-- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts, normalized execution-attempt outcome envelopes, execution-attempt outcome publication-preparation envelopes, publication dispatch-readiness envelopes, and delivery-dispatch intent envelopes;
+- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, publication-preparation-to-dispatch-readiness, dispatch-readiness-to-delivery-dispatch-intent, and delivery-dispatch-intent-to-delivery-dispatch-precheck contracts;
+- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts, normalized execution-attempt outcome envelopes, execution-attempt outcome publication-preparation envelopes, publication dispatch-readiness envelopes, delivery-dispatch intent envelopes, and delivery-dispatch precheck envelopes;
 - delivery-runtime execution-attempt lifecycle contracts over runtime handoff placeholders;
 - delivery-runtime execution-attempt outcome placeholder normalization contracts over lifecycle artifacts;
 - delivery-runtime execution-attempt outcome publication-preparation contracts over normalized outcome artifacts;
 - publication-preparation-to-dispatch-readiness contracts over publication-ready placeholder artifacts;
-- dispatch-readiness-to-delivery-dispatch-intent contracts over dispatch-readiness placeholder artifacts.
+- dispatch-readiness-to-delivery-dispatch-intent contracts over dispatch-readiness placeholder artifacts;
+- delivery-dispatch-intent-to-delivery-dispatch-precheck contracts over delivery-dispatch intent placeholder artifacts.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -136,16 +137,16 @@ The next coding pass must preserve these guardrails:
 - do not introduce concrete persistence implementation in contour packages;
 - keep runtime/provider logic out of core contour and trust packages;
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
-- keep `integration-contracts` as surface semantics only, not handler/transport/publication/dispatch execution;
+- keep `integration-contracts` as surface semantics only, not handler/transport/publication/dispatch/precheck execution;
 - keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent-shaping only, not runtime execution layer;
-- keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication execution;
-- keep publication-preparation, dispatch-readiness, and delivery-dispatch intent as placeholder-only and not proof of actual delivery or dispatch;
-- preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch execution;
+- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping only, not runtime execution layer;
+- keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication/precheck execution;
+- keep publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck as placeholder-only and not proof of actual delivery, dispatch, handler invocation, or runtime permission;
+- preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch/precheck execution;
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
-- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, or delivery-dispatch intent contracts as permission for handler invocation, delivery execution, actual publication, or actual dispatch.
+- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, or delivery-dispatch precheck contracts as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission.
 
 ---
 
@@ -187,12 +188,13 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-24-31-delivery-runtime-execution-attempt-outcome-publication-preparation-contracts.md`
 - `2026-04-24-32-publication-preparation-to-dispatch-readiness-contracts.md`
 - `2026-04-24-33-dispatch-readiness-to-delivery-dispatch-intent-contracts.md`
+- `2026-04-24-34-delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this delivery-dispatch intent pass:
+Current limits after this delivery-dispatch precheck pass:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -207,21 +209,19 @@ Current limits after this delivery-dispatch intent pass:
 - normalized execution-attempt outcomes remain placeholder-only and still do not imply actual handler results, delivery results, provider transport results, or proof of actual delivery;
 - publication-preparation artifacts remain placeholder-only and still do not imply actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
 - dispatch-readiness artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
-- delivery-dispatch intent artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, or proof of actual delivery.
+- delivery-dispatch intent artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, or proof of actual delivery;
+- delivery-dispatch precheck artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, runtime permission, or proof of actual delivery;
+- local/CI `npm run typecheck` confirmation is still required for this connector-based delivery-dispatch precheck pass.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add delivery-dispatch-intent-to-delivery-dispatch-precheck contracts.
+**Bounded Pass:** run `npm run typecheck` on branch `feat/delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts` in a local checkout or CI-capable environment.
 
-This pass should map delivery-dispatch intent placeholder contracts into delivery-dispatch precheck placeholder contracts without actual dispatch execution, actual publication delivery, handler invocation, delivery runtime, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
+If typecheck passes, preserve contour. If typecheck reveals drift, perform one narrow delivery-dispatch-precheck consistency fix pass only.
 
-Recommended branch:
-
-`feat/delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts`
-
-The pass must preserve the gateway/control-plane boundary and keep delivery-dispatch intent artifacts as placeholder-only, not proof of actual dispatch, delivery, handler invocation, or runtime permission.
+Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 
 ---
 
@@ -231,8 +231,8 @@ When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `runtime-surface` as surface/intake/envelope contracts only;
-- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, dispatch-readiness modules, and delivery-dispatch-intent modules as planning/normalization/preparation/readiness/intent-shaping contract skeletons only;
-- preserve strict separation between planning/normalization/preparation/readiness/intent-shaping contracts and real runtime execution layers;
+- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, dispatch-readiness modules, delivery-dispatch-intent modules, and delivery-dispatch-precheck modules as planning/normalization/preparation/readiness/intent/precheck-shaping contract skeletons only;
+- preserve strict separation between planning/normalization/preparation/readiness/intent/precheck-shaping contracts and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;
 - treat gateway/control-plane as the authority-bearing context mediation boundary;
 - carry identity, delegation, and provenance through future runtime-adjacent design;

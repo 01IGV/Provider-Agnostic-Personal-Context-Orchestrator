@@ -218,11 +218,15 @@ Current limits after this delivery-chain hardening pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation/state sync for delivery-chain hardening.
+**Bounded Pass:** repo-first verdict for the next implementation direction after delivery-chain hardening.
 
-If the branch is not merged yet, preserve contour and avoid additional implementation widening.
+This pass should determine whether the delivery-adjacent contract corridor is now sufficiently consistent to move toward an end-to-end non-executing proof path, or whether one more bounded consistency pass is justified.
 
-Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+Recommended branch:
+
+`docs/repo-first-verdict-after-delivery-chain-hardening`
+
+This must be a review/verdict pass only. Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
 ---
 

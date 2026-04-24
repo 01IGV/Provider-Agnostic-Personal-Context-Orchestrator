@@ -216,11 +216,15 @@ Current limits after this delivery-dispatch precheck pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation verification sync for delivery-dispatch precheck contracts.
+**Bounded Pass:** delivery-chain boundary hardening and consistency review.
 
-If the branch is not merged yet, preserve contour and avoid additional implementation widening.
+This pass should review the delivery-adjacent contract chain from publication-preparation through dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck for naming drift, status drift, duplicated semantics, boundary overlap, and hidden execution leakage.
 
-Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+Recommended branch:
+
+`refactor/delivery-chain-boundary-hardening-and-consistency-review`
+
+The pass must remain contract/review/hardening-only. It must not add actual dispatch execution, publication delivery, handler invocation, delivery runtime, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
 ---
 

@@ -213,11 +213,15 @@ Current limits after this delivery-dispatch intent pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation verification sync for delivery-dispatch intent contracts.
+**Bounded Pass:** add delivery-dispatch-intent-to-delivery-dispatch-precheck contracts.
 
-If the branch is not merged yet, preserve contour and avoid additional implementation widening.
+This pass should map delivery-dispatch intent placeholder contracts into delivery-dispatch precheck placeholder contracts without actual dispatch execution, actual publication delivery, handler invocation, delivery runtime, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
-Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+Recommended branch:
+
+`feat/delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts`
+
+The pass must preserve the gateway/control-plane boundary and keep delivery-dispatch intent artifacts as placeholder-only, not proof of actual dispatch, delivery, handler invocation, or runtime permission.
 
 ---
 

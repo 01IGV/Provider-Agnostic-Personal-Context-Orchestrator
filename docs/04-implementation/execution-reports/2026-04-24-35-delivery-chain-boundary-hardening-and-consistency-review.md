@@ -223,15 +223,17 @@ This pass only hardened boundary markers and documentation.
 - After the first file write, compare confirmed the feature branch was ahead of `main` and `main` was not directly changed.
 - Static repo reading through GitHub connector.
 - Delivery-adjacent vocabularies, types, builders, runtime envelopes, integration linkages, audit linkages, and package exports were reviewed.
-- Full local `npm run typecheck` could not be executed in this session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+- Initial connector-based implementation could not execute local npm verification in-session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+
+## Local Verification Update
+After connector-based implementation, local `npm install` and `npm run typecheck` were executed successfully before merge.
 
 ## Known Limitations After This Pass
-- Local/CI `npm run typecheck` is still required for this connector-based boundary hardening pass.
 - The chain remains contract-only and does not prove actual delivery or dispatch.
 - Future runtime-adjacent work still requires explicit scope and a separate execution-layer pass.
 
 ## Known Issues Introduced or Updated
-- Added a current verification gap for this branch in `KNOWN_IMPLEMENTATION_ISSUES.md`.
+- Closed the temporary connector-only verification gap after local `npm install` and `npm run typecheck` passed before merge.
 - Closed the specific publication-preparation dispatch-boundary marker drift in code.
 
 ## Commit / Branch Notes
@@ -242,8 +244,4 @@ The pass was performed on:
 All file-write operations explicitly targeted this branch. Because this environment writes through GitHub connector file operations rather than a local git checkout, each file create/update operation produced its own commit. This prevented a single squashed local commit in-session.
 
 ## Next Recommended Bounded Step
-Run local `npm run typecheck` against `refactor/delivery-chain-boundary-hardening-and-consistency-review`.
-
-If typecheck passes, preserve contour and then perform a narrow post-merge documentation/state sync after merge.
-
-If typecheck reveals drift, perform one narrow delivery-chain consistency fix pass only. Do not proceed to actual dispatch execution, publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+If this branch is merged, perform a narrow post-merge documentation/state sync for delivery-chain hardening. Do not proceed to actual dispatch execution, publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.

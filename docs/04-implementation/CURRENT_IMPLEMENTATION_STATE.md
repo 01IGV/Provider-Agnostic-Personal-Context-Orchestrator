@@ -210,11 +210,15 @@ Current limits after this dispatch-readiness pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge documentation verification sync for dispatch-readiness contracts.
+**Bounded Pass:** add dispatch-readiness-to-delivery-dispatch-intent contracts.
 
-If the branch is not merged yet, preserve contour and avoid additional implementation widening.
+This pass should map dispatch-readiness placeholder contracts into delivery-dispatch intent placeholder contracts without actual dispatch execution, actual publication delivery, handler invocation, delivery runtime, transport execution, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
-Do not proceed to actual dispatch execution, actual publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+Recommended branch:
+
+`feat/dispatch-readiness-to-delivery-dispatch-intent-contracts`
+
+The pass must preserve the gateway/control-plane boundary and keep dispatch-readiness artifacts as placeholder-only, not proof of actual dispatch or delivery.
 
 ---
 

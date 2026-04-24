@@ -17,5 +17,6 @@ export * from "./delivery-runtime-handoff-placeholders.js";
 export * from "./execution-attempt-lifecycle-envelopes.js";
 export * from "./normalized-execution-attempt-outcome-envelopes.js";
 export * from "./execution-attempt-outcome-publication-preparation-envelopes.js";
+export * from "./publication-dispatch-readiness-envelopes.js";
 export * from "./linkage.js";
 export * from "./consistency.js";

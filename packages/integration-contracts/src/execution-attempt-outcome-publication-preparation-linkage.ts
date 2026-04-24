@@ -28,6 +28,7 @@ export interface ExecutionAttemptOutcomePublicationPreparationLinkageShape<TResu
   typed_surface_response: TypedSurfaceResponse<TResult>;
   linkage_boundary: {
     publication_ready_placeholder_only: true;
+    actual_dispatch_execution: false;
     actual_publication_delivery: false;
     actual_handler_result: false;
     actual_delivery_result: false;
@@ -109,6 +110,7 @@ export const createExecutionAttemptOutcomePublicationPreparationLinkageBuilder =
           typed_surface_response: input.typed_surface_response,
           linkage_boundary: {
             publication_ready_placeholder_only: true,
+            actual_dispatch_execution: false,
             actual_publication_delivery: false,
             actual_handler_result: false,
             actual_delivery_result: false,

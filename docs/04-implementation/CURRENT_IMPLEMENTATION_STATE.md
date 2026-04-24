@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-runtime execution-attempt outcome placeholder normalization contracts pass completed on `feat/delivery-runtime-execution-attempt-outcome-normalization-contracts`.**
+**Delivery-runtime execution-attempt outcome placeholder normalization contracts pass merged into `main` and post-merge locally verified.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -191,15 +191,12 @@ Current limits after this outcome normalization pass:
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
 - execution-attempt lifecycle artifacts remain contract-only and still do not imply handler/transport execution;
 - normalized execution-attempt outcomes remain placeholder-only and still do not imply actual handler results, delivery results, provider transport results, or proof of actual delivery;
-- local/CI `npm run typecheck` confirmation is still required for this connector-based outcome normalization pass.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** run `npm run typecheck` on branch `feat/delivery-runtime-execution-attempt-outcome-normalization-contracts` in a local checkout or CI-capable environment.
-
-If typecheck passes, preserve contour. If typecheck reveals drift, perform one narrow outcome-normalization consistency fix pass only.
+**Bounded Pass:** add delivery-runtime execution-attempt outcome publication-preparation contracts (non-executing), mapping normalized attempt outcomes into publication-ready placeholder envelopes.
 
 Do not proceed to actual delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 

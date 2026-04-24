@@ -17,7 +17,7 @@ No concrete code-level defects are currently confirmed for these packages, but a
 
 Post-merge verification note (April 24, 2026): local `npm run typecheck` passed for `feat/delivery-runtime-execution-attempt-lifecycle-contracts`; the prior connector-only verification gap is closed.
 
-Connector-based outcome normalization note (April 24, 2026): delivery-runtime execution-attempt outcome placeholder normalization contracts were added on `feat/delivery-runtime-execution-attempt-outcome-normalization-contracts`, but local/CI `npm run typecheck` confirmation is still required for this branch.
+Post-merge verification note (April 24, 2026): local `npm run typecheck` passed for `feat/delivery-runtime-execution-attempt-outcome-normalization-contracts`; the connector-only verification gap is closed.
 
 ---
 
@@ -78,14 +78,6 @@ Connector-based outcome normalization note (April 24, 2026): delivery-runtime ex
 - **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, and delivery-runtime execution-attempt outcome normalization contracts in addition to lookup/resolution/validation/planning. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization layers into real contour invocation, handler runtime, delivery runtime, or transport execution.
 - **Impact:** `system-assembly` can lose composition/planning/normalization-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization-oriented, and isolate any future real contour invocation or delivery execution into explicitly approved execution-layer passes.
-
-### 8. Typecheck confirmation required after connector-based outcome normalization pass
-- **Layer / Area:** repository verification
-- **Status:** open
-- **Severity:** medium
-- **Description:** the execution-attempt outcome normalization pass was applied through GitHub connector file operations rather than a local git/npm workspace. Full `npm run typecheck` could not be executed in-session.
-- **Impact:** possible TypeScript drift may remain until local/CI verification runs.
-- **Recommended next action:** run `npm run typecheck` on branch `feat/delivery-runtime-execution-attempt-outcome-normalization-contracts`; if failures appear, perform one narrow outcome-normalization consistency fix pass.
 
 ## Update Policy
 

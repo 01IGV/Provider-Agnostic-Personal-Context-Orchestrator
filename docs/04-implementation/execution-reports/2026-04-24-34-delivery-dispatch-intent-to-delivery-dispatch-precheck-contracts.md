@@ -145,7 +145,10 @@ These fields preserve future identity/delegation/provenance linkage without impl
 - Static repo reading through GitHub connector.
 - Recent delivery-dispatch intent and implementation state documents reviewed.
 - Package exports were updated for all newly created contract files.
-- Full local `npm run typecheck` could not be executed in this session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+- Initial connector-based implementation could not execute local npm verification in-session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
+
+## Local Verification Update
+After connector-based implementation, local `npm install` and `npm run typecheck` were executed successfully before merge.
 
 ## Current Outcome
 The repository can now contractually take a delivery-dispatch intent placeholder contract and prepare a delivery-dispatch precheck placeholder contract with:
@@ -170,12 +173,11 @@ without actual dispatch execution, publication delivery, handler invocation, del
 - No concrete persistence adapters.
 - No full identity/delegation/provenance type package yet.
 - Delivery-dispatch precheck artifacts remain contract-only placeholders pending a future explicitly scoped dispatch/delivery/runtime layer.
-- `npm run typecheck` still needs to be run in a local checkout or CI-capable environment for this branch.
 
 ## Known Issues Introduced or Updated
-- Updated the current verification constraint in `KNOWN_IMPLEMENTATION_ISSUES.md` to record that this connector-based pass still needs local/CI `npm run typecheck` confirmation.
 - Updated boundary-drift wording to include delivery-dispatch-intent-to-delivery-dispatch-precheck contracts.
 - No concrete code-level defect was intentionally introduced or confirmed during this pass.
+- The temporary connector-only verification gap was closed after local `npm install` and `npm run typecheck` passed before merge.
 
 ## Commit / Branch Notes
 The pass was performed on:
@@ -185,7 +187,7 @@ The pass was performed on:
 All file-write operations explicitly targeted this branch. Because this environment writes through GitHub connector file operations rather than a local git checkout, each file create/update operation produced its own commit. This prevented a single squashed local commit in-session.
 
 ## Next Recommended Bounded Step
-Run local `npm run typecheck` against `feat/delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts`. If it passes, preserve contour. If typecheck reveals drift, perform one narrow delivery-dispatch-precheck consistency fix pass only. Do not proceed to actual dispatch execution, publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
+If this branch is merged, perform a narrow post-merge documentation verification sync for delivery-dispatch precheck contracts. Do not proceed to actual dispatch execution, publication delivery, delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 
 ## Notes for Next Agent or Session
 Treat delivery-dispatch precheck contracts as delivery-dispatch-intent-placeholder-to-delivery-dispatch-precheck-placeholder preparation only. They are not actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, payment decisions, IAM decisions, dispatch permissions, runtime permissions, or proof of actual delivery.

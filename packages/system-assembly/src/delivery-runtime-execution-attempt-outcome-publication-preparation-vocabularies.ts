@@ -39,6 +39,7 @@ export const DELIVERY_RUNTIME_EXECUTION_ATTEMPT_OUTCOME_PUBLICATION_PREPARATION_
   "publication_preparation_family_ambiguous",
   "publication_preparation_status_mismatch",
   "publication_preparation_runtime_boundary_only",
+  "publication_preparation_not_actual_dispatch_execution",
   "publication_preparation_not_actual_publication_delivery",
   "publication_preparation_not_actual_handler_result",
   "publication_preparation_not_actual_delivery_result",

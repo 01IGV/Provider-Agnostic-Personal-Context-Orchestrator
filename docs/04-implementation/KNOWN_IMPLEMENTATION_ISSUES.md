@@ -27,6 +27,8 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 
 Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `feat/delivery-dispatch-intent-to-delivery-dispatch-precheck-contracts`; the connector-only verification gap is closed before merge.
 
+Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `refactor/delivery-chain-boundary-hardening-and-consistency-review`; the connector-only verification gap is closed before merge.
+
 ---
 
 ## Current Known Issues and Constraints

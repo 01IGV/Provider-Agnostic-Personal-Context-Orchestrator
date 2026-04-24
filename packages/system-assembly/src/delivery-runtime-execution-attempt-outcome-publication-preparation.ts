@@ -115,6 +115,10 @@ const createWarnings = (input: {
       message: "publication-preparation is a contract-only placeholder and does not perform publication delivery"
     },
     {
+      code: "publication_preparation_not_actual_dispatch_execution",
+      message: "publication-preparation must not be interpreted as proof of actual dispatch execution"
+    },
+    {
       code: "publication_preparation_not_actual_publication_delivery",
       message: "publication-preparation must not be interpreted as proof of actual publication"
     },
@@ -204,6 +208,7 @@ export const createExecutionAttemptOutcomePublicationPreparationBuilder =
           lifecycle_state: normalizedOutcome.lifecycle_state,
           contour_target: normalizedOutcome.contour_target,
           publication_ready_placeholder: true,
+          actual_dispatch_execution: false,
           actual_publication_delivery: false,
           actual_handler_result: false,
           actual_delivery_result: false,
@@ -221,6 +226,7 @@ export const createExecutionAttemptOutcomePublicationPreparationBuilder =
             audit_eval_publication_preparation_linkage_emission: true as const
           },
           disallowed_now: {
+            actual_dispatch_execution: true as const,
             actual_publication_delivery: true as const,
             handler_invocation: true as const,
             delivery_runtime_execution: true as const,
@@ -265,7 +271,8 @@ export const createExecutionAttemptOutcomePublicationPreparationBuilder =
           },
           publication_boundary: {
             publication_preparation_boundary_status: "publication_ready_placeholder_only" as const,
-            publication_delivery_allowed_now: false as const,
+            actual_dispatch_execution_allowed_now: false as const,
+            actual_publication_delivery_allowed_now: false as const,
             handler_invocation_allowed_now: false as const,
             delivery_runtime_allowed_now: false as const,
             transport_delivery_allowed_now: false as const,

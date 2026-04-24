@@ -3,8 +3,7 @@ import {
   createNormalizedExecutionAttemptOutcomeTraceBuilder
 } from "@orchestrator/audit-eval";
 import {
-  createNormalizedExecutionAttemptOutcomeLinkageBuilder,
-  type SurfaceResponseStatus
+  createNormalizedExecutionAttemptOutcomeLinkageBuilder
 } from "@orchestrator/integration-contracts";
 import type {
   DeliveryRuntimeExecutionAttemptOutcomeNormalizationWarningShape,
@@ -21,6 +20,8 @@ import {
   type DeliveryRuntimeNormalizedExecutionAttemptOutcomeStatus
 } from "./delivery-runtime-execution-attempt-outcome-normalization-vocabularies.js";
 import type { ExecutionAttemptLifecycleShape } from "./delivery-runtime-execution-attempt-lifecycle-types.js";
+
+type RuntimeSurfaceNormalizedAttemptOutcomeStatus = "accepted" | "success" | "rejected" | "error";
 
 const toNormalizedOutcomeFamily = (
   lifecycleArtifact: ExecutionAttemptLifecycleShape
@@ -42,7 +43,9 @@ const toNormalizedOutcomeResult = (
   return "placeholder_error";
 };
 
-const toSurfaceStatus = (status: DeliveryRuntimeNormalizedExecutionAttemptOutcomeStatus): SurfaceResponseStatus => {
+const toSurfaceStatus = (
+  status: DeliveryRuntimeNormalizedExecutionAttemptOutcomeStatus
+): RuntimeSurfaceNormalizedAttemptOutcomeStatus => {
   if (status === "prepared_outcome") return "success";
   if (status === "queued_outcome" || status === "deferred_outcome") return "accepted";
   if (status === "blocked_outcome" || status === "not_dispatchable_outcome") return "rejected";

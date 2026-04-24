@@ -42,7 +42,7 @@ export interface RuntimePublicationDispatchReadinessAuthorityContextShape {
 export interface RuntimePublicationDispatchReadinessBoundaryShape {
   dispatch_readiness_boundary_status: "dispatch_ready_placeholder_only";
   actual_dispatch_execution_allowed_now: false;
-  publication_delivery_allowed_now: false;
+  actual_publication_delivery_allowed_now: false;
   handler_invocation_allowed_now: false;
   delivery_runtime_allowed_now: false;
   transport_delivery_allowed_now: false;

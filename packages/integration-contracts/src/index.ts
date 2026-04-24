@@ -16,3 +16,4 @@ export * from "./normalized-execution-attempt-outcome-linkage.js";
 export * from "./execution-attempt-outcome-publication-preparation-linkage.js";
 export * from "./publication-dispatch-readiness-linkage.js";
 export * from "./delivery-dispatch-intent-linkage.js";
+export * from "./delivery-dispatch-precheck-linkage.js";

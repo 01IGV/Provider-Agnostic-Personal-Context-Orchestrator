@@ -11,13 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**End-to-end non-executing proof path implemented on feature branch and locally verified with `npm run typecheck`.**
+**Repo-first verdict after end-to-end non-executing proof path completed on `docs/repo-first-verdict-after-end-to-end-non-executing-proof-path`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-This pass materialized a typed proof-composition module in `packages/system-assembly` that composes the existing delivery-adjacent corridor into one deterministic non-executing proof path. It starts from deterministic upstream placeholders and a normalized execution-attempt outcome fixture, then reuses existing builders for publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck.
+The verdict confirms that the end-to-end non-executing proof path is sufficiently coherent as a typed non-executing composition. No concrete blocker was found that prevents the next bounded implementation step.
 
-No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added.
+The strongest next move is a deterministic local proof command that invokes the existing proof-composition module and emits a repeatable local proof signal without runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 
 ---
 
@@ -39,7 +39,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path.
 
 All of this remains execution-free.
 
@@ -73,6 +73,8 @@ The corridor explicitly disallows actual dispatch execution, actual publication 
 
 The proof path composes the existing corridor into one deterministic proof artifact and does not add another conceptual placeholder layer.
 
+The next recommended command-level pass should make this proof locally repeatable while preserving all non-executing boundaries.
+
 ---
 
 ## Current Code State
@@ -101,6 +103,7 @@ The repository currently has:
 - deterministic end-to-end non-executing proof path that composes the existing corridor without runtime behavior.
 
 The repository still does **not** have:
+- deterministic local proof command;
 - concrete persistence adapter implementation;
 - runtime MCP/API handler implementations;
 - delivery runtime implementation;
@@ -198,12 +201,14 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-24-37-dispatch-readiness-runtime-boundary-naming-consistency.md`
 - `2026-04-24-38-repo-first-verdict-before-end-to-end-non-executing-proof-path.md`
 - `2026-04-24-39-end-to-end-non-executing-proof-path.md`
+- `2026-04-24-40-repo-first-verdict-after-end-to-end-non-executing-proof-path.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this proof-path pass:
+Current limits after this repo-first verdict:
+- no deterministic local proof command yet;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -226,15 +231,24 @@ Current limits after this proof-path pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict for the next implementation direction after end-to-end non-executing proof path.
+**Bounded Pass:** add deterministic local proof command.
 
-This pass should determine the strongest next move after the proof path: proof-path hardening, deterministic local proof command, first executable-adjacent seam, or preserve-contour.
+This pass should make the existing end-to-end non-executing proof path locally runnable as a stable proof signal while remaining strictly non-executing.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-end-to-end-non-executing-proof-path`
+`feat/deterministic-local-proof-command`
 
-This must be a review/verdict pass only. Do not add runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, contour execution, or another placeholder layer without a concrete blocker.
+Recommended scope:
+- add a minimal local command or script that invokes `composeDeterministicEndToEndNonExecutingProofPath()`;
+- emit a deterministic summary to stdout or a stable proof artifact file if repo conventions support it;
+- report the existing proof artifact id/status/family/linkage/trace chains;
+- report the existing runtime/action denial assertions;
+- add the smallest package/script wiring needed to run it consistently;
+- update execution docs and rolling state;
+- run `npm install` if needed and `npm run typecheck`.
+
+Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 
 ---
 

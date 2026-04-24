@@ -13,3 +13,4 @@ export * from "./channel-binding-egress-gate-linkage.js";
 export * from "./publication-dispatch-intent-linkage.js";
 export * from "./delivery-precheck-linkage.js";
 export * from "./delivery-runtime-handoff-linkage.js";
+export * from "./execution-attempt-lifecycle-linkage.js";

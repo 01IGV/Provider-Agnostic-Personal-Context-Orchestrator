@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Deterministic local proof command implemented on `feat/deterministic-local-proof-command`.**
+**Deterministic local proof command implemented on feature branch and locally verified with `npm run typecheck` and `npm run proof:end-to-end:non-executing`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -26,8 +26,6 @@ npm run proof:end-to-end:non-executing
 It runs `npm run typecheck` first, then executes `scripts/end-to-end-non-executing-proof.mjs` against the compiled `system-assembly` proof path.
 
 No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
-
-Local/CI confirmation for `npm run typecheck` and `npm run proof:end-to-end:non-executing` is still required for this connector-based branch before merge.
 
 ---
 
@@ -218,7 +216,6 @@ Execution documentation protocol is exercised across bounded passes, including:
 ## Current Known Implementation Limits
 
 Current limits after this local proof command pass:
-- local/CI confirmation for `npm run typecheck` and `npm run proof:end-to-end:non-executing` is still required for this branch;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -241,20 +238,9 @@ Current limits after this local proof command pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification for deterministic proof command.
+**Bounded Pass:** if this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after deterministic local proof command.
 
-Run:
-
-```bash
-git checkout feat/deterministic-local-proof-command
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing
-```
-
-If both commands pass, record a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow command/type/shape fix only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
+Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer unless explicitly scoped by a new bounded implementation pass.
 
 ---
 

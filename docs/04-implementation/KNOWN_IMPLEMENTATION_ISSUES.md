@@ -19,7 +19,7 @@ Post-merge verification note (April 24, 2026): local `npm run typecheck` passed 
 
 Post-merge verification note (April 24, 2026): local `npm run typecheck` passed for `feat/delivery-runtime-execution-attempt-outcome-normalization-contracts`; the connector-only verification gap is closed.
 
-Connector-based publication-preparation note (April 24, 2026): delivery-runtime execution-attempt outcome publication-preparation contracts were added on `feat/delivery-runtime-execution-attempt-outcome-publication-preparation-contracts`, but local/CI `npm run typecheck` confirmation is still required for this branch.
+Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `feat/delivery-runtime-execution-attempt-outcome-publication-preparation-contracts`; the connector-only verification gap is closed before merge.
 
 ---
 
@@ -80,14 +80,6 @@ Connector-based publication-preparation note (April 24, 2026): delivery-runtime 
 - **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, and delivery-runtime execution-attempt outcome publication-preparation contracts in addition to lookup/resolution/validation/planning. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation layers into real contour invocation, handler runtime, delivery runtime, publication delivery, or transport execution.
 - **Impact:** `system-assembly` can lose composition/planning/normalization/preparation-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation-oriented, and isolate any future real contour invocation or delivery/publication execution into explicitly approved execution-layer passes.
-
-### 8. Typecheck confirmation required after connector-based publication-preparation pass
-- **Layer / Area:** repository verification
-- **Status:** open
-- **Severity:** medium
-- **Description:** the execution-attempt outcome publication-preparation pass was applied through GitHub connector file operations rather than a local git/npm workspace. Full `npm run typecheck` could not be executed in-session.
-- **Impact:** possible TypeScript drift may remain until local/CI verification runs.
-- **Recommended next action:** run `npm run typecheck` on branch `feat/delivery-runtime-execution-attempt-outcome-publication-preparation-contracts`; if failures appear, perform one narrow publication-preparation consistency fix pass.
 
 ## Update Policy
 

@@ -43,3 +43,6 @@ export * from "./delivery-precheck.js";
 export * from "./delivery-runtime-handoff-vocabularies.js";
 export * from "./delivery-runtime-handoff-types.js";
 export * from "./delivery-runtime-handoff.js";
+export * from "./delivery-runtime-execution-attempt-lifecycle-vocabularies.js";
+export * from "./delivery-runtime-execution-attempt-lifecycle-types.js";
+export * from "./delivery-runtime-execution-attempt-lifecycle.js";

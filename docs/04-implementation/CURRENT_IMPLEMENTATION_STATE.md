@@ -11,12 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Gateway/control-plane and identity/delegation alignment documentation pass completed directly on `main`.**
+**Delivery-runtime execution-attempt lifecycle contracts pass completed on `feat/delivery-runtime-execution-attempt-lifecycle-contracts`.**
 
-The repository remains at thirteen materialized packages and now explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
+The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-No package code changed in this alignment pass.
-No runtime handler, provider SDK, transport, concrete persistence, payment, IAM, or actual contour-execution behavior was added.
+This pass added contract-only lifecycle attempt shapes over existing delivery-runtime handoff placeholders.
+
+No runtime handler, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, or actual contour-execution behavior was added.
 
 ---
 
@@ -38,7 +39,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state remains runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts.
 
 All of this remains execution-free.
 
@@ -46,7 +47,7 @@ All of this remains execution-free.
 
 ## Current Strategic / Architectural Alignment
 
-The repository now explicitly records the following positioning:
+The repository explicitly records the following positioning:
 
 - MCP and API are protocol/integration surfaces, not the core control layer.
 - The durable control point is the context gateway/control plane above protocol surfaces.
@@ -55,10 +56,18 @@ The repository now explicitly records the following positioning:
 - Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler execution.
 - Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
 
-New alignment documents:
+Alignment documents:
 - `docs/00-foundation/03-market-alignment-note-2026.md`
 - `docs/01-architecture/08-context-gateway-and-control-plane-architecture.md`
 - `docs/03-governance/03-identity-delegation-and-provenance-specification.md`
+
+The newest lifecycle pass preserves this alignment by carrying authority/provenance/delegation only as shape-level placeholders:
+- `control_plane_boundary: "gateway_control_plane_authority"`
+- `runtime_boundary: "delivery_runtime_no_direct_context_authority"`
+- optional `authority_context_id`
+- optional `subject_identity_ref`
+- optional `delegated_authority_ref`
+- optional `provenance_chain_ref`
 
 ---
 
@@ -78,7 +87,8 @@ The repository currently has:
 - `packages/integration-contracts` provider-neutral surface contract layer;
 - `packages/provider-adapters` edge projection/normalization layer;
 - `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts;
-- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts.
+- `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts;
+- delivery-runtime execution-attempt lifecycle contracts over runtime handoff placeholders.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -118,13 +128,14 @@ The next coding pass must preserve these guardrails:
 - keep runtime/provider logic out of core contour and trust packages;
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport execution;
-- keep `provider-adapters` as edge projection/normalization only, not runtime transport execution;
+- keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
 - keep `system-assembly` as composition/wiring/internal dispatch planning only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape contracts only, not runtime dispatch/transport execution;
 - preserve the distinction between gateway/control-plane authority and runtime/transport execution;
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
-- do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage.
+- do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
+- do not interpret execution-attempt lifecycle contracts as permission for handler invocation or delivery execution.
 
 ---
 
@@ -159,31 +170,31 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-23-24-delivery-precheck-and-handler-boundary-contracts.md`
 - `2026-04-23-25-delivery-runtime-handoff-placeholder-contracts.md`
 - `2026-04-24-26-gateway-control-plane-and-identity-alignment.md`
+- `2026-04-24-27-delivery-runtime-execution-attempt-lifecycle-contracts.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this alignment pass:
+Current limits after this lifecycle pass:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no provider SDK transport execution yet;
 - no external transport/integration handler runtime yet;
 - no actual contour invocation execution in internal dispatch skeleton yet;
 - no dedicated type-level identity/delegation/provenance contract package yet;
-- no full auth/IAM or payment/settlement implementation, intentionally out of current scope.
+- no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
+- execution-attempt lifecycle artifacts are contract-only and require local/CI typecheck confirmation after this connector-based pass.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** return to the previously planned `delivery-runtime execution-attempt lifecycle contracts` pass, but preserve the newly explicit gateway/control-plane and identity/delegation boundaries.
+**Bounded Pass:** run `npm run typecheck` on branch `feat/delivery-runtime-execution-attempt-lifecycle-contracts` in a local checkout or CI-capable environment.
 
-Recommended branch:
+If typecheck passes, preserve contour. If typecheck reveals drift, perform one narrow lifecycle consistency / normalization fix pass.
 
-`feat/delivery-runtime-execution-attempt-lifecycle-contracts`
-
-This pass should still defer actual handler invocation, transport execution, provider SDK calls, concrete persistence, and actual contour execution.
+Do not proceed to actual delivery handlers, transport execution, provider SDK execution, concrete persistence, auth/IAM, or payment rails until explicitly scoped.
 
 ---
 
@@ -193,7 +204,7 @@ When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `runtime-surface` as surface/intake contracts only;
-- treat `system-assembly/runtime-dispatch-*` as planning/normalization skeleton only;
+- treat `system-assembly/runtime-dispatch-*` and lifecycle modules as planning/normalization/contract skeletons only;
 - preserve strict separation between planning contracts and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;
 - treat gateway/control-plane as the authority-bearing context mediation boundary;

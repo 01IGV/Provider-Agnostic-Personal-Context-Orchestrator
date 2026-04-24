@@ -11,11 +11,11 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Dispatch-readiness runtime boundary naming consistency fix completed on feature branch and locally verified with `npm run typecheck`.**
+**Repo-first verdict before end-to-end non-executing proof path completed on `docs/repo-first-verdict-before-end-to-end-non-executing-proof-path`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-This pass aligned the residual dispatch-readiness runtime-surface boundary naming drift by replacing `publication_delivery_allowed_now` with the explicit `actual_publication_delivery_allowed_now` denial marker pattern. The matching `system-assembly` builder-emitted runtime surface dispatch-readiness boundary was synchronized with the runtime envelope type.
+The verdict confirms that the delivery-adjacent corridor is now sufficiently coherent to move into an end-to-end non-executing proof path. No concrete blocker was found that requires another consistency pass before proof-path implementation.
 
 No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, or actual contour-execution behavior was added.
 
@@ -39,7 +39,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path.
 
 All of this remains execution-free.
 
@@ -69,9 +69,9 @@ The delivery-adjacent corridor now preserves the authority/provenance/delegation
 - optional `delegated_authority_ref`
 - optional `provenance_chain_ref`
 
-The corridor also explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, direct canonical writeback, and runtime permission.
+The corridor explicitly disallows actual dispatch execution, actual publication delivery, handler invocation, delivery runtime execution, transport delivery, provider SDK execution, direct canonical context access, direct canonical writeback, and runtime permission.
 
-The current dispatch-readiness naming fix aligns the remaining runtime-surface boundary field with the explicit `actual_*` denial marker pattern used by adjacent layers.
+The repo-first verdict says the next implementation move should compose the existing corridor into an end-to-end non-executing proof path, not add another placeholder layer.
 
 ---
 
@@ -99,8 +99,8 @@ The repository currently has:
 - dispatch-readiness-to-delivery-dispatch-intent contracts over dispatch-readiness placeholder artifacts;
 - delivery-dispatch-intent-to-delivery-dispatch-precheck contracts over delivery-dispatch intent placeholder artifacts;
 - delivery-chain boundary hardening that aligns publication-preparation with the downstream explicit no-actual-dispatch boundary spine;
-- repo-first verdict that recommended this final naming-consistency fix before end-to-end non-executing proof path work;
-- dispatch-readiness runtime-surface boundary naming consistency fix aligning `actual_publication_delivery_allowed_now`.
+- dispatch-readiness runtime-surface boundary naming consistency fix aligning `actual_publication_delivery_allowed_now`;
+- repo-first verdict that allows moving to end-to-end non-executing proof path.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -144,7 +144,7 @@ The next coding pass must preserve these guardrails:
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport/publication/dispatch/precheck execution;
 - keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping only, not runtime execution layer;
+- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication/precheck execution;
 - keep publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck as placeholder-only and not proof of actual delivery, dispatch, handler invocation, or runtime permission;
 - preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch/precheck execution;
@@ -152,7 +152,7 @@ The next coding pass must preserve these guardrails:
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
 - do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, or delivery-dispatch precheck contracts as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission;
-- do not add another placeholder layer before repo-first verification confirms that the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
+- do not start another review/verdict pass unless a concrete blocker is identified with file, issue, and reason.
 
 ---
 
@@ -198,12 +198,13 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-24-35-delivery-chain-boundary-hardening-and-consistency-review.md`
 - `2026-04-24-36-repo-first-verdict-after-delivery-chain-hardening.md`
 - `2026-04-24-37-dispatch-readiness-runtime-boundary-naming-consistency.md`
+- `2026-04-24-38-repo-first-verdict-before-end-to-end-non-executing-proof-path.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this dispatch-readiness runtime boundary naming consistency fix:
+Current limits after this repo-first verdict:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -225,15 +226,25 @@ Current limits after this dispatch-readiness runtime boundary naming consistency
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict on whether the delivery-adjacent corridor is ready for an end-to-end non-executing proof path.
+**Bounded Pass:** implement end-to-end non-executing proof path.
 
-This pass should determine whether the delivery-adjacent corridor is now sufficiently consistent to move toward an end-to-end non-executing proof path, or whether another bounded consistency pass is still justified.
+This pass should compose the existing delivery-adjacent contract corridor into one deterministic proof path without runtime execution.
 
 Recommended branch:
 
-`docs/repo-first-verdict-before-end-to-end-non-executing-proof-path`
+`feat/end-to-end-non-executing-proof-path`
 
-This must be a review/verdict pass only. Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
+Recommended scope:
+- reuse existing contract builders rather than adding another conceptual placeholder layer;
+- start from existing execution-attempt lifecycle / normalized outcome / publication-preparation-ready contract shapes or a minimal in-memory fixture shaped by existing contracts;
+- compose through publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck;
+- emit a single proof artifact or summary showing ids, statuses, family mappings, boundary flags, integration linkages, and audit/eval trace linkages;
+- assert that all actual dispatch/publication/delivery/handler/provider/persistence/runtime permission flags remain false;
+- preserve gateway/control-plane authority and identity/delegation/provenance as reference placeholders only;
+- update execution docs and rolling state;
+- run `npm install` if needed and `npm run typecheck`.
+
+Do not add new placeholder layers, runtime handlers, dispatch execution, publication delivery, provider SDK calls, concrete persistence, auth/IAM, payment rails, or contour execution.
 
 ---
 
@@ -243,8 +254,8 @@ When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `runtime-surface` as surface/intake/envelope contracts only;
-- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, dispatch-readiness modules, delivery-dispatch-intent modules, and delivery-dispatch-precheck modules as planning/normalization/preparation/readiness/intent/precheck-shaping contract skeletons only;
-- preserve strict separation between planning/normalization/preparation/readiness/intent/precheck-shaping contracts and real runtime execution layers;
+- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, dispatch-readiness modules, delivery-dispatch-intent modules, and delivery-dispatch-precheck modules as planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition contract skeletons only;
+- preserve strict separation between planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition contracts and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;
 - treat gateway/control-plane as the authority-bearing context mediation boundary;
 - carry identity, delegation, and provenance through future runtime-adjacent design;

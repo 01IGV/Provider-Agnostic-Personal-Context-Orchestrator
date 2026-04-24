@@ -23,6 +23,8 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 
 Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `feat/publication-preparation-to-dispatch-readiness-contracts`; the connector-only verification gap is closed before merge.
 
+Feature-branch verification note (April 24, 2026): local `npm install` and `npm run typecheck` passed for `feat/dispatch-readiness-to-delivery-dispatch-intent-contracts`; the connector-only verification gap is closed before merge.
+
 ---
 
 ## Current Known Issues and Constraints
@@ -31,7 +33,7 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 - **Layer / Area:** integration contracts boundaries
 - **Status:** open
 - **Severity:** medium
-- **Description:** now that `integration-contracts` includes execution-attempt lifecycle, normalized outcome linkage, publication-preparation linkage, and dispatch-readiness linkage contracts, there is elevated risk of mixing surface contract shapes with runtime handler, publication delivery, dispatch execution, delivery, or transport execution behavior.
+- **Description:** now that `integration-contracts` includes execution-attempt lifecycle, normalized outcome linkage, publication-preparation linkage, dispatch-readiness linkage contracts, and delivery-dispatch intent linkage contracts, there is elevated risk of mixing surface contract shapes with runtime handler, publication delivery, dispatch execution, delivery, or transport execution behavior.
 - **Impact:** integration contract layer can lose provider-neutrality and become runtime-coupled.
 - **Recommended next action:** keep `integration-contracts` shape-only and enforce cross-package consistency checks as runtime surfaces evolve.
 
@@ -39,7 +41,7 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 - **Layer / Area:** audit/evaluation layer boundaries
 - **Status:** open
 - **Severity:** high
-- **Description:** `audit-eval` may drift into runtime monitoring, integration execution, publication-delivery, dispatch-execution, or delivery-result semantics as normalized outcome, publication-preparation, and dispatch-readiness linkage expands.
+- **Description:** `audit-eval` may drift into runtime monitoring, integration execution, publication-delivery, dispatch-execution, or delivery-result semantics as normalized outcome, publication-preparation, dispatch-readiness, and delivery-dispatch intent linkage expands.
 - **Impact:** trust contracts can lose canonical portability.
 - **Recommended next action:** keep `audit-eval` contract/quality-model focused.
 
@@ -63,7 +65,7 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 - **Layer / Area:** system assembly boundaries
 - **Status:** open
 - **Severity:** medium
-- **Description:** now that `system-assembly` includes lifecycle, normalized outcome mapping, publication-preparation mapping, and dispatch-readiness mapping, there is elevated risk of turning composition/wiring/internal lifecycle/outcome/preparation/readiness primitives into runtime handler, publication delivery, dispatch execution, delivery, or transport execution behavior.
+- **Description:** now that `system-assembly` includes lifecycle, normalized outcome mapping, publication-preparation mapping, dispatch-readiness mapping, and delivery-dispatch intent mapping, there is elevated risk of turning composition/wiring/internal lifecycle/outcome/preparation/readiness/intent-shaping primitives into runtime handler, publication delivery, dispatch execution, delivery, or transport execution behavior.
 - **Impact:** assembly layer can become a hidden runtime orchestration/control-plane layer and blur separation between contracts and execution.
 - **Recommended next action:** keep `system-assembly` contract-first, keep shared boundary typing centralized, and introduce runtime execution behavior only through explicitly approved future execution-layer passes.
 
@@ -71,17 +73,17 @@ Feature-branch verification note (April 24, 2026): local `npm install` and `npm 
 - **Layer / Area:** runtime-surface boundaries
 - **Status:** open
 - **Severity:** medium
-- **Description:** runtime-surface now includes multiple envelope contracts, including delivery-runtime handoff placeholders, execution-attempt lifecycle envelopes, normalized execution-attempt outcome envelopes, execution-attempt outcome publication-preparation envelopes, and publication dispatch-readiness envelopes. Future runtime passes may still mix entrypoint/handler shape contracts with concrete MCP/API handlers, dispatch runtime, delivery runtime, publication delivery, dispatch execution, or provider transport execution.
+- **Description:** runtime-surface now includes multiple envelope contracts, including delivery-runtime handoff placeholders, execution-attempt lifecycle envelopes, normalized execution-attempt outcome envelopes, execution-attempt outcome publication-preparation envelopes, publication dispatch-readiness envelopes, and delivery-dispatch intent envelopes. Future runtime passes may still mix entrypoint/handler shape contracts with concrete MCP/API handlers, dispatch runtime, delivery runtime, publication delivery, dispatch execution, or provider transport execution.
 - **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
 - **Recommended next action:** keep `runtime-surface` contract-only and isolate concrete handlers/dispatch/delivery/publication/transport behavior in future dedicated runtime implementation passes.
 
-### 7. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, channel-gating, dispatch-intent, delivery-precheck, runtime-handoff-placeholder, execution-attempt-lifecycle, normalized outcome, publication-preparation, and dispatch-readiness boundary drift
+### 7. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, channel-gating, dispatch-intent, delivery-precheck, runtime-handoff-placeholder, execution-attempt-lifecycle, normalized outcome, publication-preparation, dispatch-readiness, and delivery-dispatch intent boundary drift
 - **Layer / Area:** system-assembly internal runtime dispatch skeleton
 - **Status:** open
 - **Severity:** medium
-- **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, and publication-preparation-to-dispatch-readiness contracts in addition to lookup/resolution/validation/planning. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, or transport execution.
-- **Impact:** `system-assembly` can lose composition/planning/normalization/preparation/readiness-only role and become an implicit runtime execution layer.
-- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness-oriented, and isolate any future real contour invocation or delivery/publication/dispatch execution into explicitly approved execution-layer passes.
+- **Description:** internal dispatch skeleton now includes readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, and dispatch-readiness-to-delivery-dispatch-intent contracts in addition to lookup/resolution/validation/planning. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, or transport execution.
+- **Impact:** `system-assembly` can lose composition/planning/normalization/preparation/readiness/intent-shaping-only role and become an implicit runtime execution layer.
+- **Recommended next action:** keep internal dispatch strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent-oriented, and isolate any future real contour invocation or delivery/publication/dispatch execution into explicitly approved execution-layer passes.
 
 ## Update Policy
 

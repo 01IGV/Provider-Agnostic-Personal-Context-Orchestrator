@@ -50,6 +50,7 @@ export interface ExecutionAttemptOutcomePublicationPreparationBoundaryShape {
     audit_eval_publication_preparation_linkage_emission: true;
   };
   disallowed_now: {
+    actual_dispatch_execution: true;
     actual_publication_delivery: true;
     handler_invocation: true;
     delivery_runtime_execution: true;

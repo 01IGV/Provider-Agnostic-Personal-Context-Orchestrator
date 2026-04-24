@@ -71,6 +71,7 @@ Created:
 
 Updated:
 - `package.json`
+- `packages/system-assembly/src/end-to-end-non-executing-proof-path-types.ts`
 - `docs/04-implementation/CURRENT_IMPLEMENTATION_STATE.md`
 - `docs/04-implementation/KNOWN_IMPLEMENTATION_ISSUES.md`
 
@@ -137,6 +138,13 @@ The script reuses:
 
 No new proof semantics or placeholder layer were added.
 
+## Narrow Type Consistency Fix
+Local typecheck initially found that `provider-adapters` was used in the proof path model-consumption placeholder source package list, but `EndToEndNonExecutingProofSourcePackage` did not include it.
+
+The narrow fix added `"provider-adapters"` to `EndToEndNonExecutingProofSourcePackage` in `packages/system-assembly/src/end-to-end-non-executing-proof-path-types.ts`.
+
+This aligns the type with existing proof-path semantics and does not change runtime behavior.
+
 ## Architectural Boundaries Preserved
 - The command is local-only.
 - The command is non-executing.
@@ -149,22 +157,22 @@ No new proof semantics or placeholder layer were added.
 - Pre-write safety check confirmed the target branch existed and `main...feat/deterministic-local-proof-command` was clean: `ahead_by: 0`, `behind_by: 0`, `files: []`.
 - After the first write, compare confirmed the feature branch was ahead of `main` and `main` was not directly changed.
 - Static connector review confirmed root `package.json` had only `typecheck` before this pass and no existing TS script runtime dependency.
-- Full local `npm run typecheck` and `npm run proof:end-to-end:non-executing` could not be executed in this connector session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
-
-## Verification Gap
-Open until local or CI verification runs:
+- Local verification after the narrow type consistency fix passed:
 
 ```bash
-git checkout feat/deterministic-local-proof-command
+git pull origin feat/deterministic-local-proof-command
 npm install
 npm run typecheck
 npm run proof:end-to-end:non-executing
 ```
 
+The proof command emitted deterministic JSON with all runtime/action assertions set to `false`.
+
+## Verification Gap
+Closed.
+
 ## Known Issues Introduced or Updated
-Added a temporary verification gap in `KNOWN_IMPLEMENTATION_ISSUES.md` requiring local/CI validation of:
-- `npm run typecheck`
-- `npm run proof:end-to-end:non-executing`
+- The temporary connector verification gap was closed after local `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing` passed.
 
 ## Current Outcome
 The repository now has a deterministic local proof command that can show the end-to-end non-executing proof artifact after local workspace build/typecheck.
@@ -172,15 +180,6 @@ The repository now has a deterministic local proof command that can show the end
 This converts the proof path from a typechecked composition module into a repeatable local proof signal, while preserving non-execution boundaries.
 
 ## Next Recommended Bounded Step
-Run local verification:
+If this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after deterministic local proof command.
 
-```bash
-git checkout feat/deterministic-local-proof-command
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing
-```
-
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow command/type/shape fix only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or a new placeholder layer.
+Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or a new placeholder layer unless explicitly scoped by a new bounded implementation pass.

@@ -11,15 +11,18 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Delivery-runtime handoff placeholder contracts pass completed across `system-assembly`, `runtime-surface`, `integration-contracts`, and `audit-eval`.**
+**Gateway/control-plane and identity/delegation alignment documentation pass completed directly on `main`.**
 
-The repository remains at thirteen materialized packages and now includes contract-level delivery-runtime handoff placeholder artifacts over delivery-precheck outcomes, still without actual runtime/transport/provider execution.
+The repository remains at thirteen materialized packages and now explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
+
+No package code changed in this alignment pass.
+No runtime handler, provider SDK, transport, concrete persistence, payment, IAM, or actual contour-execution behavior was added.
 
 ---
 
 ## Current Strongest Completed Layer
 
-The strongest completed code layers are now:
+The strongest completed code layers remain:
 
 1. `packages/core-foundation`
 2. `packages/core-domain`
@@ -35,13 +38,33 @@ The strongest completed code layers are now:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded state is runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts (lookup/resolution/validation/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-binding/dispatch-intent/delivery-precheck/runtime-handoff normalization), still execution-free.
+The strongest current bounded implementation state remains runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts.
+
+All of this remains execution-free.
+
+---
+
+## Current Strategic / Architectural Alignment
+
+The repository now explicitly records the following positioning:
+
+- MCP and API are protocol/integration surfaces, not the core control layer.
+- The durable control point is the context gateway/control plane above protocol surfaces.
+- The system should not be reduced to RAG, vector search, chat memory, a generic agent framework, or a plain MCP server.
+- The primary system value is governed, bounded, auditable, provider-agnostic context authority.
+- Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler execution.
+- Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
+
+New alignment documents:
+- `docs/00-foundation/03-market-alignment-note-2026.md`
+- `docs/01-architecture/08-context-gateway-and-control-plane-architecture.md`
+- `docs/03-governance/03-identity-delegation-and-provenance-specification.md`
 
 ---
 
 ## Current Code State
 
-The repository now has:
+The repository currently has:
 - workspace scaffold for package-based implementation;
 - `packages/core-foundation` semantic primitives;
 - `packages/core-domain` canonical entity layer;
@@ -57,88 +80,19 @@ The repository now has:
 - `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts;
 - `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts.
 
-Recent internal-dispatch outcomes:
-- added normalized runtime invocation intake shapes in `runtime-surface`;
-- added internal dispatch vocabularies for warning/unsupported/result statuses;
-- added operation lookup and handler resolution primitives;
-- added dependency validation primitives for internal dispatch;
-- added contour invocation boundary contracts and dispatch planning shapes;
-- added normalized internal dispatch result shapes;
-- added internal runtime dispatch pipeline skeleton that plans only and does not execute contour pipelines.
-- added dispatch-readiness status vocabulary and reporting shapes in `system-assembly`;
-- added dispatch-to-assembly validation linkage shapes and unresolved dependency/handler/unsupported-path reporting;
-- added runtime readiness summary and dispatch-status aggregation contracts;
-- added normalized assembly dispatch-readiness reporting helper and assembly-linkage helper.
-- added contour-invocation gate vocabularies for blocked/unsupported/missing-boundary statuses;
-- added contour target resolution and dispatch-plan-to-contour linkage shapes;
-- added normalized contour invocation request placeholder contracts for read/pack/write/handoff targets;
-- added contour invocation eligibility/readiness and result expectation placeholder contracts;
-- added contour-invocation gate helpers for target resolution, request normalization, and eligibility summary aggregation.
-- added execution-handoff status/warning/blocked vocabularies in `system-assembly`;
-- added contour execution-attempt, ready/blocked/deferred handoff result, and execution placeholder contracts;
-- added execution handoff builders for gate-to-attempt normalization and handoff summary aggregation;
-- added audit-eval execution-attempt trace and audit-hook linkage contract shapes with trace builder primitive.
-- added execution-result reconciliation vocabularies and status mappings in `system-assembly`;
-- added attempt-result reconciliation, normalized placeholder outcome, and reconciled summary contracts;
-- added runtime-surface reconciled outcome contracts for normalized surface-facing placeholder results;
-- added integration-contracts reconciled response linkage contracts and builder;
-- added audit-eval reconciled outcome linkage contracts and builder;
-- added system-assembly reconciliation builders connecting execution-handoff outputs to runtime-surface/integration/audit-facing normalized contract artifacts.
-- added execution-completion ingress vocabularies for status/reason/warning normalization in `system-assembly`;
-- added completion envelope, attempt-linkage, validation, and accepted/rejected/incomplete/mismatched ingress result contracts;
-- added completion-to-reconciliation ingress linkage contracts and completion-ingress summary contracts;
-- added completion-ingress contract builder and summary builder (validation/linkage only);
-- added audit-eval completion-ingress trace and audit-linkage contracts with builders.
-- added execution-outcome finalization vocabularies and status mappings in `system-assembly`;
-- added accepted-completion-to-finalization linkage, partial-finalization, and finalized outcome contracts;
-- added finalization builders that combine completion-ingress + reconciliation into finalized contracts;
-- added runtime-surface finalized envelope contracts;
-- added integration-contracts finalized response linkage contracts and builder;
-- added audit-eval finalized outcome linkage contracts and builder.
-- added execution-outcome publication vocabularies and status mappings in `system-assembly`;
-- added finalized-outcome-to-publication linkage and blocked/deferred/partial/incomplete publication contracts;
-- added publication builders that map finalized outcomes into delivery-ready/egress-ready contract envelopes;
-- added runtime-surface publication/egress envelope contracts;
-- added integration-contracts publication egress linkage contracts and builder;
-- added audit-eval publication outcome linkage contracts and builder.
-- added publication channel family, eligibility, and egress gating vocabularies in `system-assembly`;
-- added channel binding result, channel-binding-to-egress linkage, and allowed/blocked/deferred/unsupported/partially-bindable/incomplete egress contracts;
-- added publication channel egress gating builders that map publication outcomes into channel-bound gated contract artifacts;
-- added runtime-surface channel-bound delivery-ready envelope contracts;
-- added integration-contracts channel-bound egress linkage contracts and builder;
-- added audit-eval channel-binding trace and egress-gate audit linkage contracts/builders.
-- added publication dispatch-intent family/target/status vocabularies in `system-assembly`;
-- added dispatch target expectation, channel-bound-to-dispatch linkage, and allowed/blocked/deferred/unsupported/incomplete dispatch-intent contracts;
-- added publication dispatch-intent builders that map channel-bound egress outcomes into future handler-boundary intent contracts;
-- added runtime-surface dispatch-intent envelope contracts;
-- added integration-contracts dispatch-intent linkage contracts and builder;
-- added audit-eval dispatch-intent trace and audit linkage contracts/builders.
-- added delivery-precheck family/target/status vocabularies in `system-assembly`;
-- added handler readiness, channel readiness, capability-fit, and handler-boundary expectation contracts;
-- added ready/blocked/deferred/unavailable/unsupported/partially-ready delivery-precheck contracts;
-- added delivery-precheck builders that map dispatch-intent outcomes into handler-boundary readiness contracts;
-- added runtime-surface delivery-precheck envelope contracts;
-- added integration-contracts delivery-precheck linkage contracts and builder;
-- added audit-eval delivery-precheck trace and audit linkage contracts/builders.
-- added delivery-runtime-handoff family/target/status vocabularies in `system-assembly`;
-- added runtime target expectation, handler-invocation placeholder, and precheck-to-runtime-handoff linkage contracts;
-- added ready-to-handoff/blocked/deferred/unavailable/unsupported/partially-ready runtime handoff placeholder contracts;
-- added delivery-runtime-handoff builders that map delivery-precheck outcomes into runtime handoff placeholder contracts;
-- added runtime-surface runtime-handoff placeholder envelope contracts;
-- added integration-contracts runtime-handoff linkage contracts and builder;
-- added audit-eval runtime-handoff trace and audit linkage contracts/builders.
-
 The repository still does **not** have:
-- any concrete persistence adapter implementation;
+- concrete persistence adapter implementation;
 - runtime MCP/API handler implementations;
 - provider SDK transport execution implementations;
-- actual contour invocation execution from internal dispatch.
+- actual contour invocation execution from internal dispatch;
+- full auth/IAM implementation;
+- payment or settlement rail implementation.
 
 ---
 
 ## Current Recommended Package Sequence
 
-The preferred early implementation sequence remains:
+The preferred early implementation sequence remains complete through:
 
 1. `core-foundation` (done)
 2. `core-domain` (done)
@@ -166,13 +120,17 @@ The next coding pass must preserve these guardrails:
 - keep `integration-contracts` as surface semantics only, not handler/transport execution;
 - keep `provider-adapters` as edge projection/normalization only, not runtime transport execution;
 - keep `system-assembly` as composition/wiring/internal dispatch planning only, not runtime execution layer;
-- keep `runtime-surface` as entrypoint and handler-shape contracts only, not runtime dispatch/transport execution.
+- keep `runtime-surface` as entrypoint and handler-shape contracts only, not runtime dispatch/transport execution;
+- preserve the distinction between gateway/control-plane authority and runtime/transport execution;
+- preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
+- do not let MCP/API surfaces become the core semantic authority;
+- do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage.
 
 ---
 
 ## Current Documentation Protocol Status
 
-Execution documentation protocol is exercised across bounded passes:
+Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-21-01-core-foundation-skeleton.md`
 - `2026-04-21-02-core-domain-canonical-entities.md`
 - `2026-04-22-01-persistence-contracts-canonical-interfaces.md`
@@ -200,23 +158,32 @@ Execution documentation protocol is exercised across bounded passes:
 - `2026-04-23-23-publication-dispatch-intent-contracts.md`
 - `2026-04-23-24-delivery-precheck-and-handler-boundary-contracts.md`
 - `2026-04-23-25-delivery-runtime-handoff-placeholder-contracts.md`
+- `2026-04-24-26-gateway-control-plane-and-identity-alignment.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this pass:
+Current limits after this alignment pass:
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no provider SDK transport execution yet;
 - no external transport/integration handler runtime yet;
-- no actual contour invocation execution in internal dispatch skeleton yet.
+- no actual contour invocation execution in internal dispatch skeleton yet;
+- no dedicated type-level identity/delegation/provenance contract package yet;
+- no full auth/IAM or payment/settlement implementation, intentionally out of current scope.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add delivery-runtime execution-attempt placeholder lifecycle contracts that consume runtime handoff placeholders and define bounded attempt-state transitions while still deferring actual handler/transport execution.
+**Bounded Pass:** return to the previously planned `delivery-runtime execution-attempt lifecycle contracts` pass, but preserve the newly explicit gateway/control-plane and identity/delegation boundaries.
+
+Recommended branch:
+
+`feat/delivery-runtime-execution-attempt-lifecycle-contracts`
+
+This pass should still defer actual handler invocation, transport execution, provider SDK calls, concrete persistence, and actual contour execution.
 
 ---
 
@@ -227,4 +194,8 @@ When resuming:
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `runtime-surface` as surface/intake contracts only;
 - treat `system-assembly/runtime-dispatch-*` as planning/normalization skeleton only;
-- preserve strict separation between planning contracts and real runtime execution layers.
+- preserve strict separation between planning contracts and real runtime execution layers;
+- treat MCP/API as surfaces, not core control authority;
+- treat gateway/control-plane as the authority-bearing context mediation boundary;
+- carry identity, delegation, and provenance through future runtime-adjacent design;
+- do not expand into payment rails, settlement, or generic agent framework behavior unless explicitly scoped later.

@@ -1,0 +1,278 @@
+{
+  "contract_version": "stable-proof-artifact-contract/v1",
+  "proof_result": "end_to_end_non_executing_proof_path_composed",
+  "proof_boundary": "non_executing_contract_composition_only",
+  "proof_id": "proof:end-to-end:non-executing:deterministic",
+  "request_id": "request:end-to-end:non-executing:deterministic",
+  "operation_id": "operation:end-to-end:non-executing:deterministic",
+  "contour_target": "read_path",
+  "stage_chain": [
+    {
+      "stage_name": "request",
+      "stage_status": "placeholder_only",
+      "artifact_id": "request:end-to-end:non-executing:deterministic",
+      "contour_target": "read_path",
+      "source_packages": [
+        "integration-contracts",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "scope_context_resolution_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:scope-context-resolution",
+      "contour_target": "read_path",
+      "source_packages": [
+        "read-path",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "context_selection_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:context-selection",
+      "contour_target": "read_path",
+      "source_packages": [
+        "read-path",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "bounded_bundle_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:bounded-bundle",
+      "contour_target": "read_path",
+      "source_packages": [
+        "pack-loop",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "model_consumption_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:model-consumption",
+      "contour_target": "read_path",
+      "source_packages": [
+        "runtime-surface",
+        "provider-adapters",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "writeback_candidate_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:writeback-candidate",
+      "contour_target": "read_path",
+      "source_packages": [
+        "write-path",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "governance_decision_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:governance-decision",
+      "contour_target": "read_path",
+      "source_packages": [
+        "governance",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "audit_trace_placeholder",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:audit-trace",
+      "contour_target": "read_path",
+      "source_packages": [
+        "audit-eval",
+        "system-assembly"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    },
+    {
+      "stage_name": "normalized_execution_attempt_outcome",
+      "stage_status": "placeholder_only",
+      "artifact_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome",
+      "contour_target": "read_path",
+      "source_packages": [
+        "system-assembly",
+        "runtime-surface",
+        "integration-contracts",
+        "audit-eval"
+      ],
+      "actual_contour_execution": false,
+      "actual_runtime_execution": false,
+      "actual_dispatch_execution": false,
+      "actual_publication_delivery": false,
+      "actual_handler_invocation": false,
+      "actual_provider_sdk_call": false,
+      "actual_transport_execution": false,
+      "actual_concrete_persistence": false,
+      "direct_canonical_context_access": false,
+      "direct_canonical_writeback": false
+    }
+  ],
+  "delivery_adjacent_chain": {
+    "normalized_outcome_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome",
+    "publication_preparation_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation",
+    "dispatch_readiness_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness",
+    "delivery_dispatch_intent_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:delivery-dispatch-intent",
+    "delivery_dispatch_precheck_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:delivery-dispatch-intent:delivery-dispatch-precheck"
+  },
+  "status_chain": {
+    "lifecycle_state": "prepared",
+    "normalized_outcome_status": "prepared_outcome",
+    "publication_preparation_status": "prepared_publication_preparation",
+    "dispatch_readiness_status": "prepared_dispatch_readiness",
+    "delivery_dispatch_intent_status": "prepared_delivery_dispatch_intent",
+    "delivery_dispatch_precheck_status": "prepared_delivery_dispatch_precheck"
+  },
+  "family_chain": {
+    "normalized_outcome_family": "read_path_normalized_attempt_outcome",
+    "publication_preparation_family": "read_path_outcome_publication_preparation",
+    "dispatch_readiness_family": "read_path_publication_dispatch_readiness",
+    "delivery_dispatch_intent_family": "read_path_delivery_dispatch_intent",
+    "delivery_dispatch_precheck_family": "read_path_delivery_dispatch_precheck"
+  },
+  "integration_linkage_chain": {
+    "normalized_outcome_linkage_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:integration-linkage",
+    "publication_preparation_linkage_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:integration-linkage",
+    "dispatch_readiness_linkage_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:integration-linkage",
+    "delivery_dispatch_intent_linkage_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:delivery-dispatch-intent:integration-linkage",
+    "delivery_dispatch_precheck_linkage_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:delivery-dispatch-intent:delivery-dispatch-precheck:integration-linkage"
+  },
+  "audit_trace_chain": {
+    "normalized_outcome_trace_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:trace",
+    "publication_preparation_trace_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:trace",
+    "dispatch_readiness_trace_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:trace",
+    "delivery_dispatch_intent_trace_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:delivery-dispatch-intent:trace",
+    "delivery_dispatch_precheck_trace_id": "proof:end-to-end:non-executing:deterministic:normalized-outcome:publication-preparation:dispatch-readiness:delivery-dispatch-intent:delivery-dispatch-precheck:trace"
+  },
+  "authority_context_placeholder": {
+    "authority_context_id": "proof:end-to-end:non-executing:deterministic:authority-context",
+    "subject_identity_ref": "proof:end-to-end:non-executing:deterministic:subject-identity",
+    "delegated_authority_ref": "proof:end-to-end:non-executing:deterministic:delegated-authority",
+    "provenance_chain_ref": "proof:end-to-end:non-executing:deterministic:provenance-chain",
+    "control_plane_boundary": "gateway_control_plane_authority",
+    "runtime_boundary": "delivery_runtime_no_direct_context_authority"
+  },
+  "runtime_action_assertions": {
+    "actual_dispatch_execution": false,
+    "actual_publication_delivery": false,
+    "handler_invocation": false,
+    "delivery_runtime": false,
+    "transport_execution": false,
+    "provider_sdk_execution": false,
+    "concrete_persistence": false,
+    "direct_canonical_context_access": false,
+    "direct_canonical_writeback": false,
+    "runtime_permission": false,
+    "actual_contour_execution": false,
+    "real_model_call": false,
+    "real_storage_write": false
+  },
+  "boundary_summary": {
+    "normalized_outcome_boundary": "normalized_placeholder_outcome_only",
+    "publication_preparation_boundary": "publication_ready_placeholder_only",
+    "dispatch_readiness_boundary": "dispatch_ready_placeholder_only",
+    "delivery_dispatch_intent_boundary": "delivery_dispatch_intent_placeholder_only",
+    "delivery_dispatch_precheck_boundary": "delivery_dispatch_precheck_placeholder_only",
+    "new_placeholder_layer_added": false,
+    "existing_contract_builders_reused": true
+  },
+  "non_executing_statement": {
+    "actual_dispatch_execution": false,
+    "actual_publication_delivery": false,
+    "handler_invocation": false,
+    "delivery_runtime": false,
+    "transport_execution": false,
+    "provider_sdk_execution": false,
+    "concrete_persistence": false,
+    "direct_canonical_context_access": false,
+    "direct_canonical_writeback": false,
+    "runtime_permission": false,
+    "actual_contour_execution": false,
+    "real_model_call": false,
+    "real_storage_write": false
+  },
+  "generated_at": "2026-04-24T00:00:00.000Z"
+}

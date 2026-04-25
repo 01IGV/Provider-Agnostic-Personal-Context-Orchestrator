@@ -3,6 +3,7 @@ import {
   STABLE_PROOF_ARTIFACT_CONTRACT_VERSION,
   STABLE_PROOF_ARTIFACT_GENERATED_AT,
   STABLE_PROOF_ARTIFACT_RUNTIME_ACTION_ASSERTION_KEYS,
+  type StableProofArtifactAuthorityContextPlaceholderShape,
   type StableProofArtifactRuntimeActionAssertionFailureShape,
   type StableProofArtifactSummaryShape
 } from "./stable-proof-artifact-contract-types.js";
@@ -21,6 +22,27 @@ const NON_EXECUTING_STATEMENT: StableProofArtifactSummaryShape["non_executing_st
   actual_contour_execution: false,
   real_model_call: false,
   real_storage_write: false
+};
+
+const createStableProofArtifactAuthorityContextPlaceholder = (
+  proof: EndToEndNonExecutingProofArtifactShape
+): StableProofArtifactAuthorityContextPlaceholderShape => {
+  return {
+    ...(proof.authority_context_placeholder.authority_context_id !== undefined
+      ? { authority_context_id: proof.authority_context_placeholder.authority_context_id }
+      : {}),
+    ...(proof.authority_context_placeholder.subject_identity_ref !== undefined
+      ? { subject_identity_ref: proof.authority_context_placeholder.subject_identity_ref }
+      : {}),
+    ...(proof.authority_context_placeholder.delegated_authority_ref !== undefined
+      ? { delegated_authority_ref: proof.authority_context_placeholder.delegated_authority_ref }
+      : {}),
+    ...(proof.authority_context_placeholder.provenance_chain_ref !== undefined
+      ? { provenance_chain_ref: proof.authority_context_placeholder.provenance_chain_ref }
+      : {}),
+    control_plane_boundary: proof.authority_context_placeholder.control_plane_boundary,
+    runtime_boundary: proof.authority_context_placeholder.runtime_boundary
+  };
 };
 
 export const findStableProofArtifactRuntimeActionAssertionFailures = (
@@ -94,14 +116,7 @@ export const createStableProofArtifactSummary = (
     family_chain: proof.family_chain,
     integration_linkage_chain: proof.integration_linkage_chain,
     audit_trace_chain: proof.audit_trace_chain,
-    authority_context_placeholder: {
-      authority_context_id: proof.authority_context_placeholder.authority_context_id,
-      subject_identity_ref: proof.authority_context_placeholder.subject_identity_ref,
-      delegated_authority_ref: proof.authority_context_placeholder.delegated_authority_ref,
-      provenance_chain_ref: proof.authority_context_placeholder.provenance_chain_ref,
-      control_plane_boundary: proof.authority_context_placeholder.control_plane_boundary,
-      runtime_boundary: proof.authority_context_placeholder.runtime_boundary
-    },
+    authority_context_placeholder: createStableProofArtifactAuthorityContextPlaceholder(proof),
     runtime_action_assertions: proof.runtime_action_assertions,
     boundary_summary: proof.boundary_summary,
     non_executing_statement: NON_EXECUTING_STATEMENT,

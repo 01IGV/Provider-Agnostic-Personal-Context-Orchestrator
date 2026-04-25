@@ -162,10 +162,7 @@ The stable artifact contract explicitly requires these flags to remain `false`:
 - Pre-write safety check confirmed the target branch existed and `main...feat/stable-proof-artifact-contract` was clean: `ahead_by: 0`, `behind_by: 0`, `files: []`.
 - After the first write, compare confirmed the feature branch was ahead of `main` and `main` was not directly changed.
 - Static connector review verified the existing proof command and proof artifact types before changes.
-- Full local `npm run typecheck` and `npm run proof:end-to-end:non-executing` could not be executed in this connector session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
-
-## Verification Gap
-Open until local or CI verification runs:
+- Local verification passed after implementation:
 
 ```bash
 git checkout feat/stable-proof-artifact-contract
@@ -174,10 +171,13 @@ npm run typecheck
 npm run proof:end-to-end:non-executing
 ```
 
+The proof command emitted the stable proof artifact contract-shaped deterministic JSON and preserved all runtime/action assertions as `false`.
+
+## Verification Gap
+Closed.
+
 ## Known Issues Introduced or Updated
-Added a temporary verification gap in `KNOWN_IMPLEMENTATION_ISSUES.md` requiring local/CI validation of:
-- `npm run typecheck`
-- `npm run proof:end-to-end:non-executing`
+- The temporary connector verification gap was closed after local `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing` passed.
 
 ## Current Outcome
 The deterministic local proof command now emits a stable proof artifact contract shape instead of an ad hoc script-shaped JSON summary.
@@ -185,15 +185,6 @@ The deterministic local proof command now emits a stable proof artifact contract
 This strengthens the non-executing proof path by making its local output shape explicit and reusable as a regression boundary.
 
 ## Next Recommended Bounded Step
-Run local verification:
+If this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after stable proof artifact contract.
 
-```bash
-git checkout feat/stable-proof-artifact-contract
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing
-```
-
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow type/shape/script fix only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or a new placeholder layer.
+Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or a new placeholder layer unless explicitly scoped by a new bounded implementation pass.

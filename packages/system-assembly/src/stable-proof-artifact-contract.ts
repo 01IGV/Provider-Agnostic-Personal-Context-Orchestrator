@@ -27,28 +27,22 @@ const NON_EXECUTING_STATEMENT: StableProofArtifactSummaryShape["non_executing_st
 const createStableProofArtifactAuthorityContextPlaceholder = (
   proof: EndToEndNonExecutingProofArtifactShape
 ): StableProofArtifactAuthorityContextPlaceholderShape => {
-  const authorityContext: StableProofArtifactAuthorityContextPlaceholderShape = {
+  return {
+    ...(proof.authority_context_placeholder.authority_context_id !== undefined
+      ? { authority_context_id: proof.authority_context_placeholder.authority_context_id }
+      : {}),
+    ...(proof.authority_context_placeholder.subject_identity_ref !== undefined
+      ? { subject_identity_ref: proof.authority_context_placeholder.subject_identity_ref }
+      : {}),
+    ...(proof.authority_context_placeholder.delegated_authority_ref !== undefined
+      ? { delegated_authority_ref: proof.authority_context_placeholder.delegated_authority_ref }
+      : {}),
+    ...(proof.authority_context_placeholder.provenance_chain_ref !== undefined
+      ? { provenance_chain_ref: proof.authority_context_placeholder.provenance_chain_ref }
+      : {}),
     control_plane_boundary: proof.authority_context_placeholder.control_plane_boundary,
     runtime_boundary: proof.authority_context_placeholder.runtime_boundary
   };
-
-  if (proof.authority_context_placeholder.authority_context_id !== undefined) {
-    authorityContext.authority_context_id = proof.authority_context_placeholder.authority_context_id;
-  }
-
-  if (proof.authority_context_placeholder.subject_identity_ref !== undefined) {
-    authorityContext.subject_identity_ref = proof.authority_context_placeholder.subject_identity_ref;
-  }
-
-  if (proof.authority_context_placeholder.delegated_authority_ref !== undefined) {
-    authorityContext.delegated_authority_ref = proof.authority_context_placeholder.delegated_authority_ref;
-  }
-
-  if (proof.authority_context_placeholder.provenance_chain_ref !== undefined) {
-    authorityContext.provenance_chain_ref = proof.authority_context_placeholder.provenance_chain_ref;
-  }
-
-  return authorityContext;
 };
 
 export const findStableProofArtifactRuntimeActionAssertionFailures = (

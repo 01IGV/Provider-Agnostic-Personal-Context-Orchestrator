@@ -26,10 +26,10 @@
       "path": "./packages/handoff"
     },
     {
-      "path": "./packages/audit-eval"
+      "path": "./packages/integration-contracts"
     },
     {
-      "path": "./packages/integration-contracts"
+      "path": "./packages/audit-eval"
     },
     {
       "path": "./packages/runtime-surface"

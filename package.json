@@ -6,9 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "typecheck": "tsc -b",
-    "proof:end-to-end:non-executing": "npm run typecheck && node scripts/end-to-end-non-executing-proof.mjs",
-    "proof:end-to-end:non-executing:verify": "npm run typecheck && node scripts/verify-end-to-end-non-executing-proof.mjs"
+    "typecheck": "tsc -b --force",
+    "build:force": "tsc -b --force",
+    "proof:end-to-end:non-executing": "npm run build:force && node scripts/end-to-end-non-executing-proof.mjs",
+    "proof:end-to-end:non-executing:verify": "npm run build:force && node scripts/verify-end-to-end-non-executing-proof.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

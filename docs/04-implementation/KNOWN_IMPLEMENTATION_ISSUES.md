@@ -39,6 +39,8 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` passed for `feat/proof-output-golden-snapshot-regression-guard`; the connector-only verification gap is closed before merge.
 
+Connector-based CI workspace project-reference fix note (April 24, 2026): `fix/ci-workspace-project-reference-resolution` aligned the `audit-eval` dependency graph for `@orchestrator/integration-contracts`, but local/CI `npm run typecheck` and `npm run proof:end-to-end:non-executing:verify` confirmation are still required for this branch.
+
 ---
 
 ## Current Known Issues and Constraints
@@ -98,6 +100,14 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Description:** internal dispatch skeleton and proof infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, and golden snapshot verification. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly` and local proof infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch and proof infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck execution into explicitly approved execution-layer passes.
+
+### 8. CI workspace project-reference verification required
+- **Layer / Area:** repository verification
+- **Status:** open
+- **Severity:** medium
+- **Description:** the clean CI failure showed that `audit-eval` imported `@orchestrator/integration-contracts` without declaring the package dependency and TypeScript project reference. A connector-based narrow fix aligned `packages/audit-eval/package.json`, `packages/audit-eval/tsconfig.json`, root `tsconfig.json`, and `package-lock.json`, but local/CI verification has not yet been executed for this branch.
+- **Impact:** clean CI may still expose another workspace/project-reference/dependency-order drift until local and/or CI verification passes.
+- **Recommended next action:** run `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing:verify` on branch `fix/ci-workspace-project-reference-resolution`; if possible, also run `rm -rf packages/*/dist` before typecheck to simulate clean build artifacts.
 
 ## Update Policy
 

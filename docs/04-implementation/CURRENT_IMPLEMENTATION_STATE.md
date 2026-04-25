@@ -11,24 +11,31 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after proof output golden snapshot regression guard completed.**
+**CI proof output golden snapshot regression check implemented on feature branch.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-The current local proof-output stack is:
+The current proof-output verification stack is:
 
 - deterministic proof command: `npm run proof:end-to-end:non-executing`;
 - stable proof artifact contract: `stable-proof-artifact-contract/v1`;
 - golden snapshot: `docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json`;
-- golden snapshot verification command: `npm run proof:end-to-end:non-executing:verify`.
+- golden snapshot verification command: `npm run proof:end-to-end:non-executing:verify`;
+- CI workflow: `.github/workflows/proof-output-regression.yml`.
 
-The latest verdict found that the golden snapshot regression guard is sufficiently coherent as a local non-executing proof-output regression signal.
+This pass added a minimal GitHub Actions workflow that runs the existing non-executing proof-output regression guard automatically on `pull_request` and `push` to `main`.
 
-No concrete blocker was found for the next implementation pass.
+The workflow runs:
 
-The strongest next bounded implementation direction is a CI proof command check, so the local proof-output regression guard becomes part of automated repository verification before any executable-adjacent seam is attempted.
+```bash
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+```
 
 No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
+
+GitHub Actions run observation is still pending for this branch.
 
 ---
 
@@ -50,7 +57,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check.
 
 All of this remains execution-free.
 
@@ -67,7 +74,7 @@ The repository explicitly records the following positioning:
 - Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler execution.
 - Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
 
-The proof command, stable proof artifact contract, golden snapshot regression guard, and verdict reports remain non-executing proof infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
+The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, and verdict reports remain non-executing proof infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
 
 ---
 
@@ -91,7 +98,8 @@ The repository currently has:
 - deterministic end-to-end non-executing proof path that composes the existing corridor without runtime behavior;
 - deterministic local proof command exposed as `npm run proof:end-to-end:non-executing`;
 - stable proof artifact summary contract exposed through `system-assembly`;
-- golden snapshot regression guard exposed as `npm run proof:end-to-end:non-executing:verify`.
+- golden snapshot regression guard exposed as `npm run proof:end-to-end:non-executing:verify`;
+- CI proof output regression workflow at `.github/workflows/proof-output-regression.yml`.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -117,7 +125,7 @@ The next coding pass must preserve these guardrails:
 - keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
 - keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication/precheck execution;
-- keep scripts/local proof commands and golden snapshot verification as non-executing proof signals only, not runtime command surfaces;
+- keep scripts/local proof commands, golden snapshot verification, and CI proof checks as non-executing proof signals only, not runtime command surfaces;
 - keep proof artifact contracts as stable non-executing output shapes, not runtime permission or delivery evidence;
 - preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch/precheck execution;
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
@@ -135,13 +143,14 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-24-43-stable-proof-artifact-contract.md`
 - `2026-04-24-44-proof-output-golden-snapshot-regression-guard.md`
 - `2026-04-24-45-repo-first-verdict-after-proof-output-golden-snapshot.md`
+- `2026-04-24-46-ci-proof-output-golden-snapshot-regression-check.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this repo-first verdict pass:
-- no CI proof-output regression check yet;
+Current limits after this CI proof output regression check pass:
+- GitHub Actions run observation is pending for the new workflow;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -152,41 +161,26 @@ Current limits after this repo-first verdict pass:
 - no actual contour invocation execution in internal dispatch skeleton yet;
 - no dedicated type-level identity/delegation/provenance contract package yet;
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
-- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, and future CI proof checks remain proof-composition only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
+- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, and CI proof checks remain proof-composition only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** CI proof command check.
+**Bounded Pass:** observe GitHub Actions result for CI proof output regression check.
 
-This pass should make the existing proof-output golden snapshot regression guard part of automated repository verification.
+If the workflow passes, perform a narrow post-merge state alignment after merge.
 
-Recommended branch:
+If the workflow fails, perform one narrow CI/workflow fix only.
 
-`ci/proof-output-golden-snapshot-regression-check`
-
-Exact scope:
-- inspect existing CI/workflow structure, if any;
-- add or extend a minimal workflow/check to run:
-  - `npm install`
-  - `npm run typecheck`
-  - `npm run proof:end-to-end:non-executing:verify`
-- keep the check deterministic and non-executing;
-- document the CI/check behavior in an execution report;
-- update `CURRENT_IMPLEMENTATION_STATE.md`;
-- update `KNOWN_IMPLEMENTATION_ISSUES.md` only if a real CI/runtime verification issue appears.
-
-Do not change the proof artifact shape, golden snapshot, proof command semantics, or stable contract unless the CI run exposes a concrete failure.
-
-Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
+Do not change proof artifact shape, golden snapshot, proof command semantics, runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer unless the failure proves a concrete need.
 
 ---
 
 ## Notes for Next Agent or Session
 
 When resuming:
-- treat local proof scripts/commands, golden snapshot verification, and future CI proof checks as non-executing proof signals only;
+- treat local proof scripts/commands, golden snapshot verification, and CI proof checks as non-executing proof signals only;
 - treat `system-assembly` proof-path and stable proof artifact modules as proof-composition/proof-artifact-contract skeletons only;
 - preserve strict separation between proof infrastructure and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;

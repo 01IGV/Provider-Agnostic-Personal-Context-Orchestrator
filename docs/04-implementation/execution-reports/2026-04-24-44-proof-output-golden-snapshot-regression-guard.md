@@ -71,6 +71,7 @@ Created:
 
 Updated:
 - `package.json`
+- `packages/system-assembly/src/stable-proof-artifact-contract.ts`
 - `docs/04-implementation/CURRENT_IMPLEMENTATION_STATE.md`
 - `docs/04-implementation/KNOWN_IMPLEMENTATION_ISSUES.md`
 
@@ -144,6 +145,18 @@ The regression guard preserves the stable artifact contract where these flags re
 - `real_model_call`
 - `real_storage_write`
 
+## Narrow Fix Applied After Local Verification
+Initial local verification found two narrow issues:
+
+1. `exactOptionalPropertyTypes` mismatch in `packages/system-assembly/src/stable-proof-artifact-contract.ts` caused optional authority/provenance fields to be emitted as `string | undefined`.
+2. After that type fix, the golden snapshot verify command detected key-order drift in `authority_context_placeholder`.
+
+The final fix preserves both:
+- no explicit `undefined` optional fields;
+- stable golden-compatible key order for `authority_context_placeholder`.
+
+No proof semantics or runtime behavior changed.
+
 ## Architectural Boundaries Preserved
 - The guard is local-only.
 - The guard is non-executing.
@@ -162,24 +175,33 @@ The regression guard preserves the stable artifact contract where these flags re
 - Pre-write safety check confirmed the target branch existed and `main...feat/proof-output-golden-snapshot-regression-guard` was clean: `ahead_by: 0`, `behind_by: 0`, `files: []`.
 - After the first write, compare confirmed the feature branch was ahead of `main` and `main` was not directly changed.
 - Static connector review verified the stable proof artifact contract and proof command before changes.
-- Full local `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` could not be executed in this connector session because the repository was accessed through GitHub connector file operations rather than a local git/npm workspace.
-
-## Verification Gap
-Open until local or CI verification runs:
+- Local verification passed after the narrow type/key-order fixes:
 
 ```bash
-git checkout feat/proof-output-golden-snapshot-regression-guard
+git pull origin feat/proof-output-golden-snapshot-regression-guard
 npm install
 npm run typecheck
 npm run proof:end-to-end:non-executing
 npm run proof:end-to-end:non-executing:verify
 ```
 
+The verify command returned:
+
+```json
+{
+  "verification_result": "stable_proof_artifact_matches_golden_snapshot",
+  "contract_version": "stable-proof-artifact-contract/v1",
+  "proof_id": "proof:end-to-end:non-executing:deterministic",
+  "golden_snapshot_path": "docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json",
+  "runtime_action_assertions_all_false": true
+}
+```
+
+## Verification Gap
+Closed.
+
 ## Known Issues Introduced or Updated
-Added a temporary verification gap in `KNOWN_IMPLEMENTATION_ISSUES.md` requiring local/CI validation of:
-- `npm run typecheck`
-- `npm run proof:end-to-end:non-executing`
-- `npm run proof:end-to-end:non-executing:verify`
+- The temporary connector verification gap was closed after local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` passed.
 
 ## Current Outcome
 The repository now has a golden snapshot regression guard for the stable proof artifact output.
@@ -187,16 +209,6 @@ The repository now has a golden snapshot regression guard for the stable proof a
 This means future proof-output changes should fail local verification unless the golden snapshot is intentionally updated.
 
 ## Next Recommended Bounded Step
-Run local verification:
+If this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after proof output golden snapshot regression guard.
 
-```bash
-git checkout feat/proof-output-golden-snapshot-regression-guard
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing
-npm run proof:end-to-end:non-executing:verify
-```
-
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow type/shape/script/snapshot fix only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or a new placeholder layer.
+Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or a new placeholder layer unless explicitly scoped by a new bounded implementation pass.

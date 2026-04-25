@@ -11,13 +11,29 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after deterministic local proof command completed on `docs/repo-first-verdict-after-deterministic-local-proof-command`.**
+**Stable proof artifact contract implemented on `feat/stable-proof-artifact-contract`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-The verdict confirms that the deterministic local proof command is sufficiently coherent as a local non-executing proof signal. No concrete blocker was found that prevents the next bounded implementation pass.
+This pass added a stable proof artifact summary contract for the deterministic local proof command output. The local proof command now emits a named contract shape instead of an ad hoc script-owned JSON summary.
 
-The strongest next move is a stable proof artifact contract that makes the proof command output contract-shaped and safe to depend on before any output hardening or executable-adjacent seam.
+The stable contract version is:
+
+```text
+stable-proof-artifact-contract/v1
+```
+
+The command remains:
+
+```bash
+npm run proof:end-to-end:non-executing
+```
+
+It runs `npm run typecheck` first, then executes `scripts/end-to-end-non-executing-proof.mjs` against the compiled `system-assembly` proof path and stable proof artifact formatter.
+
+No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
+
+Local/CI confirmation for `npm run typecheck` and `npm run proof:end-to-end:non-executing` is still required for this connector-based branch before merge.
 
 ---
 
@@ -39,7 +55,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract.
 
 All of this remains execution-free.
 
@@ -73,7 +89,7 @@ The corridor explicitly disallows actual dispatch execution, actual publication 
 
 The proof command makes the existing proof path locally repeatable without crossing into runtime execution.
 
-The next recommended pass should stabilize the proof command output as an explicit artifact contract before any proof-output hardening or executable-adjacent seam.
+The stable proof artifact contract makes the proof command output contract-shaped while preserving all non-executing boundaries.
 
 ---
 
@@ -92,7 +108,7 @@ The repository currently has:
 - `packages/audit-eval` trust-layer contracts, including normalized execution-attempt outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck trace/linkage contracts;
 - `packages/integration-contracts` provider-neutral surface contract layer, including normalized execution-attempt outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck linkage contracts;
 - `packages/provider-adapters` edge projection/normalization layer;
-- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, publication-preparation-to-dispatch-readiness, dispatch-readiness-to-delivery-dispatch-intent, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, and end-to-end non-executing proof-path composition;
+- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, publication-preparation-to-dispatch-readiness, dispatch-readiness-to-delivery-dispatch-intent, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end non-executing proof-path composition, and stable proof artifact contract;
 - `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts, normalized execution-attempt outcome envelopes, execution-attempt outcome publication-preparation envelopes, publication dispatch-readiness envelopes, delivery-dispatch intent envelopes, and delivery-dispatch precheck envelopes;
 - delivery-runtime execution-attempt lifecycle contracts over runtime handoff placeholders;
 - delivery-runtime execution-attempt outcome placeholder normalization contracts over lifecycle artifacts;
@@ -101,10 +117,10 @@ The repository currently has:
 - dispatch-readiness-to-delivery-dispatch-intent contracts over dispatch-readiness placeholder artifacts;
 - delivery-dispatch-intent-to-delivery-dispatch-precheck contracts over delivery-dispatch intent placeholder artifacts;
 - deterministic end-to-end non-executing proof path that composes the existing corridor without runtime behavior;
-- deterministic local proof command exposed as `npm run proof:end-to-end:non-executing`.
+- deterministic local proof command exposed as `npm run proof:end-to-end:non-executing`;
+- stable proof artifact summary contract exposed through `system-assembly`.
 
 The repository still does **not** have:
-- stable proof artifact summary contract;
 - concrete persistence adapter implementation;
 - runtime MCP/API handler implementations;
 - delivery runtime implementation;
@@ -146,15 +162,16 @@ The next coding pass must preserve these guardrails:
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport/publication/dispatch/precheck execution;
 - keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition only, not runtime execution layer;
+- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication/precheck execution;
 - keep scripts/local proof commands as non-executing proof signals only, not runtime command surfaces;
+- keep proof artifact contracts as stable non-executing output shapes, not runtime permission or delivery evidence;
 - keep publication-preparation, dispatch-readiness, delivery-dispatch intent, and delivery-dispatch precheck as placeholder-only and not proof of actual delivery, dispatch, handler invocation, or runtime permission;
 - preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch/precheck execution;
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
-- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, or local proof command output as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission;
+- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, or stable proof artifact contract as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission;
 - do not start another review/verdict pass unless a concrete blocker is identified with file, issue, and reason.
 
 ---
@@ -206,13 +223,14 @@ Execution documentation protocol is exercised across bounded passes, including:
 - `2026-04-24-40-repo-first-verdict-after-end-to-end-non-executing-proof-path.md`
 - `2026-04-24-41-deterministic-local-proof-command.md`
 - `2026-04-24-42-repo-first-verdict-after-deterministic-local-proof-command.md`
+- `2026-04-24-43-stable-proof-artifact-contract.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this repo-first verdict:
-- no stable proof artifact summary contract yet;
+Current limits after this stable proof artifact contract pass:
+- local/CI confirmation for `npm run typecheck` and `npm run proof:end-to-end:non-executing` is still required for this branch;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -229,29 +247,26 @@ Current limits after this repo-first verdict:
 - dispatch-readiness artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, or proof of actual delivery;
 - delivery-dispatch intent artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, or proof of actual delivery;
 - delivery-dispatch precheck artifacts remain placeholder-only and still do not imply actual dispatch execution, actual publication delivery, handler results, delivery results, provider transport results, dispatch permission, runtime permission, or proof of actual delivery;
-- end-to-end proof-path artifacts and deterministic proof command output remain proof-composition only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
+- end-to-end proof-path artifacts, deterministic proof command output, and stable proof artifact contracts remain proof-composition only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** add stable proof artifact contract.
+**Bounded Pass:** local verification for stable proof artifact contract.
 
-This pass should define a stable proof artifact summary contract for the deterministic local proof command output while remaining strictly non-executing.
+Run:
 
-Recommended branch:
+```bash
+git checkout feat/stable-proof-artifact-contract
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing
+```
 
-`feat/stable-proof-artifact-contract`
+If both commands pass, record a docs-only verification sync in this branch before merge.
 
-Recommended scope:
-- define a stable proof artifact summary contract aligned with the existing `EndToEndNonExecutingProofArtifactShape`;
-- include explicit fields for proof identity, proof boundary, stage chain, delivery-adjacent chain, status chain, family chain, integration linkage chain, audit trace chain, authority/provenance/delegation placeholders, runtime/action denial assertions, and non-executing statement;
-- update the deterministic local proof command to emit this stable contract shape only if needed;
-- avoid changing proof semantics unless a concrete shape mismatch is found;
-- update execution docs and rolling state;
-- run `npm install` if needed, `npm run typecheck`, and `npm run proof:end-to-end:non-executing`.
-
-Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
+If verification fails, perform one narrow type/shape/script fix only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 
 ---
 
@@ -261,9 +276,9 @@ When resuming:
 - treat `integration-contracts` as static semantic surface contracts;
 - treat `provider-adapters` as edge projection/normalization contracts and primitives;
 - treat `runtime-surface` as surface/intake/envelope contracts only;
-- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, dispatch-readiness modules, delivery-dispatch-intent modules, delivery-dispatch-precheck modules, and end-to-end proof-path modules as planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition contract skeletons only;
+- treat `system-assembly/runtime-dispatch-*`, lifecycle modules, outcome-normalization modules, publication-preparation modules, dispatch-readiness modules, delivery-dispatch-intent modules, delivery-dispatch-precheck modules, end-to-end proof-path modules, and stable proof artifact modules as planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract skeletons only;
 - treat local proof scripts/commands as non-executing proof signals only;
-- preserve strict separation between planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition contracts and real runtime execution layers;
+- preserve strict separation between planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contracts and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;
 - treat gateway/control-plane as the authority-bearing context mediation boundary;
 - carry identity, delegation, and provenance through future runtime-adjacent design;

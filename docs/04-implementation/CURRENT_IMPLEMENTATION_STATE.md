@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Proof output golden snapshot regression guard implemented on `feat/proof-output-golden-snapshot-regression-guard`.**
+**Proof output golden snapshot regression guard implemented on feature branch and locally verified with `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify`.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -38,8 +38,6 @@ npm run proof:end-to-end:non-executing:verify
 It runs `npm run typecheck` first, composes the existing non-executing proof path, maps it to the stable proof artifact contract, checks runtime/action assertions remain `false`, and compares the deterministic JSON output against the golden snapshot.
 
 No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
-
-Local/CI confirmation for `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` is still required for this connector-based branch before merge.
 
 ---
 
@@ -151,7 +149,6 @@ Execution documentation protocol is exercised across bounded passes, including t
 ## Current Known Implementation Limits
 
 Current limits after this proof output golden snapshot regression guard pass:
-- local/CI confirmation for `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` is still required for this branch;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -168,21 +165,9 @@ Current limits after this proof output golden snapshot regression guard pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification for proof output golden snapshot regression guard.
+**Bounded Pass:** if this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after proof output golden snapshot regression guard.
 
-Run:
-
-```bash
-git checkout feat/proof-output-golden-snapshot-regression-guard
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing
-npm run proof:end-to-end:non-executing:verify
-```
-
-If all commands pass, record a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow type/shape/script/snapshot fix only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
+Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer unless explicitly scoped by a new bounded implementation pass.
 
 ---
 

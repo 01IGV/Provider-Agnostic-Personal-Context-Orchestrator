@@ -76,7 +76,7 @@ The failure was:
 Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'packages/system-assembly/dist/index.js'
 ```
 
-Cause: `tsc -b` can consider projects up to date based on existing incremental build metadata even when `dist` was removed manually. The proof scripts import built JavaScript from `dist`, so the proof commands must force re-emit before running Node.
+Cause: `tsc -b` can consider projects up to date based on existing incremental build metadata even when `dist` was removed manually. The proof scripts import built JavaScript from `dist`, so the root verification scripts need forced re-emit behavior.
 
 ## Changes Made
 Updated `packages/audit-eval/package.json`:
@@ -92,12 +92,13 @@ Updated `package-lock.json`:
 - synchronized `packages/audit-eval` dependency metadata to include `@orchestrator/integration-contracts`.
 
 Updated root `package.json`:
+- changed `typecheck` to run `tsc -b --force`;
 - added `build:force` script: `tsc -b --force`;
 - changed `proof:end-to-end:non-executing` to run `npm run build:force` before the Node script;
 - changed `proof:end-to-end:non-executing:verify` to run `npm run build:force` before the verify Node script.
 
 ## Why This Is a Narrow Fix
-This pass only aligns the existing import graph with package dependencies and TypeScript project references, then makes the proof commands robust against missing `dist` artifacts in clean-ish workspaces.
+This pass only aligns the existing import graph with package dependencies and TypeScript project references, then makes the root typecheck/proof commands robust against missing `dist` artifacts in clean-ish workspaces.
 
 It does not change:
 - proof artifact shape;
@@ -123,9 +124,9 @@ It does not change:
 - Pre-write safety check confirmed `fix/ci-workspace-project-reference-resolution` existed and `main...fix/ci-workspace-project-reference-resolution` was clean: `ahead_by: 0`, `behind_by: 0`, `files: []`.
 - After first write, compare confirmed the branch became ahead of `main` and `main` was not directly changed.
 - Static connector review confirmed the missing dependency/reference against the source import in `packages/audit-eval/src/audit-traces.ts`.
-- User-local verification confirmed the initial graph fix passed normal local verification but failed after removing `packages/*/dist`, exposing the proof command forced-build need.
+- User-local verification confirmed the initial graph fix passed normal local verification but failed after removing `packages/*/dist`, exposing the forced-build need for root verification scripts.
 
-Local npm verification after the forced-build command update has not yet been executed.
+Local npm verification after the forced typecheck/proof command update has not yet been executed.
 
 ## Verification Gap
 Open until local or CI verification runs:
@@ -141,21 +142,22 @@ npm run proof:end-to-end:non-executing:verify
 ```
 
 Expected behavior after this update:
+- `npm run typecheck` should force re-emit build artifacts through `tsc -b --force`;
 - `npm run proof:end-to-end:non-executing:verify` should force rebuild missing `dist` artifacts through `npm run build:force`;
 - the stable proof artifact should still match the golden snapshot.
 
 ## GitHub Actions Observation
-Not observed after the forced-build update in this session.
+Not observed after the forced typecheck/build update in this session.
 
 Depending on workflow triggers, GitHub Actions may not run until PR or merge/push activity triggers `.github/workflows/proof-output-regression.yml`.
 
 ## Known Issues Introduced or Updated
-Temporary verification gap remains in `KNOWN_IMPLEMENTATION_ISSUES.md` requiring local/CI confirmation for the CI workspace project-reference and forced-build proof command fix.
+Temporary verification gap remains in `KNOWN_IMPLEMENTATION_ISSUES.md` requiring local/CI confirmation for the CI workspace project-reference and forced typecheck/proof command fix.
 
 ## Current Outcome
 The workspace dependency graph now explicitly reflects the `audit-eval` dependency on `integration-contracts`.
 
-The proof commands now force a TypeScript project build before importing built `dist` modules, reducing reliance on pre-existing local build artifacts.
+The root typecheck and proof commands now force a TypeScript project build before verification and before importing built `dist` modules, reducing reliance on pre-existing local build artifacts.
 
 ## Next Recommended Bounded Step
 Run local verification:

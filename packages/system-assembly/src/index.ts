@@ -63,3 +63,5 @@ export * from "./delivery-dispatch-intent-to-delivery-dispatch-precheck-types.js
 export * from "./delivery-dispatch-intent-to-delivery-dispatch-precheck.js";
 export * from "./end-to-end-non-executing-proof-path-types.js";
 export * from "./end-to-end-non-executing-proof-path.js";
+export * from "./stable-proof-artifact-contract-types.js";
+export * from "./stable-proof-artifact-contract.js";

@@ -1,0 +1,33 @@
+name: Proof Output Regression
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  proof-output-regression:
+    name: Verify proof output golden snapshot
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Verify non-executing proof output snapshot
+        run: npm run proof:end-to-end:non-executing:verify

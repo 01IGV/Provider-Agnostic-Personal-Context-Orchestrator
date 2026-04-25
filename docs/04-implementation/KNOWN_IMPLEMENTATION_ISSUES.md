@@ -37,7 +37,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing` passed for `feat/stable-proof-artifact-contract`; the connector-only verification gap is closed before merge.
 
-Connector-based proof-output golden snapshot implementation note (April 24, 2026): proof-output golden snapshot regression guard was implemented on `feat/proof-output-golden-snapshot-regression-guard`, but local/CI `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` confirmation are still required for this branch.
+Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` passed for `feat/proof-output-golden-snapshot-regression-guard`; the connector-only verification gap is closed before merge.
 
 ---
 
@@ -98,14 +98,6 @@ Connector-based proof-output golden snapshot implementation note (April 24, 2026
 - **Description:** internal dispatch skeleton and proof infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, and golden snapshot verification. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly` and local proof infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch and proof infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck execution into explicitly approved execution-layer passes.
-
-### 8. Proof output golden snapshot verification required
-- **Layer / Area:** repository verification
-- **Status:** open
-- **Severity:** medium
-- **Description:** the proof-output golden snapshot regression guard was added through GitHub connector file operations rather than a local git/npm workspace. Full local `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` could not be executed in-session.
-- **Impact:** possible type/shape/script/snapshot drift may remain until local/CI verification runs.
-- **Recommended next action:** run `npm run typecheck`, `npm run proof:end-to-end:non-executing`, and `npm run proof:end-to-end:non-executing:verify` on branch `feat/proof-output-golden-snapshot-regression-guard`; if failures appear, perform one narrow type/shape/script/snapshot fix pass only.
 
 ## Update Policy
 

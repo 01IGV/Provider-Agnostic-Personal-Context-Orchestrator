@@ -11,31 +11,28 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**CI proof output golden snapshot regression check implemented on feature branch.**
+**CI workspace project-reference resolution fix implemented on feature branch.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-The current proof-output verification stack is:
+The CI proof-output regression workflow exposed a clean-environment TypeScript/module-resolution issue:
 
-- deterministic proof command: `npm run proof:end-to-end:non-executing`;
-- stable proof artifact contract: `stable-proof-artifact-contract/v1`;
-- golden snapshot: `docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json`;
-- golden snapshot verification command: `npm run proof:end-to-end:non-executing:verify`;
-- CI workflow: `.github/workflows/proof-output-regression.yml`.
-
-This pass added a minimal GitHub Actions workflow that runs the existing non-executing proof-output regression guard automatically on `pull_request` and `push` to `main`.
-
-The workflow runs:
-
-```bash
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
+```text
+Cannot find module '@orchestrator/integration-contracts'
 ```
 
-No runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
+The root cause was a workspace/project-reference dependency drift:
 
-GitHub Actions run observation is still pending for this branch.
+- `packages/audit-eval/src/audit-traces.ts` imports `@orchestrator/integration-contracts`;
+- `packages/audit-eval/package.json` did not declare that dependency;
+- `packages/audit-eval/tsconfig.json` did not reference `../integration-contracts`;
+- root `tsconfig.json` listed `audit-eval` before `integration-contracts`.
+
+This pass aligned the dependency graph by adding the missing package dependency, adding the missing TypeScript project reference, reordering the root project references, and syncing `package-lock.json`.
+
+No proof artifact shape, golden snapshot, proof command semantics, stable proof artifact contract semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
+
+Local/CI verification is still required for this connector-based branch.
 
 ---
 
@@ -57,7 +54,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix.
 
 All of this remains execution-free.
 
@@ -74,7 +71,7 @@ The repository explicitly records the following positioning:
 - Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler execution.
 - Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
 
-The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, and verdict reports remain non-executing proof infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
+The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, CI workspace graph fix, and verdict reports remain non-executing proof/verification infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
 
 ---
 
@@ -99,7 +96,8 @@ The repository currently has:
 - deterministic local proof command exposed as `npm run proof:end-to-end:non-executing`;
 - stable proof artifact summary contract exposed through `system-assembly`;
 - golden snapshot regression guard exposed as `npm run proof:end-to-end:non-executing:verify`;
-- CI proof output regression workflow at `.github/workflows/proof-output-regression.yml`.
+- CI proof output regression workflow at `.github/workflows/proof-output-regression.yml`;
+- explicit `audit-eval` dependency/reference alignment for `integration-contracts`.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -131,7 +129,7 @@ The next coding pass must preserve these guardrails:
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
-- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, stable proof artifact contract, golden snapshot verification, or CI proof checks as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission.
+- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, stable proof artifact contract, golden snapshot verification, CI proof checks, or CI workspace graph fixes as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission.
 
 ---
 
@@ -144,13 +142,15 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-24-44-proof-output-golden-snapshot-regression-guard.md`
 - `2026-04-24-45-repo-first-verdict-after-proof-output-golden-snapshot.md`
 - `2026-04-24-46-ci-proof-output-golden-snapshot-regression-check.md`
+- `2026-04-24-47-ci-workspace-project-reference-resolution-fix.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after this CI proof output regression check pass:
-- GitHub Actions run observation is pending for the new workflow;
+Current limits after this CI workspace project-reference resolution fix:
+- local/CI confirmation for the workspace graph fix is still required;
+- GitHub Actions run observation is pending for the fixed workflow path;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -161,17 +161,34 @@ Current limits after this CI proof output regression check pass:
 - no actual contour invocation execution in internal dispatch skeleton yet;
 - no dedicated type-level identity/delegation/provenance contract package yet;
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
-- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, and CI proof checks remain proof-composition only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
+- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, CI proof checks, and workspace graph fixes remain proof/verification infrastructure only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** observe GitHub Actions result for CI proof output regression check.
+**Bounded Pass:** local verification for CI workspace project-reference resolution fix.
 
-If the workflow passes, perform a narrow post-merge state alignment after merge.
+Run:
 
-If the workflow fails, perform one narrow CI/workflow fix only.
+```bash
+git checkout fix/ci-workspace-project-reference-resolution
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+```
+
+Recommended clean-ish verification:
+
+```bash
+rm -rf packages/*/dist
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+```
+
+If verification passes, perform a docs-only verification sync in this branch before merge.
+
+If verification fails, perform one narrow workspace/project-reference/dependency graph fix only.
 
 Do not change proof artifact shape, golden snapshot, proof command semantics, runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer unless the failure proves a concrete need.
 
@@ -180,7 +197,7 @@ Do not change proof artifact shape, golden snapshot, proof command semantics, ru
 ## Notes for Next Agent or Session
 
 When resuming:
-- treat local proof scripts/commands, golden snapshot verification, and CI proof checks as non-executing proof signals only;
+- treat local proof scripts/commands, golden snapshot verification, CI proof checks, and workspace graph fixes as non-executing proof/verification signals only;
 - treat `system-assembly` proof-path and stable proof artifact modules as proof-composition/proof-artifact-contract skeletons only;
 - preserve strict separation between proof infrastructure and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;

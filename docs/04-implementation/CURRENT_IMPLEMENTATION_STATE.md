@@ -250,9 +250,15 @@ Current limits after this stable proof artifact contract pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after stable proof artifact contract.
+**Bounded Pass:** golden snapshot / proof output regression guard.
 
-Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer unless explicitly scoped by a new bounded implementation pass.
+This pass should add a deterministic golden snapshot or equivalent proof-output regression guard for `npm run proof:end-to-end:non-executing`, so future changes cannot silently alter the stable proof artifact contract output.
+
+Recommended branch:
+
+`feat/proof-output-golden-snapshot-regression-guard`
+
+This must remain non-executing. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 
 ---
 

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**CI workspace project-reference resolution and forced-build proof command fix implemented on feature branch.**
+**CI workspace project-reference resolution and forced typecheck/proof command fix implemented on feature branch.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -30,11 +30,11 @@ The root cause was a workspace/project-reference dependency drift:
 
 This pass aligned the dependency graph by adding the missing package dependency, adding the missing TypeScript project reference, reordering the root project references, and syncing `package-lock.json`.
 
-A follow-up clean-ish local verification exposed that removing `packages/*/dist` while leaving incremental build metadata could make `npm run typecheck` consider projects up to date while the Node proof script still required `dist` output. To remove that artifact dependency, this branch also adds `npm run build:force` and makes both proof commands run a forced TypeScript build before executing their Node scripts.
+A follow-up clean-ish local verification exposed that removing `packages/*/dist` while leaving incremental build metadata could make `npm run typecheck` consider projects up to date while the Node proof script still required `dist` output. To remove that artifact dependency, this branch changes root `typecheck` to `tsc -b --force`, adds `npm run build:force`, and makes both proof commands run a forced TypeScript build before executing their Node scripts.
 
 No proof artifact shape, golden snapshot, proof command output semantics, stable proof artifact contract semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added.
 
-Local/CI verification after the forced-build update is still required for this connector-based branch.
+Local/CI verification after the forced typecheck update is still required for this connector-based branch.
 
 ---
 
@@ -56,7 +56,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced-build proof command hardening.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening.
 
 All of this remains execution-free.
 
@@ -73,7 +73,7 @@ The repository explicitly records the following positioning:
 - Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler execution.
 - Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
 
-The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, CI workspace graph fix, forced-build proof command hardening, and verdict reports remain non-executing proof/verification infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
+The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, CI workspace graph fix, forced typecheck/proof command hardening, and verdict reports remain non-executing proof/verification infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
 
 ---
 
@@ -100,7 +100,7 @@ The repository currently has:
 - golden snapshot regression guard exposed as `npm run proof:end-to-end:non-executing:verify`;
 - CI proof output regression workflow at `.github/workflows/proof-output-regression.yml`;
 - explicit `audit-eval` dependency/reference alignment for `integration-contracts`;
-- forced TypeScript build command `npm run build:force` used by proof commands before Node execution.
+- forced TypeScript build behavior for root `typecheck` and proof commands.
 
 The repository still does **not** have:
 - concrete persistence adapter implementation;
@@ -132,7 +132,7 @@ The next coding pass must preserve these guardrails:
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
-- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, stable proof artifact contract, golden snapshot verification, CI proof checks, CI workspace graph fixes, or forced-build proof command hardening as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission.
+- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, stable proof artifact contract, golden snapshot verification, CI proof checks, CI workspace graph fixes, or forced typecheck/proof command hardening as permission for handler invocation, delivery execution, actual publication, actual dispatch, or runtime permission.
 
 ---
 
@@ -151,8 +151,8 @@ Execution documentation protocol is exercised across bounded passes, including t
 
 ## Current Known Implementation Limits
 
-Current limits after this CI workspace project-reference resolution and forced-build proof command fix:
-- local/CI confirmation for the workspace graph + forced-build proof command fix is still required;
+Current limits after this CI workspace project-reference resolution and forced typecheck/proof command fix:
+- local/CI confirmation for the workspace graph + forced typecheck/proof command fix is still required;
 - GitHub Actions run observation is pending for the fixed workflow path;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
@@ -164,13 +164,13 @@ Current limits after this CI workspace project-reference resolution and forced-b
 - no actual contour invocation execution in internal dispatch skeleton yet;
 - no dedicated type-level identity/delegation/provenance contract package yet;
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
-- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, CI proof checks, workspace graph fixes, and forced-build command hardening remain proof/verification infrastructure only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
+- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, CI proof checks, workspace graph fixes, and forced typecheck/proof command hardening remain proof/verification infrastructure only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification for CI workspace project-reference resolution and forced-build proof command fix.
+**Bounded Pass:** local verification for CI workspace project-reference resolution and forced typecheck/proof command fix.
 
 Run:
 
@@ -200,7 +200,7 @@ Do not change proof artifact shape, golden snapshot, proof command output semant
 ## Notes for Next Agent or Session
 
 When resuming:
-- treat local proof scripts/commands, golden snapshot verification, CI proof checks, workspace graph fixes, and forced-build command hardening as non-executing proof/verification signals only;
+- treat local proof scripts/commands, golden snapshot verification, CI proof checks, workspace graph fixes, and forced typecheck/proof command hardening as non-executing proof/verification signals only;
 - treat `system-assembly` proof-path and stable proof artifact modules as proof-composition/proof-artifact-contract skeletons only;
 - preserve strict separation between proof infrastructure and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;

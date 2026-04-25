@@ -165,9 +165,15 @@ Current limits after this proof output golden snapshot regression guard pass:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** if this branch is merged, perform a narrow post-merge state alignment and repo-first verdict for the next implementation direction after proof output golden snapshot regression guard.
+**Bounded Pass:** repo-first verdict for the next implementation direction after proof output golden snapshot regression guard.
 
-Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer unless explicitly scoped by a new bounded implementation pass.
+This pass should determine the strongest next move after the golden snapshot regression guard: CI proof command check, proof artifact schema hardening, first executable-adjacent seam, or preserve-contour.
+
+Recommended branch:
+
+`docs/repo-first-verdict-after-proof-output-golden-snapshot`
+
+This must be a review/verdict pass only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer without a concrete blocker.
 
 ---
 

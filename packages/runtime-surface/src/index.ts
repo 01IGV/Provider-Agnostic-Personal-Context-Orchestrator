@@ -20,5 +20,8 @@ export * from "./execution-attempt-outcome-publication-preparation-envelopes.js"
 export * from "./publication-dispatch-readiness-envelopes.js";
 export * from "./delivery-dispatch-intent-envelopes.js";
 export * from "./delivery-dispatch-precheck-envelopes.js";
+export * from "./runtime-adjacent-handler-boundary-vocabularies.js";
+export * from "./runtime-adjacent-handler-boundary-types.js";
+export * from "./runtime-adjacent-handler-boundary.js";
 export * from "./linkage.js";
 export * from "./consistency.js";

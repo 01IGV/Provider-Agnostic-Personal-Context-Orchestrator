@@ -49,7 +49,8 @@ In scope:
 - add local verification script;
 - add npm command;
 - add minimal CI workflow step;
-- update rolling implementation docs and known issues.
+- update rolling implementation docs and known issues;
+- close local verification gap after successful local run.
 
 ## Out of Scope
 Not implemented:
@@ -253,9 +254,7 @@ Static connector review confirmed:
 - no provider SDK/transport/persistence behavior was added;
 - stable proof artifact output and golden snapshot were not changed.
 
-Local verification was not executed in the connector session.
-
-Required local verification before merge:
+Local verification passed:
 
 ```bash
 git pull origin feat/surface-boundary-denial-proof-integration
@@ -267,20 +266,42 @@ npm run proof:handler-boundary-denial:verify
 npm run proof:surface-boundary-denial:verify
 ```
 
+Observed verification results:
+
+- `stable_proof_artifact_matches_golden_snapshot`
+- `invocation_denial_default_deny_verified`
+- `handler_boundary_denial_default_deny_verified`
+- `surface_boundary_denial_default_deny_verified`
+
+The surface-boundary denial verification returned:
+
+- `contract_version: surface-boundary-denial-proof/v1`
+- `mcp_api_adjacent: true`
+- `protocol_surface_boundary: true`
+- `route_controller_implemented: false`
+- `mcp_tool_registered: false`
+- `mcp_resource_registered: false`
+- `api_route_registered: false`
+- `api_controller_registered: false`
+- `runtime_handler_bound: false`
+- `runtime_permission_granted: false`
+- `actual_handler_execution_allowed_now: false`
+- `actual_contour_execution_allowed_now: false`
+- `denial_flags_all_false: true`
+- `failure_count: 0`
+
 ## CI Proof Regression Status
 CI workflow is updated to include surface-boundary denial proof verification.
 
 GitHub Actions observation is pending until branch PR/merge or workflow run.
 
 ## Verification Gap
-Temporary local verification gap remains until the required local commands pass.
+No local verification gap remains for this branch.
 
-This is recorded in `KNOWN_IMPLEMENTATION_ISSUES.md`.
+CI observation remains pending until workflow activity.
 
 ## Known Issues Introduced or Updated
-Added temporary issue:
-
-- `Surface-boundary denial proof local verification pending`
+Temporary issue `Surface-boundary denial proof local verification pending` was closed after successful local verification.
 
 No concrete code-level defect is confirmed.
 
@@ -292,9 +313,11 @@ The proof command verifies that the first MCP/API-adjacent surface boundary rema
 Actual MCP/API implementation, tool/resource registration, route/controller implementation, runtime handler execution, runtime permission, provider SDK calls, persistence writes, and contour execution remain impossible and explicitly denied.
 
 ## Next Recommended Bounded Step
-After local verification passes, close the temporary verification gap in docs before merge.
-
 After merge, observe the `Proof Output Regression` workflow on `main` and then perform a docs-only state alignment pass.
+
+Recommended branch after green CI on `main`:
+
+`docs/state-next-step-alignment-after-surface-boundary-denial-proof`
 
 Do not add MCP server, MCP tool/resource registration, API routes/controllers, actual handler execution, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 

@@ -11,27 +11,11 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after green CI proof-output regression check completed.**
-
-Observed passing run remains:
-
-- Workflow: `Proof Output Regression`
-- Branch: `main`
-- Commit: `9a375ef`
-- Status: passed / green
-- Duration: ~25s
-
-The workflow verifies:
-
-```bash
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-```
+**First executable-adjacent contour invocation seam implemented on feature branch.**
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
-The proof/verification contour is now sufficiently closed for the current stage:
+The proof/verification contour remains sufficiently closed for the current stage:
 
 - deterministic proof command: `npm run proof:end-to-end:non-executing`;
 - stable proof artifact contract: `stable-proof-artifact-contract/v1`;
@@ -41,11 +25,22 @@ The proof/verification contour is now sufficiently closed for the current stage:
 - CI workflow: `.github/workflows/proof-output-regression.yml`;
 - observed green GitHub Actions run on `main`.
 
-The latest verdict found no concrete proof-output, CI, workspace, snapshot, or schema blocker requiring another review/verdict/consistency pass before the next implementation direction.
+This branch adds a first executable-adjacent contour invocation seam in `system-assembly`.
 
-The strongest next bounded implementation direction is the first executable-adjacent contour invocation seam, still without actual runtime execution.
+The seam is closer to future execution than proof artifact output because it records:
 
-No proof artifact shape, golden snapshot, proof command output semantics, stable proof artifact contract semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, actual contour-execution behavior, or new placeholder layer was added by this verdict pass.
+- invocation intent;
+- invocation readiness;
+- source proof artifact reference;
+- deterministic seam boundary id;
+- authority/identity/delegation/provenance placeholder references;
+- explicit execution denial flags.
+
+It is still not executable and does not call contours, handlers, providers, transports, persistence, models, or storage.
+
+No proof artifact shape, golden snapshot, proof command output semantics, stable proof artifact contract semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added.
+
+Local/CI verification is still required for this connector-based branch.
 
 ---
 
@@ -67,7 +62,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam.
 
 All of this remains execution-free.
 
@@ -84,7 +79,7 @@ The repository explicitly records the following positioning:
 - Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler execution.
 - Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
 
-The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, CI workspace graph fix, forced typecheck/proof command hardening, observed green workflow, and verdict reports remain non-executing proof/verification infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, or direct canonical context access.
+The proof command, stable proof artifact contract, golden snapshot regression guard, CI proof check, CI workspace graph fix, forced typecheck/proof command hardening, observed green workflow, verdict reports, and first executable-adjacent seam remain non-executing proof/verification or seam-definition infrastructure only. They do not imply runtime permission, delivery evidence, dispatch execution, publication delivery, model calls, storage writes, direct canonical context access, or actual contour invocation.
 
 ---
 
@@ -103,7 +98,7 @@ The repository currently has:
 - `packages/audit-eval` trust-layer contracts;
 - `packages/integration-contracts` provider-neutral surface contract layer;
 - `packages/provider-adapters` edge projection/normalization layer;
-- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, publication-preparation-to-dispatch-readiness, dispatch-readiness-to-delivery-dispatch-intent, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end non-executing proof-path composition, and stable proof artifact contract;
+- `packages/system-assembly` composition/wiring and internal dispatch skeleton contracts, including delivery-runtime execution-attempt lifecycle, outcome normalization, outcome publication-preparation, publication-preparation-to-dispatch-readiness, dispatch-readiness-to-delivery-dispatch-intent, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end non-executing proof-path composition, stable proof artifact contract, and first executable-adjacent contour invocation seam;
 - `packages/runtime-surface` entrypoint/handler-shape layer plus normalized runtime invocation intake contracts and delivery-adjacent envelopes;
 - deterministic end-to-end non-executing proof path that composes the existing corridor without runtime behavior;
 - deterministic local proof command exposed as `npm run proof:end-to-end:non-executing`;
@@ -136,15 +131,16 @@ The next coding pass must preserve these guardrails:
 - keep `audit-eval` as trust contracts, not runtime monitoring behavior;
 - keep `integration-contracts` as surface semantics only, not handler/transport/publication/dispatch/precheck execution;
 - keep `provider-adapters` as edge-shape/primitives only, not runtime transport execution;
-- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract only, not runtime execution layer;
+- keep `system-assembly` as composition/wiring/internal dispatch planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/seam-definition only, not runtime execution layer;
 - keep `runtime-surface` as entrypoint and handler-shape/envelope contracts only, not runtime dispatch/transport/publication/precheck execution;
 - keep scripts/local proof commands, golden snapshot verification, and CI proof checks as non-executing proof signals only, not runtime command surfaces;
 - keep proof artifact contracts as stable non-executing output shapes, not runtime permission or delivery evidence;
-- preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch/precheck execution;
+- keep executable-adjacent seam artifacts as non-permissive boundary definitions, not runtime permission;
+- preserve the distinction between gateway/control-plane authority and runtime/transport/publication/dispatch/precheck/contour execution;
 - preserve identity, delegation, and provenance boundaries before actual handlers are implemented;
 - do not let MCP/API surfaces become the core semantic authority;
 - do not expand into payments, settlement, full enterprise IAM, or generic agent-economy platform behavior at this stage;
-- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, stable proof artifact contract, golden snapshot verification, CI proof checks, CI workspace graph fixes, forced typecheck/proof command hardening, or green CI proof-output workflow status as permission for handler invocation, delivery execution, actual publication, actual dispatch, actual contour execution, or runtime permission.
+- do not interpret execution-attempt lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path artifacts, local proof command output, stable proof artifact contract, golden snapshot verification, CI proof checks, CI workspace graph fixes, forced typecheck/proof command hardening, green CI proof-output workflow status, or executable-adjacent seam artifacts as permission for handler invocation, delivery execution, actual publication, actual dispatch, actual contour execution, or runtime permission.
 
 ---
 
@@ -159,12 +155,14 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-24-46-ci-proof-output-golden-snapshot-regression-check.md`
 - `2026-04-24-47-ci-workspace-project-reference-resolution-fix.md`
 - `2026-04-24-48-repo-first-verdict-after-green-ci-proof-regression-check.md`
+- `2026-04-24-49-first-executable-adjacent-contour-invocation-seam.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after repo-first verdict after green CI proof-output regression workflow:
+Current limits after first executable-adjacent contour invocation seam:
+- local/CI verification for this connector-based branch is still required;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -175,32 +173,28 @@ Current limits after repo-first verdict after green CI proof-output regression w
 - no actual contour invocation execution in internal dispatch skeleton yet;
 - no dedicated type-level identity/delegation/provenance contract package yet;
 - no full auth/IAM or payment/settlement implementation, intentionally out of current scope;
-- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, CI proof checks, workspace graph fixes, forced typecheck/proof command hardening, and future executable-adjacent seam artifacts remain proof/verification or seam-definition infrastructure only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
+- end-to-end proof-path artifacts, deterministic proof command output, stable proof artifact contracts, golden snapshot verification, CI proof checks, workspace graph fixes, forced typecheck/proof command hardening, and executable-adjacent seam artifacts remain proof/verification or seam-definition infrastructure only and still do not imply actual contour execution, runtime permission, model call, storage write, handler invocation, dispatch execution, or delivery.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** first executable-adjacent contour invocation seam.
+**Bounded Pass:** local verification for first executable-adjacent contour invocation seam.
 
-Recommended branch:
+Run:
 
-`feat/first-executable-adjacent-contour-invocation-seam`
+```bash
+git pull origin feat/first-executable-adjacent-contour-invocation-seam
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+```
 
-This pass should introduce the first explicit executable-adjacent seam around contour invocation without actually invoking contours.
+If verification passes, perform a docs-only verification sync in this branch before merge.
 
-Exact bounded scope:
-- read current internal dispatch, contour-invocation gate, proof path, runtime-surface, integration-contract, and audit-eval contracts;
-- define a minimal executable-adjacent seam shape for future contour invocation attempts;
-- connect the seam to existing non-permissive boundary concepts and proof/verification guardrails;
-- represent future invocation as an explicit gated attempt, not as actual execution;
-- preserve default `execution_allowed_now: false` or equivalent denial semantics;
-- include authority/provenance/delegation placeholder references only at shape level;
-- produce deterministic non-executing seam artifacts or summaries if useful;
-- update execution documentation and rolling state;
-- keep CI proof-output regression check passing.
+If verification fails, perform one narrow type/import/shape fix only.
 
-Do not call read/pack/write/handoff pipelines, invoke handlers, add MCP/API routes/controllers, add provider SDK calls, execute transport, add concrete persistence, add auth/IAM, add payment rails, call a model, write real storage, treat the seam as runtime permission, or add another conceptual placeholder layer after the current proof corridor.
+Do not add actual contour execution, runtime handlers, MCP/API routes/controllers, provider SDK calls, concrete persistence, auth/IAM, payment rails, real model calls, real storage writes, worker, scheduler, queue, database adapter, or another broad placeholder layer.
 
 ---
 
@@ -209,7 +203,7 @@ Do not call read/pack/write/handoff pipelines, invoke handlers, add MCP/API rout
 When resuming:
 - treat local proof scripts/commands, golden snapshot verification, CI proof checks, workspace graph fixes, and forced typecheck/proof command hardening as non-executing proof/verification signals only;
 - treat `system-assembly` proof-path and stable proof artifact modules as proof-composition/proof-artifact-contract skeletons only;
-- treat the next executable-adjacent seam as a non-permissive boundary definition, not as actual contour execution;
+- treat the executable-adjacent seam as a non-permissive boundary definition, not as actual contour execution;
 - preserve strict separation between proof/seam infrastructure and real runtime execution layers;
 - treat MCP/API as surfaces, not core control authority;
 - treat gateway/control-plane as the authority-bearing context mediation boundary;

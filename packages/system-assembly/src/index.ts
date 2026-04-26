@@ -78,3 +78,5 @@ export * from "./first-mcp-api-adjacent-surface-boundary-types.js";
 export * from "./first-mcp-api-adjacent-surface-boundary.js";
 export * from "./surface-boundary-denial-proof-integration-types.js";
 export * from "./surface-boundary-denial-proof-integration.js";
+export * from "./first-auth-iam-adjacent-authority-boundary-types.js";
+export * from "./first-auth-iam-adjacent-authority-boundary.js";

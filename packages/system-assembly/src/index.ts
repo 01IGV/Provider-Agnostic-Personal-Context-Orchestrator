@@ -65,3 +65,6 @@ export * from "./end-to-end-non-executing-proof-path-types.js";
 export * from "./end-to-end-non-executing-proof-path.js";
 export * from "./stable-proof-artifact-contract-types.js";
 export * from "./stable-proof-artifact-contract.js";
+export * from "./first-executable-adjacent-contour-invocation-seam-vocabularies.js";
+export * from "./first-executable-adjacent-contour-invocation-seam-types.js";
+export * from "./first-executable-adjacent-contour-invocation-seam.js";

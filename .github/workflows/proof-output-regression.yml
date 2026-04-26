@@ -31,3 +31,6 @@ jobs:
 
       - name: Verify non-executing proof output snapshot
         run: npm run proof:end-to-end:non-executing:verify
+
+      - name: Verify invocation denial proof
+        run: npm run proof:invocation-denial:verify

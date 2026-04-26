@@ -185,9 +185,8 @@ No auth/IAM, policy engine, runtime permission, or direct context authority was 
 - After the first write, compare confirmed the branch became ahead of `main` and `main` was not directly changed.
 - Static connector review verified the new seam references existing proof and authority boundary types without changing proof-output or runtime behavior.
 
-Local npm verification was not executed in this connector session.
-
-Expected local verification:
+## Local Verification Update
+After connector-based implementation, local verification was executed successfully before merge:
 
 ```bash
 git pull origin feat/first-executable-adjacent-contour-invocation-seam
@@ -196,8 +195,20 @@ npm run typecheck
 npm run proof:end-to-end:non-executing:verify
 ```
 
+Observed result:
+
+```json
+{
+  "verification_result": "stable_proof_artifact_matches_golden_snapshot",
+  "contract_version": "stable-proof-artifact-contract/v1",
+  "proof_id": "proof:end-to-end:non-executing:deterministic",
+  "golden_snapshot_path": "docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json",
+  "runtime_action_assertions_all_false": true
+}
+```
+
 ## CI Proof-Output Regression Guard
-Pending for this branch until local verification and/or GitHub Actions run.
+CI observation for this branch is pending until merge/PR workflow activity.
 
 The pass intentionally does not change:
 - stable proof artifact output;
@@ -205,15 +216,17 @@ The pass intentionally does not change:
 - proof command semantics;
 - CI workflow semantics.
 
-Therefore the existing CI proof-output regression guard is expected to remain green if the new TypeScript types/builders compile.
+Local proof-output regression verification passed, so the existing CI proof-output regression guard is expected to remain green after merge.
 
 ## Verification Gap
-Open until local or CI verification confirms:
-- `npm run typecheck` passes;
-- `npm run proof:end-to-end:non-executing:verify` passes.
+Closed for local verification.
+
+Remaining observation: GitHub Actions run for this branch or after merge has not yet been observed.
 
 ## Known Issues Introduced or Updated
-`KNOWN_IMPLEMENTATION_ISSUES.md` was updated with a temporary verification gap for this connector-based pass.
+The temporary local verification gap was closed after successful local verification.
+
+`KNOWN_IMPLEMENTATION_ISSUES.md` no longer lists a concrete verification issue for this branch.
 
 ## Current Outcome
 The repository now has the first explicit executable-adjacent contour invocation seam contract.
@@ -221,18 +234,11 @@ The repository now has the first explicit executable-adjacent contour invocation
 The seam defines how a future contour invocation can be represented as a controlled boundary while actual execution remains impossible and explicitly denied.
 
 ## Next Recommended Bounded Step
-Run local verification:
+Merge this branch after review.
 
-```bash
-git pull origin feat/first-executable-adjacent-contour-invocation-seam
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-```
+After merge and CI observation, perform a docs-only state alignment pass if needed.
 
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform a narrow type/import/shape fix only.
+If CI fails, perform a narrow type/import/shape fix only.
 
 Do not add actual contour execution, runtime handlers, MCP/API routes/controllers, provider SDK calls, concrete persistence, auth/IAM, payment rails, real model calls, real storage writes, worker, scheduler, queue, database adapter, or another broad placeholder layer.
 

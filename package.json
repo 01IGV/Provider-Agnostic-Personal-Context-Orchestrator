@@ -9,7 +9,8 @@
     "typecheck": "tsc -b --force",
     "build:force": "tsc -b --force",
     "proof:end-to-end:non-executing": "npm run build:force && node scripts/end-to-end-non-executing-proof.mjs",
-    "proof:end-to-end:non-executing:verify": "npm run build:force && node scripts/verify-end-to-end-non-executing-proof.mjs"
+    "proof:end-to-end:non-executing:verify": "npm run build:force && node scripts/verify-end-to-end-non-executing-proof.mjs",
+    "proof:invocation-denial:verify": "npm run build:force && node scripts/verify-invocation-denial-proof.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

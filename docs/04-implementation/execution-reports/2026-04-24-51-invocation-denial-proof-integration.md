@@ -195,9 +195,7 @@ Static connector review confirmed:
 - invocation denial proof is additive;
 - CI workflow retains the existing proof-output regression step and adds a bounded invocation denial proof step.
 
-Local npm verification was not executed in this connector session.
-
-Expected local verification:
+Local verification update after connector-based implementation:
 
 ```bash
 git pull origin feat/invocation-denial-proof-integration
@@ -207,21 +205,41 @@ npm run proof:end-to-end:non-executing:verify
 npm run proof:invocation-denial:verify
 ```
 
+All commands passed locally before merge.
+
+Observed local invocation denial proof result:
+
+```json
+{
+  "verification_result": "invocation_denial_default_deny_verified",
+  "contract_version": "invocation-denial-proof/v1",
+  "proof_id": "proof:end-to-end:non-executing:deterministic:first-executable-adjacent-contour-invocation-seam:invocation-denial-proof",
+  "source_invocation_seam_id": "proof:end-to-end:non-executing:deterministic:first-executable-adjacent-contour-invocation-seam",
+  "source_contour_target": "read_path",
+  "executable_adjacent": true,
+  "executable_now": false,
+  "runtime_permission_granted": false,
+  "denial_flags_all_false": true,
+  "failure_count": 0
+}
+```
+
 ## CI Status
-CI observation is pending for this branch.
+CI observation is pending until branch merge or PR workflow activity.
 
 After merge or PR workflow activity, the `Proof Output Regression` workflow should verify both:
 - stable proof output golden snapshot;
 - invocation denial proof.
 
 ## Verification Gap
-Open until local or CI verification confirms:
-- `npm run typecheck` passes;
-- `npm run proof:end-to-end:non-executing:verify` passes;
-- `npm run proof:invocation-denial:verify` passes.
+Closed for local verification.
+
+GitHub Actions observation remains pending until workflow runs for this branch via PR or after merge to `main`.
 
 ## Known Issues Introduced or Updated
-`KNOWN_IMPLEMENTATION_ISSUES.md` was updated with a temporary verification gap for this connector-based pass.
+The temporary local verification gap in `KNOWN_IMPLEMENTATION_ISSUES.md` was removed after successful local verification.
+
+No new concrete implementation issue remains from this pass.
 
 ## Current Outcome
 The first executable-adjacent seam is now not only defined as default-deny, but has a dedicated proof integration that can machine-check its denial semantics.
@@ -229,19 +247,7 @@ The first executable-adjacent seam is now not only defined as default-deny, but 
 Actual contour execution remains impossible and explicitly denied.
 
 ## Next Recommended Bounded Step
-Run local verification:
-
-```bash
-git pull origin feat/invocation-denial-proof-integration
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-```
-
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow type/import/shape/script fix only.
+After merge, observe the `Proof Output Regression` workflow on `main` and then perform a docs-only state alignment pass.
 
 Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, a second executable-adjacent seam, or another broad placeholder layer.
 

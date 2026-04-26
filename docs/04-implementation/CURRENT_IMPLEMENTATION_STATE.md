@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First auth/IAM-adjacent authority boundary contracts implemented on feature branch.**
+**First auth/IAM-adjacent authority boundary contracts implemented and locally verified on feature branch.**
 
 The current feature branch adds the first auth/IAM-adjacent authority boundary contract after the machine-checked default-deny MCP/API surface boundary.
 
@@ -41,6 +41,27 @@ The boundary remains default-deny:
 - `api_route_permission_granted: false`;
 - `actual_contour_execution_allowed_now: false`.
 
+Local verification passed on `feat/first-auth-iam-adjacent-authority-boundary-contracts`:
+
+```bash
+git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+npm run proof:invocation-denial:verify
+npm run proof:handler-boundary-denial:verify
+npm run proof:surface-boundary-denial:verify
+```
+
+Observed local verification results:
+
+- `npm install`: passed, `found 0 vulnerabilities`;
+- `npm run typecheck`: passed;
+- `stable_proof_artifact_matches_golden_snapshot`;
+- `invocation_denial_default_deny_verified`;
+- `handler_boundary_denial_default_deny_verified`;
+- `surface_boundary_denial_default_deny_verified`.
+
 Runtime remains closed:
 
 - no real auth/IAM implementation;
@@ -68,18 +89,6 @@ Runtime remains closed:
 - no real storage writes;
 - no runtime permission granted;
 - no actual contour execution.
-
-Local verification is still required before merge:
-
-```bash
-git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-npm run proof:surface-boundary-denial:verify
-```
 
 ---
 
@@ -114,7 +123,8 @@ The strongest current bounded implementation state on this branch is now:
 - handler-boundary denial proof integration;
 - first MCP/API-adjacent surface boundary contracts;
 - surface-boundary denial proof integration;
-- first auth/IAM-adjacent authority boundary contracts.
+- first auth/IAM-adjacent authority boundary contracts;
+- local verification green for all current proof commands.
 
 All of this remains execution-free.
 
@@ -195,7 +205,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 
 Current limits after first auth/IAM-adjacent authority boundary contracts:
 
-- local verification pending before merge;
+- CI observation on `main` is pending until merge;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
@@ -215,25 +225,15 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification sync for first auth/IAM-adjacent authority boundary contracts.
+**Bounded Pass:** merge observation and docs-only state alignment after first auth/IAM-adjacent authority boundary contracts.
 
-After local verification passes, close the temporary verification gap in:
+After merge, observe GitHub Actions `Proof Output Regression` on `main` and then align current state docs.
 
-- `docs/04-implementation/CURRENT_IMPLEMENTATION_STATE.md`;
-- `docs/04-implementation/KNOWN_IMPLEMENTATION_ISSUES.md`;
-- `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
+Recommended branch after green CI on `main`:
 
-Required local commands:
+`docs/state-next-step-alignment-after-first-auth-iam-authority-boundary`
 
-```bash
-git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-npm run proof:surface-boundary-denial:verify
-```
+That pass should be docs-only.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

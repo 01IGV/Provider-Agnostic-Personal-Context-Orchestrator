@@ -72,3 +72,5 @@ export * from "./invocation-denial-proof-integration-types.js";
 export * from "./invocation-denial-proof-integration.js";
 export * from "./first-runtime-adjacent-handler-boundary-types.js";
 export * from "./first-runtime-adjacent-handler-boundary.js";
+export * from "./handler-boundary-denial-proof-integration-types.js";
+export * from "./handler-boundary-denial-proof-integration.js";

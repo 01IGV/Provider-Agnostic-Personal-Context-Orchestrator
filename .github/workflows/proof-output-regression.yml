@@ -34,3 +34,6 @@ jobs:
 
       - name: Verify invocation denial proof
         run: npm run proof:invocation-denial:verify
+
+      - name: Verify handler boundary denial proof
+        run: npm run proof:handler-boundary-denial:verify

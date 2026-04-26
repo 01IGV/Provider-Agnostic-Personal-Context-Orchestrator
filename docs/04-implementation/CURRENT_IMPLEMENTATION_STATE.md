@@ -11,15 +11,15 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Surface-boundary denial proof integration locally verified on feature branch.**
+**Surface-boundary denial proof integration merged into `main` and observed green in CI.**
 
-The current feature branch is:
+Surface-boundary denial proof integration is now part of `main`.
 
-`feat/surface-boundary-denial-proof-integration`
+GitHub Actions `Proof Output Regression` was observed green on `main` after merge.
 
-This branch adds machine-checkable default-deny proof integration for the first MCP/API-adjacent surface boundary.
+The MCP/API-adjacent surface boundary default-deny semantics are now machine-checked.
 
-Local verification has passed:
+The CI proof/verification contour now includes:
 
 ```bash
 npm install
@@ -30,7 +30,7 @@ npm run proof:handler-boundary-denial:verify
 npm run proof:surface-boundary-denial:verify
 ```
 
-The new proof verifies that the MCP/API-adjacent surface boundary remains:
+The `proof:surface-boundary-denial:verify` command passes in CI and verifies that the MCP/API-adjacent surface boundary remains:
 
 - `mcp_api_adjacent: true`;
 - `protocol_surface_boundary: true`;
@@ -43,24 +43,9 @@ The new proof verifies that the MCP/API-adjacent surface boundary remains:
 - `runtime_permission_granted: false`;
 - `actual_handler_execution_allowed_now: false`;
 - `actual_contour_execution_allowed_now: false`;
-- `denial_flags_all_false: true`;
-- `failure_count: 0`.
+- `denial_flags_all_false: true`.
 
-The current proof/verification contour includes:
-
-- deterministic proof command: `npm run proof:end-to-end:non-executing`;
-- stable proof artifact contract: `stable-proof-artifact-contract/v1`;
-- golden snapshot: `docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json`;
-- golden snapshot verification command: `npm run proof:end-to-end:non-executing:verify`;
-- invocation-denial proof command: `npm run proof:invocation-denial:verify`;
-- handler-boundary denial proof command: `npm run proof:handler-boundary-denial:verify`;
-- surface-boundary denial proof command: `npm run proof:surface-boundary-denial:verify`;
-- forced root typecheck/build behavior through `tsc -b --force`;
-- CI workflow: `.github/workflows/proof-output-regression.yml`, now including a surface-boundary denial proof step on this branch.
-
-GitHub Actions observation for the new CI step is pending until PR/merge or workflow activity.
-
-The implementation remains non-executing.
+MCP/API implementation is still not implemented.
 
 Runtime remains closed:
 
@@ -115,7 +100,8 @@ The strongest current bounded implementation state is now:
 - first runtime-adjacent handler boundary contracts;
 - handler-boundary denial proof integration;
 - first MCP/API-adjacent surface boundary contracts;
-- surface-boundary denial proof integration.
+- surface-boundary denial proof integration;
+- green CI verification for all current proof commands.
 
 All of this remains execution-free.
 
@@ -189,9 +175,8 @@ Execution documentation protocol is exercised across bounded passes, including t
 
 ## Current Known Implementation Limits
 
-Current limits after locally verified surface-boundary denial proof integration:
+Current limits after surface-boundary denial proof integration:
 
-- CI observation for the new surface-boundary denial proof step is pending until branch PR/merge or workflow run;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
@@ -210,26 +195,15 @@ Current limits after locally verified surface-boundary denial proof integration:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** merge review / CI observation for surface-boundary denial proof integration.
+**Bounded Pass:** repo-first verdict for the next implementation direction after surface-boundary denial proof integration.
 
-After merge or PR workflow activity, observe the `Proof Output Regression` workflow and confirm that it runs:
+This pass should determine the strongest next move after the machine-checked default-deny MCP/API surface boundary: surface hardening, second protocol-adjacent boundary, first auth/IAM-adjacent boundary, first real MCP/API route boundary, or preserve-contour.
 
-```bash
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-npm run proof:surface-boundary-denial:verify
-```
+Recommended branch:
 
-If CI is green after merge into `main`, perform a docs-only state alignment pass.
+`docs/repo-first-verdict-after-surface-boundary-denial-proof`
 
-Recommended branch after merge:
-
-`docs/state-next-step-alignment-after-surface-boundary-denial-proof`
-
-Do not add MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
+This must be a review/verdict pass only. Do not add MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer without a concrete blocker.
 
 ---
 

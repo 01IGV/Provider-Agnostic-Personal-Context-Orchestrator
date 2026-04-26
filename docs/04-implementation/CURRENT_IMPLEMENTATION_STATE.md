@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First MCP/API-adjacent surface boundary contracts added on feature branch.**
+**First MCP/API-adjacent surface boundary contracts added and locally verified on feature branch.**
 
 Handler-boundary denial proof integration is merged into `main` and observed green through the `Proof Output Regression` workflow.
 
@@ -70,9 +70,9 @@ The MCP/API-adjacent surface boundary records:
 - `actual_handler_execution_allowed_now: false`;
 - `actual_contour_execution_allowed_now: false`.
 
-Local verification is pending for this branch.
+Local verification completed successfully for this branch.
 
-Required local verification before merge:
+Verified locally:
 
 ```bash
 git pull origin feat/first-mcp-api-adjacent-surface-boundary-contracts
@@ -82,6 +82,14 @@ npm run proof:end-to-end:non-executing:verify
 npm run proof:invocation-denial:verify
 npm run proof:handler-boundary-denial:verify
 ```
+
+Observed local results:
+
+- `npm install`: passed, 0 vulnerabilities;
+- `npm run typecheck`: passed with `tsc -b --force`;
+- `npm run proof:end-to-end:non-executing:verify`: passed with `stable_proof_artifact_matches_golden_snapshot` and `runtime_action_assertions_all_false: true`;
+- `npm run proof:invocation-denial:verify`: passed with `invocation_denial_default_deny_verified`, `executable_now: false`, `runtime_permission_granted: false`, `denial_flags_all_false: true`, and `failure_count: 0`;
+- `npm run proof:handler-boundary-denial:verify`: passed with `handler_boundary_denial_default_deny_verified`, `runtime_adjacent: true`, `runtime_handler_boundary: true`, `handler_execution_allowed_now: false`, `runtime_permission_granted: false`, `actual_contour_execution_allowed_now: false`, and `denial_flags_all_false: true`.
 
 The implementation remains non-executing.
 
@@ -133,7 +141,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam + observed green CI proof-output regression workflow after first invocation seam merge + repo-first verdict after first invocation seam + invocation denial proof integration + observed green CI proof-output regression workflow after invocation denial proof merge + repo-first verdict after invocation denial proof integration + first runtime-adjacent handler boundary contracts + observed green CI proof-output regression workflow after first runtime-adjacent handler boundary merge + repo-first verdict after first runtime-adjacent handler boundary + handler-boundary denial proof integration + observed green CI proof-output regression workflow after handler-boundary denial proof merge + repo-first verdict after handler-boundary denial proof integration + first MCP/API-adjacent surface boundary contracts on feature branch.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam + observed green CI proof-output regression workflow after first invocation seam merge + repo-first verdict after first invocation seam + invocation denial proof integration + observed green CI proof-output regression workflow after invocation denial proof merge + repo-first verdict after invocation denial proof integration + first runtime-adjacent handler boundary contracts + observed green CI proof-output regression workflow after first runtime-adjacent handler boundary merge + repo-first verdict after first runtime-adjacent handler boundary + handler-boundary denial proof integration + observed green CI proof-output regression workflow after handler-boundary denial proof merge + repo-first verdict after handler-boundary denial proof integration + first MCP/API-adjacent surface boundary contracts on feature branch with local verification passed.
 
 All of this remains execution-free.
 
@@ -245,7 +253,6 @@ Execution documentation protocol is exercised across bounded passes, including t
 ## Current Known Implementation Limits
 
 Current limits after first MCP/API-adjacent surface boundary contracts:
-- local verification for this branch is pending;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
@@ -265,22 +272,11 @@ Current limits after first MCP/API-adjacent surface boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification sync for first MCP/API-adjacent surface boundary contracts.
+**Bounded Pass:** merge readiness after local verification for first MCP/API-adjacent surface boundary contracts.
 
-After local verification passes, update `CURRENT_IMPLEMENTATION_STATE.md`, `KNOWN_IMPLEMENTATION_ISSUES.md`, and the execution report to close the temporary verification gap before merge.
+The branch is locally verified and ready for merge review.
 
-Required local commands:
-
-```bash
-git pull origin feat/first-mcp-api-adjacent-surface-boundary-contracts
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-```
-
-If local verification fails, perform only a narrow type/import/shape fix in this same branch.
+After merge, observe the `Proof Output Regression` workflow on `main` and then perform a docs-only state alignment pass.
 
 Do not add runtime handlers, actual MCP routes, actual API controllers, MCP tool/resource registration, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 

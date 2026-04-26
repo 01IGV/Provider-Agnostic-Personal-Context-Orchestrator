@@ -11,17 +11,19 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First runtime-adjacent handler boundary contracts completed and locally verified on feature branch.**
+**First runtime-adjacent handler boundary contracts merged into `main` and observed green in CI.**
 
-Invocation denial proof integration is merged into `main` and observed green in CI.
+First runtime-adjacent handler boundary contracts are merged into `main`.
 
 GitHub Actions observed passing run:
 
 - Workflow: `Proof Output Regression`
 - Branch: `main`
-- Commit: `3d20f43`
+- Commit: `383adf8`
 - Status: passed / green
-- Duration: ~30s
+- Duration: ~32s
+
+Invocation denial proof integration remains merged into `main` and observed green in CI.
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -37,7 +39,7 @@ The current proof/verification contour includes:
 
 The first executable-adjacent contour invocation seam has machine-checked default-deny semantics.
 
-This branch adds the first runtime-adjacent handler boundary contracts:
+The first runtime-adjacent handler boundary contracts are now part of `main`:
 
 - runtime-surface handler-boundary vocabularies, types, and builder;
 - system-assembly deterministic composition from invocation-denial proof into a handler-boundary contract;
@@ -74,28 +76,7 @@ Runtime remains closed:
 - no real storage writes;
 - no runtime permission granted.
 
-No proof artifact shape, golden snapshot, existing proof command output semantics, stable proof artifact contract semantics, invocation denial proof semantics, CI workflow semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added by this pass.
-
-Local verification completed successfully:
-
-```bash
-git pull origin feat/first-runtime-adjacent-handler-boundary-contracts
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-```
-
-Observed proof checks:
-
-- stable proof artifact matches golden snapshot;
-- `runtime_action_assertions_all_false: true`;
-- invocation denial default-deny verified;
-- `executable_adjacent: true`;
-- `executable_now: false`;
-- `runtime_permission_granted: false`;
-- `denial_flags_all_false: true`;
-- `failure_count: 0`.
+No proof artifact shape, golden snapshot, existing proof command output semantics, stable proof artifact contract semantics, invocation denial proof semantics, CI workflow semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added by this state alignment pass.
 
 ---
 
@@ -117,7 +98,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam + observed green CI proof-output regression workflow after first invocation seam merge + repo-first verdict after first invocation seam + invocation denial proof integration + observed green CI proof-output regression workflow after invocation denial proof merge + repo-first verdict after invocation denial proof integration + first runtime-adjacent handler boundary contracts.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam + observed green CI proof-output regression workflow after first invocation seam merge + repo-first verdict after first invocation seam + invocation denial proof integration + observed green CI proof-output regression workflow after invocation denial proof merge + repo-first verdict after invocation denial proof integration + first runtime-adjacent handler boundary contracts + observed green CI proof-output regression workflow after first runtime-adjacent handler boundary merge.
 
 All of this remains execution-free.
 
@@ -237,23 +218,15 @@ Current limits after first runtime-adjacent handler boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** post-merge state alignment after first runtime-adjacent handler boundary contracts.
+**Bounded Pass:** repo-first verdict for the next implementation direction after first runtime-adjacent handler boundary contracts.
 
-After merge, observe the `Proof Output Regression` workflow on `main`.
-
-If CI is green, perform a docs-only state alignment pass to record:
-
-- first runtime-adjacent handler boundary contracts merged into `main`;
-- local verification completed before merge;
-- GitHub Actions `Proof Output Regression` observed green on `main`;
-- actual handler execution still not implemented;
-- runtime remains closed.
+This pass should determine the strongest next move after the first runtime-adjacent handler boundary: handler-boundary denial proof integration, runtime-boundary hardening, second runtime-adjacent boundary, first MCP/API-adjacent surface boundary, or preserve-contour.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-first-runtime-adjacent-handler-boundary`
+`docs/repo-first-verdict-after-first-runtime-adjacent-handler-boundary`
 
-Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
+This must be a review/verdict pass only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer without a concrete blocker.
 
 ---
 

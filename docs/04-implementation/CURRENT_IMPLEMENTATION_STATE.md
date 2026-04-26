@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Handler-boundary denial proof integration completed on feature branch; local verification pending.**
+**Handler-boundary denial proof integration completed and locally verified on feature branch.**
 
 First runtime-adjacent handler boundary contracts are merged into `main` and observed green in CI.
 
@@ -70,6 +70,25 @@ The handler-boundary denial proof verifies:
 - real model calls denied;
 - real storage writes denied.
 
+Local verification completed successfully:
+
+```bash
+git pull origin feat/handler-boundary-denial-proof-integration
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+npm run proof:invocation-denial:verify
+npm run proof:handler-boundary-denial:verify
+```
+
+Observed results:
+
+- `npm install`: passed, 0 vulnerabilities;
+- `npm run typecheck`: passed with `tsc -b --force`;
+- `npm run proof:end-to-end:non-executing:verify`: passed with `stable_proof_artifact_matches_golden_snapshot`;
+- `npm run proof:invocation-denial:verify`: passed with `invocation_denial_default_deny_verified`;
+- `npm run proof:handler-boundary-denial:verify`: passed with `handler_boundary_denial_default_deny_verified` and `failure_count: 0`.
+
 The implementation remains non-executing.
 
 Actual handler execution is not implemented.
@@ -93,17 +112,6 @@ Runtime remains closed:
 - no runtime permission granted.
 
 No proof artifact shape, golden snapshot, existing proof command output semantics, stable proof artifact contract semantics, invocation denial proof semantics, runtime-boundary contract semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added by this pass.
-
-Local verification is pending for:
-
-```bash
-git pull origin feat/handler-boundary-denial-proof-integration
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-```
 
 ---
 
@@ -232,7 +240,6 @@ Execution documentation protocol is exercised across bounded passes, including t
 ## Current Known Implementation Limits
 
 Current limits after handler-boundary denial proof integration:
-- local verification for `feat/handler-boundary-denial-proof-integration` is pending;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -249,24 +256,11 @@ Current limits after handler-boundary denial proof integration:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification sync for handler-boundary denial proof integration.
+**Bounded Pass:** docs-only post-merge state alignment after handler-boundary denial proof integration.
 
-Run local verification first:
+If this branch is merged, update `CURRENT_IMPLEMENTATION_STATE.md` to record that handler-boundary denial proof integration is merged into `main`, and record the observed GitHub Actions `Proof Output Regression` status once available.
 
-```bash
-git pull origin feat/handler-boundary-denial-proof-integration
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-```
-
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform a narrow type/import/shape fix only.
-
-Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
+This pass must be docs-only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 
 ---
 

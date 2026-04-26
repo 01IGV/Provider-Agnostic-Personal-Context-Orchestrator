@@ -37,3 +37,6 @@ jobs:
 
       - name: Verify handler boundary denial proof
         run: npm run proof:handler-boundary-denial:verify
+
+      - name: Verify surface boundary denial proof
+        run: npm run proof:surface-boundary-denial:verify

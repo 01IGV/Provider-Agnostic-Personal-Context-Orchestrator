@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First runtime-adjacent handler boundary contracts completed on feature branch; local verification pending.**
+**First runtime-adjacent handler boundary contracts completed and locally verified on feature branch.**
 
 Invocation denial proof integration is merged into `main` and observed green in CI.
 
@@ -76,7 +76,7 @@ Runtime remains closed:
 
 No proof artifact shape, golden snapshot, existing proof command output semantics, stable proof artifact contract semantics, invocation denial proof semantics, CI workflow semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added by this pass.
 
-Local verification is pending for:
+Local verification completed successfully:
 
 ```bash
 git pull origin feat/first-runtime-adjacent-handler-boundary-contracts
@@ -85,6 +85,17 @@ npm run typecheck
 npm run proof:end-to-end:non-executing:verify
 npm run proof:invocation-denial:verify
 ```
+
+Observed proof checks:
+
+- stable proof artifact matches golden snapshot;
+- `runtime_action_assertions_all_false: true`;
+- invocation denial default-deny verified;
+- `executable_adjacent: true`;
+- `executable_now: false`;
+- `runtime_permission_granted: false`;
+- `denial_flags_all_false: true`;
+- `failure_count: 0`.
 
 ---
 
@@ -210,7 +221,6 @@ Execution documentation protocol is exercised across bounded passes, including t
 ## Current Known Implementation Limits
 
 Current limits after first runtime-adjacent handler boundary contracts:
-- local verification for `feat/first-runtime-adjacent-handler-boundary-contracts` is pending;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -227,21 +237,21 @@ Current limits after first runtime-adjacent handler boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification sync for first runtime-adjacent handler boundary contracts.
+**Bounded Pass:** post-merge state alignment after first runtime-adjacent handler boundary contracts.
 
-Run local verification first:
+After merge, observe the `Proof Output Regression` workflow on `main`.
 
-```bash
-git pull origin feat/first-runtime-adjacent-handler-boundary-contracts
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-```
+If CI is green, perform a docs-only state alignment pass to record:
 
-If verification passes, perform a docs-only verification sync in this branch before merge.
+- first runtime-adjacent handler boundary contracts merged into `main`;
+- local verification completed before merge;
+- GitHub Actions `Proof Output Regression` observed green on `main`;
+- actual handler execution still not implemented;
+- runtime remains closed.
 
-If verification fails, perform a narrow type/import/shape fix only.
+Recommended branch:
+
+`docs/state-next-step-alignment-after-first-runtime-adjacent-handler-boundary`
 
 Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 

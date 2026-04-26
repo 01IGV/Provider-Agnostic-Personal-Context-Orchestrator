@@ -9,3 +9,6 @@ export * from "./transfer-governance.js";
 export * from "./capability-governance.js";
 export * from "./decision-engine.js";
 export * from "./helper-contracts.js";
+export * from "./auth-iam-adjacent-authority-boundary-vocabularies.js";
+export * from "./auth-iam-adjacent-authority-boundary-types.js";
+export * from "./auth-iam-adjacent-authority-boundary.js";

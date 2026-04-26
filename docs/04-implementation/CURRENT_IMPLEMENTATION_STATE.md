@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Invocation denial proof integration implemented on feature branch.**
+**Invocation denial proof integration completed on feature branch and locally verified.**
 
 First executable-adjacent contour invocation seam is merged into `main` and observed green in CI.
 
@@ -37,6 +37,16 @@ The proof/verification contour now includes, on this feature branch:
 - forced root typecheck/build behavior through `tsc -b --force`;
 - CI workflow: `.github/workflows/proof-output-regression.yml`, now with an additional invocation-denial proof step on this feature branch.
 
+Local verification passed before merge:
+
+```bash
+git pull origin feat/invocation-denial-proof-integration
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+npm run proof:invocation-denial:verify
+```
+
 The invocation denial proof verifies:
 
 - `executable_adjacent: true`;
@@ -54,7 +64,7 @@ Actual contour execution is still not implemented.
 
 No proof artifact shape, golden snapshot, existing proof command output semantics, stable proof artifact contract semantics, runtime handler, delivery runtime, actual publication delivery, actual dispatch execution, provider SDK, transport, concrete persistence, payment, IAM, policy engine, direct canonical context access, direct canonical writeback, runtime permission, real model call, real storage write, or actual contour-execution behavior was added.
 
-Local/CI verification is still required for this connector-based branch.
+GitHub Actions observation for the updated workflow step remains pending until branch merge or PR workflow activity.
 
 ---
 
@@ -179,7 +189,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 ## Current Known Implementation Limits
 
 Current limits after invocation denial proof integration:
-- local/CI verification for this connector-based branch is still required;
+- GitHub Actions observation for the updated invocation-denial workflow step is still pending until branch merge or PR workflow activity;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no delivery runtime implementation yet;
@@ -196,21 +206,13 @@ Current limits after invocation denial proof integration:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local verification for invocation denial proof integration.
+**Bounded Pass:** post-merge state alignment after invocation denial proof integration.
 
-Run:
+After merge, observe the `Proof Output Regression` workflow on `main` and then perform a docs-only state alignment pass.
 
-```bash
-git pull origin feat/invocation-denial-proof-integration
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-```
+Recommended branch:
 
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform one narrow type/import/shape/script fix only.
+`docs/state-next-step-alignment-after-invocation-denial-proof-integration`
 
 Do not add actual contour execution, runtime handlers, MCP/API routes/controllers, provider SDK calls, concrete persistence, auth/IAM, payment rails, real model calls, real storage writes, worker, scheduler, queue, database adapter, a second executable-adjacent seam, or another broad placeholder layer.
 

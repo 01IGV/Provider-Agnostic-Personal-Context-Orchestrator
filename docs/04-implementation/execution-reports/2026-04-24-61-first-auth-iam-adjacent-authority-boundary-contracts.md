@@ -301,9 +301,7 @@ Static connector review confirmed:
 - no script/workflow/package command was changed;
 - proof artifact/golden snapshot semantics were not changed.
 
-Local verification was not executed in the connector session.
-
-Required local verification before merge:
+Local verification passed:
 
 ```bash
 git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
@@ -314,6 +312,15 @@ npm run proof:invocation-denial:verify
 npm run proof:handler-boundary-denial:verify
 npm run proof:surface-boundary-denial:verify
 ```
+
+Observed local verification results:
+
+- `npm install`: passed, `found 0 vulnerabilities`;
+- `npm run typecheck`: passed;
+- `stable_proof_artifact_matches_golden_snapshot`;
+- `invocation_denial_default_deny_verified`;
+- `handler_boundary_denial_default_deny_verified`;
+- `surface_boundary_denial_default_deny_verified`.
 
 ## CI Proof Regression Status
 CI proof regression is pending until branch merge or PR workflow activity.
@@ -327,17 +334,15 @@ The pass intentionally does not change:
 - surface-boundary denial proof command semantics;
 - CI workflow semantics.
 
-Existing proof regression should remain green after merge if local typecheck and proof verification pass.
+Existing proof regression should remain green after merge.
 
 ## Verification Gap
-Temporary local verification gap remains until the required local commands pass.
+No local verification gap remains for this branch.
 
-This is recorded in `KNOWN_IMPLEMENTATION_ISSUES.md`.
+CI observation remains pending until branch merge or workflow activity.
 
 ## Known Issues Introduced or Updated
-Added temporary issue:
-
-- `First auth/IAM-adjacent authority boundary local verification pending`
+Temporary issue `First auth/IAM-adjacent authority boundary local verification pending` was closed after successful local verification.
 
 No concrete code-level defect is confirmed.
 
@@ -349,9 +354,11 @@ The boundary is derived from machine-checked surface-boundary denial proof and p
 Authentication, authorization, token validation, session management, IAM provider integration, policy evaluation, permission grants, runtime permission, MCP/API route/controller access, handler execution, provider SDK calls, persistence writes, and contour execution remain impossible and explicitly denied.
 
 ## Next Recommended Bounded Step
-After local verification passes, close the temporary verification gap in docs before merge.
-
 After merge, observe the `Proof Output Regression` workflow on `main` and then perform a docs-only state alignment pass.
+
+Recommended branch after green CI on `main`:
+
+`docs/state-next-step-alignment-after-first-auth-iam-authority-boundary`
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, actual handler execution, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 

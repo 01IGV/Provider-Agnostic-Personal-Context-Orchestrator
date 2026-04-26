@@ -51,19 +51,13 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, and `npm run proof:handler-boundary-denial:verify` passed for `feat/first-mcp-api-adjacent-surface-boundary-contracts`; the connector-only verification gap is closed before merge.
 
+Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, and `npm run proof:surface-boundary-denial:verify` passed for `feat/surface-boundary-denial-proof-integration`; the connector-only verification gap is closed before merge.
+
 ---
 
 ## Current Known Issues and Constraints
 
-### 1. Surface-boundary denial proof local verification pending
-- **Layer / Area:** system-assembly proof integration / CI proof workflow
-- **Status:** open
-- **Severity:** low
-- **Description:** `feat/surface-boundary-denial-proof-integration` adds surface-boundary denial proof types, builder, local verification script, npm command, and CI workflow step through the connector. Local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, and `npm run proof:surface-boundary-denial:verify` still need to be executed outside the connector before merge.
-- **Impact:** implementation is statically bounded and connector-reviewed, but local build/proof execution is not yet confirmed.
-- **Recommended next action:** run the required local verification commands; if they pass, close this temporary issue before merge.
-
-### 2. Risk of surface-contract boundary drift
+### 1. Risk of surface-contract boundary drift
 - **Layer / Area:** integration contracts boundaries
 - **Status:** open
 - **Severity:** medium
@@ -71,7 +65,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** integration contract layer can lose provider-neutrality and become runtime-coupled.
 - **Recommended next action:** keep `integration-contracts` shape-only and enforce cross-package consistency checks as runtime/protocol surfaces evolve.
 
-### 3. Risk of trust-layer boundary drift
+### 2. Risk of trust-layer boundary drift
 - **Layer / Area:** audit/evaluation layer boundaries
 - **Status:** open
 - **Severity:** high
@@ -79,7 +73,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** trust contracts can lose canonical portability.
 - **Recommended next action:** keep `audit-eval` contract/quality-model focused.
 
-### 4. Risk of provider-adapter boundary drift
+### 3. Risk of provider-adapter boundary drift
 - **Layer / Area:** provider adapter boundaries
 - **Status:** open
 - **Severity:** medium
@@ -87,7 +81,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** canonical contours and surface contracts can become execution-coupled and provider-shaped.
 - **Recommended next action:** keep `provider-adapters` edge-shape/primitives only; preserve tool/operation contract consistency validation in future runtime passes.
 
-### 5. Risk of premature concrete persistence adapters
+### 4. Risk of premature concrete persistence adapters
 - **Layer / Area:** persistence strategy
 - **Status:** open
 - **Severity:** medium
@@ -95,7 +89,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** contracts can be bypassed and architecture can lock into early storage assumptions.
 - **Recommended next action:** keep concrete persistence deferred until explicitly scoped.
 
-### 6. Risk of system-assembly boundary drift
+### 5. Risk of system-assembly boundary drift
 - **Layer / Area:** system assembly boundaries
 - **Status:** open
 - **Severity:** medium
@@ -103,7 +97,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** assembly layer can become a hidden runtime orchestration/control-plane layer and blur separation between contracts and execution.
 - **Recommended next action:** keep `system-assembly` contract-first, keep shared boundary typing centralized, and introduce runtime/protocol execution behavior only through explicitly approved future execution-layer passes.
 
-### 7. Risk of runtime-surface boundary drift
+### 6. Risk of runtime-surface boundary drift
 - **Layer / Area:** runtime-surface boundaries
 - **Status:** open
 - **Severity:** medium
@@ -111,7 +105,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
 - **Recommended next action:** keep `runtime-surface` contract-only and isolate concrete handlers/dispatch/delivery/publication/precheck/transport behavior in future dedicated runtime implementation passes.
 
-### 8. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, channel-gating, dispatch-intent, delivery-precheck, runtime-handoff-placeholder, execution-attempt-lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path, stable proof artifact, golden snapshot, executable-adjacent seam, invocation-denial proof, runtime-adjacent handler boundary, handler-boundary denial proof, MCP/API-adjacent surface boundary, and surface-boundary denial proof drift
+### 7. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, channel-gating, dispatch-intent, delivery-precheck, runtime-handoff-placeholder, execution-attempt-lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path, stable proof artifact, golden snapshot, executable-adjacent seam, invocation-denial proof, runtime-adjacent handler boundary, handler-boundary denial proof, MCP/API-adjacent surface boundary, and surface-boundary denial proof drift
 - **Layer / Area:** system-assembly internal runtime dispatch skeleton and local proof/seam/boundary infrastructure
 - **Status:** open
 - **Severity:** medium

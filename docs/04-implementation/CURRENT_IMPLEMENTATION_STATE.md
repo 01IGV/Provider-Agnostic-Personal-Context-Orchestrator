@@ -11,48 +11,45 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after surface-boundary denial proof integration completed.**
+**First auth/IAM-adjacent authority boundary contracts implemented on feature branch.**
 
-Surface-boundary denial proof integration is part of `main` and GitHub Actions `Proof Output Regression` was observed green on `main` after merge.
+The current feature branch adds the first auth/IAM-adjacent authority boundary contract after the machine-checked default-deny MCP/API surface boundary.
 
-The machine-checked default-deny MCP/API surface boundary is sufficiently coherent.
+This is a contract/boundary layer only.
 
-No concrete blocker was found for the next bounded implementation pass.
+It is not an auth/IAM implementation, not an MCP/API implementation, and not a runtime execution pass.
 
-The strongest next bounded implementation direction is first auth/IAM-adjacent authority boundary contracts.
+The new boundary makes authority, identity, delegation, provenance, permission scope, policy context, and audit trace refs explicit as shape-level placeholders before any real MCP/API route/controller/server boundary is considered.
 
-The CI proof/verification contour includes:
+The boundary remains default-deny:
 
-```bash
-npm install
-npm run typecheck
-npm run proof:end-to-end:non-executing:verify
-npm run proof:invocation-denial:verify
-npm run proof:handler-boundary-denial:verify
-npm run proof:surface-boundary-denial:verify
-```
-
-The `proof:surface-boundary-denial:verify` command verifies that the MCP/API-adjacent surface boundary remains:
-
-- `mcp_api_adjacent: true`;
-- `protocol_surface_boundary: true`;
-- `route_controller_implemented: false`;
-- `mcp_tool_registered: false`;
-- `mcp_resource_registered: false`;
-- `api_route_registered: false`;
-- `api_controller_registered: false`;
-- `runtime_handler_bound: false`;
+- `auth_iam_adjacent: true`;
+- `authority_boundary: true`;
+- `identity_boundary: true`;
+- `delegation_boundary: true`;
+- `provenance_boundary: true`;
+- `permission_boundary: true`;
+- `authentication_implemented: false`;
+- `authorization_implemented: false`;
+- `iam_provider_integrated: false`;
+- `session_management_implemented: false`;
+- `token_validation_implemented: false`;
+- `policy_engine_integrated: false`;
+- `permission_grant_issued: false`;
 - `runtime_permission_granted: false`;
-- `actual_handler_execution_allowed_now: false`;
-- `actual_contour_execution_allowed_now: false`;
-- `denial_flags_all_false: true`.
-
-MCP/API implementation is still not implemented.
-
-Auth/IAM implementation is still not implemented.
+- `mcp_route_permission_granted: false`;
+- `api_route_permission_granted: false`;
+- `actual_contour_execution_allowed_now: false`.
 
 Runtime remains closed:
 
+- no real auth/IAM implementation;
+- no login/session management;
+- no token validation;
+- no OAuth/OIDC/SAML/JWT integration;
+- no IAM provider adapter;
+- no policy engine implementation or execution;
+- no permission grant logic;
 - no MCP server;
 - no MCP tool registration;
 - no MCP resource registration;
@@ -71,6 +68,18 @@ Runtime remains closed:
 - no real storage writes;
 - no runtime permission granted;
 - no actual contour execution.
+
+Local verification is still required before merge:
+
+```bash
+git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+npm run proof:invocation-denial:verify
+npm run proof:handler-boundary-denial:verify
+npm run proof:surface-boundary-denial:verify
+```
 
 ---
 
@@ -92,7 +101,7 @@ The repository currently has thirteen materialized packages:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now:
+The strongest current bounded implementation state on this branch is now:
 
 - end-to-end non-executing proof path;
 - deterministic local proof command;
@@ -105,8 +114,7 @@ The strongest current bounded implementation state is now:
 - handler-boundary denial proof integration;
 - first MCP/API-adjacent surface boundary contracts;
 - surface-boundary denial proof integration;
-- repo-first verdict after surface-boundary denial proof integration;
-- green CI verification for all current proof commands.
+- first auth/IAM-adjacent authority boundary contracts.
 
 All of this remains execution-free.
 
@@ -123,9 +131,7 @@ The repository explicitly records the following positioning:
 - Identity, delegation, and provenance are foundational governance boundaries before actual runtime/handler/protocol execution.
 - Payment and broader authorization rails are relevant future adjacency, but not current implementation scope.
 
-Surface-boundary denial proof integration remains proof/verification infrastructure only. It does not imply runtime permission, MCP/API route/controller implementation, MCP tool/resource registration, handler invocation, provider calls, model calls, storage writes, direct canonical context access, or actual contour invocation.
-
-The next recommended direction is not real MCP/API implementation. The next safe layer is a non-executing auth/IAM-adjacent authority boundary that makes subject identity, delegated authority, provenance, and permission denial explicit before real protocol exposure is considered.
+The auth/IAM-adjacent authority boundary remains contract-only. It does not imply authentication, authorization, token validation, session management, IAM provider integration, policy engine execution, permission grant, runtime permission, MCP/API route/controller implementation, MCP tool/resource registration, handler invocation, provider calls, model calls, storage writes, direct canonical context access, or actual contour invocation.
 
 ---
 
@@ -133,15 +139,20 @@ The next recommended direction is not real MCP/API implementation. The next safe
 
 The repository currently has:
 
-- `packages/integration-contracts` MCP/API-adjacent surface boundary contracts;
-- `packages/system-assembly` composition from handler-boundary denial proof into MCP/API-adjacent surface boundary;
-- `packages/system-assembly` surface-boundary denial proof types and builder;
-- `scripts/verify-surface-boundary-denial-proof.mjs`;
-- npm command `proof:surface-boundary-denial:verify`;
-- CI workflow step for surface-boundary denial verification.
+- `packages/governance` auth/IAM-adjacent authority boundary vocabularies, types, and builder;
+- `packages/system-assembly` deterministic composition from surface-boundary denial proof into auth/IAM-adjacent authority boundary;
+- exports for the new authority boundary contracts and composition helpers;
+- `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
 The repository still does **not** have:
 
+- real auth/IAM implementation;
+- login/session management;
+- token validation;
+- OAuth/OIDC/SAML/JWT integration;
+- IAM provider adapter;
+- policy engine implementation or execution;
+- permission grant logic;
 - MCP server implementation;
 - MCP tool/resource registration;
 - API route/controller implementation;
@@ -152,7 +163,6 @@ The repository still does **not** have:
 - provider SDK transport execution;
 - concrete persistence adapter implementation;
 - actual contour invocation execution;
-- full auth/IAM implementation;
 - payment or settlement rail implementation.
 
 ---
@@ -161,12 +171,13 @@ The repository still does **not** have:
 
 The next pass must preserve these guardrails:
 
+- keep `governance` as authority/governance semantics only;
 - keep `integration-contracts` as surface semantics only;
 - keep `system-assembly` as composition/proof/boundary integration only;
 - keep `runtime-surface` as handler-shape/boundary contracts only;
 - keep proof scripts as non-executing verification signals;
 - do not interpret any proof, seam, boundary, or CI signal as runtime permission;
-- do not add MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, auth/IAM implementation, payment rails, real model calls, real storage writes, or actual contour execution.
+- do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, real model calls, real storage writes, or actual contour execution.
 
 ---
 
@@ -174,17 +185,17 @@ The next pass must preserve these guardrails:
 
 Execution documentation protocol is exercised across bounded passes, including through:
 
-- `2026-04-24-57-first-mcp-api-adjacent-surface-boundary-contracts.md`
-- `2026-04-24-58-repo-first-verdict-after-first-mcp-api-surface-boundary.md`
 - `2026-04-24-59-surface-boundary-denial-proof-integration.md`
 - `2026-04-24-60-repo-first-verdict-after-surface-boundary-denial-proof.md`
+- `2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after repo-first verdict after surface-boundary denial proof integration:
+Current limits after first auth/IAM-adjacent authority boundary contracts:
 
+- local verification pending before merge;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
@@ -196,42 +207,40 @@ Current limits after repo-first verdict after surface-boundary denial proof inte
 - no provider SDK transport execution yet;
 - no external transport/integration handler runtime yet;
 - no actual contour invocation execution in internal dispatch skeleton yet;
-- no dedicated auth/IAM-adjacent authority boundary yet;
-- no dedicated type-level identity/delegation/provenance contract package yet;
-- no full auth/IAM or payment/settlement implementation, intentionally out of current scope.
+- no real auth/IAM implementation yet;
+- no token validation, session management, IAM provider integration, policy engine execution, or permission grant yet;
+- no full payment/settlement implementation, intentionally out of current scope.
 
 ---
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** first auth/IAM-adjacent authority boundary contracts.
+**Bounded Pass:** local verification sync for first auth/IAM-adjacent authority boundary contracts.
 
-This pass should make authority, identity, delegation, provenance, and permission denial explicit before any real MCP/API route/controller/server boundary is considered.
+After local verification passes, close the temporary verification gap in:
 
-Recommended branch:
+- `docs/04-implementation/CURRENT_IMPLEMENTATION_STATE.md`;
+- `docs/04-implementation/KNOWN_IMPLEMENTATION_ISSUES.md`;
+- `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
-`feat/first-auth-iam-adjacent-authority-boundary-contracts`
+Required local commands:
 
-Expected narrow scope:
+```bash
+git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
+npm install
+npm run typecheck
+npm run proof:end-to-end:non-executing:verify
+npm run proof:invocation-denial:verify
+npm run proof:handler-boundary-denial:verify
+npm run proof:surface-boundary-denial:verify
+```
 
-- read current state, known issues, reports `57`, `58`, `59`, and `60`;
-- read governance authority/evaluator primitives;
-- read surface-boundary denial proof integration;
-- read MCP/API-adjacent surface boundary contracts;
-- add first auth/IAM-adjacent authority boundary contracts, likely in `governance` if repo conventions support it;
-- optionally add deterministic system-assembly composition from surface-boundary denial proof into an auth/IAM-adjacent authority boundary;
-- preserve subject identity, delegated authority, provenance chain, and authority context as shape-level references;
-- explicitly deny actual authentication, authorization decision execution, IAM provider calls, token validation, session creation, permission grant, route/controller access, handler execution, provider SDK calls, persistence writes, and contour execution;
-- update execution report and rolling state docs.
-
-This must remain non-executing. Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
+Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 
 ---
 
 ## Notes for Next Agent or Session
 
-Treat surface-boundary denial proof artifacts as machine-checkable default-deny proof only.
+Treat auth/IAM-adjacent authority boundary artifacts as boundary contracts only.
 
-They are not MCP routes, not API controllers, not MCP tool registration, not runtime permission, not handler invocation, not dispatch execution, not provider execution, and not evidence of actual contour execution.
-
-Treat the next recommended auth/IAM-adjacent boundary as contract-only authority shaping, not real auth/IAM implementation.
+They are not authentication, not authorization, not token validation, not session management, not IAM provider integration, not policy engine execution, not permission grants, not runtime permission, not MCP/API route access, not handler invocation, not dispatch execution, not provider execution, and not evidence of actual contour execution.

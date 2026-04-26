@@ -47,6 +47,8 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, and `npm run proof:invocation-denial:verify` passed for `feat/first-runtime-adjacent-handler-boundary-contracts`; the connector-only verification gap is closed before merge.
 
+Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, and `npm run proof:handler-boundary-denial:verify` passed for `feat/handler-boundary-denial-proof-integration`; the connector-only verification gap is closed before merge.
+
 ---
 
 ## Current Known Issues and Constraints
@@ -106,14 +108,6 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Description:** internal dispatch skeleton and proof/seam/boundary infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, golden snapshot verification, first executable-adjacent contour invocation seam shaping, invocation-denial proof integration, first runtime-adjacent handler boundary contracts, and handler-boundary denial proof integration. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly`, `runtime-surface`, and local proof/seam/boundary infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/seam-definition/proof-integration/boundary-contract role and become implicit runtime execution layers.
 - **Recommended next action:** keep internal dispatch and proof/seam/boundary infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck/handler execution into explicitly approved execution-layer passes.
-
-### 8. Handler-boundary denial proof local verification pending
-- **Layer / Area:** system-assembly proof integration / local proof commands / CI proof workflow
-- **Status:** open
-- **Severity:** low
-- **Description:** connector-based implementation for `feat/handler-boundary-denial-proof-integration` could not execute local npm verification commands in-session.
-- **Impact:** type/import/shape issues may exist until local verification is run.
-- **Recommended next action:** run `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, and `npm run proof:handler-boundary-denial:verify` locally before merge. If verification passes, close this temporary issue with a docs-only verification sync in the feature branch.
 
 ## Update Policy
 

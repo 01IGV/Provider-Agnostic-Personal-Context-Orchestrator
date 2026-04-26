@@ -55,7 +55,15 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 ## Current Known Issues and Constraints
 
-### 1. Risk of surface-contract boundary drift
+### 1. Surface-boundary denial proof local verification pending
+- **Layer / Area:** system-assembly proof integration / CI proof workflow
+- **Status:** open
+- **Severity:** low
+- **Description:** `feat/surface-boundary-denial-proof-integration` adds surface-boundary denial proof types, builder, local verification script, npm command, and CI workflow step through the connector. Local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, and `npm run proof:surface-boundary-denial:verify` still need to be executed outside the connector before merge.
+- **Impact:** implementation is statically bounded and connector-reviewed, but local build/proof execution is not yet confirmed.
+- **Recommended next action:** run the required local verification commands; if they pass, close this temporary issue before merge.
+
+### 2. Risk of surface-contract boundary drift
 - **Layer / Area:** integration contracts boundaries
 - **Status:** open
 - **Severity:** medium
@@ -63,7 +71,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** integration contract layer can lose provider-neutrality and become runtime-coupled.
 - **Recommended next action:** keep `integration-contracts` shape-only and enforce cross-package consistency checks as runtime/protocol surfaces evolve.
 
-### 2. Risk of trust-layer boundary drift
+### 3. Risk of trust-layer boundary drift
 - **Layer / Area:** audit/evaluation layer boundaries
 - **Status:** open
 - **Severity:** high
@@ -71,7 +79,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** trust contracts can lose canonical portability.
 - **Recommended next action:** keep `audit-eval` contract/quality-model focused.
 
-### 3. Risk of provider-adapter boundary drift
+### 4. Risk of provider-adapter boundary drift
 - **Layer / Area:** provider adapter boundaries
 - **Status:** open
 - **Severity:** medium
@@ -79,7 +87,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** canonical contours and surface contracts can become execution-coupled and provider-shaped.
 - **Recommended next action:** keep `provider-adapters` edge-shape/primitives only; preserve tool/operation contract consistency validation in future runtime passes.
 
-### 4. Risk of premature concrete persistence adapters
+### 5. Risk of premature concrete persistence adapters
 - **Layer / Area:** persistence strategy
 - **Status:** open
 - **Severity:** medium
@@ -87,15 +95,15 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** contracts can be bypassed and architecture can lock into early storage assumptions.
 - **Recommended next action:** keep concrete persistence deferred until explicitly scoped.
 
-### 5. Risk of system-assembly boundary drift
+### 6. Risk of system-assembly boundary drift
 - **Layer / Area:** system assembly boundaries
 - **Status:** open
 - **Severity:** medium
-- **Description:** now that `system-assembly` includes lifecycle, normalized outcome mapping, publication-preparation mapping, dispatch-readiness mapping, delivery-dispatch intent mapping, delivery-dispatch precheck mapping, end-to-end proof-path composition, stable proof artifact contract shaping, first executable-adjacent contour invocation seam shaping, invocation-denial proof integration, first runtime-adjacent handler boundary composition, handler-boundary denial proof integration, and first MCP/API-adjacent surface boundary composition, there is elevated risk of turning composition/wiring/internal lifecycle/outcome/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/seam-definition/proof-integration/boundary-composition primitives into runtime handler, MCP/API implementation, publication delivery, dispatch execution, delivery, contour execution, or transport execution behavior.
+- **Description:** now that `system-assembly` includes lifecycle, normalized outcome mapping, publication-preparation mapping, dispatch-readiness mapping, delivery-dispatch intent mapping, delivery-dispatch precheck mapping, end-to-end proof-path composition, stable proof artifact contract shaping, first executable-adjacent contour invocation seam shaping, invocation-denial proof integration, first runtime-adjacent handler boundary composition, handler-boundary denial proof integration, first MCP/API-adjacent surface boundary composition, and surface-boundary denial proof integration, there is elevated risk of turning composition/wiring/internal lifecycle/outcome/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/seam-definition/proof-integration/boundary-composition primitives into runtime handler, MCP/API implementation, publication delivery, dispatch execution, delivery, contour execution, or transport execution behavior.
 - **Impact:** assembly layer can become a hidden runtime orchestration/control-plane layer and blur separation between contracts and execution.
 - **Recommended next action:** keep `system-assembly` contract-first, keep shared boundary typing centralized, and introduce runtime/protocol execution behavior only through explicitly approved future execution-layer passes.
 
-### 6. Risk of runtime-surface boundary drift
+### 7. Risk of runtime-surface boundary drift
 - **Layer / Area:** runtime-surface boundaries
 - **Status:** open
 - **Severity:** medium
@@ -103,11 +111,11 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Impact:** runtime-surface can still become an execution layer prematurely, breaking bounded sequencing and contaminating provider-neutral contract boundaries.
 - **Recommended next action:** keep `runtime-surface` contract-only and isolate concrete handlers/dispatch/delivery/publication/precheck/transport behavior in future dedicated runtime implementation passes.
 
-### 7. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, channel-gating, dispatch-intent, delivery-precheck, runtime-handoff-placeholder, execution-attempt-lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path, stable proof artifact, golden snapshot, executable-adjacent seam, invocation-denial proof, runtime-adjacent handler boundary, handler-boundary denial proof, and MCP/API-adjacent surface boundary drift
+### 8. Risk of internal-dispatch, completion-ingress, finalization, publication/egress, channel-gating, dispatch-intent, delivery-precheck, runtime-handoff-placeholder, execution-attempt-lifecycle, normalized outcome, publication-preparation, dispatch-readiness, delivery-dispatch intent, delivery-dispatch precheck, proof-path, stable proof artifact, golden snapshot, executable-adjacent seam, invocation-denial proof, runtime-adjacent handler boundary, handler-boundary denial proof, MCP/API-adjacent surface boundary, and surface-boundary denial proof drift
 - **Layer / Area:** system-assembly internal runtime dispatch skeleton and local proof/seam/boundary infrastructure
 - **Status:** open
 - **Severity:** medium
-- **Description:** internal dispatch skeleton and proof/seam/boundary infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, golden snapshot verification, first executable-adjacent contour invocation seam shaping, invocation-denial proof integration, first runtime-adjacent handler boundary contracts, handler-boundary denial proof integration, and first MCP/API-adjacent surface boundary contracts. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract layers into real contour invocation, handler runtime, MCP/API implementation, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
+- **Description:** internal dispatch skeleton and proof/seam/boundary infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, golden snapshot verification, first executable-adjacent contour invocation seam shaping, invocation-denial proof integration, first runtime-adjacent handler boundary contracts, handler-boundary denial proof integration, first MCP/API-adjacent surface boundary contracts, and surface-boundary denial proof integration. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract layers into real contour invocation, handler runtime, MCP/API implementation, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly`, `runtime-surface`, `integration-contracts`, and local proof/seam/boundary infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract role and become implicit runtime/protocol execution layers.
 - **Recommended next action:** keep internal dispatch and proof/seam/boundary infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck/handler/protocol execution into explicitly approved execution-layer passes.
 

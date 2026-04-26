@@ -1,14 +1,11 @@
 import type { IsoDateTimeString } from "@orchestrator/core-foundation";
 import type { EndToEndNonExecutingProofArtifactShape } from "./end-to-end-non-executing-proof-path-types.js";
-import {
-  composeDeterministicEndToEndNonExecutingProofPath
-} from "./end-to-end-non-executing-proof-path.js";
+import { composeDeterministicEndToEndNonExecutingProofPath } from "./end-to-end-non-executing-proof-path.js";
 import type {
   FirstExecutableAdjacentContourInvocationSeamBuilder,
   FirstExecutableAdjacentInvocationAuthorityContextPlaceholderShape,
   FirstExecutableAdjacentInvocationBoundaryShape,
   FirstExecutableAdjacentInvocationDenialFlagsShape,
-  FirstExecutableAdjacentInvocationDenialReason,
   FirstExecutableAdjacentInvocationReadinessShape,
   FirstExecutableAdjacentInvocationSeamInputShape,
   FirstExecutableAdjacentInvocationSeamSummaryShape,
@@ -17,7 +14,8 @@ import type {
 } from "./first-executable-adjacent-contour-invocation-seam-types.js";
 import type {
   FirstExecutableAdjacentContourInvocationTarget,
-  FirstExecutableAdjacentInvocationBoundaryStatus
+  FirstExecutableAdjacentInvocationBoundaryStatus,
+  FirstExecutableAdjacentInvocationDenialReason
 } from "./first-executable-adjacent-contour-invocation-seam-vocabularies.js";
 
 const DEFAULT_SEAM_TIME = "2026-04-24T00:00:00.000Z" as IsoDateTimeString;

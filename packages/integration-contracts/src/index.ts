@@ -17,3 +17,6 @@ export * from "./execution-attempt-outcome-publication-preparation-linkage.js";
 export * from "./publication-dispatch-readiness-linkage.js";
 export * from "./delivery-dispatch-intent-linkage.js";
 export * from "./delivery-dispatch-precheck-linkage.js";
+export * from "./mcp-api-adjacent-surface-boundary-vocabularies.js";
+export * from "./mcp-api-adjacent-surface-boundary-types.js";
+export * from "./mcp-api-adjacent-surface-boundary.js";

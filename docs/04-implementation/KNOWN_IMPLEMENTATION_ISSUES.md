@@ -49,6 +49,8 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, and `npm run proof:handler-boundary-denial:verify` passed for `feat/handler-boundary-denial-proof-integration`; the connector-only verification gap is closed before merge.
 
+Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, and `npm run proof:handler-boundary-denial:verify` passed for `feat/first-mcp-api-adjacent-surface-boundary-contracts`; the connector-only verification gap is closed before merge.
+
 ---
 
 ## Current Known Issues and Constraints
@@ -108,14 +110,6 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 - **Description:** internal dispatch skeleton and proof/seam/boundary infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, golden snapshot verification, first executable-adjacent contour invocation seam shaping, invocation-denial proof integration, first runtime-adjacent handler boundary contracts, handler-boundary denial proof integration, and first MCP/API-adjacent surface boundary contracts. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract layers into real contour invocation, handler runtime, MCP/API implementation, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly`, `runtime-surface`, `integration-contracts`, and local proof/seam/boundary infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract role and become implicit runtime/protocol execution layers.
 - **Recommended next action:** keep internal dispatch and proof/seam/boundary infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck/handler/protocol execution into explicitly approved execution-layer passes.
-
-### 8. First MCP/API-adjacent surface boundary local verification pending
-- **Layer / Area:** integration-contracts/system-assembly surface boundary contracts
-- **Status:** open
-- **Severity:** medium
-- **Description:** `feat/first-mcp-api-adjacent-surface-boundary-contracts` was implemented through connector file operations, but local verification has not yet been executed in the connector session.
-- **Impact:** TypeScript import/type issues may remain undiscovered until local verification runs.
-- **Recommended next action:** run local verification before merge: `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, and `npm run proof:handler-boundary-denial:verify`.
 
 ## Update Policy
 

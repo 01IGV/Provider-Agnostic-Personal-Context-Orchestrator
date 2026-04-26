@@ -74,3 +74,5 @@ export * from "./first-runtime-adjacent-handler-boundary-types.js";
 export * from "./first-runtime-adjacent-handler-boundary.js";
 export * from "./handler-boundary-denial-proof-integration-types.js";
 export * from "./handler-boundary-denial-proof-integration.js";
+export * from "./first-mcp-api-adjacent-surface-boundary-types.js";
+export * from "./first-mcp-api-adjacent-surface-boundary.js";

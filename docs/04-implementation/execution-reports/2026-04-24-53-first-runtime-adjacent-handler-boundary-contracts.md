@@ -216,9 +216,7 @@ Static connector review confirmed:
 - no script/workflow/package command was changed;
 - proof artifact/golden snapshot semantics were not changed.
 
-Local npm verification was not executed in the connector session.
-
-Required local verification before merge:
+Local verification update after connector-based implementation:
 
 ```bash
 git pull origin feat/first-runtime-adjacent-handler-boundary-contracts
@@ -226,6 +224,37 @@ npm install
 npm run typecheck
 npm run proof:end-to-end:non-executing:verify
 npm run proof:invocation-denial:verify
+```
+
+All commands passed locally before merge.
+
+Observed stable proof artifact verification result:
+
+```json
+{
+  "verification_result": "stable_proof_artifact_matches_golden_snapshot",
+  "contract_version": "stable-proof-artifact-contract/v1",
+  "proof_id": "proof:end-to-end:non-executing:deterministic",
+  "golden_snapshot_path": "docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json",
+  "runtime_action_assertions_all_false": true
+}
+```
+
+Observed invocation denial proof verification result:
+
+```json
+{
+  "verification_result": "invocation_denial_default_deny_verified",
+  "contract_version": "invocation-denial-proof/v1",
+  "proof_id": "proof:end-to-end:non-executing:deterministic:first-executable-adjacent-contour-invocation-seam:invocation-denial-proof",
+  "source_invocation_seam_id": "proof:end-to-end:non-executing:deterministic:first-executable-adjacent-contour-invocation-seam",
+  "source_contour_target": "read_path",
+  "executable_adjacent": true,
+  "executable_now": false,
+  "runtime_permission_granted": false,
+  "denial_flags_all_false": true,
+  "failure_count": 0
+}
 ```
 
 ## CI Proof Regression Status
@@ -238,17 +267,17 @@ The pass intentionally does not change:
 - invocation-denial proof command semantics;
 - CI workflow semantics.
 
-Existing proof regression should remain green if local verification passes.
+Existing proof regression should remain green after merge because local typecheck, golden snapshot verification, and invocation denial proof verification passed.
 
 ## Verification Gap
-Open until local verification is executed.
+Closed for local verification.
 
-This is a connector-session verification limitation, not a known code defect.
+GitHub Actions observation remains pending until workflow runs for this branch via PR or after merge to `main`.
 
 ## Known Issues Introduced or Updated
-`KNOWN_IMPLEMENTATION_ISSUES.md` was updated to record the temporary verification gap for this feature branch.
+The temporary local verification gap in `KNOWN_IMPLEMENTATION_ISSUES.md` was removed after successful local verification.
 
-No concrete implementation issue is currently confirmed.
+No new concrete implementation issue remains from this pass.
 
 ## Current Outcome
 The repository now has the first runtime-adjacent handler boundary contract.
@@ -258,13 +287,7 @@ The boundary is derived from machine-checked invocation-denial proof and preserv
 Actual handler execution remains impossible and explicitly denied.
 
 ## Next Recommended Bounded Step
-First run local verification.
-
-If it passes, perform a docs-only verification sync in this same branch before merge.
-
-If it fails, perform a narrow type/import/shape fix only.
-
-After merge and green CI observation, perform a docs-only state alignment pass.
+After merge, observe the `Proof Output Regression` workflow on `main` and then perform a docs-only state alignment pass.
 
 Do not add actual handler execution, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 

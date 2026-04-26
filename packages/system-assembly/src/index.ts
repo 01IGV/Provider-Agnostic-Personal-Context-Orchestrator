@@ -68,3 +68,5 @@ export * from "./stable-proof-artifact-contract.js";
 export * from "./first-executable-adjacent-contour-invocation-seam-vocabularies.js";
 export * from "./first-executable-adjacent-contour-invocation-seam-types.js";
 export * from "./first-executable-adjacent-contour-invocation-seam.js";
+export * from "./invocation-denial-proof-integration-types.js";
+export * from "./invocation-denial-proof-integration.js";

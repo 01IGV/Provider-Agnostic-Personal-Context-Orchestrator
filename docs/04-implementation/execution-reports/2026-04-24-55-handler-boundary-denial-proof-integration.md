@@ -222,9 +222,7 @@ Static connector review confirmed:
 - no provider SDK/transport/persistence behavior was added;
 - stable proof artifact output and golden snapshot were not changed.
 
-Local command execution is pending because connector execution cannot run npm commands in this session.
-
-Required local verification before merge:
+Local verification completed after connector-based implementation:
 
 ```bash
 git pull origin feat/handler-boundary-denial-proof-integration
@@ -235,36 +233,54 @@ npm run proof:invocation-denial:verify
 npm run proof:handler-boundary-denial:verify
 ```
 
+Observed local results:
+
+- `npm install`: passed, audited 28 packages, 0 vulnerabilities;
+- `npm run typecheck`: passed with `tsc -b --force`;
+- `npm run proof:end-to-end:non-executing:verify`: passed with `stable_proof_artifact_matches_golden_snapshot`;
+- `npm run proof:invocation-denial:verify`: passed with `invocation_denial_default_deny_verified`;
+- `npm run proof:handler-boundary-denial:verify`: passed with `handler_boundary_denial_default_deny_verified`.
+
+Handler-boundary denial proof verification output confirmed:
+
+```json
+{
+  "verification_result": "handler_boundary_denial_default_deny_verified",
+  "contract_version": "handler-boundary-denial-proof/v1",
+  "runtime_adjacent": true,
+  "runtime_handler_boundary": true,
+  "handler_execution_allowed_now": false,
+  "runtime_permission_granted": false,
+  "actual_contour_execution_allowed_now": false,
+  "denial_flags_all_false": true,
+  "failure_count": 0
+}
+```
+
 ## CI Proof Regression Status
 CI workflow is updated to include handler-boundary denial proof verification.
 
 GitHub Actions observation is pending until branch PR/merge or workflow run.
 
 ## Verification Gap
-Temporary local verification gap remains open until the commands above are run locally.
+No local verification gap remains for this branch.
 
-This is recorded in `KNOWN_IMPLEMENTATION_ISSUES.md` as a low-severity temporary issue.
+The previous temporary local verification issue was closed after successful local verification.
 
 ## Known Issues Introduced or Updated
-Added temporary issue:
-
-- `Handler-boundary denial proof local verification pending`.
+The temporary issue `Handler-boundary denial proof local verification pending` was closed.
 
 No concrete code-level defect is confirmed.
 
 ## Current Outcome
 The repository now has machine-checkable handler-boundary denial proof integration at the contract/proof layer.
 
-The proof command can verify that the first runtime-adjacent handler boundary remains default-deny.
+The proof command verifies that the first runtime-adjacent handler boundary remains default-deny.
 
 Actual handler execution remains impossible and explicitly denied.
 
 ## Next Recommended Bounded Step
-Run local verification first.
-
-If verification passes, perform a docs-only verification sync in this branch before merge.
-
-If verification fails, perform a narrow type/import/shape fix only.
+If this branch is merged, perform a docs-only post-merge state alignment after handler-boundary denial proof integration is observed in `main` and CI status is known.
 
 Do not add actual handler execution, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
 

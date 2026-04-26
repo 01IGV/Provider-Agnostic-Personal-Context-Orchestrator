@@ -41,7 +41,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Post-merge CI verification note (April 24, 2026): `Proof Output Regression` passed on `main` at commit `9a375ef`, verifying `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing:verify`; the CI workspace project-reference and forced typecheck/proof command verification issue is closed.
 
-Connector-based implementation note (April 24, 2026): `feat/first-executable-adjacent-contour-invocation-seam` added the first non-permissive executable-adjacent contour invocation seam. Local/CI verification is still required for this branch.
+Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing:verify` passed for `feat/first-executable-adjacent-contour-invocation-seam`; the connector-only verification gap is closed before merge.
 
 ---
 
@@ -102,14 +102,6 @@ Connector-based implementation note (April 24, 2026): `feat/first-executable-adj
 - **Description:** internal dispatch skeleton and proof/seam infrastructure now include readiness reporting/linkage, contour-invocation gate contracts, execution-handoff/attempt-trace contracts, execution-result reconciliation contracts, execution-completion ingress contracts, execution-outcome finalization contracts, execution-outcome publication/egress contracts, publication-channel-binding/egress-gating contracts, publication dispatch-intent contracts, delivery-precheck/handler-boundary contracts, delivery-runtime-handoff placeholder contracts, delivery-runtime execution-attempt lifecycle contracts, delivery-runtime execution-attempt outcome normalization contracts, delivery-runtime execution-attempt outcome publication-preparation contracts, publication-preparation-to-dispatch-readiness contracts, dispatch-readiness-to-delivery-dispatch-intent contracts, delivery-dispatch-intent-to-delivery-dispatch-precheck contracts, end-to-end proof-path composition, stable proof artifact contract shaping, golden snapshot verification, and first executable-adjacent contour invocation seam shaping. Future passes may still accidentally evolve these planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition layers into real contour invocation, handler runtime, delivery runtime, publication delivery, dispatch execution, precheck execution, or transport execution.
 - **Impact:** `system-assembly` and local proof/seam infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/seam-definition-only role and become an implicit runtime execution layer.
 - **Recommended next action:** keep internal dispatch and proof/seam infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck execution into explicitly approved execution-layer passes.
-
-### 8. First executable-adjacent contour invocation seam verification required
-- **Layer / Area:** system-assembly seam definition / repository verification
-- **Status:** open
-- **Severity:** medium
-- **Description:** `feat/first-executable-adjacent-contour-invocation-seam` added new seam vocabularies, types, builder, and exports through connector-based file operations. Local npm verification has not yet been executed for this branch.
-- **Impact:** a type/import/shape issue may remain until `npm run typecheck` and `npm run proof:end-to-end:non-executing:verify` pass locally or in CI.
-- **Recommended next action:** run `npm install`, `npm run typecheck`, and `npm run proof:end-to-end:non-executing:verify` on branch `feat/first-executable-adjacent-contour-invocation-seam`.
 
 ## Update Policy
 

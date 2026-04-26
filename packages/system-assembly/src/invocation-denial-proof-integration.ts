@@ -64,7 +64,7 @@ const readinessAssertionsFromSeam = (
 const createFailure = (input: {
   code: InvocationDenialProofFailureCode;
   path: string;
-  expected: boolean;
+  expected: true | false;
   actual: unknown;
   message: string;
 }): InvocationDenialProofFailureShape => ({

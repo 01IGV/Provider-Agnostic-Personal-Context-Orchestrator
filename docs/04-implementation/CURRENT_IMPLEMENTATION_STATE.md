@@ -11,17 +11,11 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Handler-boundary denial proof integration completed and locally verified on feature branch.**
+**Handler-boundary denial proof integration merged into `main` and observed green in CI.**
 
 First runtime-adjacent handler boundary contracts are merged into `main` and observed green in CI.
 
-GitHub Actions observed passing run:
-
-- Workflow: `Proof Output Regression`
-- Branch: `main`
-- Commit: `383adf8`
-- Status: passed / green
-- Duration: ~32s
+Handler-boundary denial proof integration is now also merged into `main` and observed green through the `Proof Output Regression` workflow.
 
 The repository remains at thirteen materialized packages and explicitly frames the system as a provider-agnostic context gateway and control plane for AI models and agents.
 
@@ -32,9 +26,9 @@ The current proof/verification contour includes:
 - golden snapshot: `docs/04-implementation/proof-artifacts/end-to-end-non-executing-proof.golden.json`;
 - golden snapshot verification command: `npm run proof:end-to-end:non-executing:verify`;
 - invocation-denial proof command: `npm run proof:invocation-denial:verify`;
-- handler-boundary denial proof command added on this branch: `npm run proof:handler-boundary-denial:verify`;
+- handler-boundary denial proof command: `npm run proof:handler-boundary-denial:verify`;
 - forced root typecheck/build behavior through `tsc -b --force`;
-- CI workflow: `.github/workflows/proof-output-regression.yml`, now updated on this branch to include handler-boundary denial proof verification.
+- CI workflow: `.github/workflows/proof-output-regression.yml`, now verifying handler-boundary denial proof on `main`.
 
 The first executable-adjacent contour invocation seam has machine-checked default-deny semantics.
 
@@ -44,7 +38,7 @@ The first runtime-adjacent handler boundary contracts are part of `main`:
 - system-assembly deterministic composition from invocation-denial proof into a handler-boundary contract;
 - explicit runtime-adjacent but non-executing handler-boundary semantics.
 
-This branch adds handler-boundary denial proof integration:
+Handler-boundary denial proof integration is part of `main`:
 
 - system-assembly handler-boundary denial proof types and builder;
 - deterministic handler-boundary denial proof summary;
@@ -52,6 +46,8 @@ This branch adds handler-boundary denial proof integration:
 - local verification script;
 - npm verification command;
 - CI workflow step for handler-boundary denial verification.
+
+The handler-boundary default-deny semantics are now machine-checked.
 
 The handler-boundary denial proof verifies:
 
@@ -70,7 +66,7 @@ The handler-boundary denial proof verifies:
 - real model calls denied;
 - real storage writes denied.
 
-Local verification completed successfully:
+Local verification completed successfully before merge:
 
 ```bash
 git pull origin feat/handler-boundary-denial-proof-integration
@@ -88,6 +84,8 @@ Observed results:
 - `npm run proof:end-to-end:non-executing:verify`: passed with `stable_proof_artifact_matches_golden_snapshot`;
 - `npm run proof:invocation-denial:verify`: passed with `invocation_denial_default_deny_verified`;
 - `npm run proof:handler-boundary-denial:verify`: passed with `handler_boundary_denial_default_deny_verified` and `failure_count: 0`.
+
+GitHub Actions `Proof Output Regression` observed green on `main` after merge.
 
 The implementation remains non-executing.
 
@@ -133,7 +131,7 @@ The strongest completed code layers remain:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam + observed green CI proof-output regression workflow after first invocation seam merge + repo-first verdict after first invocation seam + invocation denial proof integration + observed green CI proof-output regression workflow after invocation denial proof merge + repo-first verdict after invocation denial proof integration + first runtime-adjacent handler boundary contracts + observed green CI proof-output regression workflow after first runtime-adjacent handler boundary merge + repo-first verdict after first runtime-adjacent handler boundary + handler-boundary denial proof integration.
+The strongest current bounded implementation state is now runtime-boundary + internal dispatch skeleton + dispatch-readiness reporting + contour-invocation gate + execution-handoff/attempt-trace + execution-result reconciliation + execution-completion ingress + execution-outcome finalization + execution-outcome publication/egress + publication-channel-binding/egress-gating + publication-dispatch-intent + delivery-precheck/handler-boundary + delivery-runtime-handoff placeholder contracts + delivery-runtime execution-attempt lifecycle contracts + delivery-runtime execution-attempt outcome placeholder normalization contracts + delivery-runtime execution-attempt outcome publication-preparation contracts + publication-preparation-to-dispatch-readiness contracts + dispatch-readiness-to-delivery-dispatch-intent contracts + delivery-dispatch-intent-to-delivery-dispatch-precheck contracts + delivery-chain boundary hardening + repo-first verdict after hardening + dispatch-readiness runtime boundary naming consistency fix + repo-first verdict before end-to-end non-executing proof path + end-to-end non-executing proof path composition + repo-first verdict after proof path + deterministic local proof command + repo-first verdict after deterministic local proof command + stable proof artifact contract + proof output golden snapshot regression guard + repo-first verdict after proof output golden snapshot regression guard + CI proof output golden snapshot regression check + CI workspace project-reference resolution fix + forced typecheck/proof command hardening + observed green CI proof-output regression workflow + repo-first verdict after green CI proof-output regression check + first executable-adjacent contour invocation seam + observed green CI proof-output regression workflow after first invocation seam merge + repo-first verdict after first invocation seam + invocation denial proof integration + observed green CI proof-output regression workflow after invocation denial proof merge + repo-first verdict after invocation denial proof integration + first runtime-adjacent handler boundary contracts + observed green CI proof-output regression workflow after first runtime-adjacent handler boundary merge + repo-first verdict after first runtime-adjacent handler boundary + handler-boundary denial proof integration + observed green CI proof-output regression workflow after handler-boundary denial proof merge.
 
 All of this remains execution-free.
 
@@ -176,8 +174,8 @@ The repository currently has:
 - stable proof artifact summary contract exposed through `system-assembly`;
 - golden snapshot regression guard exposed as `npm run proof:end-to-end:non-executing:verify`;
 - invocation denial proof exposed as `npm run proof:invocation-denial:verify`;
-- handler-boundary denial proof exposed on this branch as `npm run proof:handler-boundary-denial:verify`;
-- CI proof output regression workflow at `.github/workflows/proof-output-regression.yml`, updated on this branch with handler-boundary denial proof verification;
+- handler-boundary denial proof exposed as `npm run proof:handler-boundary-denial:verify`;
+- CI proof output regression workflow at `.github/workflows/proof-output-regression.yml`, verifying handler-boundary denial proof on `main`;
 - explicit `audit-eval` dependency/reference alignment for `integration-contracts`;
 - forced TypeScript build behavior for root `typecheck` and proof commands.
 
@@ -256,11 +254,15 @@ Current limits after handler-boundary denial proof integration:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** docs-only post-merge state alignment after handler-boundary denial proof integration.
+**Bounded Pass:** repo-first verdict for the next implementation direction after handler-boundary denial proof integration.
 
-If this branch is merged, update `CURRENT_IMPLEMENTATION_STATE.md` to record that handler-boundary denial proof integration is merged into `main`, and record the observed GitHub Actions `Proof Output Regression` status once available.
+This pass should determine the strongest next move after the machine-checked default-deny handler boundary: boundary hardening, second runtime-adjacent boundary, first MCP/API-adjacent surface boundary, or preserve-contour.
 
-This pass must be docs-only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, actual contour execution, real model calls, real storage writes, worker, scheduler, queue, database adapter, execution loop, or another broad placeholder layer.
+Recommended branch:
+
+`docs/repo-first-verdict-after-handler-boundary-denial-proof`
+
+This must be a review/verdict pass only. Do not add runtime handlers, MCP/API routes/controllers, dispatch execution, publication delivery, delivery runtime, provider SDK calls, transport execution, concrete persistence, auth/IAM, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer without a concrete blocker.
 
 ---
 

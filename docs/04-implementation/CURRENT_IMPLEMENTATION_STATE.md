@@ -238,6 +238,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-63-repo-first-verdict-after-first-auth-iam-authority-boundary.md`
 - `2026-04-27-64-authority-boundary-denial-proof-integration.md`
 - `2026-04-27-65-state-next-step-alignment-after-authority-boundary-denial-proof.md`
+- `2026-04-27-66-repo-first-verdict-after-authority-boundary-denial-proof.md`
 
 ---
 
@@ -265,21 +266,24 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after authority-boundary denial proof integration.
+**Bounded Pass:** agent context request boundary contracts.
 
-The authority-boundary denial proof is now present on `main`, local verification remains green, and PR CI was observed green.
+The authority-boundary denial proof is present on `main`, local verification remains green, PR CI was observed green, and repo-first verdict found no concrete blocker before moving into the first AI-facing request/response contract layer.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-authority-boundary-denial-proof`
-
-That pass should be docs-only and decide the strongest next bounded implementation direction.
-
-The likely next implementation direction is:
-
 `feat/agent-context-request-boundary-contracts`
 
-That implementation pass should define the first AI-agent context request boundary contract and bounded context response envelope without adding real MCP/API routes, runtime handlers, auth/IAM execution, provider calls, persistence writes, model calls, storage writes, or actual contour execution.
+That pass should define the first AI-agent context request boundary contract and bounded context response envelope.
+
+Expected bounded scope:
+
+- add contract-only AI-agent context request shape;
+- add contract-only bounded context response envelope shape;
+- carry authority, provenance, permission, and audit refs through the envelope;
+- preserve default-deny execution posture;
+- expose deterministic builders/summaries in the appropriate package boundary;
+- add an execution report and update rolling state docs.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

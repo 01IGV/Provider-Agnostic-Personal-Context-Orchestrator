@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Authority-boundary denial proof integration implemented and locally verified on feature branch.**
+**Authority-boundary denial proof integration merged to `main` and locally verified.**
 
-The current feature branch adds machine-checkable default-deny proof for the first auth/IAM-adjacent authority boundary.
+`main` now includes machine-checkable default-deny proof for the first auth/IAM-adjacent authority boundary.
 
 This is a proof/boundary verification layer only.
 
@@ -63,7 +63,7 @@ The authority-boundary denial proof verifies:
 - `denial_flags_all_false: true`;
 - `failure_count: 0`.
 
-Local verification passed on `feat/authority-boundary-denial-proof-integration`:
+Local verification passed for the merged `main` state:
 
 ```bash
 npm install
@@ -82,17 +82,16 @@ Observed local verification results:
 - `stable_proof_artifact_matches_golden_snapshot`;
 - `invocation_denial_default_deny_verified`;
 - `handler_boundary_denial_default_deny_verified`;
-- `surface_boundary_denial_default_deny_verified`.
+- `surface_boundary_denial_default_deny_verified`;
 - `authority_boundary_denial_default_deny_verified`.
 
 GitHub Actions observation note:
 
-- local `main` is up to date with `origin/main` at `d6b4c01`;
-- branch `docs/state-next-step-alignment-after-first-auth-iam-authority-boundary` started from `main...HEAD` with `0 0`;
-- GitHub connector returned no PR-triggered workflow runs for `d6b4c01`;
-- `gh` CLI is not available in this environment;
-- unauthenticated GitHub Actions API lookup returned `404`;
-- no CI failure was observed, but green push-run status could not be independently confirmed from this session.
+- PR #3 for `feat/authority-boundary-denial-proof-integration` passed GitHub Actions `Proof Output Regression` run `24988208252`;
+- PR #3 was merged to `main` as `49a42d8`;
+- local `main` is up to date with `origin/main` at `49a42d8`;
+- GitHub connector did not return push-triggered workflow runs for merge commit `49a42d8`;
+- no CI failure was observed after merge, but push-run status for the squash commit could not be independently confirmed from this session.
 
 Runtime remains closed:
 
@@ -238,6 +237,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-62-state-next-step-alignment-after-first-auth-iam-authority-boundary.md`
 - `2026-04-27-63-repo-first-verdict-after-first-auth-iam-authority-boundary.md`
 - `2026-04-27-64-authority-boundary-denial-proof-integration.md`
+- `2026-04-27-65-state-next-step-alignment-after-authority-boundary-denial-proof.md`
 
 ---
 
@@ -245,8 +245,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 
 Current limits after first auth/IAM-adjacent authority boundary contracts:
 
-- CI observation on `feat/authority-boundary-denial-proof-integration` is pending until PR/push workflow completes;
-- GitHub Actions push-run observation for `d6b4c01` could not be independently confirmed from this local session because `gh` is unavailable and unauthenticated Actions API access returned `404`;
+- GitHub Actions PR run for authority-boundary denial proof passed, but push-run observation for merge commit `49a42d8` could not be independently confirmed through the connector in this session;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
@@ -266,21 +265,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** merge observation and docs-only state alignment after authority-boundary denial proof integration.
+**Bounded Pass:** repo-first verdict after authority-boundary denial proof integration.
 
-After merge, observe GitHub Actions `Proof Output Regression` on `main` and then align current state docs.
+The authority-boundary denial proof is now present on `main`, local verification remains green, and PR CI was observed green.
 
-Recommended branch after green CI on `main`:
+Recommended branch:
 
-`docs/state-next-step-alignment-after-authority-boundary-denial-proof`
+`docs/repo-first-verdict-after-authority-boundary-denial-proof`
 
-That pass should be docs-only.
+That pass should be docs-only and decide the strongest next bounded implementation direction.
 
-Likely next strategic direction after state alignment:
+The likely next implementation direction is:
 
 `feat/agent-context-request-boundary-contracts`
 
-Do not start agent request work until the authority-boundary denial proof branch is merged and CI is observed green.
+That implementation pass should define the first AI-agent context request boundary contract and bounded context response envelope without adding real MCP/API routes, runtime handlers, auth/IAM execution, provider calls, persistence writes, model calls, storage writes, or actual contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

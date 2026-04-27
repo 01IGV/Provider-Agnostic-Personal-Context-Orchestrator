@@ -464,6 +464,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-93-repo-first-verdict-after-first-local-json-cli-file-io-boundary.md`
 - `2026-04-27-94-local-json-request-fixture-authoring-helper.md`
 - `2026-04-27-95-state-next-step-alignment-after-local-json-request-fixture-authoring-helper.md`
+- `2026-04-27-96-repo-first-verdict-after-local-json-request-fixture-authoring-helper.md`
 
 ---
 
@@ -500,15 +501,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON request fixture authoring helper.
+**Bounded Pass:** local JSON single-command run wrapper.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-request-fixture-authoring-helper`
+`feat/local-json-single-command-run-wrapper`
 
-That pass should be docs-only and decide whether the next implementation should be a single-command local run wrapper or constrained request variation.
+That pass should add the smallest local command that wraps the existing request fixture authoring helper and local JSON fixture runner into one bounded local command.
 
-The likely next implementation direction after state alignment is a constrained request-variation path or a single-command local run wrapper over the existing author + run commands.
+The repo-first verdict after the fixture authoring helper chose a single-command wrapper over request variation because the existing two-command local v0 is usable but still clumsy. A wrapper improves real-life usability without broadening request authority.
 
 Keep the local CLI bounded:
 

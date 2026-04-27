@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First protocol-surface adapter shape for verified response in progress on feature branch.**
+**First protocol-surface adapter shape for verified response merged to `main` and locally verified.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -29,7 +29,7 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is the first protocol-surface adapter shape for the verified response.
 
-Feature branch `feat/first-protocol-surface-adapter-shape-for-verified-response` adds a protocol-adjacent adapter shape for carrying the verified bounded context response without opening runtime execution.
+`main` now includes a protocol-adjacent adapter shape for carrying the verified bounded context response without opening runtime execution.
 
 This is a contract/interface layer only.
 
@@ -113,7 +113,7 @@ The agent-consumable response verification pass now adds:
 - response/package default-deny posture checks;
 - `contract:agent-consumable-response:verify`.
 
-The first protocol-surface adapter shape branch now adds:
+The first protocol-surface adapter shape pass now adds:
 
 - protocol-adjacent verified response adapter shape;
 - response/package/envelope refs carried into the adapter shape;
@@ -225,7 +225,7 @@ The strongest current bounded implementation state on `main` is now:
 - local deterministic context source adapter contracts;
 - bounded context package envelope hardening;
 - agent-consumable response contract verification;
-- first protocol-surface adapter shape for verified response on feature branch;
+- first protocol-surface adapter shape for verified response;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -271,11 +271,11 @@ The repository currently has:
 - `scripts/verify-agent-consumable-response-contract.mjs`;
 - `npm run contract:agent-consumable-response:verify`;
 - CI `Proof Output Regression` step for agent-consumable response contract;
-- `packages/integration-contracts` verified response protocol-surface adapter vocabularies, types, and builder on feature branch;
-- `packages/system-assembly` deterministic first protocol-surface adapter shape composition on feature branch;
-- `scripts/verify-first-protocol-surface-adapter-shape.mjs` on feature branch;
-- `npm run contract:first-protocol-surface-adapter:verify` on feature branch;
-- CI `Proof Output Regression` step for first protocol-surface adapter shape on feature branch;
+- `packages/integration-contracts` verified response protocol-surface adapter vocabularies, types, and builder;
+- `packages/system-assembly` deterministic first protocol-surface adapter shape composition;
+- `scripts/verify-first-protocol-surface-adapter-shape.mjs`;
+- `npm run contract:first-protocol-surface-adapter:verify`;
+- CI `Proof Output Regression` step for first protocol-surface adapter shape;
 - exports for the new authority boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
@@ -341,6 +341,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-77-state-next-step-alignment-after-agent-consumable-response.md`
 - `2026-04-27-78-repo-first-verdict-after-agent-consumable-response-verification.md`
 - `2026-04-27-79-first-protocol-surface-adapter-shape-for-verified-response.md`
+- `2026-04-27-80-state-next-step-alignment-after-protocol-surface-adapter-shape.md`
 
 ---
 
@@ -371,15 +372,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** complete first protocol-surface adapter shape merge/CI.
+**Bounded Pass:** repo-first verdict after first protocol-surface adapter shape.
 
-The feature branch now contains the first protocol-adjacent adapter shape for the verified response.
+The first protocol-surface adapter shape is now present on `main`, local verification remains green, and PR CI was observed green.
 
 Recommended branch:
 
-`feat/first-protocol-surface-adapter-shape-for-verified-response`
+`docs/repo-first-verdict-after-first-protocol-surface-adapter-shape`
 
-Before merge, run the full verification list and observe PR CI green.
+That pass should be docs-only and decide whether the strongest next implementation is a local JSON request/response runner shape.
+
+The likely next implementation direction is:
+
+`feat/local-json-request-response-runner-shape`
+
+That implementation should move toward a local usable v0 by shaping a JSON request/response runner contract, without introducing MCP/API runtime, transport execution, provider calls, persistence, model calls, storage writes, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

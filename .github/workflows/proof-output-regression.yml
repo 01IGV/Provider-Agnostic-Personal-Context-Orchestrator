@@ -76,3 +76,6 @@ jobs:
 
       - name: Verify constrained local JSON request variation
         run: npm run tool:constrained-local-json-request-variation:verify
+
+      - name: Verify minimal local source fixture selection
+        run: npm run tool:minimal-local-source-fixture-selection:verify

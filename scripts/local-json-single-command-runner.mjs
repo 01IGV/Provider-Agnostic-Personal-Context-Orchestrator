@@ -85,6 +85,7 @@ export const runLocalJsonSingleCommand = ({ request_path, response_path, variati
     bounded_context_response_id: runnerResult.bounded_context_response_id,
     bounded_context_package_id: runnerResult.bounded_context_package_id,
     protocol_adapter_shape_id: runnerResult.protocol_adapter_shape_id,
+    selected_source_item_count: runnerResult.selected_source_item_count,
     request_variation_applied: authoringResult.variation_applied,
     request_task_signal: authoringResult.task_signal,
     request_read_mode_hint: authoringResult.read_mode_hint,

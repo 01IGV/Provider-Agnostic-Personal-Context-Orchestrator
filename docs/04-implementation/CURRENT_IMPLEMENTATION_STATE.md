@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON fixture runner proof merged to `main` and locally verified.**
+**Minimal local JSON fixture runner CLI boundary implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -40,6 +40,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 `main` now includes a deterministic local JSON fixture runner proof for JSON round-trip integrity, ref/envelope consistency, and default-deny local execution posture.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a minimal local JSON fixture runner CLI boundary.
+
+This feature branch now adds a contract-only minimal local JSON fixture runner CLI/file boundary with local input/output fixture path refs and explicit denial of file IO, process execution, runtime permission, and contour execution.
 
 This is still a contract/interface layer only.
 
@@ -148,7 +150,15 @@ The local JSON fixture runner proof pass now adds:
 - explicit no file IO, no CLI execution, and no process execution proof flags;
 - `proof:local-json-fixture-runner:verify`.
 
-Local verification passed for the merged local JSON fixture runner proof state:
+The minimal local JSON fixture runner CLI boundary pass now adds:
+
+- contract-only CLI/file boundary envelope;
+- local fixture input/output path refs;
+- runner/proof/package/protocol-adapter refs carried through the boundary;
+- explicit no file read, no file write, no CLI process spawn, and no process execution posture;
+- `contract:minimal-local-json-fixture-runner-cli-boundary:verify`.
+
+Local verification passed for this feature-branch state:
 
 ```bash
 npm install
@@ -164,6 +174,7 @@ npm run contract:agent-consumable-response:verify
 npm run contract:first-protocol-surface-adapter:verify
 npm run contract:local-json-request-response-runner:verify
 npm run proof:local-json-fixture-runner:verify
+npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify
 ```
 
 Observed local verification results:
@@ -181,6 +192,7 @@ Observed local verification results:
 - `first_protocol_surface_adapter_shape_verified`.
 - `local_json_request_response_runner_shape_verified`.
 - `local_json_fixture_runner_proof_verified`.
+- `minimal_local_json_fixture_runner_cli_boundary_verified`.
 
 GitHub Actions observation note:
 
@@ -260,6 +272,7 @@ The strongest current bounded implementation state on `main` is now:
 - first protocol-surface adapter shape for verified response;
 - local JSON request/response runner shape;
 - local JSON fixture runner proof;
+- minimal local JSON fixture runner CLI boundary;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -319,6 +332,11 @@ The repository currently has:
 - `scripts/verify-local-json-fixture-runner-proof.mjs`;
 - `npm run proof:local-json-fixture-runner:verify`;
 - CI `Proof Output Regression` step for local JSON fixture runner proof;
+- `packages/integration-contracts` minimal local JSON fixture runner CLI boundary contracts;
+- `packages/system-assembly` deterministic minimal local JSON fixture runner CLI boundary composition;
+- `scripts/verify-minimal-local-json-fixture-runner-cli-boundary.mjs`;
+- `npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify`;
+- CI `Proof Output Regression` step for minimal local JSON fixture runner CLI boundary;
 - exports for the new authority boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
@@ -416,15 +434,19 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** minimal local JSON fixture runner CLI boundary.
+**Bounded Pass:** state and next-step alignment after minimal local JSON fixture runner CLI boundary.
 
 Recommended branch:
 
-`feat/minimal-local-json-fixture-runner-cli-boundary`
+`docs/state-next-step-alignment-after-minimal-local-json-cli-boundary`
 
-That implementation should shape the smallest CLI/file boundary needed for a future local usable v0.
+That pass should be docs-only after merge and CI, recording the minimal local JSON fixture runner CLI boundary as current `main` state.
 
-It may define local fixture input/output path contracts and CLI success/denial envelopes, but it must keep MCP/API runtime, provider calls, persistence, model calls, storage writes, permission grants, and contour execution denied.
+The likely next implementation direction is:
+
+`feat/local-json-cli-boundary-proof`
+
+That implementation should prove the CLI/file boundary remains local-only and default-deny before any actual file IO implementation is considered.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

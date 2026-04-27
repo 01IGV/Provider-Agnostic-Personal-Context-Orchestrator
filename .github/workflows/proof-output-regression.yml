@@ -61,3 +61,6 @@ jobs:
 
       - name: Verify local JSON fixture runner proof
         run: npm run proof:local-json-fixture-runner:verify
+
+      - name: Verify minimal local JSON fixture runner CLI boundary
+        run: npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify

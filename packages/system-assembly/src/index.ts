@@ -92,3 +92,5 @@ export * from "./local-json-request-response-runner-shape-types.js";
 export * from "./local-json-request-response-runner-shape.js";
 export * from "./local-json-fixture-runner-proof-types.js";
 export * from "./local-json-fixture-runner-proof.js";
+export * from "./minimal-local-json-fixture-runner-cli-boundary-types.js";
+export * from "./minimal-local-json-fixture-runner-cli-boundary.js";

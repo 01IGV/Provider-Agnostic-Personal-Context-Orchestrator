@@ -131,7 +131,7 @@ Post-merge verification note (April 27, 2026): local `npm install`, `npm run typ
 - **Layer / Area:** local JSON request/response runner boundary
 - **Status:** open
 - **Severity:** medium
-- **Description:** the local JSON request/response runner shape and local JSON fixture runner proof create pressure to add file reads/writes, CLI/process execution, fixture loading, transport behavior, or direct runtime invocation before the non-executing fixture path is fully stabilized.
+- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, and minimal local JSON fixture runner CLI/file boundary create pressure to add file reads/writes, CLI/process execution, fixture loading, transport behavior, or direct runtime invocation before the non-executing fixture path is fully stabilized.
 - **Impact:** the project could accidentally cross from machine-readable contract proof into real local execution without an explicit approved execution boundary.
 - **Recommended next action:** keep the runner fixture-driven and proof-first until a dedicated local CLI/file boundary is explicitly approved, verified, and kept default-deny.
 

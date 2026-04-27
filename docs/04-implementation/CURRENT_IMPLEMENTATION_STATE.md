@@ -488,6 +488,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-96-repo-first-verdict-after-local-json-request-fixture-authoring-helper.md`
 - `2026-04-27-97-local-json-single-command-run-wrapper.md`
 - `2026-04-27-98-state-next-step-alignment-after-local-json-single-command-run-wrapper.md`
+- `2026-04-27-99-repo-first-verdict-after-local-json-single-command-run-wrapper.md`
 
 ---
 
@@ -526,15 +527,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON single-command run wrapper.
+**Bounded Pass:** constrained local JSON request variation.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-single-command-run-wrapper`
+`feat/constrained-local-json-request-variation`
 
-That pass should be docs-only and decide whether the next implementation should be constrained request variation or a minimal local source fixture.
+That pass should add a narrow way to vary the local agent context request fixture within an allowlisted set of request fields, while preserving authority/provenance/permission/audit refs and default-deny runtime posture.
 
-The likely next implementation direction after state alignment is constrained request variation, because the local tool path will already be a one-command deterministic v0.
+The repo-first verdict after the local JSON single-command wrapper chose constrained request variation over a minimal local source fixture because the local v0 is now one command but still produces only one deterministic request shape. The next useful step is to let an agent vary intent/scope hints in a bounded, machine-verifiable way before adding new source behavior.
 
 Keep the local CLI bounded:
 

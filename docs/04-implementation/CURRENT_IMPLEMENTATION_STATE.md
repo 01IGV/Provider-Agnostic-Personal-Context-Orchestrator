@@ -437,6 +437,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-90-repo-first-verdict-after-minimal-local-json-cli-boundary.md`
 - `2026-04-27-91-first-local-json-cli-file-io-boundary.md`
 - `2026-04-27-92-state-next-step-alignment-after-first-local-json-cli-file-io-boundary.md`
+- `2026-04-27-93-repo-first-verdict-after-first-local-json-cli-file-io-boundary.md`
 
 ---
 
@@ -471,15 +472,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after first local JSON CLI file IO boundary.
+**Bounded Pass:** local JSON request fixture authoring helper.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-first-local-json-cli-file-io-boundary`
+`feat/local-json-request-fixture-authoring-helper`
 
-That pass should be docs-only and decide whether the next implementation should be fixture authoring, constrained request variation, or a more agent-consumable local command surface.
+That pass should add the smallest local helper for writing the deterministic agent context request fixture expected by the existing local JSON CLI runner.
 
-The likely next implementation direction after state alignment is a small fixture authoring path or a constrained request-variation path, not MCP/API runtime.
+The repo-first verdict after the first local JSON CLI file IO boundary chose fixture authoring over request variation because the current CLI is technically usable but still requires a developer to manually obtain a valid input fixture. A fixture authoring helper makes the local v0 usable without broadening runtime authority.
 
 Keep the local CLI bounded:
 

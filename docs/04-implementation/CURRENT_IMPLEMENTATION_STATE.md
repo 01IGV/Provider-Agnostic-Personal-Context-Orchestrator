@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Minimal local source fixture selection implemented on feature branch.**
+**Minimal local source fixture selection merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -83,7 +83,7 @@ The new verifier proves the varied request still preserves request identity, aut
 npm run tool:constrained-local-json-request-variation:verify
 ```
 
-Feature branch `feat/minimal-local-source-fixture-selection` now lets the local JSON runner build its response from the actual request fixture it reads and select a deterministic local source fixture by `intent.requested_scope_hints`:
+`main` now lets the local JSON runner build its response from the actual request fixture it reads and select a deterministic local source fixture by `intent.requested_scope_hints`:
 
 ```bash
 npm run tool:local-json:run -- --request request.json --response response.json --task-signal "source selection" --read-mode quick_answer --depth shallow --scope-hints scope:project-orientation
@@ -299,6 +299,10 @@ GitHub Actions observation note:
 - GitHub connector did not return workflow runs or status checks for PR #41 head `4f53871` during this session;
 - local verification passed before merge, including `npm run tool:constrained-local-json-request-variation:verify`;
 - no CI failure was observed after merge, but PR/push-run status for `0bf609b` could not be independently confirmed through the connector in this session.
+- PR #43 for `feat/minimal-local-source-fixture-selection` was mergeable and merged to `main` as `67216ab`;
+- GitHub connector did not return workflow runs or status checks for PR #43 head `eb1056c` during this session;
+- local verification passed before merge, including `npm run tool:minimal-local-source-fixture-selection:verify`;
+- no CI failure was observed after merge, but PR/push-run status for `67216ab` could not be independently confirmed through the connector in this session.
 
 Runtime remains closed:
 
@@ -372,7 +376,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON fixture runner proof;
 - minimal local JSON fixture runner CLI boundary;
 - constrained local JSON request variation;
-- minimal local source fixture selection on feature branch;
+- minimal local source fixture selection;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -575,15 +579,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** minimal local source fixture selection.
+**Bounded Pass:** local JSON response observation summary.
 
 Recommended branch:
 
-`feat/minimal-local-source-fixture-selection`
+`feat/local-json-response-observation-summary`
 
-That pass should let the one-command local JSON path select between deterministic local fixture items by request scope hints, while preserving authority/provenance/permission/audit refs and default-deny runtime posture.
+That pass should add a compact machine-readable summary of the response fixture so a human or agent can see selected source refs, source count, package id, and default-deny posture without inspecting the full nested JSON envelope.
 
-After constrained request variation, the useful next step is to make the bounded context package respond to the selected request scope before adding any real source loading or MCP/API runtime.
+After minimal local source fixture selection, the useful next step is observability of what was selected and returned, before adding any real source loading or MCP/API runtime.
 
 Keep the local CLI bounded:
 

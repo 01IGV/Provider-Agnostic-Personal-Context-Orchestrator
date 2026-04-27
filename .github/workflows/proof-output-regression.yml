@@ -67,3 +67,6 @@ jobs:
 
       - name: Verify first local JSON CLI file IO boundary
         run: npm run tool:first-local-json-cli-file-io-boundary:verify
+
+      - name: Verify local JSON request fixture authoring helper
+        run: npm run tool:local-json-request-fixture-authoring:verify

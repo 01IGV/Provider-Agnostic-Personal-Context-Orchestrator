@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First local JSON CLI file IO boundary merged to main.**
+**Local JSON request fixture authoring helper implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -48,6 +48,15 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 This is the first intentionally scoped file IO crossing.
 
 It still does not add MCP/API runtime, provider calls, concrete persistence adapters, model calls, permission grants, storage writes beyond the explicitly provided output fixture, or contour execution.
+
+This feature branch now adds a local request fixture authoring helper that writes the deterministic agent context request JSON expected by the local JSON fixture runner CLI.
+
+Together, the local commands now support a minimal two-step local v0 loop:
+
+```bash
+npm run tool:local-json-request-fixture:write -- --output request.json
+npm run tool:local-json-fixture-runner:run -- --input request.json --output response.json
+```
 
 This is still a contract/interface layer only.
 
@@ -173,6 +182,14 @@ The first local JSON CLI file IO boundary pass now adds:
 - `tool:local-json-fixture-runner:run`;
 - `tool:first-local-json-cli-file-io-boundary:verify`.
 
+The local JSON request fixture authoring helper pass now adds:
+
+- a local helper command that writes the deterministic agent context request fixture;
+- verification that the authored fixture runs through the existing local JSON fixture runner CLI;
+- default-deny posture checks for fixture authoring;
+- `tool:local-json-request-fixture:write`;
+- `tool:local-json-request-fixture-authoring:verify`.
+
 Local verification passed for this feature-branch state:
 
 ```bash
@@ -191,6 +208,7 @@ npm run contract:local-json-request-response-runner:verify
 npm run proof:local-json-fixture-runner:verify
 npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify
 npm run tool:first-local-json-cli-file-io-boundary:verify
+npm run tool:local-json-request-fixture-authoring:verify
 ```
 
 Observed local verification results:
@@ -210,6 +228,7 @@ Observed local verification results:
 - `local_json_fixture_runner_proof_verified`.
 - `minimal_local_json_fixture_runner_cli_boundary_verified`.
 - `first_local_json_cli_file_io_boundary_verified`.
+- `local_json_request_fixture_authoring_helper_verified`.
 
 GitHub Actions observation note:
 
@@ -359,8 +378,13 @@ The repository currently has:
 - `scripts/verify-first-local-json-cli-file-io-boundary.mjs`;
 - `npm run tool:first-local-json-cli-file-io-boundary:verify`;
 - CI `Proof Output Regression` step for first local JSON CLI file IO boundary;
+- `scripts/local-json-request-fixture-authoring-cli.mjs`;
+- `npm run tool:local-json-request-fixture:write -- --output <path>`;
+- `scripts/verify-local-json-request-fixture-authoring-helper.mjs`;
+- `npm run tool:local-json-request-fixture-authoring:verify`;
+- CI `Proof Output Regression` step for local JSON request fixture authoring helper;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-27-91-first-local-json-cli-file-io-boundary.md`.
+- `docs/04-implementation/execution-reports/2026-04-27-94-local-json-request-fixture-authoring-helper.md`.
 
 The repository still does **not** have:
 
@@ -438,6 +462,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-91-first-local-json-cli-file-io-boundary.md`
 - `2026-04-27-92-state-next-step-alignment-after-first-local-json-cli-file-io-boundary.md`
 - `2026-04-27-93-repo-first-verdict-after-first-local-json-cli-file-io-boundary.md`
+- `2026-04-27-94-local-json-request-fixture-authoring-helper.md`
 
 ---
 
@@ -457,7 +482,8 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
 - actual local CLI/file IO is limited to one fixture input path and one fixture output path;
-- no generalized CLI UX, fixture generator, or multi-request runner yet;
+- request fixture authoring is deterministic only;
+- no generalized CLI UX, request variation, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -472,15 +498,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON request fixture authoring helper.
+**Bounded Pass:** state and next-step alignment after local JSON request fixture authoring helper.
 
 Recommended branch:
 
-`feat/local-json-request-fixture-authoring-helper`
+`docs/state-next-step-alignment-after-local-json-request-fixture-authoring-helper`
 
-That pass should add the smallest local helper for writing the deterministic agent context request fixture expected by the existing local JSON CLI runner.
+That pass should be docs-only after merge and CI, recording the local request fixture authoring helper as current `main` state.
 
-The repo-first verdict after the first local JSON CLI file IO boundary chose fixture authoring over request variation because the current CLI is technically usable but still requires a developer to manually obtain a valid input fixture. A fixture authoring helper makes the local v0 usable without broadening runtime authority.
+The likely next implementation direction after state alignment is a constrained request-variation path or a single-command local run wrapper over the existing author + run commands.
 
 Keep the local CLI bounded:
 

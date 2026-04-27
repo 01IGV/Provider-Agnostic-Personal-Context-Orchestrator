@@ -80,3 +80,5 @@ export * from "./surface-boundary-denial-proof-integration-types.js";
 export * from "./surface-boundary-denial-proof-integration.js";
 export * from "./first-auth-iam-adjacent-authority-boundary-types.js";
 export * from "./first-auth-iam-adjacent-authority-boundary.js";
+export * from "./authority-boundary-denial-proof-integration-types.js";
+export * from "./authority-boundary-denial-proof-integration.js";

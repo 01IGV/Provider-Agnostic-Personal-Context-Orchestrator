@@ -11,13 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First auth/IAM-adjacent authority boundary contracts merged to `main` and locally reverified.**
+**Authority-boundary denial proof integration implemented and locally verified on feature branch.**
 
-`main` now includes the first auth/IAM-adjacent authority boundary contract after the machine-checked default-deny MCP/API surface boundary.
+The current feature branch adds machine-checkable default-deny proof for the first auth/IAM-adjacent authority boundary.
 
-This is a contract/boundary layer only.
+This is a proof/boundary verification layer only.
 
-It is not an auth/IAM implementation, not an MCP/API implementation, and not a runtime execution pass.
+It is not an auth/IAM implementation, not an MCP/API implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
 
 The new boundary makes authority, identity, delegation, provenance, permission scope, policy context, and audit trace refs explicit as shape-level placeholders before any real MCP/API route/controller/server boundary is considered.
 
@@ -41,7 +41,29 @@ The boundary remains default-deny:
 - `api_route_permission_granted: false`;
 - `actual_contour_execution_allowed_now: false`.
 
-Local verification passed for the merged `main` state:
+The authority-boundary denial proof verifies:
+
+- `auth_iam_adjacent: true`;
+- `authority_boundary: true`;
+- `identity_boundary: true`;
+- `delegation_boundary: true`;
+- `provenance_boundary: true`;
+- `permission_boundary: true`;
+- `authentication_implemented: false`;
+- `authorization_implemented: false`;
+- `iam_provider_integrated: false`;
+- `session_management_implemented: false`;
+- `token_validation_implemented: false`;
+- `policy_engine_integrated: false`;
+- `permission_grant_issued: false`;
+- `runtime_permission_granted: false`;
+- `mcp_route_permission_granted: false`;
+- `api_route_permission_granted: false`;
+- `actual_contour_execution_allowed_now: false`;
+- `denial_flags_all_false: true`;
+- `failure_count: 0`.
+
+Local verification passed on `feat/authority-boundary-denial-proof-integration`:
 
 ```bash
 npm install
@@ -50,6 +72,7 @@ npm run proof:end-to-end:non-executing:verify
 npm run proof:invocation-denial:verify
 npm run proof:handler-boundary-denial:verify
 npm run proof:surface-boundary-denial:verify
+npm run proof:authority-boundary-denial:verify
 ```
 
 Observed local verification results:
@@ -60,6 +83,7 @@ Observed local verification results:
 - `invocation_denial_default_deny_verified`;
 - `handler_boundary_denial_default_deny_verified`;
 - `surface_boundary_denial_default_deny_verified`.
+- `authority_boundary_denial_default_deny_verified`.
 
 GitHub Actions observation note:
 
@@ -132,6 +156,7 @@ The strongest current bounded implementation state on `main` is now:
 - first MCP/API-adjacent surface boundary contracts;
 - surface-boundary denial proof integration;
 - first auth/IAM-adjacent authority boundary contracts;
+- authority-boundary denial proof integration;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -159,6 +184,10 @@ The repository currently has:
 
 - `packages/governance` auth/IAM-adjacent authority boundary vocabularies, types, and builder;
 - `packages/system-assembly` deterministic composition from surface-boundary denial proof into auth/IAM-adjacent authority boundary;
+- `packages/system-assembly` authority-boundary denial proof types, builder, deterministic summary, failure finder, and verification summary;
+- `scripts/verify-authority-boundary-denial-proof.mjs`;
+- `npm run proof:authority-boundary-denial:verify`;
+- CI `Proof Output Regression` step for authority-boundary denial proof;
 - exports for the new authority boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
@@ -208,6 +237,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`
 - `2026-04-27-62-state-next-step-alignment-after-first-auth-iam-authority-boundary.md`
 - `2026-04-27-63-repo-first-verdict-after-first-auth-iam-authority-boundary.md`
+- `2026-04-27-64-authority-boundary-denial-proof-integration.md`
 
 ---
 
@@ -215,7 +245,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 
 Current limits after first auth/IAM-adjacent authority boundary contracts:
 
-- no dedicated authority-boundary denial proof command yet;
+- CI observation on `feat/authority-boundary-denial-proof-integration` is pending until PR/push workflow completes;
 - GitHub Actions push-run observation for `d6b4c01` could not be independently confirmed from this local session because `gh` is unavailable and unauthenticated Actions API access returned `404`;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
@@ -236,26 +266,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** authority-boundary denial proof integration.
+**Bounded Pass:** merge observation and docs-only state alignment after authority-boundary denial proof integration.
 
-The first auth/IAM-adjacent authority boundary is present on `main`, local verification remains green, and repo-first verdict found no concrete blocker before adding a dedicated machine-checkable denial proof.
+After merge, observe GitHub Actions `Proof Output Regression` on `main` and then align current state docs.
 
-Recommended branch:
+Recommended branch after green CI on `main`:
 
-`feat/authority-boundary-denial-proof-integration`
+`docs/state-next-step-alignment-after-authority-boundary-denial-proof`
 
-That pass should add a non-executing default-deny proof for the auth/IAM-adjacent authority boundary.
+That pass should be docs-only.
 
-Expected bounded scope:
+Likely next strategic direction after state alignment:
 
-- add system-assembly authority-boundary denial proof types and builder;
-- create deterministic authority-boundary denial proof summary;
-- add helper to find authority-boundary default-deny failures;
-- assert source surface-boundary denial proof remains default-deny;
-- assert all auth/IAM, authority, permission, protocol, runtime, provider, persistence, model, storage, and contour execution flags remain false;
-- add local verification script and npm command if consistent with existing proof pattern;
-- add CI workflow step if a command is added;
-- update execution report and rolling state docs.
+`feat/agent-context-request-boundary-contracts`
+
+Do not start agent request work until the authority-boundary denial proof branch is merged and CI is observed green.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

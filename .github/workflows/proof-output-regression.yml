@@ -52,3 +52,6 @@ jobs:
 
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
+
+      - name: Verify first protocol-surface adapter shape
+        run: npm run contract:first-protocol-surface-adapter:verify

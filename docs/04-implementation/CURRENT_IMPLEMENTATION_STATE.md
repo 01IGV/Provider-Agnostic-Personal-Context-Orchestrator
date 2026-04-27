@@ -11,13 +11,15 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local deterministic context source adapter contracts merged to `main` and locally verified.**
+**Repo-first verdict after local deterministic context source adapter completed.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
 
 `main` now includes the first contract-only local deterministic source adapter and bounded context response materialization path.
+
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is bounded context package envelope hardening.
 
 This is a contract/interface layer only.
 
@@ -282,6 +284,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-69-repo-first-verdict-after-agent-context-request-boundary.md`
 - `2026-04-27-70-local-deterministic-context-source-adapter-contracts.md`
 - `2026-04-27-71-state-next-step-alignment-after-local-deterministic-context-source.md`
+- `2026-04-27-72-repo-first-verdict-after-local-deterministic-context-source.md`
 
 ---
 
@@ -311,21 +314,25 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local deterministic context source adapter contracts.
+**Bounded Pass:** bounded context package envelope hardening.
 
-The first deterministic bounded context payload materialization contract is now present on `main`, local verification remains green, and PR CI was observed green.
+The first deterministic bounded context payload materialization contract is now present on `main`, local verification remains green, PR CI was observed green, and a repo-first verdict found no blocker before bounded context package envelope hardening.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-deterministic-context-source`
-
-That pass should be docs-only and decide whether the strongest next implementation is bounded context package envelope hardening.
-
-The likely next implementation direction is:
-
 `feat/bounded-context-package-envelope-hardening`
 
-That implementation should make the bounded context package/envelope stronger for AI-agent consumption without adding persistence, provider calls, model calls, runtime handlers, MCP/API routes, storage writes, or actual contour execution.
+That implementation should make the bounded context package/envelope stronger for AI-agent consumption.
+
+The next pass should define or harden:
+
+- explicit bounded context package/envelope metadata;
+- deterministic source item refs and package item refs;
+- authority/provenance/permission/audit refs carried through the package;
+- default-deny execution posture at package level;
+- machine-readable distinction between contract fixture payload, canonical persistence read, provider response, model output, storage content, and contour execution result.
+
+Do this without adding persistence, provider calls, model calls, runtime handlers, MCP/API routes, storage writes, or actual contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

@@ -414,7 +414,7 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after local JSON fixture runner proof.
+**Bounded Pass:** repo-first verdict after local JSON fixture runner proof.
 
 Recommended branch:
 

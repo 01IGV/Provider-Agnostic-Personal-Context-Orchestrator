@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First local JSON CLI file IO boundary implemented on feature branch.**
+**First local JSON CLI file IO boundary merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -42,6 +42,12 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a minimal local JSON fixture runner CLI boundary.
 
 `main` now includes a contract-only minimal local JSON fixture runner CLI/file boundary with local input/output fixture path refs and explicit denial of file IO, process execution, runtime permission, and contour execution.
+
+`main` now includes the first real local CLI/file IO path: a Node CLI reads one agent context request JSON fixture and writes one verified local JSON runner response fixture.
+
+This is the first intentionally scoped file IO crossing.
+
+It still does not add MCP/API runtime, provider calls, concrete persistence adapters, model calls, permission grants, storage writes beyond the explicitly provided output fixture, or contour execution.
 
 This is still a contract/interface layer only.
 
@@ -430,6 +436,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-89-state-next-step-alignment-after-minimal-local-json-cli-boundary.md`
 - `2026-04-27-90-repo-first-verdict-after-minimal-local-json-cli-boundary.md`
 - `2026-04-27-91-first-local-json-cli-file-io-boundary.md`
+- `2026-04-27-92-state-next-step-alignment-after-first-local-json-cli-file-io-boundary.md`
 
 ---
 
@@ -440,6 +447,7 @@ Current limits after first local JSON CLI file IO boundary:
 - GitHub Actions PR run for agent context request boundary passed, but push-run observation for merge commit `e2dbb9d` could not be independently confirmed through the connector in this session;
 - GitHub Actions PR run for authority-boundary denial proof passed, but push-run observation for merge commit `49a42d8` could not be independently confirmed through the connector in this session;
 - GitHub Actions PR run for minimal local JSON fixture runner CLI boundary passed, but push-run observation for merge commit `1b35414` did not return a workflow run through the connector in this session;
+- GitHub Actions PR run for first local JSON CLI file IO boundary passed, but push-run observation for merge commit `3ab8ada` did not return a workflow run through the connector in this session;
 - no concrete persistence adapters yet;
 - local deterministic source items are contract fixtures only and not canonical context reads;
 - bounded context package items are contract refs only and not canonical persistence records;
@@ -463,13 +471,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after first local JSON CLI file IO boundary.
+**Bounded Pass:** repo-first verdict after first local JSON CLI file IO boundary.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-first-local-json-cli-file-io-boundary`
+`docs/repo-first-verdict-after-first-local-json-cli-file-io-boundary`
 
-That pass should be docs-only after merge and CI, recording the first local JSON CLI file IO boundary as current `main` state.
+That pass should be docs-only and decide whether the next implementation should be fixture authoring, constrained request variation, or a more agent-consumable local command surface.
 
 The likely next implementation direction after state alignment is a small fixture authoring path or a constrained request-variation path, not MCP/API runtime.
 

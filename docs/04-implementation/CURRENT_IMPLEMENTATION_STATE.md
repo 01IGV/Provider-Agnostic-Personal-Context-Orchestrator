@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON fixture runner proof implemented on feature branch.**
+**Local JSON fixture runner proof merged to `main` and locally verified.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -37,7 +37,7 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local JSON fixture runner proof.
 
-This feature branch now adds a deterministic local JSON fixture runner proof for JSON round-trip integrity, ref/envelope consistency, and default-deny local execution posture.
+`main` now includes a deterministic local JSON fixture runner proof for JSON round-trip integrity, ref/envelope consistency, and default-deny local execution posture.
 
 This is still a contract/interface layer only.
 
@@ -146,7 +146,7 @@ The local JSON fixture runner proof pass now adds:
 - explicit no file IO, no CLI execution, and no process execution proof flags;
 - `proof:local-json-fixture-runner:verify`.
 
-Local verification passed for this feature-branch state:
+Local verification passed for the merged local JSON fixture runner proof state:
 
 ```bash
 npm install
@@ -418,9 +418,9 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-fixture-runner-proof`
+`docs/repo-first-verdict-after-local-json-fixture-runner-proof`
 
-That pass should be docs-only after merge and CI, recording the local JSON fixture runner proof as current `main` state.
+That pass should be docs-only and decide whether the strongest next implementation is a minimal local JSON fixture runner CLI boundary.
 
 The likely next implementation direction is:
 

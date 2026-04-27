@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Agent-consumable response contract verification merged to `main` and locally verified.**
+**Repo-first verdict after agent-consumable response verification completed.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -26,6 +26,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is agent-consumable response contract verification.
 
 `main` now includes a verification surface proving the deterministic bounded context response is machine-consumable by an AI agent without runtime calls.
+
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is the first protocol-surface adapter shape for the verified response.
 
 This is a contract/interface layer only.
 
@@ -320,6 +322,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-75-repo-first-verdict-after-bounded-context-package-envelope.md`
 - `2026-04-27-76-agent-consumable-response-contract-verification.md`
 - `2026-04-27-77-state-next-step-alignment-after-agent-consumable-response.md`
+- `2026-04-27-78-repo-first-verdict-after-agent-consumable-response-verification.md`
 
 ---
 
@@ -350,21 +353,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after agent-consumable response contract verification.
+**Bounded Pass:** first protocol-surface adapter shape for the verified response.
 
-The agent-consumable response contract verification pass is now present on `main`, local verification remains green, and PR CI was observed green.
+The agent-consumable response contract verification pass is now present on `main`, local verification remains green, PR CI was observed green, and a repo-first verdict found no blocker before the first protocol-surface adapter shape.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-agent-consumable-response-verification`
-
-That pass should be docs-only and decide whether the strongest next implementation is the first protocol-surface adapter shape for the verified response.
-
-The likely next implementation direction is:
-
 `feat/first-protocol-surface-adapter-shape-for-verified-response`
 
-That implementation should remain adapter-shape only unless explicitly approved otherwise. Do not add real MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider calls, persistence, model calls, storage writes, or contour execution.
+That implementation should define a protocol-adjacent adapter wrapper shape for carrying the verified bounded context response.
+
+The next pass should:
+
+- carry response id, package id, envelope refs, verification result, and default-deny posture;
+- remain protocol-adjacent and shape-only;
+- avoid real MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider calls, persistence, model calls, storage writes, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

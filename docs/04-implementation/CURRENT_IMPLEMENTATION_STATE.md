@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Minimal local JSON fixture runner CLI boundary merged to main.**
+**First local JSON CLI file IO boundary implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -158,6 +158,15 @@ The minimal local JSON fixture runner CLI boundary pass now adds:
 - explicit no file read, no file write, no CLI process spawn, and no process execution posture;
 - `contract:minimal-local-json-fixture-runner-cli-boundary:verify`.
 
+The first local JSON CLI file IO boundary pass now adds:
+
+- a real local Node CLI entrypoint for one fixture input path and one fixture output path;
+- request-fixture validation against the deterministic agent context request boundary;
+- verified local JSON runner response fixture writing;
+- explicit proof that MCP/API runtime, provider calls, persistence adapters, model calls, permission grants, and contour execution remain denied;
+- `tool:local-json-fixture-runner:run`;
+- `tool:first-local-json-cli-file-io-boundary:verify`.
+
 Local verification passed for this feature-branch state:
 
 ```bash
@@ -175,6 +184,7 @@ npm run contract:first-protocol-surface-adapter:verify
 npm run contract:local-json-request-response-runner:verify
 npm run proof:local-json-fixture-runner:verify
 npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify
+npm run tool:first-local-json-cli-file-io-boundary:verify
 ```
 
 Observed local verification results:
@@ -193,6 +203,7 @@ Observed local verification results:
 - `local_json_request_response_runner_shape_verified`.
 - `local_json_fixture_runner_proof_verified`.
 - `minimal_local_json_fixture_runner_cli_boundary_verified`.
+- `first_local_json_cli_file_io_boundary_verified`.
 
 GitHub Actions observation note:
 
@@ -337,8 +348,13 @@ The repository currently has:
 - `scripts/verify-minimal-local-json-fixture-runner-cli-boundary.mjs`;
 - `npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify`;
 - CI `Proof Output Regression` step for minimal local JSON fixture runner CLI boundary;
+- `scripts/local-json-fixture-runner-cli.mjs`;
+- `npm run tool:local-json-fixture-runner:run -- --input <path> --output <path>`;
+- `scripts/verify-first-local-json-cli-file-io-boundary.mjs`;
+- `npm run tool:first-local-json-cli-file-io-boundary:verify`;
+- CI `Proof Output Regression` step for first local JSON CLI file IO boundary;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-27-88-minimal-local-json-fixture-runner-cli-boundary.md`.
+- `docs/04-implementation/execution-reports/2026-04-27-91-first-local-json-cli-file-io-boundary.md`.
 
 The repository still does **not** have:
 
@@ -413,12 +429,13 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-88-minimal-local-json-fixture-runner-cli-boundary.md`
 - `2026-04-27-89-state-next-step-alignment-after-minimal-local-json-cli-boundary.md`
 - `2026-04-27-90-repo-first-verdict-after-minimal-local-json-cli-boundary.md`
+- `2026-04-27-91-first-local-json-cli-file-io-boundary.md`
 
 ---
 
 ## Current Known Implementation Limits
 
-Current limits after minimal local JSON fixture runner CLI boundary:
+Current limits after first local JSON CLI file IO boundary:
 
 - GitHub Actions PR run for agent context request boundary passed, but push-run observation for merge commit `e2dbb9d` could not be independently confirmed through the connector in this session;
 - GitHub Actions PR run for authority-boundary denial proof passed, but push-run observation for merge commit `49a42d8` could not be independently confirmed through the connector in this session;
@@ -430,7 +447,8 @@ Current limits after minimal local JSON fixture runner CLI boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- no actual CLI or file-based local JSON runner yet;
+- actual local CLI/file IO is limited to one fixture input path and one fixture output path;
+- no generalized CLI UX, fixture generator, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -445,17 +463,17 @@ Current limits after minimal local JSON fixture runner CLI boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** first local JSON CLI file IO implementation boundary.
+**Bounded Pass:** state and next-step alignment after first local JSON CLI file IO boundary.
 
 Recommended branch:
 
-`feat/first-local-json-cli-file-io-boundary`
+`docs/state-next-step-alignment-after-first-local-json-cli-file-io-boundary`
 
-That pass should introduce the smallest real local CLI/file IO path for reading an agent context request JSON fixture and writing a verified bounded context response JSON fixture, while keeping all MCP/API runtime, provider calls, persistence, model calls, storage writes beyond the explicitly scoped output fixture, permission grants, and contour execution denied.
+That pass should be docs-only after merge and CI, recording the first local JSON CLI file IO boundary as current `main` state.
 
-The repo-first verdict after the minimal local JSON CLI boundary chose this over another proof-only layer because the current boundary already has machine-checked default-deny coverage and the shortest path to a usable v0 now requires one explicitly scoped local IO step.
+The likely next implementation direction after state alignment is a small fixture authoring path or a constrained request-variation path, not MCP/API runtime.
 
-The implementation must keep the local CLI bounded:
+Keep the local CLI bounded:
 
 - read one local JSON request fixture;
 - validate/shape it against the existing agent request boundary contract as narrowly as possible;

@@ -127,13 +127,13 @@ Post-merge verification note (April 27, 2026): local `npm install`, `npm run typ
 - **Impact:** `system-assembly`, `runtime-surface`, `integration-contracts`, `governance`, and local proof/seam/boundary infrastructure can lose composition/planning/normalization/preparation/readiness/intent/precheck-shaping/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract role and become implicit runtime/protocol/auth execution layers.
 - **Recommended next action:** keep internal dispatch and proof/seam/boundary infrastructure strictly contract/planning/reporting/gate/handoff/reconciliation/completion-ingress/finalization/publication/channel-gating/dispatch-intent/delivery-precheck/runtime-handoff/lifecycle/outcome-normalization/publication-preparation/dispatch-readiness/delivery-dispatch-intent/delivery-dispatch-precheck/proof-composition/proof-artifact-contract/golden-snapshot/seam-definition/proof-integration/boundary-contract-oriented, and isolate any future real contour invocation or delivery/publication/dispatch/precheck/handler/protocol/auth execution into explicitly approved execution-layer passes.
 
-### 8. Risk of local JSON runner shape drifting into local execution
+### 8. Risk of local JSON CLI/file IO drifting into broader execution
 - **Layer / Area:** local JSON request/response runner boundary
 - **Status:** open
 - **Severity:** medium
-- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, and minimal local JSON fixture runner CLI/file boundary create pressure to add file reads/writes, CLI/process execution, fixture loading, transport behavior, or direct runtime invocation before the non-executing fixture path is fully stabilized.
-- **Impact:** the project could accidentally cross from machine-readable contract proof into real local execution without an explicit approved execution boundary.
-- **Recommended next action:** keep the runner fixture-driven and proof-first until a dedicated local CLI/file boundary is explicitly approved, verified, and kept default-deny.
+- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, minimal local JSON fixture runner CLI/file boundary, and first scoped local CLI file IO path create pressure to expand into generalized file loading, process orchestration, MCP/API transport behavior, provider calls, persistence adapters, model calls, or direct runtime invocation.
+- **Impact:** the project could accidentally turn the first useful local tool path into an unbounded runtime surface.
+- **Recommended next action:** keep the local CLI fixture-scoped, deterministic, and default-deny; expand only through explicit bounded passes with verification.
 
 ## Update Policy
 

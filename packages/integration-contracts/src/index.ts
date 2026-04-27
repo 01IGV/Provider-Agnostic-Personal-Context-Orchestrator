@@ -32,3 +32,6 @@ export * from "./verified-response-protocol-surface-adapter.js";
 export * from "./local-json-request-response-runner-vocabularies.js";
 export * from "./local-json-request-response-runner-types.js";
 export * from "./local-json-request-response-runner.js";
+export * from "./local-json-fixture-runner-cli-boundary-vocabularies.js";
+export * from "./local-json-fixture-runner-cli-boundary-types.js";
+export * from "./local-json-fixture-runner-cli-boundary.js";

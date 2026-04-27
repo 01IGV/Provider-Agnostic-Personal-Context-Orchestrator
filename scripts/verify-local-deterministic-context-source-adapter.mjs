@@ -8,6 +8,8 @@ const result = createDeterministicLocalContextSourceAdapterContracts();
 const { request, adapter_result: adapterResult, response } = result;
 const payload = response.response_payload;
 const localSourcePosture = payload.local_source_execution_posture ?? {};
+const packageEnvelope = payload.bounded_context_package ?? {};
+const packagePosture = packageEnvelope.execution_posture ?? {};
 
 const assertions = {
   request_contract_only: request.contract_only === true,
@@ -20,6 +22,29 @@ const assertions = {
   response_ready: response.response_status === "bounded_context_ready",
   response_materialized_from_local_deterministic_source:
     payload.bounded_context_materialized_from_local_deterministic_source === true,
+  bounded_context_package_present:
+    packageEnvelope.package_version === "bounded-context-package-envelope/v1" &&
+    packageEnvelope.package_boundary === "contract_only_bounded_context_package",
+  bounded_context_package_ref_matches:
+    response.bounded_context_package_ref === packageEnvelope.bounded_context_package_id,
+  bounded_context_package_item_count_matches:
+    packageEnvelope.source_item_count === adapterResult.source_items.length &&
+    packageEnvelope.package_items?.length === adapterResult.source_items.length,
+  bounded_context_package_items_are_refs:
+    packageEnvelope.package_items?.every(
+      (item) =>
+        typeof item.package_item_id === "string" &&
+        typeof item.source_item_id === "string" &&
+        typeof item.content_digest === "string" &&
+        typeof item.provenance_ref === "string" &&
+        typeof item.permission_ref === "string" &&
+        typeof item.audit_ref === "string" &&
+        item.content === undefined
+    ) === true,
+  bounded_context_package_envelopes_carried:
+    packageEnvelope.provenance_envelope_ref === adapterResult.provenance_envelope_ref &&
+    packageEnvelope.permission_envelope_ref === adapterResult.permission_envelope_ref &&
+    packageEnvelope.audit_envelope_ref === adapterResult.audit_envelope_ref,
   source_item_count_matches:
     payload.source_item_count === adapterResult.source_items.length && adapterResult.source_items.length > 0,
   source_items_are_deterministically_ordered: adapterResult.source_items.every(
@@ -53,7 +78,18 @@ const assertions = {
     localSourcePosture.concrete_persistence_write_allowed_now === false &&
     localSourcePosture.real_model_call_allowed_now === false &&
     localSourcePosture.real_storage_write_allowed_now === false &&
-    localSourcePosture.actual_contour_execution_allowed_now === false
+    localSourcePosture.actual_contour_execution_allowed_now === false,
+  bounded_context_package_posture_non_executing:
+    packagePosture.contract_only === true &&
+    packagePosture.deterministic === true &&
+    packagePosture.local_only === true &&
+    packagePosture.canonical_persistence_read_performed === false &&
+    packagePosture.provider_response_included === false &&
+    packagePosture.model_output_included === false &&
+    packagePosture.storage_content_included === false &&
+    packagePosture.contour_execution_result_included === false &&
+    packagePosture.runtime_permission_granted === false &&
+    packagePosture.actual_contour_execution_allowed_now === false
 };
 
 const failed = Object.entries(assertions)
@@ -68,7 +104,9 @@ const verification = {
   request_id: request.agent_context_request_id,
   adapter_result_id: adapterResult.adapter_result_id,
   response_id: response.bounded_context_response_id,
+  bounded_context_package_id: packageEnvelope.bounded_context_package_id,
   source_item_count: adapterResult.source_items.length,
+  package_item_count: packageEnvelope.package_items?.length ?? 0,
   response_status: response.response_status,
   materialization_boundary: adapterResult.materialization_boundary,
   runtime_permission_granted: request.authority.runtime_permission_granted,

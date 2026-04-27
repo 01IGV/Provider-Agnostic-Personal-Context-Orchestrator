@@ -1,4 +1,6 @@
 import type {
+  BoundedContextPackageEnvelopeShape,
+  BoundedContextPackageExecutionPostureShape,
   LocalDeterministicContextSourceAdapterBuilder,
   LocalDeterministicContextSourceAdapterBuilderInputShape,
   LocalDeterministicContextSourceAdapterResultShape,
@@ -7,6 +9,7 @@ import type {
   LocalDeterministicBoundedContextMaterializationInputShape
 } from "./local-deterministic-context-source-adapter-types.js";
 import type { BoundedContextResponseEnvelopeShape } from "./agent-context-request-boundary-types.js";
+import type { AgentContextRequestBoundaryShape } from "./agent-context-request-boundary-types.js";
 
 const defaultExecutionPosture = (): LocalDeterministicContextSourceExecutionPostureShape => ({
   local_only: true,
@@ -46,6 +49,49 @@ const defaultWarnings = (): LocalDeterministicContextSourceWarningShape[] => [
   }
 ];
 
+const boundedPackageExecutionPosture = (): BoundedContextPackageExecutionPostureShape => ({
+  contract_only: true,
+  deterministic: true,
+  local_only: true,
+  canonical_persistence_read_performed: false,
+  provider_response_included: false,
+  model_output_included: false,
+  storage_content_included: false,
+  contour_execution_result_included: false,
+  runtime_permission_granted: false,
+  actual_contour_execution_allowed_now: false
+});
+
+const createBoundedContextPackageEnvelope = (
+  request: AgentContextRequestBoundaryShape,
+  adapter_result: LocalDeterministicContextSourceAdapterResultShape
+): BoundedContextPackageEnvelopeShape => ({
+  bounded_context_package_id: `${request.agent_context_request_id}:local-deterministic-bounded-context-package`,
+  package_version: "bounded-context-package-envelope/v1",
+  agent_context_request_id: request.agent_context_request_id,
+  adapter_result_id: adapter_result.adapter_result_id,
+  package_boundary: "contract_only_bounded_context_package",
+  authority: request.authority,
+  execution_posture: boundedPackageExecutionPosture(),
+  package_items: adapter_result.source_items.map((item) => ({
+    package_item_id: `${request.agent_context_request_id}:bounded-context-package-item:${item.deterministic_order}`,
+    source_item_id: item.source_item_id,
+    source_ref: item.source_ref,
+    source_kind: item.source_kind,
+    deterministic_order: item.deterministic_order,
+    content_digest: item.content_digest,
+    provenance_ref: item.provenance_ref,
+    permission_ref: item.permission_ref,
+    audit_ref: item.audit_ref
+  })),
+  source_item_count: adapter_result.source_items.length,
+  provenance_envelope_ref: adapter_result.provenance_envelope_ref,
+  permission_envelope_ref: adapter_result.permission_envelope_ref,
+  audit_envelope_ref: adapter_result.audit_envelope_ref,
+  generated_at: adapter_result.generated_at,
+  ...(request.correlation_id ? { correlation_id: request.correlation_id } : {})
+});
+
 export const createLocalDeterministicContextSourceAdapterBuilder =
   (): LocalDeterministicContextSourceAdapterBuilder => ({
     createAdapterResult(
@@ -70,10 +116,19 @@ export const createLocalDeterministicContextSourceAdapterBuilder =
       };
     },
 
+    createBoundedContextPackageEnvelope(
+      request,
+      adapter_result
+    ): BoundedContextPackageEnvelopeShape {
+      return createBoundedContextPackageEnvelope(request, adapter_result);
+    },
+
     materializeResponse(
       input: LocalDeterministicBoundedContextMaterializationInputShape
     ): BoundedContextResponseEnvelopeShape {
       const { request, adapter_result } = input;
+      const packageEnvelope =
+        input.package_envelope ?? createBoundedContextPackageEnvelope(request, adapter_result);
 
       return {
         bounded_context_response_id: `${request.agent_context_request_id}:local-deterministic-bounded-context-response`,
@@ -87,7 +142,7 @@ export const createLocalDeterministicContextSourceAdapterBuilder =
         execution_posture: request.execution_posture,
         bounded_context_package_ref:
           input.bounded_context_package_ref ??
-          `${request.agent_context_request_id}:local-deterministic-bounded-context-package`,
+          packageEnvelope.bounded_context_package_id,
         context_bundle_ref:
           input.context_bundle_ref ??
           `${request.agent_context_request_id}:local-deterministic-context-bundle`,
@@ -98,6 +153,7 @@ export const createLocalDeterministicContextSourceAdapterBuilder =
           contract_only: true,
           bounded_context_materialized_from_local_deterministic_source: true,
           adapter_result_id: adapter_result.adapter_result_id,
+          bounded_context_package: packageEnvelope,
           source_item_count: adapter_result.source_items.length,
           source_items: adapter_result.source_items,
           local_source_execution_posture: adapter_result.execution_posture

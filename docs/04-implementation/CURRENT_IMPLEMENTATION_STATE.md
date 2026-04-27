@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON request/response runner shape implemented on feature branch.**
+**Local JSON request/response runner shape merged to `main` and locally verified.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -33,7 +33,7 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local JSON request/response runner shape.
 
-This feature branch now adds a local JSON request/response runner shape for carrying an agent context request JSON fixture to a verified protocol-surface adapter JSON fixture.
+`main` now includes a local JSON request/response runner shape for carrying an agent context request JSON fixture to a verified protocol-surface adapter JSON fixture.
 
 This is still a contract/interface layer only.
 
@@ -133,7 +133,7 @@ The local JSON request/response runner shape pass now adds:
 - runner-level default-deny local/fixture posture;
 - `contract:local-json-request-response-runner:verify`.
 
-Local verification passed for this feature-branch state:
+Local verification passed for the merged local JSON runner shape state:
 
 ```bash
 npm install
@@ -398,9 +398,9 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-runner-shape`
+`docs/repo-first-verdict-after-local-json-runner-shape`
 
-That pass should be docs-only after merge and CI, recording the local JSON runner shape as current `main` state.
+That pass should be docs-only and decide whether the strongest next implementation is a local JSON fixture runner proof.
 
 The likely next implementation direction is:
 

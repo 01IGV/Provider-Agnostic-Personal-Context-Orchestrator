@@ -61,6 +61,8 @@ Post-merge verification note (April 27, 2026): local `npm install`, `npm run typ
 
 Post-merge verification note (April 27, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, `npm run proof:surface-boundary-denial:verify`, `npm run proof:authority-boundary-denial:verify`, `npm run contract:agent-context-request:verify`, and `npm run contract:local-deterministic-context-source:verify` passed sequentially for `feat/local-deterministic-context-source-adapter-contracts`; PR CI `Proof Output Regression` passed before merge.
 
+Feature-branch verification note (April 27, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, `npm run proof:surface-boundary-denial:verify`, `npm run proof:authority-boundary-denial:verify`, `npm run contract:agent-context-request:verify`, and `npm run contract:local-deterministic-context-source:verify` passed for `feat/bounded-context-package-envelope-hardening`; PR CI remains required before merge.
+
 ---
 
 ## Current Known Issues and Constraints
@@ -69,7 +71,7 @@ Post-merge verification note (April 27, 2026): local `npm install`, `npm run typ
 - **Layer / Area:** integration contracts boundaries
 - **Status:** open
 - **Severity:** medium
-- **Description:** now that `integration-contracts` includes execution-attempt lifecycle, normalized outcome linkage, publication-preparation linkage, dispatch-readiness linkage contracts, delivery-dispatch intent linkage contracts, delivery-dispatch precheck linkage contracts, first MCP/API-adjacent surface boundary contracts, first agent context request boundary contracts, and local deterministic context source adapter contracts, there is elevated risk of mixing surface/source contract shapes with MCP server implementation, MCP tool/resource registration, API routes/controllers, runtime handler, publication delivery, dispatch execution, delivery, precheck execution, concrete persistence, provider SDK calls, model calls, storage writes, or transport execution behavior.
+- **Description:** now that `integration-contracts` includes execution-attempt lifecycle, normalized outcome linkage, publication-preparation linkage, dispatch-readiness linkage contracts, delivery-dispatch intent linkage contracts, delivery-dispatch precheck linkage contracts, first MCP/API-adjacent surface boundary contracts, first agent context request boundary contracts, local deterministic context source adapter contracts, and bounded context package envelope contracts, there is elevated risk of mixing surface/source/package contract shapes with MCP server implementation, MCP tool/resource registration, API routes/controllers, runtime handler, publication delivery, dispatch execution, delivery, precheck execution, concrete persistence, provider SDK calls, model calls, storage writes, or transport execution behavior.
 - **Impact:** integration contract layer can lose provider-neutrality and become runtime-coupled.
 - **Recommended next action:** keep `integration-contracts` shape-only and enforce cross-package consistency checks as runtime/protocol surfaces evolve.
 

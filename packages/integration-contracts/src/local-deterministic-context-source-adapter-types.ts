@@ -50,6 +50,48 @@ export interface LocalDeterministicContextSourceItemShape {
   content: Record<string, unknown>;
 }
 
+export interface BoundedContextPackageExecutionPostureShape {
+  contract_only: true;
+  deterministic: true;
+  local_only: true;
+  canonical_persistence_read_performed: false;
+  provider_response_included: false;
+  model_output_included: false;
+  storage_content_included: false;
+  contour_execution_result_included: false;
+  runtime_permission_granted: false;
+  actual_contour_execution_allowed_now: false;
+}
+
+export interface BoundedContextPackageItemShape {
+  package_item_id: string;
+  source_item_id: string;
+  source_ref: string;
+  source_kind: LocalDeterministicContextSourceKind;
+  deterministic_order: number;
+  content_digest: string;
+  provenance_ref: string;
+  permission_ref: string;
+  audit_ref: string;
+}
+
+export interface BoundedContextPackageEnvelopeShape {
+  bounded_context_package_id: string;
+  package_version: "bounded-context-package-envelope/v1";
+  agent_context_request_id: string;
+  adapter_result_id: string;
+  package_boundary: "contract_only_bounded_context_package";
+  authority: AgentContextAuthorityEnvelopeShape;
+  execution_posture: BoundedContextPackageExecutionPostureShape;
+  package_items: BoundedContextPackageItemShape[];
+  source_item_count: number;
+  provenance_envelope_ref: string;
+  permission_envelope_ref: string;
+  audit_envelope_ref: string;
+  generated_at: IsoDateTimeString;
+  correlation_id?: CorrelationId;
+}
+
 export interface LocalDeterministicContextSourceAdapterResultShape {
   adapter_result_id: string;
   adapter_status: LocalDeterministicContextSourceAdapterStatus;
@@ -83,6 +125,7 @@ export interface LocalDeterministicBoundedContextMaterializationInputShape {
   request: AgentContextRequestBoundaryShape;
   adapter_result: LocalDeterministicContextSourceAdapterResultShape;
   served_at: IsoDateTimeString;
+  package_envelope?: BoundedContextPackageEnvelopeShape;
   bounded_context_package_ref?: string;
   context_bundle_ref?: string;
 }
@@ -94,4 +137,8 @@ export interface LocalDeterministicContextSourceAdapterBuilder {
   materializeResponse(
     input: LocalDeterministicBoundedContextMaterializationInputShape
   ): BoundedContextResponseEnvelopeShape;
+  createBoundedContextPackageEnvelope(
+    request: AgentContextRequestBoundaryShape,
+    adapter_result: LocalDeterministicContextSourceAdapterResultShape
+  ): BoundedContextPackageEnvelopeShape;
 }

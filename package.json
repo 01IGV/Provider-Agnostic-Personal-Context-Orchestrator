@@ -17,7 +17,8 @@
     "contract:agent-context-request:verify": "npm run build:force && node scripts/verify-agent-context-request-boundary.mjs",
     "contract:local-deterministic-context-source:verify": "npm run build:force && node scripts/verify-local-deterministic-context-source-adapter.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
-    "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs"
+    "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
+    "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

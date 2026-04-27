@@ -55,3 +55,6 @@ jobs:
 
       - name: Verify first protocol-surface adapter shape
         run: npm run contract:first-protocol-surface-adapter:verify
+
+      - name: Verify local JSON request-response runner shape
+        run: npm run contract:local-json-request-response-runner:verify

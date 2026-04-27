@@ -207,6 +207,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-24-60-repo-first-verdict-after-surface-boundary-denial-proof.md`
 - `2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`
 - `2026-04-27-62-state-next-step-alignment-after-first-auth-iam-authority-boundary.md`
+- `2026-04-27-63-repo-first-verdict-after-first-auth-iam-authority-boundary.md`
 
 ---
 
@@ -235,21 +236,26 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after first auth/IAM-adjacent authority boundary contracts.
+**Bounded Pass:** authority-boundary denial proof integration.
 
-The first auth/IAM-adjacent authority boundary is now present on `main` and local verification remains green.
+The first auth/IAM-adjacent authority boundary is present on `main`, local verification remains green, and repo-first verdict found no concrete blocker before adding a dedicated machine-checkable denial proof.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-first-auth-iam-authority-boundary`
-
-That pass should be docs-only and decide the strongest next bounded implementation direction.
-
-The likely next implementation direction is:
-
 `feat/authority-boundary-denial-proof-integration`
 
-That implementation pass should add a machine-checkable default-deny proof for the auth/IAM-adjacent authority boundary before moving toward AI-agent context request contracts.
+That pass should add a non-executing default-deny proof for the auth/IAM-adjacent authority boundary.
+
+Expected bounded scope:
+
+- add system-assembly authority-boundary denial proof types and builder;
+- create deterministic authority-boundary denial proof summary;
+- add helper to find authority-boundary default-deny failures;
+- assert source surface-boundary denial proof remains default-deny;
+- assert all auth/IAM, authority, permission, protocol, runtime, provider, persistence, model, storage, and contour execution flags remain false;
+- add local verification script and npm command if consistent with existing proof pattern;
+- add CI workflow step if a command is added;
+- update execution report and rolling state docs.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

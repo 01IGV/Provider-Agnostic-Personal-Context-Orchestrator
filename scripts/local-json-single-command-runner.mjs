@@ -9,6 +9,9 @@ import {
   writeLocalJsonRequestFixture
 } from "./local-json-request-fixture-authoring-cli.mjs";
 
+const usage =
+  "Usage: node scripts/local-json-single-command-runner.mjs --request <path> --response <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>] [--scope-hints <scope:a,scope:b>]";
+
 const parseArgs = (argv) => {
   const args = new Map();
 
@@ -17,7 +20,7 @@ const parseArgs = (argv) => {
     const value = argv[index + 1];
 
     if (!key?.startsWith("--") || !value) {
-      throw new Error("Usage: node scripts/local-json-single-command-runner.mjs --request <path> --response <path>");
+      throw new Error(usage);
     }
 
     args.set(key.slice(2), value);
@@ -32,15 +35,22 @@ const parseArgs = (argv) => {
 
   return {
     request_path: resolve(request),
-    response_path: resolve(response)
+    response_path: resolve(response),
+    variation: {
+      task_signal: args.get("task-signal"),
+      read_mode_hint: args.get("read-mode"),
+      depth_hint: args.get("depth"),
+      requested_scope_hints: args.get("scope-hints")?.split(",").map((scopeHint) => scopeHint.trim()).filter(Boolean)
+    }
   };
 };
 
 const stableJson = (value) => `${JSON.stringify(value, null, 2)}\n`;
 
-export const runLocalJsonSingleCommand = ({ request_path, response_path }) => {
+export const runLocalJsonSingleCommand = ({ request_path, response_path, variation }) => {
   const authoringResult = writeLocalJsonRequestFixture({
-    output_path: request_path
+    output_path: request_path,
+    variation
   });
 
   if (authoringResult.failure_count !== 0) {
@@ -75,6 +85,11 @@ export const runLocalJsonSingleCommand = ({ request_path, response_path }) => {
     bounded_context_response_id: runnerResult.bounded_context_response_id,
     bounded_context_package_id: runnerResult.bounded_context_package_id,
     protocol_adapter_shape_id: runnerResult.protocol_adapter_shape_id,
+    request_variation_applied: authoringResult.variation_applied,
+    request_task_signal: authoringResult.task_signal,
+    request_read_mode_hint: authoringResult.read_mode_hint,
+    request_depth_hint: authoringResult.depth_hint,
+    request_scope_hints: authoringResult.requested_scope_hints,
     request_fixture_written: authoringResult.file_write_performed,
     request_fixture_read: runnerResult.file_read_performed,
     response_fixture_written: runnerResult.file_write_performed,

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON single-command run wrapper merged to main.**
+**Constrained local JSON request variation implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -62,6 +62,25 @@ npm run tool:local-json-fixture-runner:run -- --input request.json --output resp
 
 ```bash
 npm run tool:local-json:run -- --request request.json --response response.json
+```
+
+Feature branch `feat/constrained-local-json-request-variation` now adds allowlisted request-intent variation to the local JSON authoring helper and single-command wrapper:
+
+```bash
+npm run tool:local-json:run -- --request request.json --response response.json --task-signal "bounded local planning request" --read-mode quick_answer --depth shallow --scope-hints scope:local-planning
+```
+
+The constrained variation can change only:
+
+- `intent.task_signal`;
+- `intent.read_mode_hint`;
+- `intent.depth_hint`;
+- `intent.requested_scope_hints`.
+
+The new verifier proves the varied request still preserves request identity, authority envelope, default-deny execution posture, and local response fixture production:
+
+```bash
+npm run tool:constrained-local-json-request-variation:verify
 ```
 
 This is still a contract/interface layer only.
@@ -224,6 +243,7 @@ npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify
 npm run tool:first-local-json-cli-file-io-boundary:verify
 npm run tool:local-json-request-fixture-authoring:verify
 npm run tool:local-json-single-command-run:verify
+npm run tool:constrained-local-json-request-variation:verify
 ```
 
 Observed local verification results:
@@ -245,6 +265,7 @@ Observed local verification results:
 - `first_local_json_cli_file_io_boundary_verified`.
 - `local_json_request_fixture_authoring_helper_verified`.
 - `local_json_single_command_run_wrapper_verified`.
+- `constrained_local_json_request_variation_verified`.
 
 GitHub Actions observation note:
 
@@ -325,6 +346,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON request/response runner shape;
 - local JSON fixture runner proof;
 - minimal local JSON fixture runner CLI boundary;
+- constrained local JSON request variation on feature branch;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.

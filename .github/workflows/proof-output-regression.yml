@@ -73,3 +73,6 @@ jobs:
 
       - name: Verify local JSON single-command run wrapper
         run: npm run tool:local-json-single-command-run:verify
+
+      - name: Verify constrained local JSON request variation
+        run: npm run tool:constrained-local-json-request-variation:verify

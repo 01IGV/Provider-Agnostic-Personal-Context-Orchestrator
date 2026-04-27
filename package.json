@@ -26,7 +26,8 @@
     "tool:local-json:run": "npm run build:force && node scripts/local-json-single-command-runner.mjs",
     "tool:first-local-json-cli-file-io-boundary:verify": "npm run build:force && node scripts/verify-first-local-json-cli-file-io-boundary.mjs",
     "tool:local-json-request-fixture-authoring:verify": "npm run build:force && node scripts/verify-local-json-request-fixture-authoring-helper.mjs",
-    "tool:local-json-single-command-run:verify": "npm run build:force && node scripts/verify-local-json-single-command-run-wrapper.mjs"
+    "tool:local-json-single-command-run:verify": "npm run build:force && node scripts/verify-local-json-single-command-run-wrapper.mjs",
+    "tool:constrained-local-json-request-variation:verify": "npm run build:force && node scripts/verify-constrained-local-json-request-variation.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

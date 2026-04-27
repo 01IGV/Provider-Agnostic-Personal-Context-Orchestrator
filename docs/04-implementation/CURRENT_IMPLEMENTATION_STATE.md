@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First protocol-surface adapter shape for verified response merged to `main` and locally verified.**
+**Repo-first verdict after first protocol-surface adapter shape completed.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -30,6 +30,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is the first protocol-surface adapter shape for the verified response.
 
 `main` now includes a protocol-adjacent adapter shape for carrying the verified bounded context response without opening runtime execution.
+
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local JSON request/response runner shape.
 
 This is a contract/interface layer only.
 
@@ -372,21 +374,17 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after first protocol-surface adapter shape.
-
-The first protocol-surface adapter shape is now present on `main`, local verification remains green, and PR CI was observed green.
+**Bounded Pass:** local JSON request/response runner shape.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-first-protocol-surface-adapter-shape`
-
-That pass should be docs-only and decide whether the strongest next implementation is a local JSON request/response runner shape.
-
-The likely next implementation direction is:
-
 `feat/local-json-request-response-runner-shape`
 
-That implementation should move toward a local usable v0 by shaping a JSON request/response runner contract, without introducing MCP/API runtime, transport execution, provider calls, persistence, model calls, storage writes, or contour execution.
+That implementation should move toward a local usable v0 by shaping a deterministic JSON request/response runner contract.
+
+The runner should be local, fixture-driven, machine-readable, and connected to the existing agent context request, local deterministic context source adapter, agent-consumable response verification, and protocol-surface adapter contracts.
+
+It must not open MCP/API runtime, transport execution, provider calls, persistence, model calls, storage writes, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

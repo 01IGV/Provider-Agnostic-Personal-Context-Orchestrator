@@ -23,3 +23,6 @@ export * from "./mcp-api-adjacent-surface-boundary.js";
 export * from "./agent-context-request-boundary-vocabularies.js";
 export * from "./agent-context-request-boundary-types.js";
 export * from "./agent-context-request-boundary.js";
+export * from "./local-deterministic-context-source-adapter-vocabularies.js";
+export * from "./local-deterministic-context-source-adapter-types.js";
+export * from "./local-deterministic-context-source-adapter.js";

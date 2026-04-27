@@ -11,11 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after agent context request boundary completed.**
+**Local deterministic context source adapter contracts added.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
+
+The current pass adds the first contract-only local deterministic source adapter and bounded context response materialization path.
 
 This is a contract/interface layer only.
 
@@ -74,6 +76,15 @@ The agent context request boundary now provides:
 - deterministic system-assembly composition from authority-boundary denial proof;
 - `contract:agent-context-request:verify`.
 
+The local deterministic context source adapter branch now adds:
+
+- local deterministic source item contracts;
+- local deterministic adapter result contracts;
+- contract-only bounded context response materialization from local deterministic source items;
+- provenance, permission, and audit envelope refs carried into the materialized response;
+- explicit local-only, non-networked, non-persistent, non-executing posture;
+- `contract:local-deterministic-context-source:verify`.
+
 Local verification passed for the merged `main` state:
 
 ```bash
@@ -85,6 +96,7 @@ npm run proof:handler-boundary-denial:verify
 npm run proof:surface-boundary-denial:verify
 npm run proof:authority-boundary-denial:verify
 npm run contract:agent-context-request:verify
+npm run contract:local-deterministic-context-source:verify
 ```
 
 Observed local verification results:
@@ -97,6 +109,7 @@ Observed local verification results:
 - `surface_boundary_denial_default_deny_verified`;
 - `authority_boundary_denial_default_deny_verified`.
 - `agent_context_request_boundary_verified`.
+- `local_deterministic_context_source_adapter_verified`.
 
 GitHub Actions observation note:
 
@@ -170,6 +183,7 @@ The strongest current bounded implementation state on `main` is now:
 - first auth/IAM-adjacent authority boundary contracts;
 - authority-boundary denial proof integration;
 - first agent context request boundary contracts;
+- local deterministic context source adapter contracts;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -206,6 +220,11 @@ The repository currently has:
 - `scripts/verify-agent-context-request-boundary.mjs`;
 - `npm run contract:agent-context-request:verify`;
 - CI `Proof Output Regression` step for agent context request boundary;
+- `packages/integration-contracts` local deterministic context source adapter vocabularies, types, and builder;
+- `packages/system-assembly` deterministic local source adapter composition;
+- `scripts/verify-local-deterministic-context-source-adapter.mjs`;
+- `npm run contract:local-deterministic-context-source:verify`;
+- CI `Proof Output Regression` step for local deterministic context source adapter;
 - exports for the new authority boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
@@ -261,6 +280,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-67-agent-context-request-boundary-contracts.md`
 - `2026-04-27-68-state-next-step-alignment-after-agent-context-request-boundary.md`
 - `2026-04-27-69-repo-first-verdict-after-agent-context-request-boundary.md`
+- `2026-04-27-70-local-deterministic-context-source-adapter-contracts.md`
 
 ---
 
@@ -271,6 +291,7 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 - GitHub Actions PR run for agent context request boundary passed, but push-run observation for merge commit `e2dbb9d` could not be independently confirmed through the connector in this session;
 - GitHub Actions PR run for authority-boundary denial proof passed, but push-run observation for merge commit `49a42d8` could not be independently confirmed through the connector in this session;
 - no concrete persistence adapters yet;
+- local deterministic source items are contract fixtures only and not canonical context reads;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
@@ -289,23 +310,15 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local deterministic context source adapter contracts.
+**Bounded Pass:** complete local deterministic context source adapter contracts merge/CI.
 
-The first AI-agent request/response contract is now present on `main`, local verification remains green, PR CI was observed green, and a repo-first verdict found no blocker before the first deterministic bounded context materialization contract.
+The current pass contains the first deterministic bounded context payload materialization contract.
 
 Recommended branch:
 
 `feat/local-deterministic-context-source-adapter-contracts`
 
-That pass should move toward deterministic bounded context materialization from a local contract-only source adapter.
-
-The next pass should define:
-
-- local deterministic source item / adapter result contracts;
-- bounded response materialization from those deterministic source contracts;
-- provenance, authority, permission, and audit refs carried through the materialized response;
-- an explicit local, non-networked, non-persistent, non-executing posture;
-- a verification command only if the pass introduces a new machine-checkable contract/proof surface.
+Before merge, run the full verification list and observe PR CI green.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

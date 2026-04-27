@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON single-command run wrapper implemented on feature branch.**
+**Local JSON single-command run wrapper merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -58,7 +58,7 @@ npm run tool:local-json-request-fixture:write -- --output request.json
 npm run tool:local-json-fixture-runner:run -- --input request.json --output response.json
 ```
 
-This feature branch now adds a single-command wrapper over the same bounded local path:
+`main` now includes a single-command wrapper over the same bounded local path:
 
 ```bash
 npm run tool:local-json:run -- --request request.json --response response.json
@@ -487,6 +487,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-95-state-next-step-alignment-after-local-json-request-fixture-authoring-helper.md`
 - `2026-04-27-96-repo-first-verdict-after-local-json-request-fixture-authoring-helper.md`
 - `2026-04-27-97-local-json-single-command-run-wrapper.md`
+- `2026-04-27-98-state-next-step-alignment-after-local-json-single-command-run-wrapper.md`
 
 ---
 
@@ -499,6 +500,7 @@ Current limits after first local JSON CLI file IO boundary:
 - GitHub Actions PR run for minimal local JSON fixture runner CLI boundary passed, but push-run observation for merge commit `1b35414` did not return a workflow run through the connector in this session;
 - GitHub Actions PR run for first local JSON CLI file IO boundary passed, but push-run observation for merge commit `3ab8ada` did not return a workflow run through the connector in this session;
 - GitHub Actions PR run for local JSON request fixture authoring helper passed, but push-run observation for merge commit `d59e43a` did not return a workflow run through the connector in this session;
+- GitHub Actions PR run for local JSON single-command run wrapper passed, but push-run observation for merge commit `8991f28` did not return a workflow run through the connector in this session;
 - no concrete persistence adapters yet;
 - local deterministic source items are contract fixtures only and not canonical context reads;
 - bounded context package items are contract refs only and not canonical persistence records;
@@ -524,13 +526,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after local JSON single-command run wrapper.
+**Bounded Pass:** repo-first verdict after local JSON single-command run wrapper.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-single-command-run-wrapper`
+`docs/repo-first-verdict-after-local-json-single-command-run-wrapper`
 
-That pass should be docs-only after merge and CI, recording the local JSON single-command run wrapper as current `main` state.
+That pass should be docs-only and decide whether the next implementation should be constrained request variation or a minimal local source fixture.
 
 The likely next implementation direction after state alignment is constrained request variation, because the local tool path will already be a one-command deterministic v0.
 

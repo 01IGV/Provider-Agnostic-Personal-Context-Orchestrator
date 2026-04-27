@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON request fixture authoring helper implemented on feature branch.**
+**Local JSON request fixture authoring helper merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -49,7 +49,7 @@ This is the first intentionally scoped file IO crossing.
 
 It still does not add MCP/API runtime, provider calls, concrete persistence adapters, model calls, permission grants, storage writes beyond the explicitly provided output fixture, or contour execution.
 
-This feature branch now adds a local request fixture authoring helper that writes the deterministic agent context request JSON expected by the local JSON fixture runner CLI.
+`main` now includes a local request fixture authoring helper that writes the deterministic agent context request JSON expected by the local JSON fixture runner CLI.
 
 Together, the local commands now support a minimal two-step local v0 loop:
 
@@ -463,6 +463,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-92-state-next-step-alignment-after-first-local-json-cli-file-io-boundary.md`
 - `2026-04-27-93-repo-first-verdict-after-first-local-json-cli-file-io-boundary.md`
 - `2026-04-27-94-local-json-request-fixture-authoring-helper.md`
+- `2026-04-27-95-state-next-step-alignment-after-local-json-request-fixture-authoring-helper.md`
 
 ---
 
@@ -474,6 +475,7 @@ Current limits after first local JSON CLI file IO boundary:
 - GitHub Actions PR run for authority-boundary denial proof passed, but push-run observation for merge commit `49a42d8` could not be independently confirmed through the connector in this session;
 - GitHub Actions PR run for minimal local JSON fixture runner CLI boundary passed, but push-run observation for merge commit `1b35414` did not return a workflow run through the connector in this session;
 - GitHub Actions PR run for first local JSON CLI file IO boundary passed, but push-run observation for merge commit `3ab8ada` did not return a workflow run through the connector in this session;
+- GitHub Actions PR run for local JSON request fixture authoring helper passed, but push-run observation for merge commit `d59e43a` did not return a workflow run through the connector in this session;
 - no concrete persistence adapters yet;
 - local deterministic source items are contract fixtures only and not canonical context reads;
 - bounded context package items are contract refs only and not canonical persistence records;
@@ -498,13 +500,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after local JSON request fixture authoring helper.
+**Bounded Pass:** repo-first verdict after local JSON request fixture authoring helper.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-request-fixture-authoring-helper`
+`docs/repo-first-verdict-after-local-json-request-fixture-authoring-helper`
 
-That pass should be docs-only after merge and CI, recording the local request fixture authoring helper as current `main` state.
+That pass should be docs-only and decide whether the next implementation should be a single-command local run wrapper or constrained request variation.
 
 The likely next implementation direction after state alignment is a constrained request-variation path or a single-command local run wrapper over the existing author + run commands.
 

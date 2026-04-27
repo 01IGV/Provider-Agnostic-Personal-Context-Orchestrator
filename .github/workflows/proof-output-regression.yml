@@ -70,3 +70,6 @@ jobs:
 
       - name: Verify local JSON request fixture authoring helper
         run: npm run tool:local-json-request-fixture-authoring:verify
+
+      - name: Verify local JSON single-command run wrapper
+        run: npm run tool:local-json-single-command-run:verify

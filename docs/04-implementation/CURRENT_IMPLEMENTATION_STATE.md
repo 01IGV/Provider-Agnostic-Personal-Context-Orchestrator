@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON request fixture authoring helper merged to main.**
+**Local JSON single-command run wrapper implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -56,6 +56,12 @@ Together, the local commands now support a minimal two-step local v0 loop:
 ```bash
 npm run tool:local-json-request-fixture:write -- --output request.json
 npm run tool:local-json-fixture-runner:run -- --input request.json --output response.json
+```
+
+This feature branch now adds a single-command wrapper over the same bounded local path:
+
+```bash
+npm run tool:local-json:run -- --request request.json --response response.json
 ```
 
 This is still a contract/interface layer only.
@@ -190,6 +196,14 @@ The local JSON request fixture authoring helper pass now adds:
 - `tool:local-json-request-fixture:write`;
 - `tool:local-json-request-fixture-authoring:verify`.
 
+The local JSON single-command run wrapper pass now adds:
+
+- a local wrapper command that authors the request fixture and runs the local JSON fixture runner in one call;
+- verification that request and response fixture files are produced by the wrapper;
+- default-deny posture checks for the wrapped local path;
+- `tool:local-json:run`;
+- `tool:local-json-single-command-run:verify`.
+
 Local verification passed for this feature-branch state:
 
 ```bash
@@ -209,6 +223,7 @@ npm run proof:local-json-fixture-runner:verify
 npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify
 npm run tool:first-local-json-cli-file-io-boundary:verify
 npm run tool:local-json-request-fixture-authoring:verify
+npm run tool:local-json-single-command-run:verify
 ```
 
 Observed local verification results:
@@ -229,6 +244,7 @@ Observed local verification results:
 - `minimal_local_json_fixture_runner_cli_boundary_verified`.
 - `first_local_json_cli_file_io_boundary_verified`.
 - `local_json_request_fixture_authoring_helper_verified`.
+- `local_json_single_command_run_wrapper_verified`.
 
 GitHub Actions observation note:
 
@@ -383,8 +399,13 @@ The repository currently has:
 - `scripts/verify-local-json-request-fixture-authoring-helper.mjs`;
 - `npm run tool:local-json-request-fixture-authoring:verify`;
 - CI `Proof Output Regression` step for local JSON request fixture authoring helper;
+- `scripts/local-json-single-command-runner.mjs`;
+- `npm run tool:local-json:run -- --request <path> --response <path>`;
+- `scripts/verify-local-json-single-command-run-wrapper.mjs`;
+- `npm run tool:local-json-single-command-run:verify`;
+- CI `Proof Output Regression` step for local JSON single-command run wrapper;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-27-94-local-json-request-fixture-authoring-helper.md`.
+- `docs/04-implementation/execution-reports/2026-04-27-97-local-json-single-command-run-wrapper.md`.
 
 The repository still does **not** have:
 
@@ -465,6 +486,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-94-local-json-request-fixture-authoring-helper.md`
 - `2026-04-27-95-state-next-step-alignment-after-local-json-request-fixture-authoring-helper.md`
 - `2026-04-27-96-repo-first-verdict-after-local-json-request-fixture-authoring-helper.md`
+- `2026-04-27-97-local-json-single-command-run-wrapper.md`
 
 ---
 
@@ -486,7 +508,8 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP tool or resource registration yet;
 - actual local CLI/file IO is limited to one fixture input path and one fixture output path;
 - request fixture authoring is deterministic only;
-- no generalized CLI UX, request variation, or multi-request runner yet;
+- single-command local run is deterministic only;
+- no request variation, generalized CLI UX, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -501,15 +524,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON single-command run wrapper.
+**Bounded Pass:** state and next-step alignment after local JSON single-command run wrapper.
 
 Recommended branch:
 
-`feat/local-json-single-command-run-wrapper`
+`docs/state-next-step-alignment-after-local-json-single-command-run-wrapper`
 
-That pass should add the smallest local command that wraps the existing request fixture authoring helper and local JSON fixture runner into one bounded local command.
+That pass should be docs-only after merge and CI, recording the local JSON single-command run wrapper as current `main` state.
 
-The repo-first verdict after the fixture authoring helper chose a single-command wrapper over request variation because the existing two-command local v0 is usable but still clumsy. A wrapper improves real-life usability without broadening request authority.
+The likely next implementation direction after state alignment is constrained request variation, because the local tool path will already be a one-command deterministic v0.
 
 Keep the local CLI bounded:
 

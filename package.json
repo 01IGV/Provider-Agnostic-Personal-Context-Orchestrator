@@ -23,8 +23,10 @@
     "contract:minimal-local-json-fixture-runner-cli-boundary:verify": "npm run build:force && node scripts/verify-minimal-local-json-fixture-runner-cli-boundary.mjs",
     "tool:local-json-request-fixture:write": "npm run build:force && node scripts/local-json-request-fixture-authoring-cli.mjs",
     "tool:local-json-fixture-runner:run": "npm run build:force && node scripts/local-json-fixture-runner-cli.mjs",
+    "tool:local-json:run": "npm run build:force && node scripts/local-json-single-command-runner.mjs",
     "tool:first-local-json-cli-file-io-boundary:verify": "npm run build:force && node scripts/verify-first-local-json-cli-file-io-boundary.mjs",
-    "tool:local-json-request-fixture-authoring:verify": "npm run build:force && node scripts/verify-local-json-request-fixture-authoring-helper.mjs"
+    "tool:local-json-request-fixture-authoring:verify": "npm run build:force && node scripts/verify-local-json-request-fixture-authoring-helper.mjs",
+    "tool:local-json-single-command-run:verify": "npm run build:force && node scripts/verify-local-json-single-command-run-wrapper.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

@@ -8,6 +8,7 @@ import type { FirstAgentContextRequestBoundaryResultShape } from "./first-agent-
 
 export interface LocalDeterministicContextSourceAdapterContractsInputShape {
   agent_context_boundary?: FirstAgentContextRequestBoundaryResultShape;
+  request?: AgentContextRequestBoundaryShape;
   now?: IsoDateTimeString;
 }
 

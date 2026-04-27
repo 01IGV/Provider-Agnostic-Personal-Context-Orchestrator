@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
+  createDeterministicLocalContextSourceAdapterContracts,
   createDeterministicLocalJsonRequestResponseRunnerShape
 } from "../packages/system-assembly/dist/index.js";
 
@@ -63,10 +64,10 @@ const validateRequestFixture = (inputJson, expectedRequest) => {
 };
 
 export const runLocalJsonFixtureRunnerCli = ({ input_path, output_path }) => {
-  const runnerShape = createDeterministicLocalJsonRequestResponseRunnerShape();
+  const expectedRunnerShape = createDeterministicLocalJsonRequestResponseRunnerShape();
   const inputText = readFileSync(input_path, "utf8");
   const inputJson = JSON.parse(inputText);
-  const failures = validateRequestFixture(inputJson, runnerShape.runner_request.request_json);
+  const failures = validateRequestFixture(inputJson, expectedRunnerShape.runner_request.request_json);
 
   if (failures.length > 0) {
     return {
@@ -82,6 +83,13 @@ export const runLocalJsonFixtureRunnerCli = ({ input_path, output_path }) => {
     };
   }
 
+  const localContextResult = createDeterministicLocalContextSourceAdapterContracts({
+    request: inputJson
+  });
+  const runnerShape = createDeterministicLocalJsonRequestResponseRunnerShape({
+    local_context_result: localContextResult
+  });
+
   writeFileSync(output_path, stableJson(runnerShape.runner_response), "utf8");
 
   return {
@@ -93,6 +101,8 @@ export const runLocalJsonFixtureRunnerCli = ({ input_path, output_path }) => {
     bounded_context_response_id: runnerShape.runner_response.refs.bounded_context_response_id,
     bounded_context_package_id: runnerShape.runner_response.refs.bounded_context_package_id,
     protocol_adapter_shape_id: runnerShape.runner_response.refs.protocol_adapter_shape_id,
+    selected_source_item_count:
+      runnerShape.adapter_shape.response.response_payload.source_item_count,
     file_read_performed: true,
     file_write_performed: true,
     child_process_spawned: false,

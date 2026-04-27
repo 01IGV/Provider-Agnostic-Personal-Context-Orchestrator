@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Constrained local JSON request variation merged to main.**
+**Minimal local source fixture selection implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -81,6 +81,23 @@ The new verifier proves the varied request still preserves request identity, aut
 
 ```bash
 npm run tool:constrained-local-json-request-variation:verify
+```
+
+Feature branch `feat/minimal-local-source-fixture-selection` now lets the local JSON runner build its response from the actual request fixture it reads and select a deterministic local source fixture by `intent.requested_scope_hints`:
+
+```bash
+npm run tool:local-json:run -- --request request.json --response response.json --task-signal "source selection" --read-mode quick_answer --depth shallow --scope-hints scope:project-orientation
+```
+
+Known selectable local fixture scopes now include:
+
+- `scope:project-orientation`;
+- `scope:active-boundary-chain`.
+
+The new verifier proves that a scoped request selects the matching local fixture item and bounded context package item without opening network, provider, persistence, model, permission, or contour execution:
+
+```bash
+npm run tool:minimal-local-source-fixture-selection:verify
 ```
 
 This is still a contract/interface layer only.
@@ -244,6 +261,7 @@ npm run tool:first-local-json-cli-file-io-boundary:verify
 npm run tool:local-json-request-fixture-authoring:verify
 npm run tool:local-json-single-command-run:verify
 npm run tool:constrained-local-json-request-variation:verify
+npm run tool:minimal-local-source-fixture-selection:verify
 ```
 
 Observed local verification results:
@@ -267,6 +285,8 @@ Observed local verification results:
 - `local_json_single_command_run_wrapper_verified`.
 - `constrained_local_json_request_variation_verified`.
 - local constrained single-command smoke returned `local_json_single_command_run_completed`.
+- `minimal_local_source_fixture_selection_verified`.
+- local source-selection smoke returned `local_json_single_command_run_completed` with `selected_source_item_count: 1`.
 
 GitHub Actions observation note:
 
@@ -352,6 +372,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON fixture runner proof;
 - minimal local JSON fixture runner CLI boundary;
 - constrained local JSON request variation;
+- minimal local source fixture selection on feature branch;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -537,9 +558,9 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
 - actual local CLI/file IO is limited to one fixture input path and one fixture output path;
-- request fixture authoring is deterministic only;
-- single-command local run is deterministic only;
-- no request variation, generalized CLI UX, or multi-request runner yet;
+- request fixture authoring supports allowlisted intent variation only;
+- single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
+- no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -554,15 +575,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** constrained local JSON request variation.
+**Bounded Pass:** minimal local source fixture selection.
 
 Recommended branch:
 
-`feat/constrained-local-json-request-variation`
+`feat/minimal-local-source-fixture-selection`
 
-That pass should add a narrow way to vary the local agent context request fixture within an allowlisted set of request fields, while preserving authority/provenance/permission/audit refs and default-deny runtime posture.
+That pass should let the one-command local JSON path select between deterministic local fixture items by request scope hints, while preserving authority/provenance/permission/audit refs and default-deny runtime posture.
 
-The repo-first verdict after the local JSON single-command wrapper chose constrained request variation over a minimal local source fixture because the local v0 is now one command but still produces only one deterministic request shape. The next useful step is to let an agent vary intent/scope hints in a bounded, machine-verifiable way before adding new source behavior.
+After constrained request variation, the useful next step is to make the bounded context package respond to the selected request scope before adding any real source loading or MCP/API runtime.
 
 Keep the local CLI bounded:
 

@@ -88,3 +88,5 @@ export * from "./local-deterministic-context-source-adapter-contracts-types.js";
 export * from "./local-deterministic-context-source-adapter-contracts.js";
 export * from "./first-protocol-surface-adapter-shape-for-verified-response-types.js";
 export * from "./first-protocol-surface-adapter-shape-for-verified-response.js";
+export * from "./local-json-request-response-runner-shape-types.js";
+export * from "./local-json-request-response-runner-shape.js";

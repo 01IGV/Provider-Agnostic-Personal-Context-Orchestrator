@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after first protocol-surface adapter shape completed.**
+**Local JSON request/response runner shape implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -33,7 +33,9 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local JSON request/response runner shape.
 
-This is a contract/interface layer only.
+This feature branch now adds a local JSON request/response runner shape for carrying an agent context request JSON fixture to a verified protocol-surface adapter JSON fixture.
+
+This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
 
@@ -122,7 +124,16 @@ The first protocol-surface adapter shape pass now adds:
 - adapter-level default-deny protocol/runtime posture;
 - `contract:first-protocol-surface-adapter:verify`.
 
-Local verification passed for the merged `main` state:
+The local JSON request/response runner shape pass now adds:
+
+- local JSON runner request envelope carrying the agent context request fixture;
+- local JSON runner response envelope carrying the verified protocol-surface adapter fixture;
+- runner-level refs for request/response/package/protocol adapter ids;
+- deterministic JSON serializability verification;
+- runner-level default-deny local/fixture posture;
+- `contract:local-json-request-response-runner:verify`.
+
+Local verification passed for this feature-branch state:
 
 ```bash
 npm install
@@ -136,6 +147,7 @@ npm run contract:agent-context-request:verify
 npm run contract:local-deterministic-context-source:verify
 npm run contract:agent-consumable-response:verify
 npm run contract:first-protocol-surface-adapter:verify
+npm run contract:local-json-request-response-runner:verify
 ```
 
 Observed local verification results:
@@ -151,6 +163,7 @@ Observed local verification results:
 - `local_deterministic_context_source_adapter_verified`.
 - `agent_consumable_response_contract_verified`.
 - `first_protocol_surface_adapter_shape_verified`.
+- `local_json_request_response_runner_shape_verified`.
 
 GitHub Actions observation note:
 
@@ -228,6 +241,7 @@ The strongest current bounded implementation state on `main` is now:
 - bounded context package envelope hardening;
 - agent-consumable response contract verification;
 - first protocol-surface adapter shape for verified response;
+- local JSON request/response runner shape;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -278,6 +292,11 @@ The repository currently has:
 - `scripts/verify-first-protocol-surface-adapter-shape.mjs`;
 - `npm run contract:first-protocol-surface-adapter:verify`;
 - CI `Proof Output Regression` step for first protocol-surface adapter shape;
+- `packages/integration-contracts` local JSON request/response runner vocabularies, types, and builder;
+- `packages/system-assembly` deterministic local JSON request/response runner shape composition;
+- `scripts/verify-local-json-request-response-runner-shape.mjs`;
+- `npm run contract:local-json-request-response-runner:verify`;
+- CI `Proof Output Regression` step for local JSON request/response runner shape;
 - exports for the new authority boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
@@ -360,6 +379,7 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
+- no actual CLI or file-based local JSON runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -374,17 +394,19 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON request/response runner shape.
+**Bounded Pass:** state and next-step alignment after local JSON request/response runner shape.
 
 Recommended branch:
 
-`feat/local-json-request-response-runner-shape`
+`docs/state-next-step-alignment-after-local-json-runner-shape`
 
-That implementation should move toward a local usable v0 by shaping a deterministic JSON request/response runner contract.
+That pass should be docs-only after merge and CI, recording the local JSON runner shape as current `main` state.
 
-The runner should be local, fixture-driven, machine-readable, and connected to the existing agent context request, local deterministic context source adapter, agent-consumable response verification, and protocol-surface adapter contracts.
+The likely next implementation direction is:
 
-It must not open MCP/API runtime, transport execution, provider calls, persistence, model calls, storage writes, permission grants, or contour execution.
+`feat/local-json-fixture-runner-proof`
+
+That implementation should add a deterministic proof around the local JSON fixture runner path without introducing file IO, CLI execution, MCP/API runtime, transport execution, provider calls, persistence, model calls, storage writes, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

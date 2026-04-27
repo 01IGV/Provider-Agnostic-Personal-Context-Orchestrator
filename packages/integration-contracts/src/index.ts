@@ -29,3 +29,6 @@ export * from "./local-deterministic-context-source-adapter.js";
 export * from "./verified-response-protocol-surface-adapter-vocabularies.js";
 export * from "./verified-response-protocol-surface-adapter-types.js";
 export * from "./verified-response-protocol-surface-adapter.js";
+export * from "./local-json-request-response-runner-vocabularies.js";
+export * from "./local-json-request-response-runner-types.js";
+export * from "./local-json-request-response-runner.js";

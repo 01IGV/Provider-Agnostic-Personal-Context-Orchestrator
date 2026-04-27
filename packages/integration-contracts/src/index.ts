@@ -26,3 +26,6 @@ export * from "./agent-context-request-boundary.js";
 export * from "./local-deterministic-context-source-adapter-vocabularies.js";
 export * from "./local-deterministic-context-source-adapter-types.js";
 export * from "./local-deterministic-context-source-adapter.js";
+export * from "./verified-response-protocol-surface-adapter-vocabularies.js";
+export * from "./verified-response-protocol-surface-adapter-types.js";
+export * from "./verified-response-protocol-surface-adapter.js";

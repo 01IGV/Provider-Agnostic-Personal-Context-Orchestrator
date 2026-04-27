@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after agent-consumable response verification completed.**
+**First protocol-surface adapter shape for verified response in progress on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -28,6 +28,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 `main` now includes a verification surface proving the deterministic bounded context response is machine-consumable by an AI agent without runtime calls.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is the first protocol-surface adapter shape for the verified response.
+
+Feature branch `feat/first-protocol-surface-adapter-shape-for-verified-response` adds a protocol-adjacent adapter shape for carrying the verified bounded context response without opening runtime execution.
 
 This is a contract/interface layer only.
 
@@ -111,6 +113,13 @@ The agent-consumable response verification pass now adds:
 - response/package default-deny posture checks;
 - `contract:agent-consumable-response:verify`.
 
+The first protocol-surface adapter shape branch now adds:
+
+- protocol-adjacent verified response adapter shape;
+- response/package/envelope refs carried into the adapter shape;
+- adapter-level default-deny protocol/runtime posture;
+- `contract:first-protocol-surface-adapter:verify`.
+
 Local verification passed for the merged `main` state:
 
 ```bash
@@ -124,6 +133,7 @@ npm run proof:authority-boundary-denial:verify
 npm run contract:agent-context-request:verify
 npm run contract:local-deterministic-context-source:verify
 npm run contract:agent-consumable-response:verify
+npm run contract:first-protocol-surface-adapter:verify
 ```
 
 Observed local verification results:
@@ -138,6 +148,7 @@ Observed local verification results:
 - `agent_context_request_boundary_verified`.
 - `local_deterministic_context_source_adapter_verified`.
 - `agent_consumable_response_contract_verified`.
+- `first_protocol_surface_adapter_shape_verified`.
 
 GitHub Actions observation note:
 
@@ -214,6 +225,7 @@ The strongest current bounded implementation state on `main` is now:
 - local deterministic context source adapter contracts;
 - bounded context package envelope hardening;
 - agent-consumable response contract verification;
+- first protocol-surface adapter shape for verified response on feature branch;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -259,6 +271,11 @@ The repository currently has:
 - `scripts/verify-agent-consumable-response-contract.mjs`;
 - `npm run contract:agent-consumable-response:verify`;
 - CI `Proof Output Regression` step for agent-consumable response contract;
+- `packages/integration-contracts` verified response protocol-surface adapter vocabularies, types, and builder on feature branch;
+- `packages/system-assembly` deterministic first protocol-surface adapter shape composition on feature branch;
+- `scripts/verify-first-protocol-surface-adapter-shape.mjs` on feature branch;
+- `npm run contract:first-protocol-surface-adapter:verify` on feature branch;
+- CI `Proof Output Regression` step for first protocol-surface adapter shape on feature branch;
 - exports for the new authority boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`.
 
@@ -323,6 +340,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-76-agent-consumable-response-contract-verification.md`
 - `2026-04-27-77-state-next-step-alignment-after-agent-consumable-response.md`
 - `2026-04-27-78-repo-first-verdict-after-agent-consumable-response-verification.md`
+- `2026-04-27-79-first-protocol-surface-adapter-shape-for-verified-response.md`
 
 ---
 
@@ -353,21 +371,15 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** first protocol-surface adapter shape for the verified response.
+**Bounded Pass:** complete first protocol-surface adapter shape merge/CI.
 
-The agent-consumable response contract verification pass is now present on `main`, local verification remains green, PR CI was observed green, and a repo-first verdict found no blocker before the first protocol-surface adapter shape.
+The feature branch now contains the first protocol-adjacent adapter shape for the verified response.
 
 Recommended branch:
 
 `feat/first-protocol-surface-adapter-shape-for-verified-response`
 
-That implementation should define a protocol-adjacent adapter wrapper shape for carrying the verified bounded context response.
-
-The next pass should:
-
-- carry response id, package id, envelope refs, verification result, and default-deny posture;
-- remain protocol-adjacent and shape-only;
-- avoid real MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider calls, persistence, model calls, storage writes, or contour execution.
+Before merge, run the full verification list and observe PR CI green.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

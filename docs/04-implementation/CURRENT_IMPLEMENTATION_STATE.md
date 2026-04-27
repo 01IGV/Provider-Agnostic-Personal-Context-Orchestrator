@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Bounded context package envelope hardening in progress on feature branch.**
+**Bounded context package envelope hardening merged to `main` and locally verified.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -21,7 +21,7 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is bounded context package envelope hardening.
 
-Feature branch `feat/bounded-context-package-envelope-hardening` adds a typed bounded context package envelope to the local deterministic source adapter response.
+`main` now includes a typed bounded context package envelope in the local deterministic source adapter response.
 
 This is a contract/interface layer only.
 
@@ -89,7 +89,7 @@ The local deterministic context source adapter now adds:
 - explicit local-only, non-networked, non-persistent, non-executing posture;
 - `contract:local-deterministic-context-source:verify`.
 
-The bounded context package envelope hardening branch now adds:
+The bounded context package envelope hardening pass now adds:
 
 - explicit bounded context package envelope metadata;
 - deterministic package item refs;
@@ -196,7 +196,7 @@ The strongest current bounded implementation state on `main` is now:
 - authority-boundary denial proof integration;
 - first agent context request boundary contracts;
 - local deterministic context source adapter contracts;
-- bounded context package envelope hardening on feature branch;
+- bounded context package envelope hardening;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -234,7 +234,7 @@ The repository currently has:
 - `npm run contract:agent-context-request:verify`;
 - CI `Proof Output Regression` step for agent context request boundary;
 - `packages/integration-contracts` local deterministic context source adapter vocabularies, types, and builder;
-- `packages/integration-contracts` bounded context package envelope and package item contract shapes on feature branch;
+- `packages/integration-contracts` bounded context package envelope and package item contract shapes;
 - `packages/system-assembly` deterministic local source adapter composition;
 - `scripts/verify-local-deterministic-context-source-adapter.mjs`;
 - `npm run contract:local-deterministic-context-source:verify`;
@@ -298,6 +298,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-71-state-next-step-alignment-after-local-deterministic-context-source.md`
 - `2026-04-27-72-repo-first-verdict-after-local-deterministic-context-source.md`
 - `2026-04-27-73-bounded-context-package-envelope-hardening.md`
+- `2026-04-27-74-state-next-step-alignment-after-bounded-context-package-envelope.md`
 
 ---
 
@@ -328,15 +329,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** complete bounded context package envelope hardening merge/CI.
+**Bounded Pass:** repo-first verdict after bounded context package envelope hardening.
 
-The feature branch now contains package envelope hardening for the deterministic bounded context payload materialization contract.
+The bounded context package envelope hardening pass is now present on `main`, local verification remains green, and PR CI was observed green.
 
 Recommended branch:
 
-`feat/bounded-context-package-envelope-hardening`
+`docs/repo-first-verdict-after-bounded-context-package-envelope`
 
-Before merge, run the full verification list and observe PR CI green.
+That pass should be docs-only and decide whether the strongest next implementation is agent-consumable response contract verification.
+
+The likely next implementation direction is:
+
+`feat/agent-consumable-response-contract-verification`
+
+That implementation should improve machine-checkable AI-agent response consumption semantics without adding persistence, provider calls, model calls, runtime handlers, MCP/API routes, storage writes, or actual contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

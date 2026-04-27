@@ -84,3 +84,5 @@ export * from "./authority-boundary-denial-proof-integration-types.js";
 export * from "./authority-boundary-denial-proof-integration.js";
 export * from "./first-agent-context-request-boundary-types.js";
 export * from "./first-agent-context-request-boundary.js";
+export * from "./local-deterministic-context-source-adapter-contracts-types.js";
+export * from "./local-deterministic-context-source-adapter-contracts.js";

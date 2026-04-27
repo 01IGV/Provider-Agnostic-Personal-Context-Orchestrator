@@ -46,3 +46,6 @@ jobs:
 
       - name: Verify agent context request boundary
         run: npm run contract:agent-context-request:verify
+
+      - name: Verify local deterministic context source adapter
+        run: npm run contract:local-deterministic-context-source:verify

@@ -15,7 +15,8 @@
     "proof:surface-boundary-denial:verify": "npm run build:force && node scripts/verify-surface-boundary-denial-proof.mjs",
     "proof:authority-boundary-denial:verify": "npm run build:force && node scripts/verify-authority-boundary-denial-proof.mjs",
     "contract:agent-context-request:verify": "npm run build:force && node scripts/verify-agent-context-request-boundary.mjs",
-    "contract:local-deterministic-context-source:verify": "npm run build:force && node scripts/verify-local-deterministic-context-source-adapter.mjs"
+    "contract:local-deterministic-context-source:verify": "npm run build:force && node scripts/verify-local-deterministic-context-source-adapter.mjs",
+    "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

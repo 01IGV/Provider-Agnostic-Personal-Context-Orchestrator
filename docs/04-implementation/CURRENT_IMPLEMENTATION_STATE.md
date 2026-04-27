@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Bounded context package envelope hardening merged to `main` and locally verified.**
+**Repo-first verdict after bounded context package envelope completed.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -22,6 +22,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is bounded context package envelope hardening.
 
 `main` now includes a typed bounded context package envelope in the local deterministic source adapter response.
+
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is agent-consumable response contract verification.
 
 This is a contract/interface layer only.
 
@@ -299,6 +301,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-72-repo-first-verdict-after-local-deterministic-context-source.md`
 - `2026-04-27-73-bounded-context-package-envelope-hardening.md`
 - `2026-04-27-74-state-next-step-alignment-after-bounded-context-package-envelope.md`
+- `2026-04-27-75-repo-first-verdict-after-bounded-context-package-envelope.md`
 
 ---
 
@@ -329,21 +332,24 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after bounded context package envelope hardening.
+**Bounded Pass:** agent-consumable response contract verification.
 
-The bounded context package envelope hardening pass is now present on `main`, local verification remains green, and PR CI was observed green.
+The bounded context package envelope hardening pass is now present on `main`, local verification remains green, PR CI was observed green, and a repo-first verdict found no blocker before agent-consumable response contract verification.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-bounded-context-package-envelope`
-
-That pass should be docs-only and decide whether the strongest next implementation is agent-consumable response contract verification.
-
-The likely next implementation direction is:
-
 `feat/agent-consumable-response-contract-verification`
 
-That implementation should improve machine-checkable AI-agent response consumption semantics without adding persistence, provider calls, model calls, runtime handlers, MCP/API routes, storage writes, or actual contour execution.
+That implementation should add a machine-checkable verification surface for AI-agent response consumption semantics.
+
+The next pass should verify:
+
+- response id, request id, package id, package item refs, and source item refs are internally consistent;
+- authority/provenance/permission/audit refs are available without runtime calls;
+- response/package posture denies runtime permission, provider calls, persistence reads/writes, model calls, storage writes, and contour execution;
+- verification emits a concise machine-readable summary.
+
+Do this without adding persistence, provider calls, model calls, runtime handlers, MCP/API routes, storage writes, or actual contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

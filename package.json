@@ -20,7 +20,9 @@
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",
     "proof:local-json-fixture-runner:verify": "npm run build:force && node scripts/verify-local-json-fixture-runner-proof.mjs",
-    "contract:minimal-local-json-fixture-runner-cli-boundary:verify": "npm run build:force && node scripts/verify-minimal-local-json-fixture-runner-cli-boundary.mjs"
+    "contract:minimal-local-json-fixture-runner-cli-boundary:verify": "npm run build:force && node scripts/verify-minimal-local-json-fixture-runner-cli-boundary.mjs",
+    "tool:local-json-fixture-runner:run": "npm run build:force && node scripts/local-json-fixture-runner-cli.mjs",
+    "tool:first-local-json-cli-file-io-boundary:verify": "npm run build:force && node scripts/verify-first-local-json-cli-file-io-boundary.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

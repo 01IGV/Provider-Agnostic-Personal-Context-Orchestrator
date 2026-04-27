@@ -64,3 +64,6 @@ jobs:
 
       - name: Verify minimal local JSON fixture runner CLI boundary
         run: npm run contract:minimal-local-json-fixture-runner-cli-boundary:verify
+
+      - name: Verify first local JSON CLI file IO boundary
+        run: npm run tool:first-local-json-cli-file-io-boundary:verify

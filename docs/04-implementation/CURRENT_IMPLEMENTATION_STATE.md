@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Constrained local JSON request variation implemented on feature branch.**
+**Constrained local JSON request variation merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -64,7 +64,7 @@ npm run tool:local-json-fixture-runner:run -- --input request.json --output resp
 npm run tool:local-json:run -- --request request.json --response response.json
 ```
 
-Feature branch `feat/constrained-local-json-request-variation` now adds allowlisted request-intent variation to the local JSON authoring helper and single-command wrapper:
+`main` now adds allowlisted request-intent variation to the local JSON authoring helper and single-command wrapper:
 
 ```bash
 npm run tool:local-json:run -- --request request.json --response response.json --task-signal "bounded local planning request" --read-mode quick_answer --depth shallow --scope-hints scope:local-planning
@@ -266,6 +266,7 @@ Observed local verification results:
 - `local_json_request_fixture_authoring_helper_verified`.
 - `local_json_single_command_run_wrapper_verified`.
 - `constrained_local_json_request_variation_verified`.
+- local constrained single-command smoke returned `local_json_single_command_run_completed`.
 
 GitHub Actions observation note:
 
@@ -274,6 +275,10 @@ GitHub Actions observation note:
 - local `main` is up to date with `origin/main` at `e2dbb9d`;
 - GitHub connector did not return push-triggered workflow runs for merge commit `e2dbb9d`;
 - no CI failure was observed after merge, but push-run status for the squash commit could not be independently confirmed from this session.
+- PR #41 for `feat/constrained-local-json-request-variation` was mergeable and merged to `main` as `0bf609b`;
+- GitHub connector did not return workflow runs or status checks for PR #41 head `4f53871` during this session;
+- local verification passed before merge, including `npm run tool:constrained-local-json-request-variation:verify`;
+- no CI failure was observed after merge, but PR/push-run status for `0bf609b` could not be independently confirmed through the connector in this session.
 
 Runtime remains closed:
 
@@ -346,7 +351,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON request/response runner shape;
 - local JSON fixture runner proof;
 - minimal local JSON fixture runner CLI boundary;
-- constrained local JSON request variation on feature branch;
+- constrained local JSON request variation;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.

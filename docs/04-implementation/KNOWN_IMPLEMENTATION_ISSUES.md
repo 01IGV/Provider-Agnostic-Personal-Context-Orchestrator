@@ -55,7 +55,7 @@ Feature-branch verification note (April 24, 2026): local `npm install`, `npm run
 
 Feature-branch verification note (April 24, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, and `npm run proof:surface-boundary-denial:verify` passed for `feat/first-auth-iam-adjacent-authority-boundary-contracts`; the connector-only verification gap is closed before merge.
 
-Feature-branch verification note (April 27, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, `npm run proof:surface-boundary-denial:verify`, and `npm run proof:authority-boundary-denial:verify` passed for `feat/authority-boundary-denial-proof-integration`; CI observation is pending until PR/push workflow completes.
+Post-merge verification note (April 27, 2026): local `npm install`, `npm run typecheck`, `npm run proof:end-to-end:non-executing:verify`, `npm run proof:invocation-denial:verify`, `npm run proof:handler-boundary-denial:verify`, `npm run proof:surface-boundary-denial:verify`, and `npm run proof:authority-boundary-denial:verify` passed for `feat/authority-boundary-denial-proof-integration`; PR CI `Proof Output Regression` passed before merge. Push-run observation for merge commit `49a42d8` could not be independently confirmed through the connector in this session.
 
 ---
 

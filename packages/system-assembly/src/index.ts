@@ -90,3 +90,5 @@ export * from "./first-protocol-surface-adapter-shape-for-verified-response-type
 export * from "./first-protocol-surface-adapter-shape-for-verified-response.js";
 export * from "./local-json-request-response-runner-shape-types.js";
 export * from "./local-json-request-response-runner-shape.js";
+export * from "./local-json-fixture-runner-proof-types.js";
+export * from "./local-json-fixture-runner-proof.js";

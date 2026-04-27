@@ -58,3 +58,6 @@ jobs:
 
       - name: Verify local JSON request-response runner shape
         run: npm run contract:local-json-request-response-runner:verify
+
+      - name: Verify local JSON fixture runner proof
+        run: npm run proof:local-json-fixture-runner:verify

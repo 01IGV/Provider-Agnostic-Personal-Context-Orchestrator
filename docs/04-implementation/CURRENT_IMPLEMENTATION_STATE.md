@@ -11,13 +11,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local deterministic context source adapter contracts added.**
+**Local deterministic context source adapter contracts merged to `main` and locally verified.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
 
-The current pass adds the first contract-only local deterministic source adapter and bounded context response materialization path.
+`main` now includes the first contract-only local deterministic source adapter and bounded context response materialization path.
 
 This is a contract/interface layer only.
 
@@ -76,7 +76,7 @@ The agent context request boundary now provides:
 - deterministic system-assembly composition from authority-boundary denial proof;
 - `contract:agent-context-request:verify`.
 
-The local deterministic context source adapter branch now adds:
+The local deterministic context source adapter now adds:
 
 - local deterministic source item contracts;
 - local deterministic adapter result contracts;
@@ -281,6 +281,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-68-state-next-step-alignment-after-agent-context-request-boundary.md`
 - `2026-04-27-69-repo-first-verdict-after-agent-context-request-boundary.md`
 - `2026-04-27-70-local-deterministic-context-source-adapter-contracts.md`
+- `2026-04-27-71-state-next-step-alignment-after-local-deterministic-context-source.md`
 
 ---
 
@@ -310,15 +311,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** complete local deterministic context source adapter contracts merge/CI.
+**Bounded Pass:** repo-first verdict after local deterministic context source adapter contracts.
 
-The current pass contains the first deterministic bounded context payload materialization contract.
+The first deterministic bounded context payload materialization contract is now present on `main`, local verification remains green, and PR CI was observed green.
 
 Recommended branch:
 
-`feat/local-deterministic-context-source-adapter-contracts`
+`docs/repo-first-verdict-after-local-deterministic-context-source`
 
-Before merge, run the full verification list and observe PR CI green.
+That pass should be docs-only and decide whether the strongest next implementation is bounded context package envelope hardening.
+
+The likely next implementation direction is:
+
+`feat/bounded-context-package-envelope-hardening`
+
+That implementation should make the bounded context package/envelope stronger for AI-agent consumption without adding persistence, provider calls, model calls, runtime handlers, MCP/API routes, storage writes, or actual contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

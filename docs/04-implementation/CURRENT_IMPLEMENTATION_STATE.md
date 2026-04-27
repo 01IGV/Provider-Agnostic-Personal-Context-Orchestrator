@@ -39,6 +39,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 `main` now includes a deterministic local JSON fixture runner proof for JSON round-trip integrity, ref/envelope consistency, and default-deny local execution posture.
 
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is a minimal local JSON fixture runner CLI boundary.
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -414,19 +416,15 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON fixture runner proof.
+**Bounded Pass:** minimal local JSON fixture runner CLI boundary.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-fixture-runner-proof`
-
-That pass should be docs-only and decide whether the strongest next implementation is a minimal local JSON fixture runner CLI boundary.
-
-The likely next implementation direction is:
-
 `feat/minimal-local-json-fixture-runner-cli-boundary`
 
-That future implementation should be considered only after a repo-first verdict and should keep file IO / CLI behavior narrowly bounded, deterministic, local-only, and default-deny.
+That implementation should shape the smallest CLI/file boundary needed for a future local usable v0.
+
+It may define local fixture input/output path contracts and CLI success/denial envelopes, but it must keep MCP/API runtime, provider calls, persistence, model calls, storage writes, permission grants, and contour execution denied.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

@@ -13,7 +13,8 @@
     "proof:invocation-denial:verify": "npm run build:force && node scripts/verify-invocation-denial-proof.mjs",
     "proof:handler-boundary-denial:verify": "npm run build:force && node scripts/verify-handler-boundary-denial-proof.mjs",
     "proof:surface-boundary-denial:verify": "npm run build:force && node scripts/verify-surface-boundary-denial-proof.mjs",
-    "proof:authority-boundary-denial:verify": "npm run build:force && node scripts/verify-authority-boundary-denial-proof.mjs"
+    "proof:authority-boundary-denial:verify": "npm run build:force && node scripts/verify-authority-boundary-denial-proof.mjs",
+    "contract:agent-context-request:verify": "npm run build:force && node scripts/verify-agent-context-request-boundary.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

@@ -43,3 +43,6 @@ jobs:
 
       - name: Verify authority boundary denial proof
         run: npm run proof:authority-boundary-denial:verify
+
+      - name: Verify agent context request boundary
+        run: npm run contract:agent-context-request:verify

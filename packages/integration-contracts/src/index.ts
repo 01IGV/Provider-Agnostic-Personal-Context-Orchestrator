@@ -20,3 +20,6 @@ export * from "./delivery-dispatch-precheck-linkage.js";
 export * from "./mcp-api-adjacent-surface-boundary-vocabularies.js";
 export * from "./mcp-api-adjacent-surface-boundary-types.js";
 export * from "./mcp-api-adjacent-surface-boundary.js";
+export * from "./agent-context-request-boundary-vocabularies.js";
+export * from "./agent-context-request-boundary-types.js";
+export * from "./agent-context-request-boundary.js";

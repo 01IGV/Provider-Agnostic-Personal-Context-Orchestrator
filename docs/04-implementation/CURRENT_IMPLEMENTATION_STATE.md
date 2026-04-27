@@ -11,9 +11,9 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**First auth/IAM-adjacent authority boundary contracts implemented and locally verified on feature branch.**
+**First auth/IAM-adjacent authority boundary contracts merged to `main` and locally reverified.**
 
-The current feature branch adds the first auth/IAM-adjacent authority boundary contract after the machine-checked default-deny MCP/API surface boundary.
+`main` now includes the first auth/IAM-adjacent authority boundary contract after the machine-checked default-deny MCP/API surface boundary.
 
 This is a contract/boundary layer only.
 
@@ -41,10 +41,9 @@ The boundary remains default-deny:
 - `api_route_permission_granted: false`;
 - `actual_contour_execution_allowed_now: false`.
 
-Local verification passed on `feat/first-auth-iam-adjacent-authority-boundary-contracts`:
+Local verification passed for the merged `main` state:
 
 ```bash
-git pull origin feat/first-auth-iam-adjacent-authority-boundary-contracts
 npm install
 npm run typecheck
 npm run proof:end-to-end:non-executing:verify
@@ -55,12 +54,21 @@ npm run proof:surface-boundary-denial:verify
 
 Observed local verification results:
 
-- `npm install`: passed, `found 0 vulnerabilities`;
+- `npm install`: passed, `up to date`;
 - `npm run typecheck`: passed;
 - `stable_proof_artifact_matches_golden_snapshot`;
 - `invocation_denial_default_deny_verified`;
 - `handler_boundary_denial_default_deny_verified`;
 - `surface_boundary_denial_default_deny_verified`.
+
+GitHub Actions observation note:
+
+- local `main` is up to date with `origin/main` at `d6b4c01`;
+- branch `docs/state-next-step-alignment-after-first-auth-iam-authority-boundary` started from `main...HEAD` with `0 0`;
+- GitHub connector returned no PR-triggered workflow runs for `d6b4c01`;
+- `gh` CLI is not available in this environment;
+- unauthenticated GitHub Actions API lookup returned `404`;
+- no CI failure was observed, but green push-run status could not be independently confirmed from this session.
 
 Runtime remains closed:
 
@@ -110,7 +118,7 @@ The repository currently has thirteen materialized packages:
 12. `packages/system-assembly`
 13. `packages/runtime-surface`
 
-The strongest current bounded implementation state on this branch is now:
+The strongest current bounded implementation state on `main` is now:
 
 - end-to-end non-executing proof path;
 - deterministic local proof command;
@@ -198,6 +206,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-24-59-surface-boundary-denial-proof-integration.md`
 - `2026-04-24-60-repo-first-verdict-after-surface-boundary-denial-proof.md`
 - `2026-04-24-61-first-auth-iam-adjacent-authority-boundary-contracts.md`
+- `2026-04-27-62-state-next-step-alignment-after-first-auth-iam-authority-boundary.md`
 
 ---
 
@@ -205,7 +214,8 @@ Execution documentation protocol is exercised across bounded passes, including t
 
 Current limits after first auth/IAM-adjacent authority boundary contracts:
 
-- CI observation on `main` is pending until merge;
+- no dedicated authority-boundary denial proof command yet;
+- GitHub Actions push-run observation for `d6b4c01` could not be independently confirmed from this local session because `gh` is unavailable and unauthenticated Actions API access returned `404`;
 - no concrete persistence adapters yet;
 - no runtime MCP/API handler execution yet;
 - no MCP/API route/controller implementation yet;
@@ -225,15 +235,21 @@ Current limits after first auth/IAM-adjacent authority boundary contracts:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** merge observation and docs-only state alignment after first auth/IAM-adjacent authority boundary contracts.
+**Bounded Pass:** repo-first verdict after first auth/IAM-adjacent authority boundary contracts.
 
-After merge, observe GitHub Actions `Proof Output Regression` on `main` and then align current state docs.
+The first auth/IAM-adjacent authority boundary is now present on `main` and local verification remains green.
 
-Recommended branch after green CI on `main`:
+Recommended branch:
 
-`docs/state-next-step-alignment-after-first-auth-iam-authority-boundary`
+`docs/repo-first-verdict-after-first-auth-iam-authority-boundary`
 
-That pass should be docs-only.
+That pass should be docs-only and decide the strongest next bounded implementation direction.
+
+The likely next implementation direction is:
+
+`feat/authority-boundary-denial-proof-integration`
+
+That implementation pass should add a machine-checkable default-deny proof for the auth/IAM-adjacent authority boundary before moving toward AI-agent context request contracts.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.
 

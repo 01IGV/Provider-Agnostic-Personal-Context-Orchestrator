@@ -40,3 +40,6 @@ jobs:
 
       - name: Verify surface boundary denial proof
         run: npm run proof:surface-boundary-denial:verify
+
+      - name: Verify authority boundary denial proof
+        run: npm run proof:authority-boundary-denial:verify

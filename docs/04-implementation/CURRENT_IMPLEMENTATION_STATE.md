@@ -51,6 +51,10 @@ PR #88 merged as `a29c49b` after local verification passed. The GitHub merge gat
 
 PR #89 merged as `5a05ecb`; GitHub Actions push-run for `proof-output-regression.yml` on `main` completed successfully in 3m 44s, including `Verify proof output golden snapshot`.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a source-catalog-guided local v0 run proof.
+
+`feat/local-v0-source-catalog-guided-run-proof` should prove that an AI agent can start from the local v0 tool-pack index, discover the source catalog artifact, choose an allowlisted scope, run the bounded local v0 command, and verify the response/summary against that catalog without opening arbitrary source loading or runtime behavior.
+
 The verifier is available through:
 
 ```bash
@@ -1096,6 +1100,8 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-146-repo-first-verdict-after-local-v0-source-catalog-contracts.md`
 - `2026-04-28-147-local-v0-source-catalog-tool-pack-artifact.md`
 - `2026-04-28-148-state-next-step-alignment-after-local-v0-source-catalog-tool-pack-artifact.md`
+- `2026-04-28-149-ci-observation-after-local-v0-source-catalog-tool-pack-artifact.md`
+- `2026-04-28-150-repo-first-verdict-after-local-v0-source-catalog-tool-pack-artifact.md`
 
 ---
 
@@ -1136,13 +1142,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local v0 source catalog tool-pack artifact.
+**Bounded Pass:** source-catalog-guided local v0 run proof.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-source-catalog-tool-pack-artifact`
+`feat/local-v0-source-catalog-guided-run-proof`
 
-That docs-only verdict should inspect `main` after the source catalog became discoverable through the local v0 tool-pack and decide the next bounded implementation step toward real-life AI-agent use.
+That implementation pass should prove the real AI-agent usage path from tool-pack discovery to source-catalog-guided bounded local v0 run.
 
 Keep the local CLI bounded:
 

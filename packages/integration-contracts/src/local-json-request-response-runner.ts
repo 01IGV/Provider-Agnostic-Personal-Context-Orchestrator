@@ -41,6 +41,9 @@ const defaultResponseNotes = (): string[] => [
   "The response is machine-readable and deterministic, but it is not runtime execution."
 ];
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null;
+
 const createResponseObservationSummary = (
   runner_response_id: string,
   runner_request: LocalJsonRequestResponseRunnerRequestEnvelopeShape,
@@ -56,6 +59,32 @@ const createResponseObservationSummary = (
     "package_items" in packageEnvelope && Array.isArray(packageEnvelope.package_items)
       ? packageEnvelope.package_items
       : [];
+  const sourceMaterializationReceipt = isRecord(payload.source_materialization_receipt)
+    ? payload.source_materialization_receipt
+    : {};
+  const sourceMaterializationReceiptPosture =
+    isRecord(sourceMaterializationReceipt.execution_posture)
+      ? sourceMaterializationReceipt.execution_posture
+      : {};
+  const sourceMaterializationReceiptId =
+    typeof sourceMaterializationReceipt.receipt_id === "string"
+      ? sourceMaterializationReceipt.receipt_id
+      : undefined;
+  const sourceMaterializationReceiptRef =
+    sourceMaterializationReceipt.receipt_version ===
+    "local-v0-source-materialization-receipt/v1"
+      ? sourceMaterializationReceipt.receipt_version
+      : undefined;
+  const sourceMaterializationReceiptBoundary =
+    typeof sourceMaterializationReceipt.materialization_boundary === "string"
+      ? sourceMaterializationReceipt.materialization_boundary
+      : undefined;
+  const sourceMaterializationReceiptDirectFileAccess =
+    sourceMaterializationReceiptPosture.direct_agent_repo_file_access_allowed_now === false
+      ? false
+      : undefined;
+  const sourceMaterializationReceiptLiveRead =
+    sourceMaterializationReceiptPosture.live_source_read_performed === false ? false : undefined;
 
   return {
     observation_result: "local_json_response_observation_summary_ready",
@@ -74,6 +103,27 @@ const createResponseObservationSummary = (
     selected_scope_ids: sourceItems
       .map((item) => item?.scope_id)
       .filter((scopeId): scopeId is string => typeof scopeId === "string"),
+    ...(sourceMaterializationReceiptId
+      ? { source_materialization_receipt_id: sourceMaterializationReceiptId }
+      : {}),
+    ...(sourceMaterializationReceiptRef
+      ? { source_materialization_receipt_ref: sourceMaterializationReceiptRef }
+      : {}),
+    ...(sourceMaterializationReceiptBoundary
+      ? { source_materialization_receipt_boundary: sourceMaterializationReceiptBoundary }
+      : {}),
+    ...(sourceMaterializationReceiptDirectFileAccess === false
+      ? {
+          source_materialization_receipt_direct_agent_repo_file_access_allowed_now:
+            sourceMaterializationReceiptDirectFileAccess
+        }
+      : {}),
+    ...(sourceMaterializationReceiptLiveRead === false
+      ? {
+          source_materialization_receipt_live_source_read_performed:
+            sourceMaterializationReceiptLiveRead
+        }
+      : {}),
     package_item_count: packageItems.length,
     local_json_only: runner_request.execution_posture.local_json_only,
     deterministic: runner_request.execution_posture.deterministic,

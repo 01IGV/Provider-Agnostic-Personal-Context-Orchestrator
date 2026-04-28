@@ -65,6 +65,8 @@ const guidedResponseArtifact = readJson(guidedResponseOutputPath);
 const guidedSummaryArtifact = readJson(guidedSummaryOutputPath);
 const guidedIndexArtifact = readJson(guidedIndexOutputPath);
 const guidedObservationSummary = guidedResponseArtifact.response_observation_summary_json;
+const guidedResponsePayload = guidedResponseArtifact.response_json.response.response_payload;
+const sourceMaterializationReceipt = guidedResponsePayload.source_materialization_receipt;
 const selectedCatalogEntry = sourceCatalogArtifact.entries.find(
   (entry) => entry.scope_id === "scope:repo-work-context"
 );
@@ -102,6 +104,40 @@ const assertions = {
     guidedSummaryArtifact.selected_source_refs.join("|") === selectedCatalogEntry?.source_ref &&
     guidedObservationSummary.selected_scope_ids.join("|") === selectedCatalogEntry?.scope_id &&
     guidedObservationSummary.selected_source_refs.join("|") === selectedCatalogEntry?.source_ref,
+  repo_work_source_materialization_receipt_matches_catalog:
+    sourceMaterializationReceipt?.receipt_version ===
+      "local-v0-source-materialization-receipt/v1" &&
+    sourceMaterializationReceipt?.source_catalog_ref === "local-v0-source-catalog/v1" &&
+    sourceMaterializationReceipt?.requested_scope_ids?.join("|") === selectedCatalogEntry?.scope_id &&
+    sourceMaterializationReceipt?.selected_scope_ids?.join("|") === selectedCatalogEntry?.scope_id &&
+    sourceMaterializationReceipt?.selected_source_refs?.join("|") ===
+      selectedCatalogEntry?.source_ref &&
+    sourceMaterializationReceipt?.selected_source_item_count === 1 &&
+    sourceMaterializationReceipt?.receipt_items?.[0]?.source_ref ===
+      selectedCatalogEntry?.source_ref &&
+    sourceMaterializationReceipt?.receipt_items?.[0]?.provenance_ref ===
+      selectedCatalogEntry?.provenance_ref &&
+    sourceMaterializationReceipt?.receipt_items?.[0]?.permission_ref ===
+      selectedCatalogEntry?.permission_ref &&
+    sourceMaterializationReceipt?.receipt_items?.[0]?.audit_ref === selectedCatalogEntry?.audit_ref,
+  repo_work_source_materialization_receipt_denies_file_and_runtime_access:
+    sourceMaterializationReceipt?.execution_posture.direct_agent_repo_file_access_allowed_now ===
+      false &&
+    sourceMaterializationReceipt?.execution_posture.live_source_read_performed === false &&
+    sourceMaterializationReceipt?.execution_posture.arbitrary_file_read_allowed_now === false &&
+    sourceMaterializationReceipt?.execution_posture.user_selected_path_read_allowed_now === false &&
+    sourceMaterializationReceipt?.execution_posture.directory_traversal_allowed_now === false &&
+    sourceMaterializationReceipt?.execution_posture.runtime_permission_granted === false &&
+    sourceMaterializationReceipt?.execution_posture.actual_contour_execution_allowed_now === false,
+  repo_work_observation_summary_exposes_receipt:
+    guidedObservationSummary.source_materialization_receipt_ref ===
+      "local-v0-source-materialization-receipt/v1" &&
+    typeof guidedObservationSummary.source_materialization_receipt_id === "string" &&
+    guidedObservationSummary.source_materialization_receipt_boundary ===
+      "contract_only_local_deterministic_context_materialization" &&
+    guidedObservationSummary.source_materialization_receipt_direct_agent_repo_file_access_allowed_now ===
+      false &&
+    guidedObservationSummary.source_materialization_receipt_live_source_read_performed === false,
   repo_work_context_is_not_direct_repo_file_access:
     selectedCatalogEntry?.source_item_template.content.agent_direct_repo_file_access_allowed_now ===
       false &&

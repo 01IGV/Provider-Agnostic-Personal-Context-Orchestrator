@@ -10,6 +10,8 @@ const payload = response.response_payload;
 const localSourcePosture = payload.local_source_execution_posture ?? {};
 const packageEnvelope = payload.bounded_context_package ?? {};
 const packagePosture = packageEnvelope.execution_posture ?? {};
+const sourceMaterializationReceipt = payload.source_materialization_receipt ?? {};
+const sourceMaterializationReceiptPosture = sourceMaterializationReceipt.execution_posture ?? {};
 
 const assertions = {
   request_contract_only: request.contract_only === true,
@@ -45,6 +47,41 @@ const assertions = {
     packageEnvelope.provenance_envelope_ref === adapterResult.provenance_envelope_ref &&
     packageEnvelope.permission_envelope_ref === adapterResult.permission_envelope_ref &&
     packageEnvelope.audit_envelope_ref === adapterResult.audit_envelope_ref,
+  source_materialization_receipt_present:
+    sourceMaterializationReceipt.receipt_version ===
+      "local-v0-source-materialization-receipt/v1" &&
+    sourceMaterializationReceipt.agent_context_request_id === request.agent_context_request_id &&
+    sourceMaterializationReceipt.adapter_result_id === adapterResult.adapter_result_id &&
+    sourceMaterializationReceipt.source_catalog_ref === "local-v0-source-catalog/v1" &&
+    sourceMaterializationReceipt.materialization_boundary === adapterResult.materialization_boundary,
+  source_materialization_receipt_scope_and_source_refs_match:
+    sourceMaterializationReceipt.requested_scope_ids?.join("|") ===
+      request.intent.requested_scope_hints.join("|") &&
+    sourceMaterializationReceipt.selected_scope_ids?.join("|") ===
+      adapterResult.source_items.map((item) => item.scope_id).join("|") &&
+    sourceMaterializationReceipt.selected_source_refs?.join("|") ===
+      adapterResult.source_items.map((item) => item.source_ref).join("|") &&
+    sourceMaterializationReceipt.selected_source_item_count === adapterResult.source_items.length,
+  source_materialization_receipt_items_are_refs:
+    sourceMaterializationReceipt.receipt_items?.length === adapterResult.source_items.length &&
+    sourceMaterializationReceipt.receipt_items?.every(
+      (item) =>
+        typeof item.receipt_item_id === "string" &&
+        typeof item.source_item_id === "string" &&
+        typeof item.scope_id === "string" &&
+        typeof item.source_ref === "string" &&
+        typeof item.content_digest === "string" &&
+        typeof item.provenance_ref === "string" &&
+        typeof item.permission_ref === "string" &&
+        typeof item.audit_ref === "string" &&
+        item.content === undefined
+    ) === true,
+  source_materialization_receipt_envelopes_carried:
+    sourceMaterializationReceipt.provenance_envelope_ref ===
+      adapterResult.provenance_envelope_ref &&
+    sourceMaterializationReceipt.permission_envelope_ref ===
+      adapterResult.permission_envelope_ref &&
+    sourceMaterializationReceipt.audit_envelope_ref === adapterResult.audit_envelope_ref,
   source_item_count_matches:
     payload.source_item_count === adapterResult.source_items.length && adapterResult.source_items.length > 0,
   source_items_are_deterministically_ordered: adapterResult.source_items.every(
@@ -89,7 +126,19 @@ const assertions = {
     packagePosture.storage_content_included === false &&
     packagePosture.contour_execution_result_included === false &&
     packagePosture.runtime_permission_granted === false &&
-    packagePosture.actual_contour_execution_allowed_now === false
+    packagePosture.actual_contour_execution_allowed_now === false,
+  source_materialization_receipt_posture_non_executing:
+    sourceMaterializationReceiptPosture.contract_only === true &&
+    sourceMaterializationReceiptPosture.deterministic === true &&
+    sourceMaterializationReceiptPosture.local_only === true &&
+    sourceMaterializationReceiptPosture.allowlisted_source_catalog === true &&
+    sourceMaterializationReceiptPosture.direct_agent_repo_file_access_allowed_now === false &&
+    sourceMaterializationReceiptPosture.live_source_read_performed === false &&
+    sourceMaterializationReceiptPosture.arbitrary_file_read_allowed_now === false &&
+    sourceMaterializationReceiptPosture.user_selected_path_read_allowed_now === false &&
+    sourceMaterializationReceiptPosture.directory_traversal_allowed_now === false &&
+    sourceMaterializationReceiptPosture.runtime_permission_granted === false &&
+    sourceMaterializationReceiptPosture.actual_contour_execution_allowed_now === false
 };
 
 const failed = Object.entries(assertions)
@@ -105,6 +154,7 @@ const verification = {
   adapter_result_id: adapterResult.adapter_result_id,
   response_id: response.bounded_context_response_id,
   bounded_context_package_id: packageEnvelope.bounded_context_package_id,
+  source_materialization_receipt_id: sourceMaterializationReceipt.receipt_id,
   source_item_count: adapterResult.source_items.length,
   package_item_count: packageEnvelope.package_items?.length ?? 0,
   response_status: response.response_status,

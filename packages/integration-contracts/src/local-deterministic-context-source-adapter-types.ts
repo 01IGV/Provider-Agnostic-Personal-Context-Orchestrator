@@ -92,6 +92,53 @@ export interface BoundedContextPackageEnvelopeShape {
   correlation_id?: CorrelationId;
 }
 
+export interface LocalV0SourceMaterializationReceiptPostureShape {
+  contract_only: true;
+  deterministic: true;
+  local_only: true;
+  allowlisted_source_catalog: true;
+  direct_agent_repo_file_access_allowed_now: false;
+  live_source_read_performed: false;
+  arbitrary_file_read_allowed_now: false;
+  user_selected_path_read_allowed_now: false;
+  directory_traversal_allowed_now: false;
+  runtime_permission_granted: false;
+  actual_contour_execution_allowed_now: false;
+}
+
+export interface LocalV0SourceMaterializationReceiptItemShape {
+  receipt_item_id: string;
+  source_item_id: string;
+  scope_id: ScopeId;
+  source_ref: string;
+  source_kind: LocalDeterministicContextSourceKind;
+  deterministic_order: number;
+  content_digest: string;
+  provenance_ref: string;
+  permission_ref: string;
+  audit_ref: string;
+}
+
+export interface LocalV0SourceMaterializationReceiptShape {
+  receipt_id: string;
+  receipt_version: "local-v0-source-materialization-receipt/v1";
+  agent_context_request_id: string;
+  adapter_result_id: string;
+  source_catalog_ref: "local-v0-source-catalog/v1";
+  materialization_boundary: LocalDeterministicContextMaterializationBoundary;
+  requested_scope_ids: ScopeId[];
+  selected_scope_ids: ScopeId[];
+  selected_source_refs: string[];
+  selected_source_item_count: number;
+  receipt_items: LocalV0SourceMaterializationReceiptItemShape[];
+  provenance_envelope_ref: string;
+  permission_envelope_ref: string;
+  audit_envelope_ref: string;
+  execution_posture: LocalV0SourceMaterializationReceiptPostureShape;
+  generated_at: IsoDateTimeString;
+  correlation_id?: CorrelationId;
+}
+
 export interface LocalDeterministicContextSourceAdapterResultShape {
   adapter_result_id: string;
   adapter_status: LocalDeterministicContextSourceAdapterStatus;

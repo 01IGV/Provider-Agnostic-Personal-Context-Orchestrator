@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent local v0 single-command runner merged and CI-verified.**
+**Local v0 source catalog contracts merged and locally verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -29,9 +29,11 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 PR #82 merged as `242d740` after GitHub Actions `Proof Output Regression` run `25060197534` passed, including the new `Verify local JSON agent local v0 single-command runner` step.
 
-The latest docs-only verdict confirms that the strongest next bounded implementation direction is local v0 source catalog contracts.
+The latest docs-only verdict selected local v0 source catalog contracts as the next bounded implementation direction.
 
-`feat/local-v0-source-catalog-contracts` adds those contracts.
+`feat/local-v0-source-catalog-contracts` added those contracts.
+
+PR #85 merged as `4d2465f` after local verification passed. The GitHub merge gate accepted the PR, but direct check-run observation for the PR head was not exposed through the connector/API in this session.
 
 The verifier is available through:
 
@@ -1074,6 +1076,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-142-state-next-step-alignment-after-local-json-agent-local-v0-single-command-runner.md`
 - `2026-04-28-143-repo-first-verdict-after-local-json-agent-local-v0-single-command-runner.md`
 - `2026-04-28-144-local-v0-source-catalog-contracts.md`
+- `2026-04-28-145-state-next-step-alignment-after-local-v0-source-catalog-contracts.md`
 
 ---
 
@@ -1087,6 +1090,7 @@ Current limits after first local JSON CLI file IO boundary:
 - GitHub Actions PR run for first local JSON CLI file IO boundary passed, but push-run observation for merge commit `3ab8ada` did not return a workflow run through the connector in this session;
 - GitHub Actions PR run for local JSON request fixture authoring helper passed, but push-run observation for merge commit `d59e43a` did not return a workflow run through the connector in this session;
 - GitHub Actions PR run for local JSON single-command run wrapper passed, but push-run observation for merge commit `8991f28` did not return a workflow run through the connector in this session;
+- GitHub check-run observation for local v0 source catalog contracts PR head `f1da0ca` was not exposed through the connector/API in this session, though local verification passed and GitHub accepted merge commit `4d2465f`;
 - no concrete persistence adapters yet;
 - local deterministic source items are contract fixtures only and not canonical context reads;
 - bounded context package items are contract refs only and not canonical persistence records;
@@ -1112,13 +1116,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after local v0 source catalog contracts.
+**Bounded Pass:** repo-first verdict after local v0 source catalog contracts.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-source-catalog-contracts`
+`docs/repo-first-verdict-after-local-v0-source-catalog-contracts`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the source catalog merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
+That docs-only verdict should inspect `main` after the source catalog merge and decide the next bounded implementation step toward a real-life local v0 AI-agent usage path.
 
 Keep the local CLI bounded:
 

@@ -17,6 +17,8 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 PR #76 merged as `b3b91d9` after GitHub Actions `Proof Output Regression` run `25056827271` passed, including the new `Verify local JSON agent local v0 tool pack artifact set` step.
 
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local v0 acceptance proof that starts from the tool-pack artifacts and proves a self-serve AI-agent usage path.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1006,6 +1008,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-122-repo-first-verdict-after-local-json-agent-handoff-bundle-writer.md`
 - `2026-04-28-135-local-json-agent-local-v0-tool-pack-artifact-set.md`
 - `2026-04-28-136-state-next-step-alignment-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
+- `2026-04-28-137-repo-first-verdict-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
 
 ---
 
@@ -1044,13 +1047,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON agent local v0 tool-pack artifact set.
+**Bounded Pass:** local JSON agent local v0 acceptance proof.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-agent-local-v0-tool-pack-artifact-set`
+`feat/local-json-agent-local-v0-acceptance-proof`
 
-That docs-only pass should decide the next real-life local v0 usability step after the AI-agent can inspect a complete local tool pack.
+That implementation pass should prove that an AI agent can start from the local v0 tool-pack artifacts, follow the machine-readable refs, and verify the bounded local request/response path without relying on chat instructions.
 
 Keep the local CLI bounded:
 

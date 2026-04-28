@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Agent request/response schema export merged to main.**
+**Schema-aware local JSON fixture examples implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -162,6 +162,30 @@ The new verifier proves that the exported schema matches the actual local JSON r
 
 ```bash
 npm run tool:agent-request-response-schema:verify
+```
+
+Feature branch `feat/schema-aware-local-json-fixture-examples` now adds a schema-aware example command for AI agents.
+
+The examples are available through:
+
+```bash
+npm run tool:schema-aware-local-json-examples:print
+```
+
+The example output includes:
+
+- the schema contract version;
+- the bounded `tool:local-json:run` command arguments;
+- a minimal valid `example_request_json`;
+- the expected `response_observation_summary_json`;
+- safe agent use hints;
+- denied agent action hints;
+- default-deny runtime posture flags.
+
+The new verifier proves that the examples match the exported schema and actual local JSON response path:
+
+```bash
+npm run tool:schema-aware-local-json-examples:verify
 ```
 
 This is still a contract/interface layer only.
@@ -329,6 +353,7 @@ npm run tool:minimal-local-source-fixture-selection:verify
 npm run tool:local-json-response-observation-summary:verify
 npm run tool:agent-readable-response-use-guidance:verify
 npm run tool:agent-request-response-schema:verify
+npm run tool:schema-aware-local-json-examples:verify
 ```
 
 Observed local verification results:
@@ -360,6 +385,8 @@ Observed local verification results:
 - local agent-readable smoke returned `local_json_single_command_run_completed` with `agent_response_status: bounded_context_ready_for_agent_use`.
 - `agent_request_response_schema_export_verified`.
 - local schema export print returned `local_json_agent_request_response_contract_schema_ready`.
+- `schema_aware_local_json_fixture_examples_verified`.
+- local schema-aware examples print returned `schema_aware_local_json_fixture_examples_ready`.
 
 GitHub Actions observation note:
 
@@ -459,6 +486,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON response observation summary;
 - agent-readable response use guidance;
 - agent request/response schema export;
+- schema-aware local JSON fixture examples;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -544,8 +572,13 @@ The repository currently has:
 - `scripts/verify-agent-request-response-schema-export.mjs`;
 - `npm run tool:agent-request-response-schema:verify`;
 - CI `Proof Output Regression` step for agent request-response schema export;
+- `scripts/schema-aware-local-json-fixture-examples-cli.mjs`;
+- `npm run tool:schema-aware-local-json-examples:print`;
+- `scripts/verify-schema-aware-local-json-fixture-examples.mjs`;
+- `npm run tool:schema-aware-local-json-examples:verify`;
+- CI `Proof Output Regression` step for schema-aware local JSON fixture examples;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-28-108-agent-request-response-schema-export.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-110-schema-aware-local-json-fixture-examples.md`.
 
 The repository still does **not** have:
 
@@ -667,15 +700,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** schema-aware local JSON fixture examples.
+**Bounded Pass:** local JSON example artifact materialization.
 
 Recommended branch:
 
-`feat/schema-aware-local-json-fixture-examples`
+`feat/local-json-example-artifact-materialization`
 
-That pass should add small deterministic example fixtures or a verified example command that uses the exported schema contract to show an external AI agent the minimal valid request and expected response observation summary.
+That pass should let an AI agent write the schema-aware example request/response artifacts to explicitly provided local paths, preserving the same bounded local file IO posture.
 
-After the schema export, the useful next step is making the contract immediately runnable and inspectable by an external AI agent without requiring source-code reading or manual fixture construction.
+After schema-aware examples, the useful next step is making the examples materializable as local artifacts an external agent can inspect or hand off, without adding arbitrary source loading or runtime server behavior.
 
 Keep the local CLI bounded:
 

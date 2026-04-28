@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON example artifact round-trip proof implemented on feature branch.**
+**Local JSON example artifact round-trip proof merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -208,7 +208,7 @@ The new verifier proves that the written artifacts match the schema-aware exampl
 npm run tool:local-json-example-artifacts:verify
 ```
 
-Feature branch `feat/local-json-example-artifact-round-trip-proof` now proves that materialized examples round-trip through the existing bounded local JSON runner.
+`main` now proves that materialized examples round-trip through the existing bounded local JSON runner.
 
 The new proof is available through:
 
@@ -453,6 +453,8 @@ GitHub Actions observation note:
 - PR #51 was merged to `main` as `f9dfbea`.
 - PR #53 for `feat/local-json-example-artifact-materialization` passed GitHub Actions `Proof Output Regression` run `25042383206`;
 - PR #53 was merged to `main` as `2775c29`.
+- PR #55 for `feat/local-json-example-artifact-round-trip-proof` passed GitHub Actions `Proof Output Regression` run `25047534917`;
+- PR #55 was merged to `main` as `5195fc7`.
 
 Runtime remains closed:
 

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON response observation summary implemented on feature branch.**
+**Local JSON response observation summary merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -100,7 +100,7 @@ The new verifier proves that a scoped request selects the matching local fixture
 npm run tool:minimal-local-source-fixture-selection:verify
 ```
 
-Feature branch `feat/local-json-response-observation-summary` now adds a compact response observation summary to the local JSON runner response and single-command output.
+`main` now adds a compact response observation summary to the local JSON runner response and single-command output.
 
 The summary exposes:
 
@@ -328,6 +328,8 @@ GitHub Actions observation note:
 - GitHub connector did not return workflow runs or status checks for PR #43 head `eb1056c` during this session;
 - local verification passed before merge, including `npm run tool:minimal-local-source-fixture-selection:verify`;
 - no CI failure was observed after merge, but PR/push-run status for `67216ab` could not be independently confirmed through the connector in this session.
+- PR #45 for `feat/local-json-response-observation-summary` passed GitHub Actions `Proof Output Regression` run `25039962270`;
+- PR #45 was merged to `main` as `1e3a17e`.
 
 Runtime remains closed:
 
@@ -402,7 +404,7 @@ The strongest current bounded implementation state on `main` is now:
 - minimal local JSON fixture runner CLI boundary;
 - constrained local JSON request variation;
 - minimal local source fixture selection;
-- local JSON response observation summary on feature branch;
+- local JSON response observation summary;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -605,15 +607,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON response observation summary.
+**Bounded Pass:** local JSON human-readable summary output.
 
 Recommended branch:
 
-`feat/local-json-response-observation-summary`
+`feat/local-json-human-readable-summary-output`
 
-That pass should add a compact machine-readable summary of the response fixture so a human or agent can see selected source refs, source count, package id, and default-deny posture without inspecting the full nested JSON envelope.
+That pass should add a small human-readable summary output mode or companion command derived from the bounded response observation summary, without making it a new authority source.
 
-After minimal local source fixture selection, the useful next step is observability of what was selected and returned, before adding any real source loading or MCP/API runtime.
+After machine-readable response observation, the useful next step is making the local tool comfortable for real humans to inspect while preserving the machine-readable JSON artifact as the source of truth.
 
 Keep the local CLI bounded:
 

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local v0 source catalog guided command merged and locally verified.**
+**Local v0 source catalog guided command sample artifacts merged and CI verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -102,6 +102,10 @@ npm run tool:local-v0-source-catalog-guided-sample:verify
 ```
 
 The writer produces a complete replayable sample artifact set for AI-agent inspection without adding arbitrary source loading, self-dogfooding repo scopes, MCP/API transport, runtime handlers, provider calls, concrete persistence, model calls, permission grants, or contour execution.
+
+PR #98 merged as `b1eb253` after GitHub Actions `Proof Output Regression` PR run `25065877463` passed, including the new `Verify local v0 source catalog guided command sample artifacts` step.
+
+The next bounded pass should be a repo-first verdict after the guided command sample artifacts, with self-dogfooding repo context still treated as a candidate direction rather than an automatic jump.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1132,6 +1136,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-155-state-next-step-alignment-after-local-v0-source-catalog-guided-command.md`
 - `2026-04-28-156-repo-first-verdict-after-local-v0-source-catalog-guided-command.md`
 - `2026-04-28-157-local-v0-source-catalog-guided-command-sample-artifacts.md`
+- `2026-04-28-158-state-next-step-alignment-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
 
 ---
 
@@ -1172,13 +1177,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state alignment after local v0 source-catalog-guided command sample artifacts.
+**Bounded Pass:** repo-first verdict after local v0 source-catalog-guided command sample artifacts.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-source-catalog-guided-command-sample-artifacts`
+`docs/repo-first-verdict-after-local-v0-source-catalog-guided-command-sample-artifacts`
 
-After merge and CI observation, the next pass should align state docs with the merged sample artifact writer/verifier before choosing the next implementation direction.
+The verdict should decide whether the next implementation should introduce a tightly bounded repo-work context scope for self-dogfooding, or whether one more agent-facing usability/proof step is still needed before that.
 
 Keep the local CLI bounded:
 

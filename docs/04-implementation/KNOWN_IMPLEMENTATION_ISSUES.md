@@ -81,7 +81,7 @@ Post-merge verification note (April 28, 2026): local `npm run tool:schema-aware-
 
 Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm run tool:schema-aware-local-json-examples:verify`, `npm run tool:local-json-example-artifacts:verify`, and a `npm run tool:local-json-example-artifacts:write` smoke passed for `feat/local-json-example-artifact-materialization`; PR #53 passed GitHub Actions `Proof Output Regression` run `25042383206` and merged to `main` as `2775c29`. Artifact writes are limited to explicitly provided output paths and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
-Feature-branch verification note (April 28, 2026): local `npm run proof:local-json-example-artifact-round-trip:verify` passed for `feat/local-json-example-artifact-round-trip-proof`; the proof feeds materialized request artifacts through the existing bounded local JSON runner and does not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
+Post-merge verification note (April 28, 2026): local `npm run proof:local-json-example-artifact-round-trip:verify` passed for `feat/local-json-example-artifact-round-trip-proof`; PR #55 passed GitHub Actions `Proof Output Regression` run `25047534917` and merged to `main` as `5195fc7`. The proof feeds materialized request artifacts through the existing bounded local JSON runner and does not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
 ---
 

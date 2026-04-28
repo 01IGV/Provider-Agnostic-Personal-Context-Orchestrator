@@ -128,5 +128,8 @@ jobs:
       - name: Verify local JSON agent local v0 acceptance proof
         run: npm run proof:local-json-agent-local-v0-acceptance:verify
 
+      - name: Verify local v0 source catalog guided run proof
+        run: npm run proof:local-v0-source-catalog-guided-run:verify
+
       - name: Verify local JSON agent local v0 single-command runner
         run: npm run tool:local-json-agent-local-v0:run:verify

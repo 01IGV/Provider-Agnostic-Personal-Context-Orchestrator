@@ -34,7 +34,9 @@
     "tool:agent-request-response-schema:print": "npm run build:force && node scripts/local-json-agent-contract-schema-cli.mjs",
     "tool:agent-request-response-schema:verify": "npm run build:force && node scripts/verify-agent-request-response-schema-export.mjs",
     "tool:schema-aware-local-json-examples:print": "npm run build:force && node scripts/schema-aware-local-json-fixture-examples-cli.mjs",
-    "tool:schema-aware-local-json-examples:verify": "npm run build:force && node scripts/verify-schema-aware-local-json-fixture-examples.mjs"
+    "tool:schema-aware-local-json-examples:verify": "npm run build:force && node scripts/verify-schema-aware-local-json-fixture-examples.mjs",
+    "tool:local-json-example-artifacts:write": "npm run build:force && node scripts/schema-aware-local-json-fixture-examples-cli.mjs",
+    "tool:local-json-example-artifacts:verify": "npm run build:force && node scripts/verify-local-json-example-artifact-materialization.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after local JSON agent handoff bundle round-trip proof in progress.**
+**Local JSON agent handoff bundle consumption CLI boundary in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -318,6 +318,24 @@ local JSON agent handoff bundle consumption CLI boundary
 ```
 
 That pass should let an AI agent consume an explicitly provided handoff bundle artifact set through a bounded command, while keeping all artifact paths explicit and preserving default-deny posture.
+
+`feat/local-json-agent-handoff-bundle-consumption-cli-boundary` adds that bounded consumption command.
+
+The command is available through:
+
+```bash
+npm run tool:local-json-agent-handoff-bundle:consume -- --bundle-summary local-json-agent-handoff-bundle.summary.json --manifest local-json-agent-tool-manifest.json --schema local-json-agent-request-response-schema.json --request agent-context-request.example.json --expected-response response-observation-summary.example.json --examples-summary schema-aware-local-json-examples.summary.json --actual-response verified-protocol-surface-adapter.actual.json
+```
+
+The command validates the explicitly provided artifact paths and contract refs, reads only the explicitly provided request example through the existing bounded local JSON runner, writes only the explicitly provided actual response output path, and compares the actual response observation summary with the bundled expected response summary.
+
+The verifier is available through:
+
+```bash
+npm run tool:local-json-agent-handoff-bundle-consumption:verify
+```
+
+This is the first explicit agent-side handoff bundle consumption command.
 
 This is still a contract/interface layer only.
 
@@ -649,6 +667,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON agent tool manifest artifact writer;
 - local JSON agent handoff bundle writer;
 - local JSON agent handoff bundle round-trip proof;
+- local JSON agent handoff bundle consumption CLI boundary;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -759,10 +778,15 @@ The repository currently has:
 - `npm run tool:local-json-agent-handoff-bundle:verify`;
 - `scripts/verify-local-json-agent-handoff-bundle-round-trip-proof.mjs`;
 - `npm run proof:local-json-agent-handoff-bundle-round-trip:verify`;
+- `scripts/local-json-agent-handoff-bundle-consumption-cli.mjs`;
+- `npm run tool:local-json-agent-handoff-bundle:consume -- --bundle-summary <path> --manifest <path> --schema <path> --request <path> --expected-response <path> --examples-summary <path> --actual-response <path>`;
+- `scripts/verify-local-json-agent-handoff-bundle-consumption-cli-boundary.mjs`;
+- `npm run tool:local-json-agent-handoff-bundle-consumption:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle round-trip proof;
+- CI `Proof Output Regression` step for local JSON agent handoff bundle consumption CLI boundary;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
@@ -772,6 +796,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-123-local-json-agent-handoff-bundle-round-trip-proof.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-124-state-next-step-alignment-after-local-json-agent-handoff-bundle-round-trip-proof.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-125-repo-first-verdict-after-local-json-agent-handoff-bundle-round-trip-proof.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-126-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 
 The repository still does **not** have:
 
@@ -882,7 +907,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, and explicit handoff bundle artifact paths;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, and one explicit handoff bundle consumption response output path;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -900,21 +925,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent handoff bundle consumption CLI boundary.
+**Bounded Pass:** state next-step alignment after local JSON agent handoff bundle consumption CLI boundary.
 
 Recommended branch:
 
-`feat/local-json-agent-handoff-bundle-consumption-cli-boundary`
+`docs/state-next-step-alignment-after-local-json-agent-handoff-bundle-consumption-cli-boundary`
 
-That pass should add a bounded local command that consumes an explicitly provided handoff bundle artifact set:
-
-- require explicit paths for bundle summary, manifest, schema, request example, expected response summary, examples summary, and actual response output;
-- validate the provided bundle refs and paths against the existing bundle summary;
-- feed only the explicitly provided request example through the existing bounded local JSON runner;
-- write only the explicitly provided actual response output path;
-- compare actual response summary against the explicitly provided expected response summary;
-- preserve default-deny runtime posture;
-- add verification and CI coverage.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the consumption CLI boundary merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next agent-facing usability step.
 
 Keep the local CLI bounded:
 

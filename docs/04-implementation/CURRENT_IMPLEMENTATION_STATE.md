@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent tool manifest artifact writer merged to main.**
+**Local JSON agent handoff bundle writer in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -270,6 +270,29 @@ The new verifier proves the written manifest artifact remains agent-readable, pa
 npm run tool:local-json-agent-tool-manifest-artifact:verify
 ```
 
+`feat/local-json-agent-handoff-bundle-writer` adds a bounded handoff bundle writer.
+
+The bundle writer is available through:
+
+```bash
+npm run tool:local-json-agent-handoff-bundle:write -- --manifest-output local-json-agent-tool-manifest.json --schema-output local-json-agent-request-response-schema.json --request-output agent-context-request.example.json --response-output response-observation-summary.example.json --examples-summary-output schema-aware-local-json-examples.summary.json --bundle-summary-output local-json-agent-handoff-bundle.summary.json
+```
+
+The bundle writer materializes:
+
+- the agent tool manifest artifact;
+- the agent request/response schema artifact;
+- a schema-aware request example artifact;
+- an expected response observation summary artifact;
+- a schema-aware examples summary artifact;
+- a bundle summary artifact.
+
+The new verifier proves the written bundle remains agent-readable, path-bounded, and default-deny:
+
+```bash
+npm run tool:local-json-agent-handoff-bundle:verify
+```
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -478,6 +501,7 @@ Observed local verification results:
 - `local_json_agent_tool_manifest_verified`.
 - local agent tool manifest print returned `local_json_agent_tool_manifest_ready`.
 - `local_json_agent_tool_manifest_artifact_writer_verified`.
+- `local_json_agent_handoff_bundle_writer_verified`.
 
 GitHub Actions observation note:
 
@@ -591,9 +615,10 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON example artifact materialization;
 - local JSON example artifact round-trip proof;
 - local JSON agent tool manifest;
+- local JSON agent tool manifest artifact writer;
 - local verification green for all current proof commands.
 
-- local JSON agent tool manifest artifact writer;
+This feature branch extends that state with a local JSON agent handoff bundle writer.
 
 All of this remains execution-free.
 
@@ -697,12 +722,18 @@ The repository currently has:
 - `npm run tool:local-json-agent-tool-manifest:verify`;
 - `scripts/verify-local-json-agent-tool-manifest-artifact-writer.mjs`;
 - `npm run tool:local-json-agent-tool-manifest-artifact:verify`;
+- `scripts/local-json-agent-handoff-bundle-cli.mjs`;
+- `npm run tool:local-json-agent-handoff-bundle:write -- --manifest-output <path> --schema-output <path> --request-output <path> --response-output <path> --examples-summary-output <path> --bundle-summary-output <path>`;
+- `scripts/verify-local-json-agent-handoff-bundle-writer.mjs`;
+- `npm run tool:local-json-agent-handoff-bundle:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
+- CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
-- `docs/04-implementation/execution-reports/2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`;
+- `docs/04-implementation/execution-reports/2026-04-28-120-local-json-agent-handoff-bundle-writer.md`.
 
 The repository still does **not** have:
 
@@ -810,7 +841,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, and one explicit manifest artifact output path;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, and explicit handoff bundle artifact paths;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -828,13 +859,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent handoff bundle writer.
+**Bounded Pass:** state and next-step alignment after local JSON agent handoff bundle writer.
 
 Recommended branch:
 
-`feat/local-json-agent-handoff-bundle-writer`
+`docs/state-next-step-alignment-after-local-json-agent-handoff-bundle-writer`
 
-That pass should materialize manifest/schema/example artifacts together for AI-agent handoff, while preserving explicit output paths and default-deny local IO posture.
+That pass should record the merge/CI result for the handoff bundle writer and choose the next smallest useful agent-facing improvement.
 
 Keep the local CLI bounded:
 

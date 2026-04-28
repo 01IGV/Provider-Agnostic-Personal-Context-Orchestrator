@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Agent-readable response use guidance implemented on feature branch.**
+**Agent-readable response use guidance merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -122,7 +122,7 @@ The new verifier proves the observation summary matches the nested response payl
 npm run tool:local-json-response-observation-summary:verify
 ```
 
-Feature branch `feat/agent-readable-response-use-guidance` now adds explicit AI-agent use guidance to the local JSON response observation summary and single-command output.
+`main` now adds explicit AI-agent use guidance to the local JSON response observation summary and single-command output.
 
 The agent-readable response summary includes:
 
@@ -352,6 +352,8 @@ GitHub Actions observation note:
 - no CI failure was observed after merge, but PR/push-run status for `67216ab` could not be independently confirmed through the connector in this session.
 - PR #45 for `feat/local-json-response-observation-summary` passed GitHub Actions `Proof Output Regression` run `25039962270`;
 - PR #45 was merged to `main` as `1e3a17e`.
+- PR #47 for `feat/agent-readable-response-use-guidance` passed GitHub Actions `Proof Output Regression` run `25040644880`;
+- PR #47 was merged to `main` as `ee9ff38`.
 
 Runtime remains closed:
 
@@ -427,7 +429,7 @@ The strongest current bounded implementation state on `main` is now:
 - constrained local JSON request variation;
 - minimal local source fixture selection;
 - local JSON response observation summary;
-- agent-readable response use guidance on feature branch;
+- agent-readable response use guidance;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -630,15 +632,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** agent-readable response use guidance.
+**Bounded Pass:** agent request/response schema export.
 
 Recommended branch:
 
-`feat/agent-readable-response-use-guidance`
+`feat/agent-request-response-schema-export`
 
-That pass should add explicit machine-readable guidance for AI agents about safe use and denied actions in the local JSON response observation summary, without making it a new authority source.
+That pass should export a compact machine-readable schema/contract artifact for the local JSON agent request and response shapes so external AI agents can integrate without reading TypeScript source.
 
-After machine-readable response observation, the useful next step is making the local tool clearer for AI agents to consume safely, not adding a human-first UI.
+After agent-readable response guidance, the useful next step is making the request/response contract discoverable to external AI agents, not adding a human-first UI.
 
 Keep the local CLI bounded:
 

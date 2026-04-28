@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent local v0 acceptance proof merged and CI-verified.**
+**Local JSON agent local v0 single-command runner in progress.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -24,6 +24,22 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 PR #79 merged as `3d1509a` after GitHub Actions `Proof Output Regression` run `25058108306` passed, including the new `Verify local JSON agent local v0 acceptance proof` step.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local v0 single-command runner for AI-agent usage.
+
+`feat/local-json-agent-local-v0-single-command-runner` adds that command.
+
+The command is available through:
+
+```bash
+npm run tool:local-json-agent-local-v0:run -- --request agent-context-request.local-v0.json --response verified-protocol-surface-adapter.local-v0.response.json --summary local-json-agent-local-v0-run.summary.json --task-signal "bounded local planning request" --read-mode planning --depth standard --scope-hints scope:active-boundary-chain
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-json-agent-local-v0:run:verify
+```
+
+The command authors one constrained request artifact, runs the direct local JSON agent request runner, and writes explicit response and summary artifacts.
 
 The verifier is available through:
 
@@ -905,6 +921,10 @@ The repository currently has:
 - `npm run tool:local-json-agent-local-v0-tool-pack:verify`;
 - `scripts/verify-local-json-agent-local-v0-acceptance-proof.mjs`;
 - `npm run proof:local-json-agent-local-v0-acceptance:verify`;
+- `scripts/local-json-agent-local-v0-single-command-runner.mjs`;
+- `npm run tool:local-json-agent-local-v0:run -- --request <path> --response <path> --summary <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>] [--scope-hints <scope:a,scope:b>]`;
+- `scripts/verify-local-json-agent-local-v0-single-command-runner.mjs`;
+- `npm run tool:local-json-agent-local-v0:run:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
@@ -914,6 +934,7 @@ The repository currently has:
 - CI `Proof Output Regression` step for local JSON agent request runner sample artifact set;
 - CI `Proof Output Regression` step for local JSON agent local v0 tool-pack artifact set;
 - CI `Proof Output Regression` step for local JSON agent local v0 acceptance proof;
+- CI `Proof Output Regression` step for local JSON agent local v0 single-command runner;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
@@ -1030,6 +1051,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-138-local-json-agent-local-v0-acceptance-proof.md`
 - `2026-04-28-139-state-next-step-alignment-after-local-json-agent-local-v0-acceptance-proof.md`
 - `2026-04-28-140-repo-first-verdict-after-local-json-agent-local-v0-acceptance-proof.md`
+- `2026-04-28-141-local-json-agent-local-v0-single-command-runner.md`
 
 ---
 
@@ -1068,13 +1090,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent local v0 single-command runner.
+**Bounded Pass:** state next-step alignment after local JSON agent local v0 single-command runner.
 
 Recommended branch:
 
-`feat/local-json-agent-local-v0-single-command-runner`
+`docs/state-next-step-alignment-after-local-json-agent-local-v0-single-command-runner`
 
-That implementation pass should add one bounded agent-facing local v0 command that authors a constrained request artifact, runs the direct local JSON agent request runner, and writes explicit response and summary artifacts.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the single-command runner merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
 
 Keep the local CLI bounded:
 

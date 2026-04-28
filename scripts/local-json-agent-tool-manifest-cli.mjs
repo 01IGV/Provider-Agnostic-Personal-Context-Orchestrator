@@ -44,6 +44,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-json-agent-request:run",
       "tool:local-json-agent-request-runner-sample:write",
       "tool:local-json-agent-local-v0-tool-pack:write",
+      "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
     ],
@@ -142,6 +143,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-json-agent-local-v0:run",
+        command:
+          "npm run tool:local-json-agent-local-v0:run -- --request <path> --response <path> --summary <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>] [--scope-hints <scope:a,scope:b>]",
+        purpose:
+          "Author one constrained local v0 agent request artifact, run it through the bounded local JSON agent request runner, and write explicit response and summary artifacts.",
+        output_contract_ref: "local-json-agent-local-v0-single-command-run/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -178,6 +189,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_agent_request_run_output_paths: true,
       writes_only_explicit_agent_request_runner_sample_artifact_paths: true,
       writes_only_explicit_local_v0_tool_pack_artifact_paths: true,
+      writes_only_explicit_local_v0_single_command_paths: true,
       arbitrary_source_loading_allowed: false,
       multi_request_runner_implemented: false
     },

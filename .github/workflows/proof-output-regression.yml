@@ -121,3 +121,6 @@ jobs:
 
       - name: Verify local JSON agent local v0 tool pack artifact set
         run: npm run tool:local-json-agent-local-v0-tool-pack:verify
+
+      - name: Verify local JSON agent local v0 acceptance proof
+        run: npm run proof:local-json-agent-local-v0-acceptance:verify

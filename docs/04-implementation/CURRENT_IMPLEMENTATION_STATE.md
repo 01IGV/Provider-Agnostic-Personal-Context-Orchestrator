@@ -11,13 +11,23 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent local v0 tool-pack artifact set merged and CI-verified.**
+**Local JSON agent local v0 acceptance proof in progress.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
 PR #76 merged as `b3b91d9` after GitHub Actions `Proof Output Regression` run `25056827271` passed, including the new `Verify local JSON agent local v0 tool pack artifact set` step.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local v0 acceptance proof that starts from the tool-pack artifacts and proves a self-serve AI-agent usage path.
+
+`feat/local-json-agent-local-v0-acceptance-proof` adds that proof.
+
+The verifier is available through:
+
+```bash
+npm run proof:local-json-agent-local-v0-acceptance:verify
+```
+
+The proof materializes the local v0 tool-pack artifacts, starts from the top-level tool-pack index, follows the discovered manifest/schema/sample refs, runs the bounded local JSON agent request runner against the discovered sample request, and verifies the accepted response/summary/default-deny posture.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -889,6 +899,8 @@ The repository currently has:
 - `npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output <path> --schema-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>`;
 - `scripts/verify-local-json-agent-local-v0-tool-pack-artifact-set.mjs`;
 - `npm run tool:local-json-agent-local-v0-tool-pack:verify`;
+- `scripts/verify-local-json-agent-local-v0-acceptance-proof.mjs`;
+- `npm run proof:local-json-agent-local-v0-acceptance:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
@@ -897,6 +909,7 @@ The repository currently has:
 - CI `Proof Output Regression` step for local JSON agent request runner;
 - CI `Proof Output Regression` step for local JSON agent request runner sample artifact set;
 - CI `Proof Output Regression` step for local JSON agent local v0 tool-pack artifact set;
+- CI `Proof Output Regression` step for local JSON agent local v0 acceptance proof;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
@@ -915,6 +928,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-132-local-json-agent-request-runner-sample-artifact-set.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-133-state-next-step-alignment-after-local-json-agent-request-runner-sample-artifact-set.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-134-repo-first-verdict-after-local-json-agent-request-runner-sample-artifact-set.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-138-local-json-agent-local-v0-acceptance-proof.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-135-local-json-agent-local-v0-tool-pack-artifact-set.md`.
 
 The repository still does **not** have:
@@ -1009,6 +1023,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-135-local-json-agent-local-v0-tool-pack-artifact-set.md`
 - `2026-04-28-136-state-next-step-alignment-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
 - `2026-04-28-137-repo-first-verdict-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
+- `2026-04-28-138-local-json-agent-local-v0-acceptance-proof.md`
 
 ---
 
@@ -1047,13 +1062,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent local v0 acceptance proof.
+**Bounded Pass:** state next-step alignment after local JSON agent local v0 acceptance proof.
 
 Recommended branch:
 
-`feat/local-json-agent-local-v0-acceptance-proof`
+`docs/state-next-step-alignment-after-local-json-agent-local-v0-acceptance-proof`
 
-That implementation pass should prove that an AI agent can start from the local v0 tool-pack artifacts, follow the machine-readable refs, and verify the bounded local request/response path without relying on chat instructions.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the acceptance proof merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
 
 Keep the local CLI bounded:
 

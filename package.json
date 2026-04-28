@@ -50,7 +50,9 @@
     "tool:local-json-agent-request:run": "npm run build:force && node scripts/local-json-agent-request-runner-cli.mjs",
     "tool:local-json-agent-request:run:verify": "npm run build:force && node scripts/verify-local-json-agent-request-runner.mjs",
     "tool:local-json-agent-request-runner-sample:write": "npm run build:force && node scripts/local-json-agent-request-runner-sample-cli.mjs",
-    "tool:local-json-agent-request-runner-sample:verify": "npm run build:force && node scripts/verify-local-json-agent-request-runner-sample-artifact-set.mjs"
+    "tool:local-json-agent-request-runner-sample:verify": "npm run build:force && node scripts/verify-local-json-agent-request-runner-sample-artifact-set.mjs",
+    "tool:local-json-agent-local-v0-tool-pack:write": "npm run build:force && node scripts/local-json-agent-local-v0-tool-pack-cli.mjs",
+    "tool:local-json-agent-local-v0-tool-pack:verify": "npm run build:force && node scripts/verify-local-json-agent-local-v0-tool-pack-artifact-set.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

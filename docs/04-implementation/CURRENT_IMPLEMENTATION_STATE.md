@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after local JSON agent request runner sample artifact set in progress.**
+**Local JSON agent local v0 tool-pack artifact set in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -407,6 +407,22 @@ local JSON agent local v0 tool-pack artifact set
 
 That pass should package the manifest, request/response schema, sample request, sample response, sample run summary, sample index, and a top-level tool-pack index into explicit artifact paths for AI-agent inspection.
 
+`feat/local-json-agent-local-v0-tool-pack-artifact-set` adds that complete local v0 tool-pack command.
+
+The command is available through:
+
+```bash
+npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output local-json-agent-tool-manifest.json --schema-output local-json-agent-request-response-schema.json --sample-request-output agent-context-request.sample.json --sample-response-output verified-protocol-surface-adapter.sample.response.json --sample-summary-output local-json-agent-request-run.sample.summary.json --sample-index-output local-json-agent-request-runner.sample.index.json --tool-pack-index-output local-json-agent-local-v0-tool-pack.index.json
+```
+
+The command writes only explicitly provided tool-pack artifact paths and packages manifest, schema, sample request, sample response, sample run summary, sample index, and top-level tool-pack index artifacts for AI-agent inspection.
+
+The verifier is available through:
+
+```bash
+npm run tool:local-json-agent-local-v0-tool-pack:verify
+```
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -740,6 +756,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON agent handoff bundle consumption CLI boundary;
 - local JSON agent request runner from explicit request artifact;
 - local JSON agent request runner sample artifact set;
+- local JSON agent local v0 tool-pack artifact set;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -862,6 +879,10 @@ The repository currently has:
 - `npm run tool:local-json-agent-request-runner-sample:write -- --request-output <path> --response-output <path> --summary-output <path> --index-output <path>`;
 - `scripts/verify-local-json-agent-request-runner-sample-artifact-set.mjs`;
 - `npm run tool:local-json-agent-request-runner-sample:verify`;
+- `scripts/local-json-agent-local-v0-tool-pack-cli.mjs`;
+- `npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output <path> --schema-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>`;
+- `scripts/verify-local-json-agent-local-v0-tool-pack-artifact-set.mjs`;
+- `npm run tool:local-json-agent-local-v0-tool-pack:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
@@ -869,6 +890,7 @@ The repository currently has:
 - CI `Proof Output Regression` step for local JSON agent handoff bundle consumption CLI boundary;
 - CI `Proof Output Regression` step for local JSON agent request runner;
 - CI `Proof Output Regression` step for local JSON agent request runner sample artifact set;
+- CI `Proof Output Regression` step for local JSON agent local v0 tool-pack artifact set;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
@@ -887,6 +909,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-132-local-json-agent-request-runner-sample-artifact-set.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-133-state-next-step-alignment-after-local-json-agent-request-runner-sample-artifact-set.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-134-repo-first-verdict-after-local-json-agent-request-runner-sample-artifact-set.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-135-local-json-agent-local-v0-tool-pack-artifact-set.md`.
 
 The repository still does **not** have:
 
@@ -997,7 +1020,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, and explicit sample artifact set output paths;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, and explicit local v0 tool-pack artifact output paths;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1015,13 +1038,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent local v0 tool-pack artifact set.
+**Bounded Pass:** state next-step alignment after local JSON agent local v0 tool-pack artifact set.
 
 Recommended branch:
 
-`feat/local-json-agent-local-v0-tool-pack-artifact-set`
+`docs/state-next-step-alignment-after-local-json-agent-local-v0-tool-pack-artifact-set`
 
-That implementation pass should write a complete local v0 tool-pack artifact set to explicit paths: manifest, schema, sample request, sample response, sample run summary, sample index, and top-level tool-pack index.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the local v0 tool-pack merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
 
 Keep the local CLI bounded:
 

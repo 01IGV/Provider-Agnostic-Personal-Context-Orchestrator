@@ -20,6 +20,7 @@ const assertions = {
     manifest.recommended_sequence.includes("tool:local-json-agent-handoff-bundle:consume") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-request:run") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-request-runner-sample:write") &&
+    manifest.recommended_sequence.includes("tool:local-json-agent-local-v0-tool-pack:write") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
   manifest_lists_required_commands:
@@ -32,6 +33,7 @@ const assertions = {
     commandRefs.includes("tool:local-json-agent-handoff-bundle:consume") &&
     commandRefs.includes("tool:local-json-agent-request:run") &&
     commandRefs.includes("tool:local-json-agent-request-runner-sample:write") &&
+    commandRefs.includes("tool:local-json-agent-local-v0-tool-pack:write") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
   manifest_points_to_schema_contract:
@@ -58,6 +60,7 @@ const assertions = {
     manifest.local_io_policy.writes_only_explicit_handoff_bundle_consumption_output_path === true &&
     manifest.local_io_policy.writes_only_explicit_agent_request_run_output_paths === true &&
     manifest.local_io_policy.writes_only_explicit_agent_request_runner_sample_artifact_paths === true &&
+    manifest.local_io_policy.writes_only_explicit_local_v0_tool_pack_artifact_paths === true &&
     manifest.local_io_policy.arbitrary_source_loading_allowed === false &&
     manifest.local_io_policy.multi_request_runner_implemented === false,
   default_deny_posture_preserved:

@@ -4,6 +4,7 @@ import {
   ACTIVE_BOUNDARY_CHAIN_SCOPE_ID,
   DEFAULT_LOCAL_V0_SOURCE_SCOPE_ID,
   PROJECT_ORIENTATION_SCOPE_ID,
+  REPO_WORK_CONTEXT_SCOPE_ID,
   createDeterministicLocalContextSourceAdapterContracts,
   createLocalV0SourceCatalog,
   selectLocalV0SourceCatalogItems
@@ -17,6 +18,9 @@ const allSelectedItems = selectLocalV0SourceCatalogItems(requestId, [
 const activeBoundaryItems = selectLocalV0SourceCatalogItems(requestId, [
   ACTIVE_BOUNDARY_CHAIN_SCOPE_ID
 ]);
+const repoWorkContextItems = selectLocalV0SourceCatalogItems(requestId, [
+  REPO_WORK_CONTEXT_SCOPE_ID
+]);
 const unknownScopeItems = selectLocalV0SourceCatalogItems(requestId, ["scope:unknown"]);
 const adapterContracts = createDeterministicLocalContextSourceAdapterContracts();
 const adapterSourceItems = adapterContracts.adapter_result.source_items;
@@ -28,10 +32,11 @@ const assertions = {
     catalog.catalog_boundary === "contract_only_allowlisted_local_source_catalog" &&
     catalog.intended_consumer === "ai_agent" &&
     catalog.entry_count === catalog.entries.length &&
-    catalog.entry_count === 2,
+    catalog.entry_count === 3,
   catalog_lists_supported_scopes:
     catalog.supported_scope_ids.includes(PROJECT_ORIENTATION_SCOPE_ID) &&
     catalog.supported_scope_ids.includes(ACTIVE_BOUNDARY_CHAIN_SCOPE_ID) &&
+    catalog.supported_scope_ids.includes(REPO_WORK_CONTEXT_SCOPE_ID) &&
     catalog.default_scope_id === DEFAULT_LOCAL_V0_SOURCE_SCOPE_ID,
   catalog_entries_are_machine_readable:
     catalog.entries.every((entry) =>
@@ -78,6 +83,17 @@ const assertions = {
     activeBoundaryItems[0].scope_id === ACTIVE_BOUNDARY_CHAIN_SCOPE_ID &&
     activeBoundaryItems[0].source_ref ===
       "local://deterministic/context/active-boundary-chain",
+  repo_work_context_scope_is_allowlisted_and_deterministic:
+    repoWorkContextItems.length === 1 &&
+    repoWorkContextItems[0].scope_id === REPO_WORK_CONTEXT_SCOPE_ID &&
+    repoWorkContextItems[0].source_ref ===
+      "local://deterministic/context/repo-work-context" &&
+    repoWorkContextItems[0].source_kind === "local_fixture_context" &&
+    repoWorkContextItems[0].content_digest ===
+      "sha256:local-deterministic-repo-work-context-v1" &&
+    repoWorkContextItems[0].content.live_repo_file_reads_allowed_now === false &&
+    repoWorkContextItems[0].content.arbitrary_file_paths_allowed_now === false &&
+    repoWorkContextItems[0].content.runtime_execution_allowed_now === false,
   unknown_scope_does_not_grant_new_access:
     unknownScopeItems.length === catalog.entries.length &&
     unknownScopeItems.map((item) => item.source_ref).join("|") ===

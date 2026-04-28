@@ -9,6 +9,7 @@ import type {
 export const DEFAULT_LOCAL_V0_SOURCE_SCOPE_ID = "scope:deterministic-agent-context-request";
 export const PROJECT_ORIENTATION_SCOPE_ID = "scope:project-orientation";
 export const ACTIVE_BOUNDARY_CHAIN_SCOPE_ID = "scope:active-boundary-chain";
+export const REPO_WORK_CONTEXT_SCOPE_ID = "scope:repo-work-context";
 
 const sourceCatalogExecutionPosture = (): LocalV0SourceCatalogExecutionPostureShape => ({
   contract_only: true,
@@ -117,6 +118,27 @@ export const createLocalV0SourceCatalog = (request_id: string): LocalV0SourceCat
           "local v0 single-command runner"
         ],
         bounded_context_materialization: "local deterministic contract only"
+      }
+    }),
+    createCatalogEntry({
+      request_id,
+      scope_id: REPO_WORK_CONTEXT_SCOPE_ID,
+      source_ref: "local://deterministic/context/repo-work-context",
+      source_kind: "local_fixture_context",
+      deterministic_order: 3,
+      content_digest: "sha256:local-deterministic-repo-work-context-v1",
+      description:
+        "Bounded repo-work context for self-dogfooding the AI-facing local v0 tool path.",
+      content_shape_ref: "local-v0-source-content/repo-work-context/v1",
+      content: {
+        repo_role: "source_of_truth_for_agent_onboarding_and_next_pass_selection",
+        current_capability:
+          "agent can inspect and replay local v0 source-catalog-guided command sample artifacts",
+        next_safe_pass: "local v0 repo-work context source catalog contracts",
+        self_dogfooding_posture: "allowlisted deterministic catalog scope only",
+        live_repo_file_reads_allowed_now: false,
+        arbitrary_file_paths_allowed_now: false,
+        runtime_execution_allowed_now: false
       }
     })
   ];

@@ -109,7 +109,20 @@ The next bounded pass should be a repo-first verdict after the guided command sa
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is the first local v0 repo-work context source catalog contract.
 
-`feat/local-v0-repo-work-context-source-catalog-contracts` should add a narrowly allowlisted, deterministic repo-work context scope to the local v0 source catalog so the system can begin self-dogfooding development context without granting arbitrary file access.
+`feat/local-v0-repo-work-context-source-catalog-contracts` adds that narrowly allowlisted, deterministic repo-work context scope to the local v0 source catalog so the system can begin self-dogfooding development context without granting arbitrary file access.
+
+The new scope is:
+
+```text
+scope:repo-work-context
+```
+
+The verifier proves that the new scope is discoverable from the source catalog and usable through the guided command path while preserving default-deny execution posture:
+
+```bash
+npm run contract:local-v0-source-catalog:verify
+npm run tool:local-v0-source-catalog-guided:verify
+```
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -190,7 +203,8 @@ npm run tool:local-json:run -- --request request.json --response response.json -
 Known selectable local fixture scopes now include:
 
 - `scope:project-orientation`;
-- `scope:active-boundary-chain`.
+- `scope:active-boundary-chain`;
+- `scope:repo-work-context`.
 
 The new verifier proves that a scoped request selects the matching local fixture item and bounded context package item without opening network, provider, persistence, model, permission, or contour execution:
 
@@ -1142,6 +1156,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-157-local-v0-source-catalog-guided-command-sample-artifacts.md`
 - `2026-04-28-158-state-next-step-alignment-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
 - `2026-04-28-159-repo-first-verdict-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
+- `2026-04-28-160-local-v0-repo-work-context-source-catalog-contracts.md`
 
 ---
 
@@ -1182,13 +1197,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** first local v0 repo-work context source catalog contracts.
+**Bounded Pass:** state alignment after local v0 repo-work context source catalog contracts.
 
 Recommended branch:
 
-`feat/local-v0-repo-work-context-source-catalog-contracts`
+`docs/state-next-step-alignment-after-local-v0-repo-work-context-source-catalog-contracts`
 
-That implementation should add one narrowly scoped repo-work context catalog entry for agent self-dogfooding, but only as deterministic contract/source-catalog data and verifier coverage.
+After merge and CI observation, the next pass should align state docs with the merged repo-work context source catalog contract before choosing the next implementation direction.
 
 Keep the local CLI bounded:
 

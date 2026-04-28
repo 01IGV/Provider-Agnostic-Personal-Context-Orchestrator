@@ -128,6 +128,10 @@ PR #101 merged as `7888e51` after GitHub Actions `Proof Output Regression` PR ru
 
 The next bounded pass should be a repo-first verdict after the first repo-work context source catalog scope, deciding whether the next implementation should move from deterministic inline repo-work context to a still-bounded repo-work artifact/sample path.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local v0 repo-work context guided sample artifact.
+
+`feat/local-v0-repo-work-context-guided-sample-artifact` should materialize a replayable sample artifact for `scope:repo-work-context` through the existing source-catalog-guided command path. This should make the repo-work context self-dogfooding path inspectable by an AI agent without granting direct repo file access.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1162,6 +1166,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-159-repo-first-verdict-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
 - `2026-04-28-160-local-v0-repo-work-context-source-catalog-contracts.md`
 - `2026-04-28-161-state-next-step-alignment-after-local-v0-repo-work-context-source-catalog-contracts.md`
+- `2026-04-28-162-repo-first-verdict-after-local-v0-repo-work-context-source-catalog-contracts.md`
 
 ---
 
@@ -1202,13 +1207,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local v0 repo-work context source catalog contracts.
+**Bounded Pass:** local v0 repo-work context guided sample artifact.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-repo-work-context-source-catalog-contracts`
+`feat/local-v0-repo-work-context-guided-sample-artifact`
 
-The verdict should decide the next safe implementation direction after the first self-dogfooding scope is available through the source catalog and guided command path.
+That implementation should produce an explicit artifact set for requesting `scope:repo-work-context` through the existing source-catalog-guided command path, without giving the agent direct repo file access.
 
 Keep the local CLI bounded:
 
@@ -1216,6 +1221,7 @@ Keep the local CLI bounded:
 - do not read live repo files as runtime data;
 - do not allow user-selected source paths;
 - keep the repo-work context scope allowlisted, deterministic, and machine-verifiable;
+- write only explicitly provided sample artifact output paths;
 - do not add MCP/API server behavior, runtime handlers, provider SDK calls, concrete persistence adapters, model calls, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.

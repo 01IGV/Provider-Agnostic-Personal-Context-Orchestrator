@@ -11,7 +11,11 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent local v0 tool-pack artifact set in progress.**
+**Local JSON agent local v0 tool-pack artifact set merged and CI-verified.**
+
+`main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
+
+PR #76 merged as `b3b91d9` after GitHub Actions `Proof Output Regression` run `25056827271` passed, including the new `Verify local JSON agent local v0 tool pack artifact set` step.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1000,6 +1004,8 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-120-local-json-agent-handoff-bundle-writer.md`
 - `2026-04-28-121-state-next-step-alignment-after-local-json-agent-handoff-bundle-writer.md`
 - `2026-04-28-122-repo-first-verdict-after-local-json-agent-handoff-bundle-writer.md`
+- `2026-04-28-135-local-json-agent-local-v0-tool-pack-artifact-set.md`
+- `2026-04-28-136-state-next-step-alignment-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
 
 ---
 
@@ -1038,13 +1044,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after local JSON agent local v0 tool-pack artifact set.
+**Bounded Pass:** repo-first verdict after local JSON agent local v0 tool-pack artifact set.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-local-v0-tool-pack-artifact-set`
+`docs/repo-first-verdict-after-local-json-agent-local-v0-tool-pack-artifact-set`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the local v0 tool-pack merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
+That docs-only pass should decide the next real-life local v0 usability step after the AI-agent can inspect a complete local tool pack.
 
 Keep the local CLI bounded:
 

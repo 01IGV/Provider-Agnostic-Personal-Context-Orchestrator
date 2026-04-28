@@ -83,7 +83,7 @@ Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm r
 
 Post-merge verification note (April 28, 2026): local `npm run proof:local-json-example-artifact-round-trip:verify` passed for `feat/local-json-example-artifact-round-trip-proof`; PR #55 passed GitHub Actions `Proof Output Regression` run `25047534917` and merged to `main` as `5195fc7`. The proof feeds materialized request artifacts through the existing bounded local JSON runner and does not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
-Feature-branch verification note (April 28, 2026): local `npm run tool:local-json-agent-tool-manifest:verify` and `npm run tool:local-json-agent-tool-manifest:print` passed for `feat/local-json-agent-tool-manifest`; the manifest is read-only tool discovery and does not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
+Post-merge verification note (April 28, 2026): local `npm run tool:local-json-agent-tool-manifest:verify` and `npm run tool:local-json-agent-tool-manifest:print` passed for `feat/local-json-agent-tool-manifest`; PR #57 passed GitHub Actions `Proof Output Regression` run `25048097681` and merged to `main` as `8d73cf2`. The manifest is read-only tool discovery and does not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
 ---
 

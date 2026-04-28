@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent tool manifest implemented on feature branch.**
+**Local JSON agent tool manifest merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -223,7 +223,7 @@ It:
 - compares the actual response observation summary against the materialized expected summary;
 - preserves default-deny runtime posture.
 
-Feature branch `feat/local-json-agent-tool-manifest` now adds a compact machine-readable manifest for AI agents.
+`main` now adds a compact machine-readable manifest for AI agents.
 
 The manifest is available through:
 
@@ -483,6 +483,8 @@ GitHub Actions observation note:
 - PR #53 was merged to `main` as `2775c29`.
 - PR #55 for `feat/local-json-example-artifact-round-trip-proof` passed GitHub Actions `Proof Output Regression` run `25047534917`;
 - PR #55 was merged to `main` as `5195fc7`.
+- PR #57 for `feat/local-json-agent-tool-manifest` passed GitHub Actions `Proof Output Regression` run `25048097681`;
+- PR #57 was merged to `main` as `8d73cf2`.
 
 Runtime remains closed:
 

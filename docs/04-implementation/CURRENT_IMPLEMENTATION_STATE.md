@@ -35,6 +35,10 @@ The latest docs-only verdict selected local v0 source catalog contracts as the n
 
 PR #85 merged as `4d2465f` after local verification passed. The GitHub merge gate accepted the PR, but direct check-run observation for the PR head was not exposed through the connector/API in this session.
 
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is publishing the local v0 source catalog as an explicit local v0 tool-pack artifact for AI-agent inspection.
+
+`feat/local-v0-source-catalog-tool-pack-artifact` should add that artifact path without adding arbitrary source loading or runtime behavior.
+
 The verifier is available through:
 
 ```bash
@@ -1077,6 +1081,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-143-repo-first-verdict-after-local-json-agent-local-v0-single-command-runner.md`
 - `2026-04-28-144-local-v0-source-catalog-contracts.md`
 - `2026-04-28-145-state-next-step-alignment-after-local-v0-source-catalog-contracts.md`
+- `2026-04-28-146-repo-first-verdict-after-local-v0-source-catalog-contracts.md`
 
 ---
 
@@ -1116,13 +1121,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local v0 source catalog contracts.
+**Bounded Pass:** local v0 source catalog tool-pack artifact.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-source-catalog-contracts`
+`feat/local-v0-source-catalog-tool-pack-artifact`
 
-That docs-only verdict should inspect `main` after the source catalog merge and decide the next bounded implementation step toward a real-life local v0 AI-agent usage path.
+That implementation pass should make the allowlisted source catalog discoverable through the local v0 tool-pack artifacts so an AI agent can inspect available scopes before choosing `--scope-hints`.
 
 Keep the local CLI bounded:
 

@@ -39,6 +39,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-json-agent-tool-manifest:write",
       "tool:local-json-example-artifacts:write",
       "tool:local-json-agent-handoff-bundle:write",
+      "proof:local-json-agent-handoff-bundle-round-trip:verify",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
     ],
@@ -84,6 +85,15 @@ export const readLocalJsonAgentToolManifest = () => {
         purpose:
           "Write manifest, schema, request example, response summary example, examples summary, and bundle summary artifacts to explicitly provided local paths.",
         output_contract_ref: "local-json-agent-handoff-bundle/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
+        command_ref: "proof:local-json-agent-handoff-bundle-round-trip:verify",
+        command: "npm run proof:local-json-agent-handoff-bundle-round-trip:verify",
+        purpose:
+          "Verify a materialized handoff bundle request example round-trips through the bounded local JSON runner.",
+        output_contract_ref: "local-json-agent-handoff-bundle-round-trip-proof/v1",
         file_read_allowed: true,
         file_write_allowed: true
       },

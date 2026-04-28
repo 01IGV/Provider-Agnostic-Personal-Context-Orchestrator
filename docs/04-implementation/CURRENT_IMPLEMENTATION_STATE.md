@@ -160,7 +160,9 @@ The latest repo-first verdict confirms that the strongest next bounded implement
 
 `feat/local-v0-source-materialization-receipt-contracts` adds `local-v0-source-materialization-receipt/v1` to the local deterministic bounded context response payload. The receipt records requested scope ids, selected scope ids/source refs, catalog ref, materialization boundary, provenance/permission/audit refs, selected receipt items, and explicit default-deny posture including no direct agent repo file access and no live source reads. Local JSON response observation summaries now expose the receipt id/ref/boundary and denied file-read flags, and the repo-work guided sample verifier proves the receipt for `scope:repo-work-context`.
 
-The next bounded pass should be state alignment after the local v0 source materialization receipt contracts.
+PR #110 merged as `bae4dd3` after GitHub Actions `Proof Output Regression` PR run `25071817144` passed, including `Verify local deterministic context source adapter`, `Verify local JSON request-response runner shape`, and `Verify local v0 repo-work context guided sample artifacts`.
+
+The next bounded pass should be a repo-first verdict after the local v0 source materialization receipt contracts, deciding whether the next implementation should move toward a bounded real-source adapter contract or further harden the local v0 agent tool handoff path.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1209,6 +1211,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-167-state-next-step-alignment-after-local-v0-repo-work-context-current-state-refresh.md`
 - `2026-04-28-168-repo-first-verdict-after-local-v0-repo-work-context-current-state-refresh.md`
 - `2026-04-28-169-local-v0-source-materialization-receipt-contracts.md`
+- `2026-04-28-170-state-next-step-alignment-after-local-v0-source-materialization-receipt-contracts.md`
 
 ---
 
@@ -1249,13 +1252,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state alignment after local v0 source materialization receipt contracts.
+**Bounded Pass:** repo-first verdict after local v0 source materialization receipt contracts.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-source-materialization-receipt-contracts`
+`docs/repo-first-verdict-after-local-v0-source-materialization-receipt-contracts`
 
-After merge and CI observation, align state docs with the new source materialization receipt before choosing the next implementation direction.
+The verdict should decide the next safe implementation direction now that source selection is explicit, receipt-backed, and machine-verified for the local v0 agent-facing path.
 
 Keep the local CLI bounded:
 

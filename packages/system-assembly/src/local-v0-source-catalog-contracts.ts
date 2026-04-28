@@ -126,7 +126,7 @@ export const createLocalV0SourceCatalog = (request_id: string): LocalV0SourceCat
       source_ref: "local://deterministic/context/repo-work-context",
       source_kind: "local_fixture_context",
       deterministic_order: 3,
-      content_digest: "sha256:local-deterministic-repo-work-context-v1",
+      content_digest: "sha256:local-deterministic-repo-work-context-v2",
       description:
         "Bounded repo-work context for self-dogfooding the AI-facing local v0 tool path.",
       content_shape_ref: "local-v0-source-content/repo-work-context/v1",
@@ -134,8 +134,13 @@ export const createLocalV0SourceCatalog = (request_id: string): LocalV0SourceCat
         repo_role: "source_of_truth_for_agent_onboarding_and_next_pass_selection",
         current_capability:
           "agent can inspect and replay local v0 source-catalog-guided command sample artifacts",
-        next_safe_pass: "local v0 repo-work context source catalog contracts",
+        current_agent_visible_path:
+          "scope:repo-work-context through local v0 source catalog guided sample artifacts",
+        latest_merged_repo_work_artifact_pass:
+          "local v0 repo-work context guided sample artifact",
+        next_safe_pass: "local v0 repo-work context current-state refresh",
         self_dogfooding_posture: "allowlisted deterministic catalog scope only",
+        agent_direct_repo_file_access_allowed_now: false,
         live_repo_file_reads_allowed_now: false,
         arbitrary_file_paths_allowed_now: false,
         runtime_execution_allowed_now: false

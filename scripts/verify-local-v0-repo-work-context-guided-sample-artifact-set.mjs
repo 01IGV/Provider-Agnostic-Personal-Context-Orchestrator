@@ -103,10 +103,20 @@ const assertions = {
     guidedObservationSummary.selected_scope_ids.join("|") === selectedCatalogEntry?.scope_id &&
     guidedObservationSummary.selected_source_refs.join("|") === selectedCatalogEntry?.source_ref,
   repo_work_context_is_not_direct_repo_file_access:
+    selectedCatalogEntry?.source_item_template.content.agent_direct_repo_file_access_allowed_now ===
+      false &&
     selectedCatalogEntry?.source_item_template.content.live_repo_file_reads_allowed_now === false &&
     selectedCatalogEntry?.source_item_template.content.arbitrary_file_paths_allowed_now === false &&
     selectedCatalogEntry?.source_item_template.content.runtime_execution_allowed_now === false &&
     guidedIndexArtifact.arbitrary_source_loading_allowed === false,
+  repo_work_context_payload_is_current:
+    selectedCatalogEntry?.source_item_template.content.current_agent_visible_path ===
+      "scope:repo-work-context through local v0 source catalog guided sample artifacts" &&
+    selectedCatalogEntry?.source_item_template.content.latest_merged_repo_work_artifact_pass ===
+      "local v0 repo-work context guided sample artifact" &&
+    selectedCatalogEntry?.source_item_template.content.next_safe_pass ===
+      "local v0 repo-work context current-state refresh" &&
+    selectedCatalogEntry?.content_digest === "sha256:local-deterministic-repo-work-context-v2",
   default_deny_posture_preserved:
     guidedIndexArtifact.runtime_permission_granted === false &&
     guidedIndexArtifact.actual_contour_execution_allowed_now === false &&

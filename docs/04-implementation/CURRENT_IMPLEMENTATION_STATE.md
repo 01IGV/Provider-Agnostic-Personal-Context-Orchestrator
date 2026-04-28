@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent tool manifest merged to main.**
+**Local JSON agent tool manifest artifact writer in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -248,6 +248,28 @@ The new verifier proves that the manifest is agent-readable and default-deny:
 npm run tool:local-json-agent-tool-manifest:verify
 ```
 
+`feat/local-json-agent-tool-manifest-artifact-writer` adds a bounded manifest artifact writer.
+
+The artifact writer is available through:
+
+```bash
+npm run tool:local-json-agent-tool-manifest:write -- --manifest-output local-json-agent-tool-manifest.json
+```
+
+The artifact writer:
+
+- writes only the explicitly provided manifest output path;
+- materializes the same agent-readable manifest contract;
+- records `local-json-agent-tool-manifest-artifact/v1`;
+- preserves default-deny runtime posture;
+- does not register MCP/API tools, routes, resources, controllers, or handlers.
+
+The new verifier proves the written manifest artifact remains agent-readable, path-bounded, and default-deny:
+
+```bash
+npm run tool:local-json-agent-tool-manifest-artifact:verify
+```
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -455,6 +477,7 @@ Observed local verification results:
 - `local_json_example_artifact_round_trip_proof_verified`.
 - `local_json_agent_tool_manifest_verified`.
 - local agent tool manifest print returned `local_json_agent_tool_manifest_ready`.
+- `local_json_agent_tool_manifest_artifact_writer_verified`.
 
 GitHub Actions observation note:
 
@@ -568,6 +591,8 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON agent tool manifest;
 - local verification green for all current proof commands.
 
+This feature branch extends that state with a local JSON agent tool manifest artifact writer.
+
 All of this remains execution-free.
 
 ---
@@ -665,11 +690,16 @@ The repository currently has:
 - CI `Proof Output Regression` step for local JSON example artifact round-trip proof;
 - `scripts/local-json-agent-tool-manifest-cli.mjs`;
 - `npm run tool:local-json-agent-tool-manifest:print`;
+- `npm run tool:local-json-agent-tool-manifest:write -- --manifest-output <path>`;
 - `scripts/verify-local-json-agent-tool-manifest.mjs`;
 - `npm run tool:local-json-agent-tool-manifest:verify`;
+- `scripts/verify-local-json-agent-tool-manifest-artifact-writer.mjs`;
+- `npm run tool:local-json-agent-tool-manifest-artifact:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
+- CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
+- `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`.
 
 The repository still does **not** have:
 
@@ -773,7 +803,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to one fixture input path and one fixture output path;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, and one explicit manifest artifact output path;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -791,15 +821,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent tool manifest artifact writer.
+**Bounded Pass:** state and next-step alignment after local JSON agent tool manifest artifact writer.
 
 Recommended branch:
 
-`feat/local-json-agent-tool-manifest-artifact-writer`
+`docs/state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer`
 
-That pass should let an AI agent write the manifest to an explicitly provided local artifact path, preserving the same bounded local file IO posture.
+That pass should record the merge/CI result for the manifest artifact writer and decide whether the next implementation should produce a fuller local agent handoff bundle.
 
-After the manifest, the useful next step is making the local agent-facing tool manifest materializable as a handoff artifact, without adding MCP/API runtime or arbitrary source loading.
+After this pass, the likely useful next implementation step is a bounded local agent handoff bundle writer that materializes manifest/schema/example artifacts together, still without adding MCP/API runtime or arbitrary source loading.
 
 Keep the local CLI bounded:
 

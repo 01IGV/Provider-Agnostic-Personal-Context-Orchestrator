@@ -71,7 +71,11 @@ export const writeLocalV0SourceCatalogGuidedCommandSampleArtifactSet = ({
   guided_request_output_path,
   guided_response_output_path,
   guided_summary_output_path,
-  guided_index_output_path
+  guided_index_output_path,
+  scope_id = "scope:active-boundary-chain",
+  task_signal = "source catalog guided command sample bounded planning request",
+  verification_result = "local_v0_source_catalog_guided_command_sample_artifact_set_written",
+  output_contract_ref = "local-v0-source-catalog-guided-command-sample-artifact-set/v1"
 }) => {
   const toolPackWriteResult = writeLocalJsonAgentLocalV0ToolPackArtifactSet({
     manifest_output_path,
@@ -85,11 +89,11 @@ export const writeLocalV0SourceCatalogGuidedCommandSampleArtifactSet = ({
   });
   const sourceCatalogArtifact = readJson(source_catalog_output_path);
   const selectedCatalogEntry = sourceCatalogArtifact.entries.find(
-    (entry) => entry.scope_id === "scope:active-boundary-chain"
+    (entry) => entry.scope_id === scope_id
   );
 
   if (!selectedCatalogEntry) {
-    throw new Error("source catalog missing scope:active-boundary-chain sample entry");
+    throw new Error(`source catalog missing ${scope_id} sample entry`);
   }
 
   const guidedCommandResult = runLocalV0SourceCatalogGuidedCommand({
@@ -98,7 +102,7 @@ export const writeLocalV0SourceCatalogGuidedCommandSampleArtifactSet = ({
     response_path: guided_response_output_path,
     summary_path: guided_summary_output_path,
     scope_hint: selectedCatalogEntry?.scope_id,
-    task_signal: "source catalog guided command sample bounded planning request",
+    task_signal,
     read_mode_hint: "planning",
     depth_hint: "standard"
   });
@@ -106,8 +110,8 @@ export const writeLocalV0SourceCatalogGuidedCommandSampleArtifactSet = ({
   const guidedSummaryArtifact = readJson(guided_summary_output_path);
   const guidedObservationSummary = guidedResponseArtifact.response_observation_summary_json;
   const guidedIndexArtifact = {
-    verification_result: "local_v0_source_catalog_guided_command_sample_artifact_set_written",
-    output_contract_ref: "local-v0-source-catalog-guided-command-sample-artifact-set/v1",
+    verification_result,
+    output_contract_ref,
     intended_consumer: "ai_agent",
     sample_command:
       "npm run tool:local-v0-source-catalog-guided:run -- --tool-pack-index <tool-pack-index-path> --request <guided-request-output-path> --response <guided-response-output-path> --summary <guided-summary-output-path> --scope-hint <scope:id>",
@@ -134,6 +138,7 @@ export const writeLocalV0SourceCatalogGuidedCommandSampleArtifactSet = ({
     },
     selected_scope_id: guidedCommandResult.selected_scope_id,
     selected_source_ref: guidedCommandResult.selected_source_ref,
+    requested_sample_scope_id: selectedCatalogEntry.scope_id,
     guided_run_selected_scope_ids: guidedCommandResult.guided_run_selected_scope_ids,
     guided_run_selected_source_refs: guidedCommandResult.guided_run_selected_source_refs,
     safe_agent_use_hints: guidedSummaryArtifact.safe_agent_use_hints,

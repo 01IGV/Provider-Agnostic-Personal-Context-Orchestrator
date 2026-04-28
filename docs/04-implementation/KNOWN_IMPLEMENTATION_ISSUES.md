@@ -79,7 +79,7 @@ Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm r
 
 Post-merge verification note (April 28, 2026): local `npm run tool:schema-aware-local-json-examples:verify` passed for `feat/schema-aware-local-json-fixture-examples`; PR #51 passed GitHub Actions `Proof Output Regression` run `25041839791` and merged to `main` as `f9dfbea`. The examples are generated from the existing bounded local JSON path and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
-Feature-branch verification note (April 28, 2026): local `npm run typecheck`, `npm run tool:schema-aware-local-json-examples:verify`, `npm run tool:local-json-example-artifacts:verify`, and a `npm run tool:local-json-example-artifacts:write` smoke passed for `feat/local-json-example-artifact-materialization`; artifact writes are limited to explicitly provided output paths and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
+Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm run tool:schema-aware-local-json-examples:verify`, `npm run tool:local-json-example-artifacts:verify`, and a `npm run tool:local-json-example-artifacts:write` smoke passed for `feat/local-json-example-artifact-materialization`; PR #53 passed GitHub Actions `Proof Output Regression` run `25042383206` and merged to `main` as `2775c29`. Artifact writes are limited to explicitly provided output paths and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
 ---
 

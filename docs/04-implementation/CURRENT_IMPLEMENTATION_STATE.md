@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON example artifact materialization implemented on feature branch.**
+**Local JSON example artifact materialization merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -188,7 +188,7 @@ The new verifier proves that the examples match the exported schema and actual l
 npm run tool:schema-aware-local-json-examples:verify
 ```
 
-Feature branch `feat/local-json-example-artifact-materialization` now lets an AI agent write schema-aware local JSON examples to explicitly provided artifact paths.
+`main` now lets an AI agent write schema-aware local JSON examples to explicitly provided artifact paths.
 
 The artifact writer is available through:
 
@@ -434,6 +434,8 @@ GitHub Actions observation note:
 - PR #49 was merged to `main` as `9c7bc45`.
 - PR #51 for `feat/schema-aware-local-json-fixture-examples` passed GitHub Actions `Proof Output Regression` run `25041839791`;
 - PR #51 was merged to `main` as `f9dfbea`.
+- PR #53 for `feat/local-json-example-artifact-materialization` passed GitHub Actions `Proof Output Regression` run `25042383206`;
+- PR #53 was merged to `main` as `2775c29`.
 
 Runtime remains closed:
 

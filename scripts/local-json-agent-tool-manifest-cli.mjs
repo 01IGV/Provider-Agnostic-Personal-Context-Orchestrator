@@ -42,6 +42,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "proof:local-json-agent-handoff-bundle-round-trip:verify",
       "tool:local-json-agent-handoff-bundle:consume",
       "tool:local-json-agent-request:run",
+      "tool:local-json-agent-request-runner-sample:write",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
     ],
@@ -120,6 +121,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-json-agent-request-runner-sample:write",
+        command:
+          "npm run tool:local-json-agent-request-runner-sample:write -- --request-output <path> --response-output <path> --summary-output <path> --index-output <path>",
+        purpose:
+          "Write a deterministic sample request, response, run summary, and sample index artifact set for the direct local JSON agent request runner.",
+        output_contract_ref: "local-json-agent-request-runner-sample-artifact-set/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -154,6 +165,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_handoff_bundle_artifact_paths: true,
       writes_only_explicit_handoff_bundle_consumption_output_path: true,
       writes_only_explicit_agent_request_run_output_paths: true,
+      writes_only_explicit_agent_request_runner_sample_artifact_paths: true,
       arbitrary_source_loading_allowed: false,
       multi_request_runner_implemented: false
     },

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent handoff bundle round-trip proof in progress.**
+**Local JSON agent handoff bundle round-trip proof merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -555,6 +555,8 @@ GitHub Actions observation note:
 - PR #59 was merged to `main` as `7d49dd0`.
 - PR #61 for `feat/local-json-agent-handoff-bundle-writer` passed GitHub Actions `Proof Output Regression` run `25049448293`;
 - PR #61 was merged to `main` as `ef90a1a`.
+- PR #64 for `feat/local-json-agent-handoff-bundle-round-trip-proof` passed GitHub Actions `Proof Output Regression` run `25050820253`;
+- PR #64 was merged to `main` as `c5e9bc7`.
 
 Runtime remains closed:
 
@@ -759,7 +761,8 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-120-local-json-agent-handoff-bundle-writer.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-121-state-next-step-alignment-after-local-json-agent-handoff-bundle-writer.md`;
-- `docs/04-implementation/execution-reports/2026-04-28-123-local-json-agent-handoff-bundle-round-trip-proof.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-123-local-json-agent-handoff-bundle-round-trip-proof.md`;
+- `docs/04-implementation/execution-reports/2026-04-28-124-state-next-step-alignment-after-local-json-agent-handoff-bundle-round-trip-proof.md`.
 
 The repository still does **not** have:
 
@@ -888,13 +891,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after local JSON agent handoff bundle round-trip proof.
+**Bounded Pass:** repo-first verdict after local JSON agent handoff bundle round-trip proof.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-handoff-bundle-round-trip-proof`
+`docs/repo-first-verdict-after-local-json-agent-handoff-bundle-round-trip-proof`
 
-That pass should record the merge/CI result for the handoff bundle round-trip proof and choose the next bounded agent-facing improvement.
+That pass should choose the next bounded agent-facing improvement now that the handoff bundle is both materialized and consumption-proven.
 
 Keep the local CLI bounded:
 

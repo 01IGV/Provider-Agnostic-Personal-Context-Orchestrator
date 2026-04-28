@@ -22,6 +22,7 @@ const assertions = {
     manifest.recommended_sequence.includes("tool:local-json-agent-request-runner-sample:write") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0-tool-pack:write") &&
     manifest.recommended_sequence.includes("tool:local-v0-source-catalog-guided:run") &&
+    manifest.recommended_sequence.includes("tool:local-v0-source-catalog-guided-sample:write") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -37,6 +38,7 @@ const assertions = {
     commandRefs.includes("tool:local-json-agent-request-runner-sample:write") &&
     commandRefs.includes("tool:local-json-agent-local-v0-tool-pack:write") &&
     commandRefs.includes("tool:local-v0-source-catalog-guided:run") &&
+    commandRefs.includes("tool:local-v0-source-catalog-guided-sample:write") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -48,6 +50,10 @@ const assertions = {
     manifest.commands.find(
       (command) => command.command_ref === "tool:local-v0-source-catalog-guided:run"
     )?.command.includes("--tool-pack-index <path>") === true,
+  manifest_exposes_guided_source_catalog_sample_writer:
+    manifest.commands.find(
+      (command) => command.command_ref === "tool:local-v0-source-catalog-guided-sample:write"
+    )?.command.includes("--guided-index-output <path>") === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&
@@ -74,6 +80,7 @@ const assertions = {
     manifest.local_io_policy.writes_only_explicit_agent_request_runner_sample_artifact_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_v0_tool_pack_artifact_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_v0_single_command_paths === true &&
+    manifest.local_io_policy.writes_only_explicit_local_v0_guided_sample_artifact_paths === true &&
     manifest.local_io_policy.arbitrary_source_loading_allowed === false &&
     manifest.local_io_policy.multi_request_runner_implemented === false,
   default_deny_posture_preserved:

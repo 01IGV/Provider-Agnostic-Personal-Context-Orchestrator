@@ -87,37 +87,21 @@ PR #95 merged as `d813da2` after local verification passed. The GitHub merge gat
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local v0 source-catalog-guided command sample artifact set.
 
-`feat/local-v0-source-catalog-guided-command-sample-artifacts` should materialize a small agent-ready sample set for the guided command, starting from explicit tool-pack artifacts and producing explicit guided request/response/summary/index artifacts.
+`feat/local-v0-source-catalog-guided-command-sample-artifacts` materializes that small agent-ready sample set for the guided command, starting from explicit tool-pack artifacts and producing explicit guided request/response/summary/index artifacts.
 
-The verifier is available through:
-
-```bash
-npm run contract:local-v0-source-catalog:verify
-```
-
-The source catalog makes the supported local v0 context scopes explicit and machine-readable while preserving allowlisted deterministic in-repo source definitions only.
-
-The command is available through:
+The sample writer is available through:
 
 ```bash
-npm run tool:local-json-agent-local-v0:run -- --request agent-context-request.local-v0.json --response verified-protocol-surface-adapter.local-v0.response.json --summary local-json-agent-local-v0-run.summary.json --task-signal "bounded local planning request" --read-mode planning --depth standard --scope-hints scope:active-boundary-chain
+npm run tool:local-v0-source-catalog-guided-sample:write -- --manifest-output local-json-agent-tool-manifest.json --schema-output local-json-agent-request-response-schema.json --source-catalog-output local-v0-source-catalog.json --tool-pack-sample-request-output agent-context-request.sample.json --tool-pack-sample-response-output verified-protocol-surface-adapter.sample.response.json --tool-pack-sample-summary-output local-json-agent-request-run.sample.summary.json --tool-pack-sample-index-output local-json-agent-request-runner.sample.index.json --tool-pack-index-output local-json-agent-local-v0-tool-pack.index.json --guided-request-output agent-context-request.guided-command.sample.json --guided-response-output verified-protocol-surface-adapter.guided-command.sample.response.json --guided-summary-output local-v0-source-catalog-guided-command.sample.summary.json --guided-index-output local-v0-source-catalog-guided-command.sample.index.json
 ```
 
 The verifier is available through:
 
 ```bash
-npm run tool:local-json-agent-local-v0:run:verify
+npm run tool:local-v0-source-catalog-guided-sample:verify
 ```
 
-The command authors one constrained request artifact, runs the direct local JSON agent request runner, and writes explicit response and summary artifacts.
-
-The verifier is available through:
-
-```bash
-npm run proof:local-json-agent-local-v0-acceptance:verify
-```
-
-The proof materializes the local v0 tool-pack artifacts, starts from the top-level tool-pack index, follows the discovered manifest/schema/sample refs, runs the bounded local JSON agent request runner against the discovered sample request, and verifies the accepted response/summary/default-deny posture.
+The writer produces a complete replayable sample artifact set for AI-agent inspection without adding arbitrary source loading, self-dogfooding repo scopes, MCP/API transport, runtime handlers, provider calls, concrete persistence, model calls, permission grants, or contour execution.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -999,7 +983,12 @@ The repository currently has:
 - `packages/system-assembly/src/local-v0-source-catalog-contracts-types.ts`;
 - `scripts/verify-local-v0-source-catalog-contracts.mjs`;
 - `npm run contract:local-v0-source-catalog:verify`;
+- `scripts/local-v0-source-catalog-guided-command-sample-cli.mjs`;
+- `npm run tool:local-v0-source-catalog-guided-sample:write -- --manifest-output <path> --schema-output <path> --source-catalog-output <path> --tool-pack-sample-request-output <path> --tool-pack-sample-response-output <path> --tool-pack-sample-summary-output <path> --tool-pack-sample-index-output <path> --tool-pack-index-output <path> --guided-request-output <path> --guided-response-output <path> --guided-summary-output <path> --guided-index-output <path>`;
+- `scripts/verify-local-v0-source-catalog-guided-command-sample-artifact-set.mjs`;
+- `npm run tool:local-v0-source-catalog-guided-sample:verify`;
 - CI `Proof Output Regression` step for local v0 source catalog contracts;
+- CI `Proof Output Regression` step for local v0 source catalog guided command sample artifacts;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
@@ -1142,6 +1131,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-154-local-v0-source-catalog-guided-command.md`
 - `2026-04-28-155-state-next-step-alignment-after-local-v0-source-catalog-guided-command.md`
 - `2026-04-28-156-repo-first-verdict-after-local-v0-source-catalog-guided-command.md`
+- `2026-04-28-157-local-v0-source-catalog-guided-command-sample-artifacts.md`
 
 ---
 
@@ -1164,7 +1154,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, and explicit local v0 tool-pack artifact output paths;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, and explicit local v0 guided command sample artifact paths;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1182,20 +1172,19 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** source-catalog-guided local v0 command sample artifacts.
+**Bounded Pass:** state alignment after local v0 source-catalog-guided command sample artifacts.
 
 Recommended branch:
 
-`feat/local-v0-source-catalog-guided-command-sample-artifacts`
+`docs/state-next-step-alignment-after-local-v0-source-catalog-guided-command-sample-artifacts`
 
-That implementation pass should materialize an agent-ready sample artifact set for the guided command without adding arbitrary source loading, runtime behavior, MCP/API transport, or self-dogfooding repo scopes yet.
+After merge and CI observation, the next pass should align state docs with the merged sample artifact writer/verifier before choosing the next implementation direction.
 
 Keep the local CLI bounded:
 
-- read one local JSON request fixture;
-- validate/shape it against the existing agent request boundary contract as narrowly as possible;
-- produce one local JSON response fixture from the existing deterministic bounded context response path;
-- write only the explicitly provided output fixture path;
+- read only explicit artifact inputs and the referenced generated source catalog path;
+- write only explicitly provided sample artifact output paths;
+- keep self-dogfooding repo context scopes deferred until a later explicit verdict;
 - do not add MCP/API server behavior, runtime handlers, provider SDK calls, concrete persistence adapters, model calls, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.

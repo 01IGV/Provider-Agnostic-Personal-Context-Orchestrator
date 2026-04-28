@@ -164,6 +164,8 @@ PR #110 merged as `bae4dd3` after GitHub Actions `Proof Output Regression` PR ru
 
 The next bounded pass should be a repo-first verdict after the local v0 source materialization receipt contracts, deciding whether the next implementation should move toward a bounded real-source adapter contract or further harden the local v0 agent tool handoff path.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a bounded real-source adapter contract. The local v0 path now has request/response, source catalog, guided sample artifacts, refreshed repo-work context, and source materialization receipts. The next useful step is to define the contract a future real source adapter must satisfy before any live source reads are introduced.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1212,6 +1214,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-168-repo-first-verdict-after-local-v0-repo-work-context-current-state-refresh.md`
 - `2026-04-28-169-local-v0-source-materialization-receipt-contracts.md`
 - `2026-04-28-170-state-next-step-alignment-after-local-v0-source-materialization-receipt-contracts.md`
+- `2026-04-28-171-repo-first-verdict-after-local-v0-source-materialization-receipt-contracts.md`
 
 ---
 
@@ -1252,13 +1255,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local v0 source materialization receipt contracts.
+**Bounded Pass:** bounded real-source adapter contract.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-source-materialization-receipt-contracts`
+`feat/bounded-real-source-adapter-contract`
 
-The verdict should decide the next safe implementation direction now that source selection is explicit, receipt-backed, and machine-verified for the local v0 agent-facing path.
+Define the non-executing contract that any future real source adapter must satisfy before live source reads are introduced: declared source capability, allowlisted source boundary, authority/provenance/permission/audit refs, materialization receipt compatibility, and explicit denial of direct agent file access/runtime behavior.
 
 Keep the local CLI bounded:
 

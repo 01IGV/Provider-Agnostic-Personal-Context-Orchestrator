@@ -85,3 +85,6 @@ jobs:
 
       - name: Verify agent-readable response use guidance
         run: npm run tool:agent-readable-response-use-guidance:verify
+
+      - name: Verify agent request-response schema export
+        run: npm run tool:agent-request-response-schema:verify

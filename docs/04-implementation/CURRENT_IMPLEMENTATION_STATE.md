@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON example artifact round-trip proof merged to main.**
+**Local JSON agent tool manifest implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -223,6 +223,31 @@ It:
 - compares the actual response observation summary against the materialized expected summary;
 - preserves default-deny runtime posture.
 
+Feature branch `feat/local-json-agent-tool-manifest` now adds a compact machine-readable manifest for AI agents.
+
+The manifest is available through:
+
+```bash
+npm run tool:local-json-agent-tool-manifest:print
+```
+
+It lists:
+
+- recommended local JSON tool command sequence;
+- available schema, example, artifact, proof, and runner commands;
+- request/response schema refs;
+- allowed and denied request mutation paths;
+- safe agent use hints;
+- denied agent action hints;
+- bounded local IO policy;
+- default-deny runtime posture flags.
+
+The new verifier proves that the manifest is agent-readable and default-deny:
+
+```bash
+npm run tool:local-json-agent-tool-manifest:verify
+```
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -391,6 +416,7 @@ npm run tool:agent-request-response-schema:verify
 npm run tool:schema-aware-local-json-examples:verify
 npm run tool:local-json-example-artifacts:verify
 npm run proof:local-json-example-artifact-round-trip:verify
+npm run tool:local-json-agent-tool-manifest:verify
 ```
 
 Observed local verification results:
@@ -427,6 +453,8 @@ Observed local verification results:
 - `local_json_example_artifact_materialization_verified`.
 - local example artifact smoke returned `schema_aware_local_json_fixture_example_artifacts_written`.
 - `local_json_example_artifact_round_trip_proof_verified`.
+- `local_json_agent_tool_manifest_verified`.
+- local agent tool manifest print returned `local_json_agent_tool_manifest_ready`.
 
 GitHub Actions observation note:
 
@@ -535,6 +563,7 @@ The strongest current bounded implementation state on `main` is now:
 - schema-aware local JSON fixture examples;
 - local JSON example artifact materialization;
 - local JSON example artifact round-trip proof;
+- local JSON agent tool manifest;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -632,8 +661,13 @@ The repository currently has:
 - `scripts/verify-local-json-example-artifact-round-trip-proof.mjs`;
 - `npm run proof:local-json-example-artifact-round-trip:verify`;
 - CI `Proof Output Regression` step for local JSON example artifact round-trip proof;
+- `scripts/local-json-agent-tool-manifest-cli.mjs`;
+- `npm run tool:local-json-agent-tool-manifest:print`;
+- `scripts/verify-local-json-agent-tool-manifest.mjs`;
+- `npm run tool:local-json-agent-tool-manifest:verify`;
+- CI `Proof Output Regression` step for local JSON agent tool manifest;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-28-114-local-json-example-artifact-round-trip-proof.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`.
 
 The repository still does **not** have:
 
@@ -755,15 +789,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent tool manifest.
+**Bounded Pass:** local JSON agent tool manifest artifact writer.
 
 Recommended branch:
 
-`feat/local-json-agent-tool-manifest`
+`feat/local-json-agent-tool-manifest-artifact-writer`
 
-That pass should expose one compact machine-readable manifest for AI agents that lists the local JSON tool commands, schemas, examples, artifact writer, round-trip proof, safe use hints, denied action hints, and default-deny posture.
+That pass should let an AI agent write the manifest to an explicitly provided local artifact path, preserving the same bounded local file IO posture.
 
-After the round-trip proof, the useful next step is making the local agent-facing tool surface discoverable as a small manifest, without adding MCP/API runtime or arbitrary source loading.
+After the manifest, the useful next step is making the local agent-facing tool manifest materializable as a handoff artifact, without adding MCP/API runtime or arbitrary source loading.
 
 Keep the local CLI bounded:
 

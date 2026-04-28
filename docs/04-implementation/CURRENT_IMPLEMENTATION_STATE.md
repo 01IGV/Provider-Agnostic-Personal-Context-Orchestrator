@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON example artifact materialization merged to main.**
+**Local JSON example artifact round-trip proof implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -208,6 +208,21 @@ The new verifier proves that the written artifacts match the schema-aware exampl
 npm run tool:local-json-example-artifacts:verify
 ```
 
+Feature branch `feat/local-json-example-artifact-round-trip-proof` now proves that materialized examples round-trip through the existing bounded local JSON runner.
+
+The new proof is available through:
+
+```bash
+npm run proof:local-json-example-artifact-round-trip:verify
+```
+
+It:
+
+- materializes schema-aware example artifacts;
+- feeds the materialized request example into the existing local JSON fixture runner;
+- compares the actual response observation summary against the materialized expected summary;
+- preserves default-deny runtime posture.
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -375,6 +390,7 @@ npm run tool:agent-readable-response-use-guidance:verify
 npm run tool:agent-request-response-schema:verify
 npm run tool:schema-aware-local-json-examples:verify
 npm run tool:local-json-example-artifacts:verify
+npm run proof:local-json-example-artifact-round-trip:verify
 ```
 
 Observed local verification results:
@@ -410,6 +426,7 @@ Observed local verification results:
 - local schema-aware examples print returned `schema_aware_local_json_fixture_examples_ready`.
 - `local_json_example_artifact_materialization_verified`.
 - local example artifact smoke returned `schema_aware_local_json_fixture_example_artifacts_written`.
+- `local_json_example_artifact_round_trip_proof_verified`.
 
 GitHub Actions observation note:
 
@@ -515,6 +532,7 @@ The strongest current bounded implementation state on `main` is now:
 - agent request/response schema export;
 - schema-aware local JSON fixture examples;
 - local JSON example artifact materialization;
+- local JSON example artifact round-trip proof;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -609,8 +627,11 @@ The repository currently has:
 - `scripts/verify-local-json-example-artifact-materialization.mjs`;
 - `npm run tool:local-json-example-artifacts:verify`;
 - CI `Proof Output Regression` step for local JSON example artifact materialization;
+- `scripts/verify-local-json-example-artifact-round-trip-proof.mjs`;
+- `npm run proof:local-json-example-artifact-round-trip:verify`;
+- CI `Proof Output Regression` step for local JSON example artifact round-trip proof;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-28-112-local-json-example-artifact-materialization.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-114-local-json-example-artifact-round-trip-proof.md`.
 
 The repository still does **not** have:
 
@@ -732,15 +753,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON example artifact round-trip proof.
+**Bounded Pass:** local JSON agent tool manifest.
 
 Recommended branch:
 
-`feat/local-json-example-artifact-round-trip-proof`
+`feat/local-json-agent-tool-manifest`
 
-That pass should feed the materialized request example back through the existing bounded local JSON fixture runner and prove that the resulting response observation summary matches the materialized expected summary.
+That pass should expose one compact machine-readable manifest for AI agents that lists the local JSON tool commands, schemas, examples, artifact writer, round-trip proof, safe use hints, denied action hints, and default-deny posture.
 
-After artifact materialization, the useful next step is proving that the materialized artifacts are not just inspectable, but executable-through-the-existing-bounded-local-path as examples, without adding arbitrary source loading or runtime server behavior.
+After the round-trip proof, the useful next step is making the local agent-facing tool surface discoverable as a small manifest, without adding MCP/API runtime or arbitrary source loading.
 
 Keep the local CLI bounded:
 

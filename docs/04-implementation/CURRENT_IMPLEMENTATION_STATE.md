@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**State next-step alignment after local JSON agent handoff bundle consumption CLI boundary in progress.**
+**Repo-first verdict after local JSON agent handoff bundle consumption CLI boundary in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -340,6 +340,14 @@ npm run tool:local-json-agent-handoff-bundle-consumption:verify
 ```
 
 This is the first explicit agent-side handoff bundle consumption command.
+
+The repo-first verdict after the handoff bundle consumption CLI boundary selects the next bounded implementation direction:
+
+```text
+local JSON agent request runner from explicit request artifact
+```
+
+That pass should let an agent provide one explicit request artifact and receive one explicit response artifact plus one explicit run summary artifact, without adding MCP/API transport or runtime execution.
 
 This is still a contract/interface layer only.
 
@@ -802,6 +810,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-125-repo-first-verdict-after-local-json-agent-handoff-bundle-round-trip-proof.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-126-local-json-agent-handoff-bundle-consumption-cli-boundary.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-127-state-next-step-alignment-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-128-repo-first-verdict-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 
 The repository still does **not** have:
 
@@ -930,13 +939,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON agent handoff bundle consumption CLI boundary.
+**Bounded Pass:** local JSON agent request runner from explicit request artifact.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-agent-handoff-bundle-consumption-cli-boundary`
+`feat/local-json-agent-request-runner-from-explicit-request-artifact`
 
-That docs-only verdict should choose the strongest next bounded pass toward a usable real-life local v0 agent tool now that an AI agent can discover, receive, and consume a handoff bundle through explicit local JSON artifact paths.
+That implementation pass should add a local command that accepts one explicitly provided agent request artifact path, writes one explicitly provided response artifact path, writes one explicitly provided run summary artifact path, validates the request against the existing local JSON agent request/response contract as narrowly as current contracts allow, and preserves default-deny posture.
 
 Keep the local CLI bounded:
 

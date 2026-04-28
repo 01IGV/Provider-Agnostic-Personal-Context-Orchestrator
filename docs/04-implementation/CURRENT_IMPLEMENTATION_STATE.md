@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent local v0 acceptance proof in progress.**
+**Local JSON agent local v0 acceptance proof merged and CI-verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -20,6 +20,8 @@ PR #76 merged as `b3b91d9` after GitHub Actions `Proof Output Regression` run `2
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local v0 acceptance proof that starts from the tool-pack artifacts and proves a self-serve AI-agent usage path.
 
 `feat/local-json-agent-local-v0-acceptance-proof` adds that proof.
+
+PR #79 merged as `3d1509a` after GitHub Actions `Proof Output Regression` run `25058108306` passed, including the new `Verify local JSON agent local v0 acceptance proof` step.
 
 The verifier is available through:
 
@@ -1024,6 +1026,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-136-state-next-step-alignment-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
 - `2026-04-28-137-repo-first-verdict-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
 - `2026-04-28-138-local-json-agent-local-v0-acceptance-proof.md`
+- `2026-04-28-139-state-next-step-alignment-after-local-json-agent-local-v0-acceptance-proof.md`
 
 ---
 
@@ -1062,13 +1065,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after local JSON agent local v0 acceptance proof.
+**Bounded Pass:** repo-first verdict after local JSON agent local v0 acceptance proof.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-local-v0-acceptance-proof`
+`docs/repo-first-verdict-after-local-json-agent-local-v0-acceptance-proof`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the acceptance proof merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
+That docs-only pass should select the next bounded implementation step toward a real-life local v0 tool now that the AI-agent self-serve acceptance path is machine-checked.
 
 Keep the local CLI bounded:
 

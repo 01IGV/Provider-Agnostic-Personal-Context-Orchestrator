@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local v0 source catalog guided run proof merged and locally verified.**
+**Local v0 source catalog guided command merged and locally verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -82,6 +82,8 @@ npm run tool:local-v0-source-catalog-guided:verify
 ```
 
 The command turns the verified catalog-guided proof path into an agent-facing bounded local command that starts from an explicit tool-pack index path and writes explicit request/response/summary artifacts.
+
+PR #95 merged as `d813da2` after local verification passed. The GitHub merge gate accepted the PR; push-run CI observation should be recorded after GitHub Actions completes on `main`.
 
 The verifier is available through:
 
@@ -1134,6 +1136,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-152-state-next-step-alignment-after-local-v0-source-catalog-guided-run-proof.md`
 - `2026-04-28-153-repo-first-verdict-after-local-v0-source-catalog-guided-run-proof.md`
 - `2026-04-28-154-local-v0-source-catalog-guided-command.md`
+- `2026-04-28-155-state-next-step-alignment-after-local-v0-source-catalog-guided-command.md`
 
 ---
 
@@ -1174,13 +1177,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after source-catalog-guided local v0 command.
+**Bounded Pass:** repo-first verdict after source-catalog-guided local v0 command.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-source-catalog-guided-command`
+`docs/repo-first-verdict-after-local-v0-source-catalog-guided-command`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the guided command merge/verification result and select whether the next bounded pass should be a repo-first verdict or a directly useful local v0 usability improvement.
+That docs-only verdict should inspect `main` after the guided command merge and choose the next bounded implementation step toward a real-life local v0 AI-agent tool.
 
 Keep the local CLI bounded:
 

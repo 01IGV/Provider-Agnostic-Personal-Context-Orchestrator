@@ -21,6 +21,7 @@ const assertions = {
     manifest.recommended_sequence.includes("tool:local-json-agent-request:run") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-request-runner-sample:write") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0-tool-pack:write") &&
+    manifest.recommended_sequence.includes("tool:local-v0-source-catalog-guided:run") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -35,6 +36,7 @@ const assertions = {
     commandRefs.includes("tool:local-json-agent-request:run") &&
     commandRefs.includes("tool:local-json-agent-request-runner-sample:write") &&
     commandRefs.includes("tool:local-json-agent-local-v0-tool-pack:write") &&
+    commandRefs.includes("tool:local-v0-source-catalog-guided:run") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -42,6 +44,10 @@ const assertions = {
     manifest.commands.find(
       (command) => command.command_ref === "tool:local-json-agent-local-v0-tool-pack:write"
     )?.command.includes("--source-catalog-output <path>") === true,
+  manifest_exposes_guided_source_catalog_command:
+    manifest.commands.find(
+      (command) => command.command_ref === "tool:local-v0-source-catalog-guided:run"
+    )?.command.includes("--tool-pack-index <path>") === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent tool manifest artifact writer in progress.**
+**Local JSON agent tool manifest artifact writer merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -248,7 +248,7 @@ The new verifier proves that the manifest is agent-readable and default-deny:
 npm run tool:local-json-agent-tool-manifest:verify
 ```
 
-`feat/local-json-agent-tool-manifest-artifact-writer` adds a bounded manifest artifact writer.
+`main` now adds a bounded manifest artifact writer.
 
 The artifact writer is available through:
 
@@ -508,6 +508,8 @@ GitHub Actions observation note:
 - PR #55 was merged to `main` as `5195fc7`.
 - PR #57 for `feat/local-json-agent-tool-manifest` passed GitHub Actions `Proof Output Regression` run `25048097681`;
 - PR #57 was merged to `main` as `8d73cf2`.
+- PR #59 for `feat/local-json-agent-tool-manifest-artifact-writer` passed GitHub Actions `Proof Output Regression` run `25048647676`;
+- PR #59 was merged to `main` as `7d49dd0`.
 
 Runtime remains closed:
 
@@ -591,7 +593,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON agent tool manifest;
 - local verification green for all current proof commands.
 
-This feature branch extends that state with a local JSON agent tool manifest artifact writer.
+- local JSON agent tool manifest artifact writer;
 
 All of this remains execution-free.
 
@@ -699,7 +701,8 @@ The repository currently has:
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
-- `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
+- `docs/04-implementation/execution-reports/2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`.
 
 The repository still does **not** have:
 
@@ -783,6 +786,10 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-27-97-local-json-single-command-run-wrapper.md`
 - `2026-04-27-98-state-next-step-alignment-after-local-json-single-command-run-wrapper.md`
 - `2026-04-27-99-repo-first-verdict-after-local-json-single-command-run-wrapper.md`
+- `2026-04-28-116-local-json-agent-tool-manifest.md`
+- `2026-04-28-117-state-next-step-alignment-after-local-json-agent-tool-manifest.md`
+- `2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`
+- `2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`
 
 ---
 
@@ -821,15 +828,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after local JSON agent tool manifest artifact writer.
+**Bounded Pass:** local JSON agent handoff bundle writer.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer`
+`feat/local-json-agent-handoff-bundle-writer`
 
-That pass should record the merge/CI result for the manifest artifact writer and decide whether the next implementation should produce a fuller local agent handoff bundle.
-
-After this pass, the likely useful next implementation step is a bounded local agent handoff bundle writer that materializes manifest/schema/example artifacts together, still without adding MCP/API runtime or arbitrary source loading.
+That pass should materialize manifest/schema/example artifacts together for AI-agent handoff, while preserving explicit output paths and default-deny local IO posture.
 
 Keep the local CLI bounded:
 

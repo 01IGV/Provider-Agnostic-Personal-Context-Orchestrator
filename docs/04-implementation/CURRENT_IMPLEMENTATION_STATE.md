@@ -53,7 +53,15 @@ PR #89 merged as `5a05ecb`; GitHub Actions push-run for `proof-output-regression
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a source-catalog-guided local v0 run proof.
 
-`feat/local-v0-source-catalog-guided-run-proof` should prove that an AI agent can start from the local v0 tool-pack index, discover the source catalog artifact, choose an allowlisted scope, run the bounded local v0 command, and verify the response/summary against that catalog without opening arbitrary source loading or runtime behavior.
+`feat/local-v0-source-catalog-guided-run-proof` adds that proof.
+
+The verifier is available through:
+
+```bash
+npm run proof:local-v0-source-catalog-guided-run:verify
+```
+
+The proof starts from the local v0 tool-pack index, discovers the source catalog artifact, chooses an allowlisted scope, runs the bounded local v0 command, and verifies the response/summary against that catalog without opening arbitrary source loading or runtime behavior.
 
 The verifier is available through:
 
@@ -1102,6 +1110,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-148-state-next-step-alignment-after-local-v0-source-catalog-tool-pack-artifact.md`
 - `2026-04-28-149-ci-observation-after-local-v0-source-catalog-tool-pack-artifact.md`
 - `2026-04-28-150-repo-first-verdict-after-local-v0-source-catalog-tool-pack-artifact.md`
+- `2026-04-28-151-local-v0-source-catalog-guided-run-proof.md`
 
 ---
 
@@ -1142,13 +1151,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** source-catalog-guided local v0 run proof.
+**Bounded Pass:** state next-step alignment after source-catalog-guided local v0 run proof.
 
 Recommended branch:
 
-`feat/local-v0-source-catalog-guided-run-proof`
+`docs/state-next-step-alignment-after-local-v0-source-catalog-guided-run-proof`
 
-That implementation pass should prove the real AI-agent usage path from tool-pack discovery to source-catalog-guided bounded local v0 run.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the source-catalog-guided run proof merge/verification result and select whether the next bounded pass should be a repo-first verdict or a directly useful local v0 usability improvement.
 
 Keep the local CLI bounded:
 

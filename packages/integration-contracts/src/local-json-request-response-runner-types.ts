@@ -58,6 +58,25 @@ export interface LocalJsonRequestResponseRunnerResponseRefsShape {
   verification_result: "agent_consumable_response_contract_verified";
 }
 
+export interface LocalJsonResponseObservationSummaryShape {
+  observation_result: "local_json_response_observation_summary_ready";
+  runner_response_id: string;
+  agent_context_request_id: string;
+  bounded_context_response_id: string;
+  bounded_context_package_id: string;
+  protocol_adapter_shape_id: string;
+  response_status: string;
+  selected_source_item_count: number;
+  selected_source_refs: string[];
+  selected_scope_ids: string[];
+  package_item_count: number;
+  local_json_only: true;
+  deterministic: true;
+  fixture_driven: true;
+  runtime_permission_granted: false;
+  actual_contour_execution_allowed_now: false;
+}
+
 export interface LocalJsonRequestResponseRunnerResponseEnvelopeShape {
   runner_response_id: string;
   runner_request_id: string;
@@ -66,6 +85,7 @@ export interface LocalJsonRequestResponseRunnerResponseEnvelopeShape {
   refs: LocalJsonRequestResponseRunnerResponseRefsShape;
   response_json: VerifiedResponseProtocolSurfaceAdapterShape;
   response_summary_json: VerifiedResponseProtocolSurfaceAdapterSummaryShape;
+  response_observation_summary_json: LocalJsonResponseObservationSummaryShape;
   execution_posture: LocalJsonRequestResponseRunnerExecutionPostureShape;
   json_serializable: true;
   served_at: IsoDateTimeString;

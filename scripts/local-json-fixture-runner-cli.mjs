@@ -91,6 +91,7 @@ export const runLocalJsonFixtureRunnerCli = ({ input_path, output_path }) => {
   });
 
   writeFileSync(output_path, stableJson(runnerShape.runner_response), "utf8");
+  const observationSummary = runnerShape.runner_response.response_observation_summary_json;
 
   return {
     verification_result: "local_json_cli_file_io_boundary_completed",
@@ -101,8 +102,10 @@ export const runLocalJsonFixtureRunnerCli = ({ input_path, output_path }) => {
     bounded_context_response_id: runnerShape.runner_response.refs.bounded_context_response_id,
     bounded_context_package_id: runnerShape.runner_response.refs.bounded_context_package_id,
     protocol_adapter_shape_id: runnerShape.runner_response.refs.protocol_adapter_shape_id,
-    selected_source_item_count:
-      runnerShape.adapter_shape.response.response_payload.source_item_count,
+    response_observation_summary_result: observationSummary.observation_result,
+    selected_source_item_count: observationSummary.selected_source_item_count,
+    selected_source_refs: observationSummary.selected_source_refs,
+    selected_scope_ids: observationSummary.selected_scope_ids,
     file_read_performed: true,
     file_write_performed: true,
     child_process_spawned: false,

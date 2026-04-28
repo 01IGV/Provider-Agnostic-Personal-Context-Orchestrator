@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent handoff bundle consumption CLI boundary in progress.**
+**State next-step alignment after local JSON agent handoff bundle consumption CLI boundary in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -319,7 +319,11 @@ local JSON agent handoff bundle consumption CLI boundary
 
 That pass should let an AI agent consume an explicitly provided handoff bundle artifact set through a bounded command, while keeping all artifact paths explicit and preserving default-deny posture.
 
-`feat/local-json-agent-handoff-bundle-consumption-cli-boundary` adds that bounded consumption command.
+`main` now includes the local JSON agent handoff bundle consumption CLI boundary.
+
+Implementation PR #67 merged as `4ebbe86`.
+
+GitHub Actions `Proof Output Regression` run `25052266148` passed for PR #67, including the new local JSON agent handoff bundle consumption CLI boundary step.
 
 The command is available through:
 
@@ -796,7 +800,8 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-123-local-json-agent-handoff-bundle-round-trip-proof.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-124-state-next-step-alignment-after-local-json-agent-handoff-bundle-round-trip-proof.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-125-repo-first-verdict-after-local-json-agent-handoff-bundle-round-trip-proof.md`.
-- `docs/04-implementation/execution-reports/2026-04-28-126-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-126-local-json-agent-handoff-bundle-consumption-cli-boundary.md`;
+- `docs/04-implementation/execution-reports/2026-04-28-127-state-next-step-alignment-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 
 The repository still does **not** have:
 
@@ -925,13 +930,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after local JSON agent handoff bundle consumption CLI boundary.
+**Bounded Pass:** repo-first verdict after local JSON agent handoff bundle consumption CLI boundary.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-handoff-bundle-consumption-cli-boundary`
+`docs/repo-first-verdict-after-local-json-agent-handoff-bundle-consumption-cli-boundary`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the consumption CLI boundary merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next agent-facing usability step.
+That docs-only verdict should choose the strongest next bounded pass toward a usable real-life local v0 agent tool now that an AI agent can discover, receive, and consume a handoff bundle through explicit local JSON artifact paths.
 
 Keep the local CLI bounded:
 

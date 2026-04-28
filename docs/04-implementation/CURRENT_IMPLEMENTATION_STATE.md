@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**State next-step alignment after local JSON agent request runner in progress.**
+**Repo-first verdict after local JSON agent request runner in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -370,6 +370,14 @@ npm run tool:local-json-agent-request:run:verify
 ```
 
 This is the first direct local v0 agent request-run command.
+
+The repo-first verdict after the direct local JSON agent request runner selects the next bounded implementation direction:
+
+```text
+local JSON agent request runner sample artifact set
+```
+
+That pass should materialize a deterministic sample request, response, run summary, and optional sample index artifact so an AI agent can inspect and repeat the exact local v0 file contract before any MCP/API transport is added.
 
 This is still a contract/interface layer only.
 
@@ -841,6 +849,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-128-repo-first-verdict-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-129-local-json-agent-request-runner-from-explicit-request-artifact.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-130-state-next-step-alignment-after-local-json-agent-request-runner.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-131-repo-first-verdict-after-local-json-agent-request-runner.md`.
 
 The repository still does **not** have:
 
@@ -969,13 +978,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON agent request runner.
+**Bounded Pass:** local JSON agent request runner sample artifact set.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-agent-request-runner`
+`feat/local-json-agent-request-runner-sample-artifact-set`
 
-That docs-only verdict should choose the strongest next bounded pass toward a practical real-life local v0 tool now that an agent can directly provide a request artifact and receive response and summary artifacts.
+That implementation pass should materialize a deterministic sample request artifact, direct runner response artifact, run summary artifact, and optional sample index artifact through explicit output paths, then verify refs and default-deny posture.
 
 Keep the local CLI bounded:
 

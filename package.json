@@ -39,7 +39,9 @@
     "tool:local-json-example-artifacts:verify": "npm run build:force && node scripts/verify-local-json-example-artifact-materialization.mjs",
     "proof:local-json-example-artifact-round-trip:verify": "npm run build:force && node scripts/verify-local-json-example-artifact-round-trip-proof.mjs",
     "tool:local-json-agent-tool-manifest:print": "npm run build:force && node scripts/local-json-agent-tool-manifest-cli.mjs",
-    "tool:local-json-agent-tool-manifest:verify": "npm run build:force && node scripts/verify-local-json-agent-tool-manifest.mjs"
+    "tool:local-json-agent-tool-manifest:write": "npm run build:force && node scripts/local-json-agent-tool-manifest-cli.mjs",
+    "tool:local-json-agent-tool-manifest:verify": "npm run build:force && node scripts/verify-local-json-agent-tool-manifest.mjs",
+    "tool:local-json-agent-tool-manifest-artifact:verify": "npm run build:force && node scripts/verify-local-json-agent-tool-manifest-artifact-writer.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

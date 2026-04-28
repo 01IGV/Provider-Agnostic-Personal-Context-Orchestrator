@@ -100,3 +100,6 @@ jobs:
 
       - name: Verify local JSON agent tool manifest
         run: npm run tool:local-json-agent-tool-manifest:verify
+
+      - name: Verify local JSON agent tool manifest artifact writer
+        run: npm run tool:local-json-agent-tool-manifest-artifact:verify

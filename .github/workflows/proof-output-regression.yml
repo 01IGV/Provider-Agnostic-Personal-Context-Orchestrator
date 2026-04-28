@@ -94,3 +94,6 @@ jobs:
 
       - name: Verify local JSON example artifact materialization
         run: npm run tool:local-json-example-artifacts:verify
+
+      - name: Verify local JSON example artifact round-trip proof
+        run: npm run proof:local-json-example-artifact-round-trip:verify

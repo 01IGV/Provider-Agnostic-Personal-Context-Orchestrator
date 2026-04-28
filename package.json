@@ -36,7 +36,8 @@
     "tool:schema-aware-local-json-examples:print": "npm run build:force && node scripts/schema-aware-local-json-fixture-examples-cli.mjs",
     "tool:schema-aware-local-json-examples:verify": "npm run build:force && node scripts/verify-schema-aware-local-json-fixture-examples.mjs",
     "tool:local-json-example-artifacts:write": "npm run build:force && node scripts/schema-aware-local-json-fixture-examples-cli.mjs",
-    "tool:local-json-example-artifacts:verify": "npm run build:force && node scripts/verify-local-json-example-artifact-materialization.mjs"
+    "tool:local-json-example-artifacts:verify": "npm run build:force && node scripts/verify-local-json-example-artifact-materialization.mjs",
+    "proof:local-json-example-artifact-round-trip:verify": "npm run build:force && node scripts/verify-local-json-example-artifact-round-trip-proof.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

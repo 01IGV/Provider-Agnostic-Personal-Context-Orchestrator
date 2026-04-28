@@ -144,6 +144,10 @@ The verifier is available through:
 npm run tool:local-v0-repo-work-context-guided-sample:verify
 ```
 
+PR #104 merged as `0a1ea93` after GitHub Actions `Proof Output Regression` PR run `25068590220` passed, including the new `Verify local v0 repo-work context guided sample artifacts` step.
+
+The next bounded pass should be a repo-first verdict after the repo-work context guided sample artifact, deciding whether the next implementation should harden the repo-work artifact path further or move toward a more real bounded context source adapter without direct agent file access.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1185,6 +1189,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-161-state-next-step-alignment-after-local-v0-repo-work-context-source-catalog-contracts.md`
 - `2026-04-28-162-repo-first-verdict-after-local-v0-repo-work-context-source-catalog-contracts.md`
 - `2026-04-28-163-local-v0-repo-work-context-guided-sample-artifact.md`
+- `2026-04-28-164-state-next-step-alignment-after-local-v0-repo-work-context-guided-sample-artifact.md`
 
 ---
 
@@ -1225,13 +1230,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state alignment after local v0 repo-work context guided sample artifact.
+**Bounded Pass:** repo-first verdict after local v0 repo-work context guided sample artifact.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-repo-work-context-guided-sample-artifact`
+`docs/repo-first-verdict-after-local-v0-repo-work-context-guided-sample-artifact`
 
-After merge and CI observation, the next pass should align state docs with the merged repo-work context guided sample artifact before choosing the next implementation direction.
+The verdict should decide the next safe implementation direction after the repo-work context path became inspectable through an explicit guided sample artifact set.
 
 Keep the local CLI bounded:
 

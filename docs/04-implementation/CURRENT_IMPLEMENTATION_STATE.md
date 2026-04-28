@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local v0 source catalog contracts merged and locally verified.**
+**Local v0 source catalog tool-pack artifact in progress.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -37,7 +37,15 @@ PR #85 merged as `4d2465f` after local verification passed. The GitHub merge gat
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is publishing the local v0 source catalog as an explicit local v0 tool-pack artifact for AI-agent inspection.
 
-`feat/local-v0-source-catalog-tool-pack-artifact` should add that artifact path without adding arbitrary source loading or runtime behavior.
+`feat/local-v0-source-catalog-tool-pack-artifact` adds that artifact path without adding arbitrary source loading or runtime behavior.
+
+The local v0 tool-pack writer now accepts:
+
+```bash
+--source-catalog-output <path>
+```
+
+The generated tool-pack index references the `local-v0-source-catalog/v1` artifact, supported scope ids, source catalog selection policy, and default-deny posture.
 
 The verifier is available through:
 
@@ -468,10 +476,10 @@ That pass should package the manifest, request/response schema, sample request, 
 The command is available through:
 
 ```bash
-npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output local-json-agent-tool-manifest.json --schema-output local-json-agent-request-response-schema.json --sample-request-output agent-context-request.sample.json --sample-response-output verified-protocol-surface-adapter.sample.response.json --sample-summary-output local-json-agent-request-run.sample.summary.json --sample-index-output local-json-agent-request-runner.sample.index.json --tool-pack-index-output local-json-agent-local-v0-tool-pack.index.json
+npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output local-json-agent-tool-manifest.json --schema-output local-json-agent-request-response-schema.json --source-catalog-output local-v0-source-catalog.json --sample-request-output agent-context-request.sample.json --sample-response-output verified-protocol-surface-adapter.sample.response.json --sample-summary-output local-json-agent-request-run.sample.summary.json --sample-index-output local-json-agent-request-runner.sample.index.json --tool-pack-index-output local-json-agent-local-v0-tool-pack.index.json
 ```
 
-The command writes only explicitly provided tool-pack artifact paths and packages manifest, schema, sample request, sample response, sample run summary, sample index, and top-level tool-pack index artifacts for AI-agent inspection.
+The command writes only explicitly provided tool-pack artifact paths and packages manifest, schema, source catalog, sample request, sample response, sample run summary, sample index, and top-level tool-pack index artifacts for AI-agent inspection.
 
 The verifier is available through:
 
@@ -936,7 +944,7 @@ The repository currently has:
 - `scripts/verify-local-json-agent-request-runner-sample-artifact-set.mjs`;
 - `npm run tool:local-json-agent-request-runner-sample:verify`;
 - `scripts/local-json-agent-local-v0-tool-pack-cli.mjs`;
-- `npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output <path> --schema-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>`;
+- `npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output <path> --schema-output <path> --source-catalog-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>`;
 - `scripts/verify-local-json-agent-local-v0-tool-pack-artifact-set.mjs`;
 - `npm run tool:local-json-agent-local-v0-tool-pack:verify`;
 - `scripts/verify-local-json-agent-local-v0-acceptance-proof.mjs`;
@@ -1082,6 +1090,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-144-local-v0-source-catalog-contracts.md`
 - `2026-04-28-145-state-next-step-alignment-after-local-v0-source-catalog-contracts.md`
 - `2026-04-28-146-repo-first-verdict-after-local-v0-source-catalog-contracts.md`
+- `2026-04-28-147-local-v0-source-catalog-tool-pack-artifact.md`
 
 ---
 
@@ -1121,13 +1130,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local v0 source catalog tool-pack artifact.
+**Bounded Pass:** state next-step alignment after local v0 source catalog tool-pack artifact.
 
 Recommended branch:
 
-`feat/local-v0-source-catalog-tool-pack-artifact`
+`docs/state-next-step-alignment-after-local-v0-source-catalog-tool-pack-artifact`
 
-That implementation pass should make the allowlisted source catalog discoverable through the local v0 tool-pack artifacts so an AI agent can inspect available scopes before choosing `--scope-hints`.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the source catalog tool-pack artifact merge/verification result and select whether the next bounded pass should be another repo-first verdict or the next agent-facing local v0 usability step.
 
 Keep the local CLI bounded:
 

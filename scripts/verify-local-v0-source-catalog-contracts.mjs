@@ -90,7 +90,14 @@ const assertions = {
       "local://deterministic/context/repo-work-context" &&
     repoWorkContextItems[0].source_kind === "local_fixture_context" &&
     repoWorkContextItems[0].content_digest ===
-      "sha256:local-deterministic-repo-work-context-v1" &&
+      "sha256:local-deterministic-repo-work-context-v2" &&
+    repoWorkContextItems[0].content.current_agent_visible_path ===
+      "scope:repo-work-context through local v0 source catalog guided sample artifacts" &&
+    repoWorkContextItems[0].content.latest_merged_repo_work_artifact_pass ===
+      "local v0 repo-work context guided sample artifact" &&
+    repoWorkContextItems[0].content.next_safe_pass ===
+      "local v0 repo-work context current-state refresh" &&
+    repoWorkContextItems[0].content.agent_direct_repo_file_access_allowed_now === false &&
     repoWorkContextItems[0].content.live_repo_file_reads_allowed_now === false &&
     repoWorkContextItems[0].content.arbitrary_file_paths_allowed_now === false &&
     repoWorkContextItems[0].content.runtime_execution_allowed_now === false,

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent handoff bundle writer merged to main.**
+**Repo-first verdict after local JSON agent handoff bundle writer in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -292,6 +292,14 @@ The new verifier proves the written bundle remains agent-readable, path-bounded,
 ```bash
 npm run tool:local-json-agent-handoff-bundle:verify
 ```
+
+The repo-first verdict after the handoff bundle writer selects the next bounded implementation direction:
+
+```text
+local JSON agent handoff bundle round-trip proof
+```
+
+That pass should prove an AI agent can consume the materialized bundle by taking the bundled request example through the existing bounded local JSON runner and comparing the actual response observation summary against the bundled expected response artifact.
 
 This is still a contract/interface layer only.
 
@@ -823,6 +831,9 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-117-state-next-step-alignment-after-local-json-agent-tool-manifest.md`
 - `2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`
 - `2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`
+- `2026-04-28-120-local-json-agent-handoff-bundle-writer.md`
+- `2026-04-28-121-state-next-step-alignment-after-local-json-agent-handoff-bundle-writer.md`
+- `2026-04-28-122-repo-first-verdict-after-local-json-agent-handoff-bundle-writer.md`
 
 ---
 
@@ -861,13 +872,21 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first next-step verdict after local JSON agent handoff bundle writer.
+**Bounded Pass:** local JSON agent handoff bundle round-trip proof.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-agent-handoff-bundle-writer`
+`feat/local-json-agent-handoff-bundle-round-trip-proof`
 
-That pass should decide the next smallest useful agent-facing improvement now that the repo can materialize a local handoff bundle.
+That pass should verify the materialized handoff bundle can be consumed by an AI agent without opening runtime execution:
+
+- materialize the handoff bundle into temp artifact paths;
+- read the bundled request example artifact;
+- feed that request example through the existing bounded local JSON runner;
+- compare the actual response observation summary against the bundled expected response summary artifact;
+- verify the manifest/schema/example/bundle refs remain internally consistent;
+- preserve default-deny runtime posture;
+- add CI coverage for the new proof command.
 
 Keep the local CLI bounded:
 

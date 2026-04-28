@@ -46,7 +46,9 @@
     "tool:local-json-agent-handoff-bundle:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-writer.mjs",
     "proof:local-json-agent-handoff-bundle-round-trip:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-round-trip-proof.mjs",
     "tool:local-json-agent-handoff-bundle:consume": "npm run build:force && node scripts/local-json-agent-handoff-bundle-consumption-cli.mjs",
-    "tool:local-json-agent-handoff-bundle-consumption:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-consumption-cli-boundary.mjs"
+    "tool:local-json-agent-handoff-bundle-consumption:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-consumption-cli-boundary.mjs",
+    "tool:local-json-agent-request:run": "npm run build:force && node scripts/local-json-agent-request-runner-cli.mjs",
+    "tool:local-json-agent-request:run:verify": "npm run build:force && node scripts/verify-local-json-agent-request-runner.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

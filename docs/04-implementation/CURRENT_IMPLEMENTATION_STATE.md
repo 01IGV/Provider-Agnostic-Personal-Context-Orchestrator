@@ -107,6 +107,10 @@ PR #98 merged as `b1eb253` after GitHub Actions `Proof Output Regression` PR run
 
 The next bounded pass should be a repo-first verdict after the guided command sample artifacts, with self-dogfooding repo context still treated as a candidate direction rather than an automatic jump.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is the first local v0 repo-work context source catalog contract.
+
+`feat/local-v0-repo-work-context-source-catalog-contracts` should add a narrowly allowlisted, deterministic repo-work context scope to the local v0 source catalog so the system can begin self-dogfooding development context without granting arbitrary file access.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1137,6 +1141,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-156-repo-first-verdict-after-local-v0-source-catalog-guided-command.md`
 - `2026-04-28-157-local-v0-source-catalog-guided-command-sample-artifacts.md`
 - `2026-04-28-158-state-next-step-alignment-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
+- `2026-04-28-159-repo-first-verdict-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
 
 ---
 
@@ -1177,19 +1182,20 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local v0 source-catalog-guided command sample artifacts.
+**Bounded Pass:** first local v0 repo-work context source catalog contracts.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-source-catalog-guided-command-sample-artifacts`
+`feat/local-v0-repo-work-context-source-catalog-contracts`
 
-The verdict should decide whether the next implementation should introduce a tightly bounded repo-work context scope for self-dogfooding, or whether one more agent-facing usability/proof step is still needed before that.
+That implementation should add one narrowly scoped repo-work context catalog entry for agent self-dogfooding, but only as deterministic contract/source-catalog data and verifier coverage.
 
 Keep the local CLI bounded:
 
-- read only explicit artifact inputs and the referenced generated source catalog path;
-- write only explicitly provided sample artifact output paths;
-- keep self-dogfooding repo context scopes deferred until a later explicit verdict;
+- do not add arbitrary file or directory reads;
+- do not read live repo files as runtime data;
+- do not allow user-selected source paths;
+- keep the repo-work context scope allowlisted, deterministic, and machine-verifiable;
 - do not add MCP/API server behavior, runtime handlers, provider SDK calls, concrete persistence adapters, model calls, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.

@@ -88,3 +88,6 @@ jobs:
 
       - name: Verify agent request-response schema export
         run: npm run tool:agent-request-response-schema:verify
+
+      - name: Verify schema-aware local JSON fixture examples
+        run: npm run tool:schema-aware-local-json-examples:verify

@@ -32,7 +32,9 @@
     "tool:local-json-response-observation-summary:verify": "npm run build:force && node scripts/verify-local-json-response-observation-summary.mjs",
     "tool:agent-readable-response-use-guidance:verify": "npm run build:force && node scripts/verify-agent-readable-response-use-guidance.mjs",
     "tool:agent-request-response-schema:print": "npm run build:force && node scripts/local-json-agent-contract-schema-cli.mjs",
-    "tool:agent-request-response-schema:verify": "npm run build:force && node scripts/verify-agent-request-response-schema-export.mjs"
+    "tool:agent-request-response-schema:verify": "npm run build:force && node scripts/verify-agent-request-response-schema-export.mjs",
+    "tool:schema-aware-local-json-examples:print": "npm run build:force && node scripts/schema-aware-local-json-fixture-examples-cli.mjs",
+    "tool:schema-aware-local-json-examples:verify": "npm run build:force && node scripts/verify-schema-aware-local-json-fixture-examples.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

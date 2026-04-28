@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent request runner from explicit request artifact in progress.**
+**State next-step alignment after local JSON agent request runner in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -349,7 +349,11 @@ local JSON agent request runner from explicit request artifact
 
 That pass should let an agent provide one explicit request artifact and receive one explicit response artifact plus one explicit run summary artifact, without adding MCP/API transport or runtime execution.
 
-`feat/local-json-agent-request-runner-from-explicit-request-artifact` adds that direct local request-run command.
+`main` now includes the direct local JSON agent request runner.
+
+Implementation PR #70 merged as `5c7d310`.
+
+GitHub Actions `Proof Output Regression` run `25053542843` passed for PR #70, including the new local JSON agent request runner step.
 
 The command is available through:
 
@@ -836,6 +840,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-127-state-next-step-alignment-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-128-repo-first-verdict-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-129-local-json-agent-request-runner-from-explicit-request-artifact.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-130-state-next-step-alignment-after-local-json-agent-request-runner.md`.
 
 The repository still does **not** have:
 
@@ -964,13 +969,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after local JSON agent request runner.
+**Bounded Pass:** repo-first verdict after local JSON agent request runner.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-request-runner`
+`docs/repo-first-verdict-after-local-json-agent-request-runner`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the direct agent request runner merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
+That docs-only verdict should choose the strongest next bounded pass toward a practical real-life local v0 tool now that an agent can directly provide a request artifact and receive response and summary artifacts.
 
 Keep the local CLI bounded:
 

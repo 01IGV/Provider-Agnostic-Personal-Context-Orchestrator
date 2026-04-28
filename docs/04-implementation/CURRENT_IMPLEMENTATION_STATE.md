@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local v0 source catalog tool-pack artifact merged and CI-verified.**
+**Local v0 source catalog guided run proof merged and locally verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -62,6 +62,8 @@ npm run proof:local-v0-source-catalog-guided-run:verify
 ```
 
 The proof starts from the local v0 tool-pack index, discovers the source catalog artifact, chooses an allowlisted scope, runs the bounded local v0 command, and verifies the response/summary against that catalog without opening arbitrary source loading or runtime behavior.
+
+PR #92 merged as `8b64996` after local verification passed. The GitHub merge gate accepted the PR; push-run CI observation should be recorded after GitHub Actions completes on `main`.
 
 The verifier is available through:
 
@@ -1111,6 +1113,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-149-ci-observation-after-local-v0-source-catalog-tool-pack-artifact.md`
 - `2026-04-28-150-repo-first-verdict-after-local-v0-source-catalog-tool-pack-artifact.md`
 - `2026-04-28-151-local-v0-source-catalog-guided-run-proof.md`
+- `2026-04-28-152-state-next-step-alignment-after-local-v0-source-catalog-guided-run-proof.md`
 
 ---
 
@@ -1151,13 +1154,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after source-catalog-guided local v0 run proof.
+**Bounded Pass:** repo-first verdict after source-catalog-guided local v0 run proof.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-source-catalog-guided-run-proof`
+`docs/repo-first-verdict-after-local-v0-source-catalog-guided-run-proof`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the source-catalog-guided run proof merge/verification result and select whether the next bounded pass should be a repo-first verdict or a directly useful local v0 usability improvement.
+That docs-only verdict should inspect `main` after the guided local v0 proof and choose the next bounded implementation step toward a real-life local v0 AI-agent tool.
 
 Keep the local CLI bounded:
 

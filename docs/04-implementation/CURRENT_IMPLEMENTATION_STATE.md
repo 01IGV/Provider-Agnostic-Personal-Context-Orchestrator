@@ -124,6 +124,10 @@ npm run contract:local-v0-source-catalog:verify
 npm run tool:local-v0-source-catalog-guided:verify
 ```
 
+PR #101 merged as `7888e51` after GitHub Actions `Proof Output Regression` PR run `25067191161` passed, including `Verify local v0 source catalog contracts` and `Verify local v0 source catalog guided command`.
+
+The next bounded pass should be a repo-first verdict after the first repo-work context source catalog scope, deciding whether the next implementation should move from deterministic inline repo-work context to a still-bounded repo-work artifact/sample path.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1157,6 +1161,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-158-state-next-step-alignment-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
 - `2026-04-28-159-repo-first-verdict-after-local-v0-source-catalog-guided-command-sample-artifacts.md`
 - `2026-04-28-160-local-v0-repo-work-context-source-catalog-contracts.md`
+- `2026-04-28-161-state-next-step-alignment-after-local-v0-repo-work-context-source-catalog-contracts.md`
 
 ---
 
@@ -1197,13 +1202,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state alignment after local v0 repo-work context source catalog contracts.
+**Bounded Pass:** repo-first verdict after local v0 repo-work context source catalog contracts.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-repo-work-context-source-catalog-contracts`
+`docs/repo-first-verdict-after-local-v0-repo-work-context-source-catalog-contracts`
 
-After merge and CI observation, the next pass should align state docs with the merged repo-work context source catalog contract before choosing the next implementation direction.
+The verdict should decide the next safe implementation direction after the first self-dogfooding scope is available through the source catalog and guided command path.
 
 Keep the local CLI bounded:
 

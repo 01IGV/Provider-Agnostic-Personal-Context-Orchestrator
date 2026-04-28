@@ -65,6 +65,10 @@ The proof starts from the local v0 tool-pack index, discovers the source catalog
 
 PR #92 merged as `8b64996` after local verification passed. The GitHub merge gate accepted the PR; push-run CI observation should be recorded after GitHub Actions completes on `main`.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a source-catalog-guided local v0 command.
+
+`feat/local-v0-source-catalog-guided-command` should turn the verified catalog-guided proof path into an agent-facing bounded local command that starts from an explicit tool-pack index path and writes explicit request/response/summary artifacts.
+
 The verifier is available through:
 
 ```bash
@@ -1114,6 +1118,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-150-repo-first-verdict-after-local-v0-source-catalog-tool-pack-artifact.md`
 - `2026-04-28-151-local-v0-source-catalog-guided-run-proof.md`
 - `2026-04-28-152-state-next-step-alignment-after-local-v0-source-catalog-guided-run-proof.md`
+- `2026-04-28-153-repo-first-verdict-after-local-v0-source-catalog-guided-run-proof.md`
 
 ---
 
@@ -1154,13 +1159,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after source-catalog-guided local v0 run proof.
+**Bounded Pass:** source-catalog-guided local v0 command.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-source-catalog-guided-run-proof`
+`feat/local-v0-source-catalog-guided-command`
 
-That docs-only verdict should inspect `main` after the guided local v0 proof and choose the next bounded implementation step toward a real-life local v0 AI-agent tool.
+That implementation pass should turn the verified guided proof path into a bounded agent-facing command without adding arbitrary source loading, runtime behavior, or MCP/API transport.
 
 Keep the local CLI bounded:
 

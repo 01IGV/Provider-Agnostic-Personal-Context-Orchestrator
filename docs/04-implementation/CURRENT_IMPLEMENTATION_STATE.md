@@ -152,7 +152,9 @@ The latest repo-first verdict confirms that the strongest next bounded implement
 
 `feat/local-v0-repo-work-context-current-state-refresh` updates the deterministic `scope:repo-work-context` payload so an AI agent receives current bounded orientation through the existing local v0 source catalog guided sample artifact path. The refreshed payload records the current agent-visible path, the merged guided sample artifact pass, the next safe pass, and an explicit `agent_direct_repo_file_access_allowed_now: false` flag. The verifier now proves those fields and the updated deterministic content digest while preserving the no-live-file-read/default-deny posture.
 
-The next bounded pass should be state alignment after the local v0 repo-work context current-state refresh.
+PR #107 merged as `12e7c79` after GitHub Actions `Proof Output Regression` PR run `25070117419` passed, including `Verify local v0 source catalog contracts` and `Verify local v0 repo-work context guided sample artifacts`.
+
+The next bounded pass should be a repo-first verdict after the local v0 repo-work context current-state refresh, deciding whether the next implementation should broaden the bounded source-adapter shape or further harden the agent-facing local v0 tool path.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1198,6 +1200,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-164-state-next-step-alignment-after-local-v0-repo-work-context-guided-sample-artifact.md`
 - `2026-04-28-165-repo-first-verdict-after-local-v0-repo-work-context-guided-sample-artifact.md`
 - `2026-04-28-166-local-v0-repo-work-context-current-state-refresh.md`
+- `2026-04-28-167-state-next-step-alignment-after-local-v0-repo-work-context-current-state-refresh.md`
 
 ---
 
@@ -1238,13 +1241,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state alignment after local v0 repo-work context current-state refresh.
+**Bounded Pass:** repo-first verdict after local v0 repo-work context current-state refresh.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-v0-repo-work-context-current-state-refresh`
+`docs/repo-first-verdict-after-local-v0-repo-work-context-current-state-refresh`
 
-After merge and CI observation, align state docs with the refreshed agent-facing repo-work context payload before choosing the next implementation direction.
+The verdict should decide the next safe implementation direction now that the agent-facing repo-work context payload is current, deterministic, and machine-verified through the guided sample artifact path.
 
 Keep the local CLI bounded:
 

@@ -77,7 +77,7 @@ Post-merge verification note (April 28, 2026): local `npm install`, `npm run typ
 
 Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm run tool:agent-request-response-schema:verify`, and `npm run tool:agent-request-response-schema:print` passed for `feat/agent-request-response-schema-export`; PR #49 passed GitHub Actions `Proof Output Regression` run `25041242244` and merged to `main` as `9c7bc45`. The schema export remains an agent-readable contract artifact and does not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
-Feature-branch verification note (April 28, 2026): local `npm run tool:schema-aware-local-json-examples:verify` passed for `feat/schema-aware-local-json-fixture-examples`; the examples are generated from the existing bounded local JSON path and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
+Post-merge verification note (April 28, 2026): local `npm run tool:schema-aware-local-json-examples:verify` passed for `feat/schema-aware-local-json-fixture-examples`; PR #51 passed GitHub Actions `Proof Output Regression` run `25041839791` and merged to `main` as `f9dfbea`. The examples are generated from the existing bounded local JSON path and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
 ---
 

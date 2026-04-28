@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after local JSON agent handoff bundle consumption CLI boundary in progress.**
+**Local JSON agent request runner from explicit request artifact in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -349,6 +349,24 @@ local JSON agent request runner from explicit request artifact
 
 That pass should let an agent provide one explicit request artifact and receive one explicit response artifact plus one explicit run summary artifact, without adding MCP/API transport or runtime execution.
 
+`feat/local-json-agent-request-runner-from-explicit-request-artifact` adds that direct local request-run command.
+
+The command is available through:
+
+```bash
+npm run tool:local-json-agent-request:run -- --request agent-context-request.json --response verified-protocol-surface-adapter.response.json --summary local-json-agent-request-run.summary.json
+```
+
+The command reads only the explicitly provided request artifact path, writes only the explicitly provided response and summary artifact paths, delegates request validation to the existing bounded local JSON runner, and preserves default-deny posture.
+
+The verifier is available through:
+
+```bash
+npm run tool:local-json-agent-request:run:verify
+```
+
+This is the first direct local v0 agent request-run command.
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -680,6 +698,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON agent handoff bundle writer;
 - local JSON agent handoff bundle round-trip proof;
 - local JSON agent handoff bundle consumption CLI boundary;
+- local JSON agent request runner from explicit request artifact;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -794,11 +813,16 @@ The repository currently has:
 - `npm run tool:local-json-agent-handoff-bundle:consume -- --bundle-summary <path> --manifest <path> --schema <path> --request <path> --expected-response <path> --examples-summary <path> --actual-response <path>`;
 - `scripts/verify-local-json-agent-handoff-bundle-consumption-cli-boundary.mjs`;
 - `npm run tool:local-json-agent-handoff-bundle-consumption:verify`;
+- `scripts/local-json-agent-request-runner-cli.mjs`;
+- `npm run tool:local-json-agent-request:run -- --request <path> --response <path> --summary <path>`;
+- `scripts/verify-local-json-agent-request-runner.mjs`;
+- `npm run tool:local-json-agent-request:run:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle round-trip proof;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle consumption CLI boundary;
+- CI `Proof Output Regression` step for local JSON agent request runner;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
@@ -811,6 +835,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-126-local-json-agent-handoff-bundle-consumption-cli-boundary.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-127-state-next-step-alignment-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-128-repo-first-verdict-after-local-json-agent-handoff-bundle-consumption-cli-boundary.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-129-local-json-agent-request-runner-from-explicit-request-artifact.md`.
 
 The repository still does **not** have:
 
@@ -921,7 +946,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, and one explicit handoff bundle consumption response output path;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, and explicit direct agent request-run response/summary output paths;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -939,13 +964,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent request runner from explicit request artifact.
+**Bounded Pass:** state next-step alignment after local JSON agent request runner.
 
 Recommended branch:
 
-`feat/local-json-agent-request-runner-from-explicit-request-artifact`
+`docs/state-next-step-alignment-after-local-json-agent-request-runner`
 
-That implementation pass should add a local command that accepts one explicitly provided agent request artifact path, writes one explicitly provided response artifact path, writes one explicitly provided run summary artifact path, validates the request against the existing local JSON agent request/response contract as narrowly as current contracts allow, and preserves default-deny posture.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the direct agent request runner merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
 
 Keep the local CLI bounded:
 

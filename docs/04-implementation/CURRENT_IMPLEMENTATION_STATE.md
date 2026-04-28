@@ -29,6 +29,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 PR #82 merged as `242d740` after GitHub Actions `Proof Output Regression` run `25060197534` passed, including the new `Verify local JSON agent local v0 single-command runner` step.
 
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is local v0 source catalog contracts.
+
 The command is available through:
 
 ```bash
@@ -1055,6 +1057,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-140-repo-first-verdict-after-local-json-agent-local-v0-acceptance-proof.md`
 - `2026-04-28-141-local-json-agent-local-v0-single-command-runner.md`
 - `2026-04-28-142-state-next-step-alignment-after-local-json-agent-local-v0-single-command-runner.md`
+- `2026-04-28-143-repo-first-verdict-after-local-json-agent-local-v0-single-command-runner.md`
 
 ---
 
@@ -1093,13 +1096,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON agent local v0 single-command runner.
+**Bounded Pass:** local v0 source catalog contracts.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-agent-local-v0-single-command-runner`
+`feat/local-v0-source-catalog-contracts`
 
-That docs-only pass should select the next bounded implementation step toward a real-life local v0 tool now that the AI-agent has one compact bounded local command surface.
+That implementation pass should make the supported local v0 context scopes explicit as an allowlisted, machine-readable source catalog while keeping source content deterministic and in-repo.
 
 Keep the local CLI bounded:
 

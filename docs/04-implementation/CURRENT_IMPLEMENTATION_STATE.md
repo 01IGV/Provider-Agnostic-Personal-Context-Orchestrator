@@ -156,6 +156,8 @@ PR #107 merged as `12e7c79` after GitHub Actions `Proof Output Regression` PR ru
 
 The next bounded pass should be a repo-first verdict after the local v0 repo-work context current-state refresh, deciding whether the next implementation should broaden the bounded source-adapter shape or further harden the agent-facing local v0 tool path.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local v0 source materialization receipt contract. The repo-work context path is current and machine-verified, so the next useful agent-facing step is to make source selection itself explicitly inspectable: requested scope, selected source refs, materialization boundary, provenance/permission/audit refs, and denial of direct repo file access/live source reads.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1201,6 +1203,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-165-repo-first-verdict-after-local-v0-repo-work-context-guided-sample-artifact.md`
 - `2026-04-28-166-local-v0-repo-work-context-current-state-refresh.md`
 - `2026-04-28-167-state-next-step-alignment-after-local-v0-repo-work-context-current-state-refresh.md`
+- `2026-04-28-168-repo-first-verdict-after-local-v0-repo-work-context-current-state-refresh.md`
 
 ---
 
@@ -1241,13 +1244,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local v0 repo-work context current-state refresh.
+**Bounded Pass:** local v0 source materialization receipt contracts.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-repo-work-context-current-state-refresh`
+`feat/local-v0-source-materialization-receipt-contracts`
 
-The verdict should decide the next safe implementation direction now that the agent-facing repo-work context payload is current, deterministic, and machine-verified through the guided sample artifact path.
+Add a machine-readable source materialization receipt to the local v0 agent-facing path so agents can inspect which requested scope/source refs were selected and which authority/provenance/permission/audit/default-deny boundaries applied, without adding live source reads or direct file access.
 
 Keep the local CLI bounded:
 

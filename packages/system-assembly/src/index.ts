@@ -86,6 +86,8 @@ export * from "./first-agent-context-request-boundary-types.js";
 export * from "./first-agent-context-request-boundary.js";
 export * from "./local-deterministic-context-source-adapter-contracts-types.js";
 export * from "./local-deterministic-context-source-adapter-contracts.js";
+export * from "./local-v0-source-catalog-contracts-types.js";
+export * from "./local-v0-source-catalog-contracts.js";
 export * from "./first-protocol-surface-adapter-shape-for-verified-response-types.js";
 export * from "./first-protocol-surface-adapter-shape-for-verified-response.js";
 export * from "./local-json-request-response-runner-shape-types.js";

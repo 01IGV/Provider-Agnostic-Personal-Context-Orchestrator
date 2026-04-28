@@ -50,6 +50,9 @@ jobs:
       - name: Verify local deterministic context source adapter
         run: npm run contract:local-deterministic-context-source:verify
 
+      - name: Verify local v0 source catalog contracts
+        run: npm run contract:local-v0-source-catalog:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

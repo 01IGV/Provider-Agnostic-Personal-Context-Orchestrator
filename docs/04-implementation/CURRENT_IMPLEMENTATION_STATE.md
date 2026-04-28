@@ -31,6 +31,16 @@ PR #82 merged as `242d740` after GitHub Actions `Proof Output Regression` run `2
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local v0 source catalog contracts.
 
+`feat/local-v0-source-catalog-contracts` adds those contracts.
+
+The verifier is available through:
+
+```bash
+npm run contract:local-v0-source-catalog:verify
+```
+
+The source catalog makes the supported local v0 context scopes explicit and machine-readable while preserving allowlisted deterministic in-repo source definitions only.
+
 The command is available through:
 
 ```bash
@@ -929,6 +939,11 @@ The repository currently has:
 - `npm run tool:local-json-agent-local-v0:run -- --request <path> --response <path> --summary <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>] [--scope-hints <scope:a,scope:b>]`;
 - `scripts/verify-local-json-agent-local-v0-single-command-runner.mjs`;
 - `npm run tool:local-json-agent-local-v0:run:verify`;
+- `packages/system-assembly/src/local-v0-source-catalog-contracts.ts`;
+- `packages/system-assembly/src/local-v0-source-catalog-contracts-types.ts`;
+- `scripts/verify-local-v0-source-catalog-contracts.mjs`;
+- `npm run contract:local-v0-source-catalog:verify`;
+- CI `Proof Output Regression` step for local v0 source catalog contracts;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
@@ -1058,6 +1073,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-141-local-json-agent-local-v0-single-command-runner.md`
 - `2026-04-28-142-state-next-step-alignment-after-local-json-agent-local-v0-single-command-runner.md`
 - `2026-04-28-143-repo-first-verdict-after-local-json-agent-local-v0-single-command-runner.md`
+- `2026-04-28-144-local-v0-source-catalog-contracts.md`
 
 ---
 
@@ -1096,13 +1112,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local v0 source catalog contracts.
+**Bounded Pass:** state next-step alignment after local v0 source catalog contracts.
 
 Recommended branch:
 
-`feat/local-v0-source-catalog-contracts`
+`docs/state-next-step-alignment-after-local-v0-source-catalog-contracts`
 
-That implementation pass should make the supported local v0 context scopes explicit as an allowlisted, machine-readable source catalog while keeping source content deterministic and in-repo.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the source catalog merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
 
 Keep the local CLI bounded:
 

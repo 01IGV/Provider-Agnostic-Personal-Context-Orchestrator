@@ -16,6 +16,7 @@
     "proof:authority-boundary-denial:verify": "npm run build:force && node scripts/verify-authority-boundary-denial-proof.mjs",
     "contract:agent-context-request:verify": "npm run build:force && node scripts/verify-agent-context-request-boundary.mjs",
     "contract:local-deterministic-context-source:verify": "npm run build:force && node scripts/verify-local-deterministic-context-source-adapter.mjs",
+    "contract:local-v0-source-catalog:verify": "npm run build:force && node scripts/verify-local-v0-source-catalog-contracts.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

@@ -103,3 +103,6 @@ jobs:
 
       - name: Verify local JSON agent tool manifest artifact writer
         run: npm run tool:local-json-agent-tool-manifest-artifact:verify
+
+      - name: Verify local JSON agent handoff bundle writer
+        run: npm run tool:local-json-agent-handoff-bundle:verify

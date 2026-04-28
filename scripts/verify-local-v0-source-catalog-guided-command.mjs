@@ -27,6 +27,18 @@ const guidedResponseOutputPath = join(
   "verified-protocol-surface-adapter.guided-command.response.json"
 );
 const guidedSummaryOutputPath = join(tempDir, "local-v0-source-catalog-guided-command.summary.json");
+const repoWorkGuidedRequestOutputPath = join(
+  tempDir,
+  "agent-context-request.repo-work-guided-command.json"
+);
+const repoWorkGuidedResponseOutputPath = join(
+  tempDir,
+  "verified-protocol-surface-adapter.repo-work-guided-command.response.json"
+);
+const repoWorkGuidedSummaryOutputPath = join(
+  tempDir,
+  "local-v0-source-catalog-repo-work-guided-command.summary.json"
+);
 
 const toolPackWriteResult = writeLocalJsonAgentLocalV0ToolPackArtifactSet({
   manifest_output_path: manifestOutputPath,
@@ -43,6 +55,9 @@ const sourceCatalogArtifact = readJson(sourceCatalogOutputPath);
 const selectedCatalogEntry = sourceCatalogArtifact.entries.find(
   (entry) => entry.scope_id === "scope:active-boundary-chain"
 );
+const selectedRepoWorkCatalogEntry = sourceCatalogArtifact.entries.find(
+  (entry) => entry.scope_id === "scope:repo-work-context"
+);
 const commandResult = runLocalV0SourceCatalogGuidedCommand({
   tool_pack_index_path: toolPackIndexOutputPath,
   request_path: guidedRequestOutputPath,
@@ -53,11 +68,26 @@ const commandResult = runLocalV0SourceCatalogGuidedCommand({
   read_mode_hint: "planning",
   depth_hint: "standard"
 });
+const repoWorkCommandResult = runLocalV0SourceCatalogGuidedCommand({
+  tool_pack_index_path: toolPackIndexOutputPath,
+  request_path: repoWorkGuidedRequestOutputPath,
+  response_path: repoWorkGuidedResponseOutputPath,
+  summary_path: repoWorkGuidedSummaryOutputPath,
+  scope_hint: selectedRepoWorkCatalogEntry?.scope_id,
+  task_signal: "repo work context bounded planning request",
+  read_mode_hint: "planning",
+  depth_hint: "standard"
+});
 
 const guidedRequestArtifact = readJson(guidedRequestOutputPath);
 const guidedResponseArtifact = readJson(guidedResponseOutputPath);
 const guidedSummaryArtifact = readJson(guidedSummaryOutputPath);
 const guidedObservationSummary = guidedResponseArtifact.response_observation_summary_json;
+const repoWorkGuidedRequestArtifact = readJson(repoWorkGuidedRequestOutputPath);
+const repoWorkGuidedResponseArtifact = readJson(repoWorkGuidedResponseOutputPath);
+const repoWorkGuidedSummaryArtifact = readJson(repoWorkGuidedSummaryOutputPath);
+const repoWorkGuidedObservationSummary =
+  repoWorkGuidedResponseArtifact.response_observation_summary_json;
 
 const assertions = {
   tool_pack_materialized:
@@ -86,6 +116,30 @@ const assertions = {
     guidedSummaryArtifact.selected_source_refs.join("|") === selectedCatalogEntry?.source_ref &&
     guidedObservationSummary.selected_scope_ids.join("|") === selectedCatalogEntry?.scope_id &&
     guidedObservationSummary.selected_source_refs.join("|") === selectedCatalogEntry?.source_ref,
+  repo_work_context_scope_is_guided_and_bounded:
+    selectedRepoWorkCatalogEntry !== undefined &&
+    repoWorkCommandResult.verification_result ===
+      "local_v0_source_catalog_guided_command_completed" &&
+    repoWorkCommandResult.failure_count === 0 &&
+    repoWorkCommandResult.selected_scope_id === selectedRepoWorkCatalogEntry.scope_id &&
+    repoWorkCommandResult.selected_source_ref === selectedRepoWorkCatalogEntry.source_ref &&
+    repoWorkGuidedRequestArtifact.intent.requested_scope_hints.join("|") ===
+      selectedRepoWorkCatalogEntry.scope_id &&
+    repoWorkCommandResult.guided_run_selected_scope_ids.join("|") ===
+      selectedRepoWorkCatalogEntry.scope_id &&
+    repoWorkCommandResult.guided_run_selected_source_refs.join("|") ===
+      selectedRepoWorkCatalogEntry.source_ref &&
+    repoWorkGuidedSummaryArtifact.selected_scope_ids.join("|") ===
+      selectedRepoWorkCatalogEntry.scope_id &&
+    repoWorkGuidedSummaryArtifact.selected_source_refs.join("|") ===
+      selectedRepoWorkCatalogEntry.source_ref &&
+    repoWorkGuidedObservationSummary.selected_scope_ids.join("|") ===
+      selectedRepoWorkCatalogEntry.scope_id &&
+    repoWorkGuidedObservationSummary.selected_source_refs.join("|") ===
+      selectedRepoWorkCatalogEntry.source_ref &&
+    repoWorkCommandResult.arbitrary_source_loading_allowed === false &&
+    repoWorkCommandResult.runtime_permission_granted === false &&
+    repoWorkCommandResult.actual_contour_execution_allowed_now === false,
   explicit_paths_only:
     commandResult.request_path === guidedRequestOutputPath &&
     commandResult.response_path === guidedResponseOutputPath &&
@@ -98,10 +152,16 @@ const assertions = {
   default_deny_posture_preserved:
     commandResult.runtime_permission_granted === false &&
     commandResult.actual_contour_execution_allowed_now === false &&
+    repoWorkCommandResult.runtime_permission_granted === false &&
+    repoWorkCommandResult.actual_contour_execution_allowed_now === false &&
     guidedSummaryArtifact.runtime_permission_granted === false &&
     guidedSummaryArtifact.actual_contour_execution_allowed_now === false &&
     guidedObservationSummary.runtime_permission_granted === false &&
-    guidedObservationSummary.actual_contour_execution_allowed_now === false,
+    guidedObservationSummary.actual_contour_execution_allowed_now === false &&
+    repoWorkGuidedSummaryArtifact.runtime_permission_granted === false &&
+    repoWorkGuidedSummaryArtifact.actual_contour_execution_allowed_now === false &&
+    repoWorkGuidedObservationSummary.runtime_permission_granted === false &&
+    repoWorkGuidedObservationSummary.actual_contour_execution_allowed_now === false,
   runtime_surfaces_remain_closed:
     commandResult.child_process_spawned === false &&
     commandResult.arbitrary_source_loading_allowed === false &&
@@ -116,7 +176,21 @@ const assertions = {
     commandResult.concrete_persistence_read_allowed_now === false &&
     commandResult.concrete_persistence_write_allowed_now === false &&
     commandResult.real_model_call_allowed_now === false &&
-    commandResult.real_storage_write_allowed_now === false
+    commandResult.real_storage_write_allowed_now === false &&
+    repoWorkCommandResult.child_process_spawned === false &&
+    repoWorkCommandResult.arbitrary_source_loading_allowed === false &&
+    repoWorkCommandResult.mcp_server_implemented === false &&
+    repoWorkCommandResult.mcp_tool_registered === false &&
+    repoWorkCommandResult.mcp_resource_registered === false &&
+    repoWorkCommandResult.api_route_registered === false &&
+    repoWorkCommandResult.api_controller_registered === false &&
+    repoWorkCommandResult.runtime_handler_bound === false &&
+    repoWorkCommandResult.provider_sdk_call_allowed_now === false &&
+    repoWorkCommandResult.transport_execution_allowed_now === false &&
+    repoWorkCommandResult.concrete_persistence_read_allowed_now === false &&
+    repoWorkCommandResult.concrete_persistence_write_allowed_now === false &&
+    repoWorkCommandResult.real_model_call_allowed_now === false &&
+    repoWorkCommandResult.real_storage_write_allowed_now === false
 };
 
 const failed = Object.entries(assertions)
@@ -134,8 +208,13 @@ const verification = {
   guided_request_output_path: guidedRequestOutputPath,
   guided_response_output_path: guidedResponseOutputPath,
   guided_summary_output_path: guidedSummaryOutputPath,
+  repo_work_guided_request_output_path: repoWorkGuidedRequestOutputPath,
+  repo_work_guided_response_output_path: repoWorkGuidedResponseOutputPath,
+  repo_work_guided_summary_output_path: repoWorkGuidedSummaryOutputPath,
   selected_scope_id: commandResult.selected_scope_id,
   selected_source_ref: commandResult.selected_source_ref,
+  repo_work_selected_scope_id: repoWorkCommandResult.selected_scope_id,
+  repo_work_selected_source_ref: repoWorkCommandResult.selected_source_ref,
   runtime_permission_granted: commandResult.runtime_permission_granted,
   actual_contour_execution_allowed_now: commandResult.actual_contour_execution_allowed_now,
   failure_count: failed.length,

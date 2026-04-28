@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent handoff bundle writer in progress.**
+**Local JSON agent handoff bundle writer merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -270,7 +270,7 @@ The new verifier proves the written manifest artifact remains agent-readable, pa
 npm run tool:local-json-agent-tool-manifest-artifact:verify
 ```
 
-`feat/local-json-agent-handoff-bundle-writer` adds a bounded handoff bundle writer.
+`main` now adds a bounded handoff bundle writer.
 
 The bundle writer is available through:
 
@@ -534,6 +534,8 @@ GitHub Actions observation note:
 - PR #57 was merged to `main` as `8d73cf2`.
 - PR #59 for `feat/local-json-agent-tool-manifest-artifact-writer` passed GitHub Actions `Proof Output Regression` run `25048647676`;
 - PR #59 was merged to `main` as `7d49dd0`.
+- PR #61 for `feat/local-json-agent-handoff-bundle-writer` passed GitHub Actions `Proof Output Regression` run `25049448293`;
+- PR #61 was merged to `main` as `ef90a1a`.
 
 Runtime remains closed:
 
@@ -616,9 +618,8 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON example artifact round-trip proof;
 - local JSON agent tool manifest;
 - local JSON agent tool manifest artifact writer;
+- local JSON agent handoff bundle writer;
 - local verification green for all current proof commands.
-
-This feature branch extends that state with a local JSON agent handoff bundle writer.
 
 All of this remains execution-free.
 
@@ -733,7 +734,8 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-119-state-next-step-alignment-after-local-json-agent-tool-manifest-artifact-writer.md`;
-- `docs/04-implementation/execution-reports/2026-04-28-120-local-json-agent-handoff-bundle-writer.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-120-local-json-agent-handoff-bundle-writer.md`;
+- `docs/04-implementation/execution-reports/2026-04-28-121-state-next-step-alignment-after-local-json-agent-handoff-bundle-writer.md`.
 
 The repository still does **not** have:
 
@@ -859,13 +861,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state and next-step alignment after local JSON agent handoff bundle writer.
+**Bounded Pass:** repo-first next-step verdict after local JSON agent handoff bundle writer.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-handoff-bundle-writer`
+`docs/repo-first-verdict-after-local-json-agent-handoff-bundle-writer`
 
-That pass should record the merge/CI result for the handoff bundle writer and choose the next smallest useful agent-facing improvement.
+That pass should decide the next smallest useful agent-facing improvement now that the repo can materialize a local handoff bundle.
 
 Keep the local CLI bounded:
 

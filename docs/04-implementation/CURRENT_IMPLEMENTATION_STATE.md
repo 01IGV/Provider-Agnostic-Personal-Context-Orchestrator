@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local v0 source catalog tool-pack artifact merged and locally verified.**
+**Local v0 source catalog tool-pack artifact merged and CI-verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -48,6 +48,8 @@ The local v0 tool-pack writer now accepts:
 The generated tool-pack index references the `local-v0-source-catalog/v1` artifact, supported scope ids, source catalog selection policy, and default-deny posture.
 
 PR #88 merged as `a29c49b` after local verification passed. The GitHub merge gate accepted the PR, but direct check-run observation for the PR head was not exposed through the connector/API in this session.
+
+PR #89 merged as `5a05ecb`; GitHub Actions push-run for `proof-output-regression.yml` on `main` completed successfully in 3m 44s, including `Verify proof output golden snapshot`.
 
 The verifier is available through:
 
@@ -1108,7 +1110,7 @@ Current limits after first local JSON CLI file IO boundary:
 - GitHub Actions PR run for local JSON request fixture authoring helper passed, but push-run observation for merge commit `d59e43a` did not return a workflow run through the connector in this session;
 - GitHub Actions PR run for local JSON single-command run wrapper passed, but push-run observation for merge commit `8991f28` did not return a workflow run through the connector in this session;
 - GitHub check-run observation for local v0 source catalog contracts PR head `f1da0ca` was not exposed through the connector/API in this session, though local verification passed and GitHub accepted merge commit `4d2465f`;
-- GitHub check-run observation for local v0 source catalog tool-pack artifact PR head `4914823` was not exposed through the connector/API in this session, though local verification passed and GitHub accepted merge commit `a29c49b`;
+- GitHub check-run observation for local v0 source catalog tool-pack artifact PR head `4914823` was not exposed through the connector/API in this session, though local verification passed and GitHub accepted merge commit `a29c49b`; follow-up GitHub UI observation confirmed the `main` push-run for merge commit `5a05ecb` succeeded;
 - no concrete persistence adapters yet;
 - local deterministic source items are contract fixtures only and not canonical context reads;
 - bounded context package items are contract refs only and not canonical persistence records;

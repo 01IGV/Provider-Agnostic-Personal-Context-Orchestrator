@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON agent local v0 single-command runner in progress.**
+**Local JSON agent local v0 single-command runner merged and CI-verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -26,6 +26,8 @@ PR #79 merged as `3d1509a` after GitHub Actions `Proof Output Regression` run `2
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local v0 single-command runner for AI-agent usage.
 
 `feat/local-json-agent-local-v0-single-command-runner` adds that command.
+
+PR #82 merged as `242d740` after GitHub Actions `Proof Output Regression` run `25060197534` passed, including the new `Verify local JSON agent local v0 single-command runner` step.
 
 The command is available through:
 
@@ -1052,6 +1054,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-139-state-next-step-alignment-after-local-json-agent-local-v0-acceptance-proof.md`
 - `2026-04-28-140-repo-first-verdict-after-local-json-agent-local-v0-acceptance-proof.md`
 - `2026-04-28-141-local-json-agent-local-v0-single-command-runner.md`
+- `2026-04-28-142-state-next-step-alignment-after-local-json-agent-local-v0-single-command-runner.md`
 
 ---
 
@@ -1090,13 +1093,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** state next-step alignment after local JSON agent local v0 single-command runner.
+**Bounded Pass:** repo-first verdict after local JSON agent local v0 single-command runner.
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-local-json-agent-local-v0-single-command-runner`
+`docs/repo-first-verdict-after-local-json-agent-local-v0-single-command-runner`
 
-That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the single-command runner merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
+That docs-only pass should select the next bounded implementation step toward a real-life local v0 tool now that the AI-agent has one compact bounded local command surface.
 
 Keep the local CLI bounded:
 

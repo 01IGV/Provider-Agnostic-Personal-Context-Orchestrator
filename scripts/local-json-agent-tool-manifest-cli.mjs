@@ -44,6 +44,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-json-agent-request:run",
       "tool:local-json-agent-request-runner-sample:write",
       "tool:local-json-agent-local-v0-tool-pack:write",
+      "tool:local-v0-source-catalog-guided:run",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -149,6 +150,16 @@ export const readLocalJsonAgentToolManifest = () => {
         purpose:
           "Author one constrained local v0 agent request artifact, run it through the bounded local JSON agent request runner, and write explicit response and summary artifacts.",
         output_contract_ref: "local-json-agent-local-v0-single-command-run/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
+        command_ref: "tool:local-v0-source-catalog-guided:run",
+        command:
+          "npm run tool:local-v0-source-catalog-guided:run -- --tool-pack-index <path> --request <path> --response <path> --summary <path> [--scope-hint <scope:id>] [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]",
+        purpose:
+          "Run one catalog-guided local v0 request from an explicit tool-pack index path and write explicit request, response, and summary artifacts.",
+        output_contract_ref: "local-v0-source-catalog-guided-command/v1",
         file_read_allowed: true,
         file_write_allowed: true
       },

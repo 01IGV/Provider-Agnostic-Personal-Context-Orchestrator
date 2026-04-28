@@ -67,7 +67,21 @@ PR #92 merged as `8b64996` after local verification passed. The GitHub merge gat
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a source-catalog-guided local v0 command.
 
-`feat/local-v0-source-catalog-guided-command` should turn the verified catalog-guided proof path into an agent-facing bounded local command that starts from an explicit tool-pack index path and writes explicit request/response/summary artifacts.
+`feat/local-v0-source-catalog-guided-command` adds that bounded local command.
+
+The command is available through:
+
+```bash
+npm run tool:local-v0-source-catalog-guided:run -- --tool-pack-index local-json-agent-local-v0-tool-pack.index.json --request agent-context-request.guided-command.json --response verified-protocol-surface-adapter.guided-command.response.json --summary local-v0-source-catalog-guided-command.summary.json --scope-hint scope:active-boundary-chain
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-v0-source-catalog-guided:verify
+```
+
+The command turns the verified catalog-guided proof path into an agent-facing bounded local command that starts from an explicit tool-pack index path and writes explicit request/response/summary artifacts.
 
 The verifier is available through:
 
@@ -1119,6 +1133,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-151-local-v0-source-catalog-guided-run-proof.md`
 - `2026-04-28-152-state-next-step-alignment-after-local-v0-source-catalog-guided-run-proof.md`
 - `2026-04-28-153-repo-first-verdict-after-local-v0-source-catalog-guided-run-proof.md`
+- `2026-04-28-154-local-v0-source-catalog-guided-command.md`
 
 ---
 
@@ -1159,13 +1174,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** source-catalog-guided local v0 command.
+**Bounded Pass:** state next-step alignment after source-catalog-guided local v0 command.
 
 Recommended branch:
 
-`feat/local-v0-source-catalog-guided-command`
+`docs/state-next-step-alignment-after-local-v0-source-catalog-guided-command`
 
-That implementation pass should turn the verified guided proof path into a bounded agent-facing command without adding arbitrary source loading, runtime behavior, or MCP/API transport.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the guided command merge/verification result and select whether the next bounded pass should be a repo-first verdict or a directly useful local v0 usability improvement.
 
 Keep the local CLI bounded:
 

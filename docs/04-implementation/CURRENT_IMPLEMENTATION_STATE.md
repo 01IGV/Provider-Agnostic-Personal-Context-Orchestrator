@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Schema-aware local JSON fixture examples merged to main.**
+**Local JSON example artifact materialization implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -188,6 +188,26 @@ The new verifier proves that the examples match the exported schema and actual l
 npm run tool:schema-aware-local-json-examples:verify
 ```
 
+Feature branch `feat/local-json-example-artifact-materialization` now lets an AI agent write schema-aware local JSON examples to explicitly provided artifact paths.
+
+The artifact writer is available through:
+
+```bash
+npm run tool:local-json-example-artifacts:write -- --request-output request.example.json --response-output response-summary.example.json --summary-output examples.summary.json
+```
+
+It writes:
+
+- a minimal valid agent context request example;
+- an expected response observation summary example;
+- a full schema-aware example summary artifact.
+
+The new verifier proves that the written artifacts match the schema-aware examples and remain default-deny:
+
+```bash
+npm run tool:local-json-example-artifacts:verify
+```
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -354,6 +374,7 @@ npm run tool:local-json-response-observation-summary:verify
 npm run tool:agent-readable-response-use-guidance:verify
 npm run tool:agent-request-response-schema:verify
 npm run tool:schema-aware-local-json-examples:verify
+npm run tool:local-json-example-artifacts:verify
 ```
 
 Observed local verification results:
@@ -387,6 +408,8 @@ Observed local verification results:
 - local schema export print returned `local_json_agent_request_response_contract_schema_ready`.
 - `schema_aware_local_json_fixture_examples_verified`.
 - local schema-aware examples print returned `schema_aware_local_json_fixture_examples_ready`.
+- `local_json_example_artifact_materialization_verified`.
+- local example artifact smoke returned `schema_aware_local_json_fixture_example_artifacts_written`.
 
 GitHub Actions observation note:
 
@@ -489,6 +512,7 @@ The strongest current bounded implementation state on `main` is now:
 - agent-readable response use guidance;
 - agent request/response schema export;
 - schema-aware local JSON fixture examples;
+- local JSON example artifact materialization;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -579,8 +603,12 @@ The repository currently has:
 - `scripts/verify-schema-aware-local-json-fixture-examples.mjs`;
 - `npm run tool:schema-aware-local-json-examples:verify`;
 - CI `Proof Output Regression` step for schema-aware local JSON fixture examples;
+- `npm run tool:local-json-example-artifacts:write -- --request-output <path> --response-output <path> --summary-output <path>`;
+- `scripts/verify-local-json-example-artifact-materialization.mjs`;
+- `npm run tool:local-json-example-artifacts:verify`;
+- CI `Proof Output Regression` step for local JSON example artifact materialization;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-28-110-schema-aware-local-json-fixture-examples.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-112-local-json-example-artifact-materialization.md`.
 
 The repository still does **not** have:
 
@@ -702,15 +730,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON example artifact materialization.
+**Bounded Pass:** local JSON example artifact round-trip proof.
 
 Recommended branch:
 
-`feat/local-json-example-artifact-materialization`
+`feat/local-json-example-artifact-round-trip-proof`
 
-That pass should let an AI agent write the schema-aware example request/response artifacts to explicitly provided local paths, preserving the same bounded local file IO posture.
+That pass should feed the materialized request example back through the existing bounded local JSON fixture runner and prove that the resulting response observation summary matches the materialized expected summary.
 
-After schema-aware examples, the useful next step is making the examples materializable as local artifacts an external agent can inspect or hand off, without adding arbitrary source loading or runtime server behavior.
+After artifact materialization, the useful next step is proving that the materialized artifacts are not just inspectable, but executable-through-the-existing-bounded-local-path as examples, without adding arbitrary source loading or runtime server behavior.
 
 Keep the local CLI bounded:
 

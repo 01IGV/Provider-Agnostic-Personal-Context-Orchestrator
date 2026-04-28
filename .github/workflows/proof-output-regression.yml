@@ -91,3 +91,6 @@ jobs:
 
       - name: Verify schema-aware local JSON fixture examples
         run: npm run tool:schema-aware-local-json-examples:verify
+
+      - name: Verify local JSON example artifact materialization
+        run: npm run tool:local-json-example-artifacts:verify

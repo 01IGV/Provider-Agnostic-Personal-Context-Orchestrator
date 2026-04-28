@@ -79,6 +79,8 @@ Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm r
 
 Post-merge verification note (April 28, 2026): local `npm run tool:schema-aware-local-json-examples:verify` passed for `feat/schema-aware-local-json-fixture-examples`; PR #51 passed GitHub Actions `Proof Output Regression` run `25041839791` and merged to `main` as `f9dfbea`. The examples are generated from the existing bounded local JSON path and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
 
+Feature-branch verification note (April 28, 2026): local `npm run typecheck`, `npm run tool:schema-aware-local-json-examples:verify`, `npm run tool:local-json-example-artifacts:verify`, and a `npm run tool:local-json-example-artifacts:write` smoke passed for `feat/local-json-example-artifact-materialization`; artifact writes are limited to explicitly provided output paths and do not add MCP/API runtime, provider calls, persistence, model calls, permission grants, or contour execution.
+
 ---
 
 ## Current Known Issues and Constraints
@@ -143,7 +145,7 @@ Post-merge verification note (April 28, 2026): local `npm run tool:schema-aware-
 - **Layer / Area:** local JSON request/response runner boundary
 - **Status:** open
 - **Severity:** medium
-- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, minimal local JSON fixture runner CLI/file boundary, first scoped local CLI file IO path, deterministic request fixture authoring helper, single-command local wrapper, constrained request-intent variation, minimal local source fixture selection, local JSON response observation summary, agent-readable response use guidance, agent request/response schema export, and schema-aware local JSON fixture examples create pressure to expand into generalized file loading, process orchestration, MCP/API transport behavior, provider calls, persistence adapters, model calls, or direct runtime invocation.
+- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, minimal local JSON fixture runner CLI/file boundary, first scoped local CLI file IO path, deterministic request fixture authoring helper, single-command local wrapper, constrained request-intent variation, minimal local source fixture selection, local JSON response observation summary, agent-readable response use guidance, agent request/response schema export, schema-aware local JSON fixture examples, and local JSON example artifact materialization create pressure to expand into generalized file loading, process orchestration, MCP/API transport behavior, provider calls, persistence adapters, model calls, or direct runtime invocation.
 - **Impact:** the project could accidentally turn the first useful local tool path into an unbounded runtime surface.
 - **Recommended next action:** keep the local CLI fixture-scoped, deterministic, and default-deny; expand only through explicit bounded passes with verification.
 

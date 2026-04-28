@@ -118,3 +118,6 @@ jobs:
 
       - name: Verify local JSON agent request runner sample artifact set
         run: npm run tool:local-json-agent-request-runner-sample:verify
+
+      - name: Verify local JSON agent local v0 tool pack artifact set
+        run: npm run tool:local-json-agent-local-v0-tool-pack:verify

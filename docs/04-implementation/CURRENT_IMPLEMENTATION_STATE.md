@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Agent request/response schema export implemented on feature branch.**
+**Agent request/response schema export merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -141,7 +141,7 @@ The new verifier proves the agent-readable guidance is present and default-deny:
 npm run tool:agent-readable-response-use-guidance:verify
 ```
 
-Feature branch `feat/agent-request-response-schema-export` now adds a compact machine-readable contract schema export for AI agents.
+`main` now adds a compact machine-readable contract schema export for AI agents.
 
 The schema export is available through:
 
@@ -380,6 +380,8 @@ GitHub Actions observation note:
 - PR #45 was merged to `main` as `1e3a17e`.
 - PR #47 for `feat/agent-readable-response-use-guidance` passed GitHub Actions `Proof Output Regression` run `25040644880`;
 - PR #47 was merged to `main` as `ee9ff38`.
+- PR #49 for `feat/agent-request-response-schema-export` passed GitHub Actions `Proof Output Regression` run `25041242244`;
+- PR #49 was merged to `main` as `9c7bc45`.
 
 Runtime remains closed:
 
@@ -543,7 +545,7 @@ The repository currently has:
 - `npm run tool:agent-request-response-schema:verify`;
 - CI `Proof Output Regression` step for agent request-response schema export;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-28-107-agent-request-response-schema-export.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-108-agent-request-response-schema-export.md`.
 
 The repository still does **not** have:
 

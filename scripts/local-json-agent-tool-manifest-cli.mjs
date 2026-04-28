@@ -135,9 +135,9 @@ export const readLocalJsonAgentToolManifest = () => {
       {
         command_ref: "tool:local-json-agent-local-v0-tool-pack:write",
         command:
-          "npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output <path> --schema-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>",
+          "npm run tool:local-json-agent-local-v0-tool-pack:write -- --manifest-output <path> --schema-output <path> --source-catalog-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>",
         purpose:
-          "Write a complete local v0 tool-pack artifact set for AI-agent inspection.",
+          "Write a complete local v0 tool-pack artifact set, including the allowlisted source catalog, for AI-agent inspection.",
         output_contract_ref: "local-json-agent-local-v0-tool-pack-artifact-set/v1",
         file_read_allowed: true,
         file_write_allowed: true

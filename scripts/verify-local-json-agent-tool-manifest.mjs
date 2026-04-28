@@ -38,6 +38,10 @@ const assertions = {
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
+  manifest_exposes_source_catalog_tool_pack_output:
+    manifest.commands.find(
+      (command) => command.command_ref === "tool:local-json-agent-local-v0-tool-pack:write"
+    )?.command.includes("--source-catalog-output <path>") === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&

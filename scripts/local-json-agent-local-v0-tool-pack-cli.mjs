@@ -8,14 +8,16 @@ import { writeLocalJsonAgentToolManifestArtifact } from "./local-json-agent-tool
 import {
   writeLocalJsonAgentRequestRunnerSampleArtifactSet
 } from "./local-json-agent-request-runner-sample-cli.mjs";
+import { createLocalV0SourceCatalog } from "../packages/system-assembly/dist/index.js";
 
 const stableJson = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const usage =
-  "Usage: node scripts/local-json-agent-local-v0-tool-pack-cli.mjs --manifest-output <path> --schema-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>";
+  "Usage: node scripts/local-json-agent-local-v0-tool-pack-cli.mjs --manifest-output <path> --schema-output <path> --source-catalog-output <path> --sample-request-output <path> --sample-response-output <path> --sample-summary-output <path> --sample-index-output <path> --tool-pack-index-output <path>";
 
 const requiredArgs = [
   "manifest-output",
   "schema-output",
+  "source-catalog-output",
   "sample-request-output",
   "sample-response-output",
   "sample-summary-output",
@@ -46,6 +48,7 @@ const parseArgs = (argv) => {
   return {
     manifest_output_path: resolve(args.get("manifest-output")),
     schema_output_path: resolve(args.get("schema-output")),
+    source_catalog_output_path: resolve(args.get("source-catalog-output")),
     sample_request_output_path: resolve(args.get("sample-request-output")),
     sample_response_output_path: resolve(args.get("sample-response-output")),
     sample_summary_output_path: resolve(args.get("sample-summary-output")),
@@ -59,6 +62,7 @@ const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
 export const writeLocalJsonAgentLocalV0ToolPackArtifactSet = ({
   manifest_output_path,
   schema_output_path,
+  source_catalog_output_path,
   sample_request_output_path,
   sample_response_output_path,
   sample_summary_output_path,
@@ -81,6 +85,12 @@ export const writeLocalJsonAgentLocalV0ToolPackArtifactSet = ({
   const manifestArtifact = readJson(manifest_output_path);
   const sampleIndexArtifact = readJson(sample_index_output_path);
   const sampleSummaryArtifact = readJson(sample_summary_output_path);
+  const sourceCatalogArtifact = createLocalV0SourceCatalog(
+    sampleSummaryArtifact.agent_context_request_id
+  );
+
+  writeFileSync(source_catalog_output_path, stableJson(sourceCatalogArtifact), "utf8");
+
   const toolPackIndex = {
     verification_result: "local_json_agent_local_v0_tool_pack_artifact_set_written",
     output_contract_ref: "local-json-agent-local-v0-tool-pack-artifact-set/v1",
@@ -93,6 +103,7 @@ export const writeLocalJsonAgentLocalV0ToolPackArtifactSet = ({
     artifact_paths: {
       manifest_output_path,
       schema_output_path,
+      source_catalog_output_path,
       sample_request_output_path,
       sample_response_output_path,
       sample_summary_output_path,
@@ -102,6 +113,7 @@ export const writeLocalJsonAgentLocalV0ToolPackArtifactSet = ({
     artifact_contract_refs: {
       manifest: manifestWriteResult.output_contract_ref,
       schema: schemaResult.schema_json.contract_version,
+      source_catalog: sourceCatalogArtifact.catalog_version,
       sample_request: sampleIndexArtifact.artifact_contract_refs.request,
       sample_response_summary: sampleIndexArtifact.artifact_contract_refs.response_summary,
       sample_run_summary: sampleIndexArtifact.artifact_contract_refs.run_summary,
@@ -109,6 +121,10 @@ export const writeLocalJsonAgentLocalV0ToolPackArtifactSet = ({
     },
     command_refs: manifestArtifact.commands.map((command) => command.command_ref),
     schema_contract_ref: schemaResult.schema_json.contract_version,
+    source_catalog_ref: sourceCatalogArtifact.catalog_version,
+    source_catalog_supported_scope_ids: sourceCatalogArtifact.supported_scope_ids,
+    source_catalog_entry_count: sourceCatalogArtifact.entry_count,
+    source_catalog_selection_policy: sourceCatalogArtifact.selection_policy,
     agent_context_request_id: sampleSummaryArtifact.agent_context_request_id,
     runner_response_id: sampleSummaryArtifact.runner_response_id,
     bounded_context_response_id: sampleSummaryArtifact.bounded_context_response_id,

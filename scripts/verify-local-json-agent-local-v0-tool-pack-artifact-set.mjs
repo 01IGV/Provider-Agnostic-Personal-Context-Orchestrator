@@ -10,6 +10,7 @@ import {
 const tempDir = mkdtempSync(join(tmpdir(), "local-json-agent-local-v0-tool-pack-"));
 const manifestOutputPath = join(tempDir, "local-json-agent-tool-manifest.json");
 const schemaOutputPath = join(tempDir, "local-json-agent-request-response-schema.json");
+const sourceCatalogOutputPath = join(tempDir, "local-v0-source-catalog.json");
 const sampleRequestOutputPath = join(tempDir, "agent-context-request.sample.json");
 const sampleResponseOutputPath = join(tempDir, "verified-protocol-surface-adapter.sample.response.json");
 const sampleSummaryOutputPath = join(tempDir, "local-json-agent-request-run.sample.summary.json");
@@ -19,6 +20,7 @@ const toolPackIndexOutputPath = join(tempDir, "local-json-agent-local-v0-tool-pa
 const toolPackWriteResult = writeLocalJsonAgentLocalV0ToolPackArtifactSet({
   manifest_output_path: manifestOutputPath,
   schema_output_path: schemaOutputPath,
+  source_catalog_output_path: sourceCatalogOutputPath,
   sample_request_output_path: sampleRequestOutputPath,
   sample_response_output_path: sampleResponseOutputPath,
   sample_summary_output_path: sampleSummaryOutputPath,
@@ -28,6 +30,7 @@ const toolPackWriteResult = writeLocalJsonAgentLocalV0ToolPackArtifactSet({
 
 const manifestArtifact = JSON.parse(readFileSync(manifestOutputPath, "utf8"));
 const schemaArtifact = JSON.parse(readFileSync(schemaOutputPath, "utf8"));
+const sourceCatalogArtifact = JSON.parse(readFileSync(sourceCatalogOutputPath, "utf8"));
 const sampleRequestArtifact = JSON.parse(readFileSync(sampleRequestOutputPath, "utf8"));
 const sampleResponseArtifact = JSON.parse(readFileSync(sampleResponseOutputPath, "utf8"));
 const sampleSummaryArtifact = JSON.parse(readFileSync(sampleSummaryOutputPath, "utf8"));
@@ -45,6 +48,7 @@ const assertions = {
   explicit_paths_used:
     toolPackIndexArtifact.artifact_paths.manifest_output_path === manifestOutputPath &&
     toolPackIndexArtifact.artifact_paths.schema_output_path === schemaOutputPath &&
+    toolPackIndexArtifact.artifact_paths.source_catalog_output_path === sourceCatalogOutputPath &&
     toolPackIndexArtifact.artifact_paths.sample_request_output_path === sampleRequestOutputPath &&
     toolPackIndexArtifact.artifact_paths.sample_response_output_path === sampleResponseOutputPath &&
     toolPackIndexArtifact.artifact_paths.sample_summary_output_path === sampleSummaryOutputPath &&
@@ -55,6 +59,8 @@ const assertions = {
     toolPackIndexArtifact.artifact_contract_refs.manifest ===
       "local-json-agent-tool-manifest-artifact/v1" &&
     toolPackIndexArtifact.artifact_contract_refs.schema === schemaArtifact.contract_version &&
+    toolPackIndexArtifact.artifact_contract_refs.source_catalog ===
+      sourceCatalogArtifact.catalog_version &&
     toolPackIndexArtifact.artifact_contract_refs.sample_request ===
       sampleRequestArtifact.operation_version &&
     toolPackIndexArtifact.artifact_contract_refs.sample_response_summary ===
@@ -69,7 +75,26 @@ const assertions = {
       .includes("tool:local-json-agent-request-runner-sample:write") &&
     manifestArtifact.commands
       .map((command) => command.command_ref)
-      .includes("tool:local-json-agent-request:run"),
+      .includes("tool:local-json-agent-request:run") &&
+    manifestArtifact.commands
+      .find((command) => command.command_ref === "tool:local-json-agent-local-v0-tool-pack:write")
+      ?.command.includes("--source-catalog-output <path>") === true,
+  source_catalog_is_discoverable_and_bounded:
+    toolPackIndexArtifact.source_catalog_ref === "local-v0-source-catalog/v1" &&
+    sourceCatalogArtifact.catalog_version === toolPackIndexArtifact.source_catalog_ref &&
+    sourceCatalogArtifact.intended_consumer === "ai_agent" &&
+    sourceCatalogArtifact.catalog_boundary ===
+      "contract_only_allowlisted_local_source_catalog" &&
+    sourceCatalogArtifact.entry_count === toolPackIndexArtifact.source_catalog_entry_count &&
+    sourceCatalogArtifact.supported_scope_ids.join("|") ===
+      toolPackIndexArtifact.source_catalog_supported_scope_ids.join("|") &&
+    sourceCatalogArtifact.selection_policy.arbitrary_file_paths_allowed === false &&
+    sourceCatalogArtifact.selection_policy.unknown_scope_grants_access === false &&
+    sourceCatalogArtifact.execution_posture.runtime_permission_granted === false &&
+    sourceCatalogArtifact.execution_posture.actual_contour_execution_allowed_now === false &&
+    sourceCatalogArtifact.entries.every(
+      (entry) => entry.source_item_template.source_ref === entry.source_ref
+    ),
   sample_refs_preserved:
     toolPackIndexArtifact.agent_context_request_id ===
       sampleSummaryArtifact.agent_context_request_id &&
@@ -111,6 +136,7 @@ const verification = {
   output_contract_ref: toolPackWriteResult.output_contract_ref,
   manifest_output_path: manifestOutputPath,
   schema_output_path: schemaOutputPath,
+  source_catalog_output_path: sourceCatalogOutputPath,
   sample_request_output_path: sampleRequestOutputPath,
   sample_response_output_path: sampleResponseOutputPath,
   sample_summary_output_path: sampleSummaryOutputPath,
@@ -120,6 +146,8 @@ const verification = {
   runner_response_id: sampleSummaryArtifact.runner_response_id,
   selected_source_refs: sampleSummaryArtifact.selected_source_refs,
   selected_scope_ids: sampleSummaryArtifact.selected_scope_ids,
+  source_catalog_ref: toolPackIndexArtifact.source_catalog_ref,
+  source_catalog_supported_scope_ids: toolPackIndexArtifact.source_catalog_supported_scope_ids,
   runtime_permission_granted: sampleSummaryArtifact.runtime_permission_granted,
   actual_contour_execution_allowed_now: sampleSummaryArtifact.actual_contour_execution_allowed_now,
   failure_count: failed.length,

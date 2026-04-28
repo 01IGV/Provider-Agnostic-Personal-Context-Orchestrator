@@ -13,6 +13,7 @@ const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
 const tempDir = mkdtempSync(join(tmpdir(), "local-json-agent-local-v0-acceptance-"));
 const manifestOutputPath = join(tempDir, "local-json-agent-tool-manifest.json");
 const schemaOutputPath = join(tempDir, "local-json-agent-request-response-schema.json");
+const sourceCatalogOutputPath = join(tempDir, "local-v0-source-catalog.json");
 const sampleRequestOutputPath = join(tempDir, "agent-context-request.sample.json");
 const sampleResponseOutputPath = join(tempDir, "verified-protocol-surface-adapter.sample.response.json");
 const sampleSummaryOutputPath = join(tempDir, "local-json-agent-request-run.sample.summary.json");
@@ -24,6 +25,7 @@ const acceptedSummaryOutputPath = join(tempDir, "local-json-agent-local-v0-accep
 const toolPackWriteResult = writeLocalJsonAgentLocalV0ToolPackArtifactSet({
   manifest_output_path: manifestOutputPath,
   schema_output_path: schemaOutputPath,
+  source_catalog_output_path: sourceCatalogOutputPath,
   sample_request_output_path: sampleRequestOutputPath,
   sample_response_output_path: sampleResponseOutputPath,
   sample_summary_output_path: sampleSummaryOutputPath,
@@ -35,6 +37,7 @@ const toolPackIndexArtifact = readJson(toolPackIndexOutputPath);
 const discoveredPaths = toolPackIndexArtifact.artifact_paths;
 const manifestArtifact = readJson(discoveredPaths.manifest_output_path);
 const schemaArtifact = readJson(discoveredPaths.schema_output_path);
+const sourceCatalogArtifact = readJson(discoveredPaths.source_catalog_output_path);
 const sampleRequestArtifact = readJson(discoveredPaths.sample_request_output_path);
 const sampleResponseArtifact = readJson(discoveredPaths.sample_response_output_path);
 const sampleSummaryArtifact = readJson(discoveredPaths.sample_summary_output_path);
@@ -64,6 +67,7 @@ const assertions = {
     discoveredPaths.tool_pack_index_output_path === toolPackIndexOutputPath &&
     discoveredPaths.manifest_output_path === manifestOutputPath &&
     discoveredPaths.schema_output_path === schemaOutputPath &&
+    discoveredPaths.source_catalog_output_path === sourceCatalogOutputPath &&
     discoveredPaths.sample_request_output_path === sampleRequestOutputPath &&
     discoveredPaths.sample_response_output_path === sampleResponseOutputPath &&
     discoveredPaths.sample_summary_output_path === sampleSummaryOutputPath &&
@@ -80,6 +84,16 @@ const assertions = {
       toolPackIndexArtifact.artifact_contract_refs.sample_run_summary &&
     sampleObservationSummary.agent_readable_contract ===
       toolPackIndexArtifact.artifact_contract_refs.sample_response_summary,
+  source_catalog_is_discoverable_from_tool_pack:
+    sourceCatalogArtifact.catalog_version ===
+      toolPackIndexArtifact.artifact_contract_refs.source_catalog &&
+    toolPackIndexArtifact.source_catalog_ref === sourceCatalogArtifact.catalog_version &&
+    sourceCatalogArtifact.supported_scope_ids.join("|") ===
+      toolPackIndexArtifact.source_catalog_supported_scope_ids.join("|") &&
+    sourceCatalogArtifact.selection_policy.arbitrary_file_paths_allowed === false &&
+    sourceCatalogArtifact.selection_policy.unknown_scope_grants_access === false &&
+    sourceCatalogArtifact.execution_posture.runtime_permission_granted === false &&
+    sourceCatalogArtifact.execution_posture.actual_contour_execution_allowed_now === false,
   acceptance_run_completed_from_discovered_request:
     acceptanceRunResult.verification_result === "local_json_agent_request_run_completed" &&
     acceptanceRunResult.output_contract_ref === "local-json-agent-request-run-summary/v1" &&
@@ -169,6 +183,8 @@ const verification = {
   bounded_context_package_id: acceptanceRunResult.bounded_context_package_id,
   selected_source_refs: acceptanceRunResult.selected_source_refs,
   selected_scope_ids: acceptanceRunResult.selected_scope_ids,
+  source_catalog_ref: toolPackIndexArtifact.source_catalog_ref,
+  source_catalog_supported_scope_ids: toolPackIndexArtifact.source_catalog_supported_scope_ids,
   safe_agent_use_hints: acceptanceRunResult.safe_agent_use_hints,
   denied_agent_action_hints: acceptanceRunResult.denied_agent_action_hints,
   started_from_tool_pack_index: true,

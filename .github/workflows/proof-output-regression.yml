@@ -106,3 +106,6 @@ jobs:
 
       - name: Verify local JSON agent handoff bundle writer
         run: npm run tool:local-json-agent-handoff-bundle:verify
+
+      - name: Verify local JSON agent handoff bundle round-trip proof
+        run: npm run proof:local-json-agent-handoff-bundle-round-trip:verify

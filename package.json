@@ -43,7 +43,8 @@
     "tool:local-json-agent-tool-manifest:verify": "npm run build:force && node scripts/verify-local-json-agent-tool-manifest.mjs",
     "tool:local-json-agent-tool-manifest-artifact:verify": "npm run build:force && node scripts/verify-local-json-agent-tool-manifest-artifact-writer.mjs",
     "tool:local-json-agent-handoff-bundle:write": "npm run build:force && node scripts/local-json-agent-handoff-bundle-cli.mjs",
-    "tool:local-json-agent-handoff-bundle:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-writer.mjs"
+    "tool:local-json-agent-handoff-bundle:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-writer.mjs",
+    "proof:local-json-agent-handoff-bundle-round-trip:verify": "npm run build:force && node scripts/verify-local-json-agent-handoff-bundle-round-trip-proof.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

@@ -16,6 +16,7 @@ const assertions = {
     manifest.recommended_sequence.includes("tool:local-json-agent-tool-manifest:write") &&
     manifest.recommended_sequence.includes("tool:local-json-example-artifacts:write") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-handoff-bundle:write") &&
+    manifest.recommended_sequence.includes("proof:local-json-agent-handoff-bundle-round-trip:verify") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
   manifest_lists_required_commands:
@@ -24,6 +25,7 @@ const assertions = {
     commandRefs.includes("tool:local-json-agent-tool-manifest:write") &&
     commandRefs.includes("tool:local-json-example-artifacts:write") &&
     commandRefs.includes("tool:local-json-agent-handoff-bundle:write") &&
+    commandRefs.includes("proof:local-json-agent-handoff-bundle-round-trip:verify") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
   manifest_points_to_schema_contract:

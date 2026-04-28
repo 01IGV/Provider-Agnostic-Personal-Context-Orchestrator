@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Schema-aware local JSON fixture examples implemented on feature branch.**
+**Schema-aware local JSON fixture examples merged to main.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -164,7 +164,7 @@ The new verifier proves that the exported schema matches the actual local JSON r
 npm run tool:agent-request-response-schema:verify
 ```
 
-Feature branch `feat/schema-aware-local-json-fixture-examples` now adds a schema-aware example command for AI agents.
+`main` now adds a schema-aware example command for AI agents.
 
 The examples are available through:
 
@@ -409,6 +409,8 @@ GitHub Actions observation note:
 - PR #47 was merged to `main` as `ee9ff38`.
 - PR #49 for `feat/agent-request-response-schema-export` passed GitHub Actions `Proof Output Regression` run `25041242244`;
 - PR #49 was merged to `main` as `9c7bc45`.
+- PR #51 for `feat/schema-aware-local-json-fixture-examples` passed GitHub Actions `Proof Output Regression` run `25041839791`;
+- PR #51 was merged to `main` as `f9dfbea`.
 
 Runtime remains closed:
 

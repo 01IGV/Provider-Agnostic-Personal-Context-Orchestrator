@@ -58,6 +58,8 @@
     "proof:local-v0-source-catalog-guided-run:verify": "npm run build:force && node scripts/verify-local-v0-source-catalog-guided-run-proof.mjs",
     "tool:local-v0-source-catalog-guided:run": "npm run build:force && node scripts/local-v0-source-catalog-guided-command.mjs",
     "tool:local-v0-source-catalog-guided:verify": "npm run build:force && node scripts/verify-local-v0-source-catalog-guided-command.mjs",
+    "tool:local-v0-source-catalog-guided-sample:write": "npm run build:force && node scripts/local-v0-source-catalog-guided-command-sample-cli.mjs",
+    "tool:local-v0-source-catalog-guided-sample:verify": "npm run build:force && node scripts/verify-local-v0-source-catalog-guided-command-sample-artifact-set.mjs",
     "tool:local-json-agent-local-v0:run": "npm run build:force && node scripts/local-json-agent-local-v0-single-command-runner.mjs",
     "tool:local-json-agent-local-v0:run:verify": "npm run build:force && node scripts/verify-local-json-agent-local-v0-single-command-runner.mjs"
   },

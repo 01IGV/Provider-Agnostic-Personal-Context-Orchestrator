@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Agent-readable response use guidance merged to main.**
+**Agent request/response schema export implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -139,6 +139,29 @@ The new verifier proves the agent-readable guidance is present and default-deny:
 
 ```bash
 npm run tool:agent-readable-response-use-guidance:verify
+```
+
+Feature branch `feat/agent-request-response-schema-export` now adds a compact machine-readable contract schema export for AI agents.
+
+The schema export is available through:
+
+```bash
+npm run tool:agent-request-response-schema:print
+```
+
+It describes:
+
+- request contract fields and allowed request variation paths;
+- response observation summary fields that an agent can rely on;
+- safe agent use hints;
+- denied agent action hints;
+- the single bounded local command surface;
+- default-deny execution posture flags.
+
+The new verifier proves that the exported schema matches the actual local JSON request/response path and remains non-executing:
+
+```bash
+npm run tool:agent-request-response-schema:verify
 ```
 
 This is still a contract/interface layer only.
@@ -305,6 +328,7 @@ npm run tool:constrained-local-json-request-variation:verify
 npm run tool:minimal-local-source-fixture-selection:verify
 npm run tool:local-json-response-observation-summary:verify
 npm run tool:agent-readable-response-use-guidance:verify
+npm run tool:agent-request-response-schema:verify
 ```
 
 Observed local verification results:
@@ -334,6 +358,8 @@ Observed local verification results:
 - local observation smoke returned `local_json_single_command_run_completed` with `response_observation_summary_result: local_json_response_observation_summary_ready`.
 - `agent_readable_response_use_guidance_verified`.
 - local agent-readable smoke returned `local_json_single_command_run_completed` with `agent_response_status: bounded_context_ready_for_agent_use`.
+- `agent_request_response_schema_export_verified`.
+- local schema export print returned `local_json_agent_request_response_contract_schema_ready`.
 
 GitHub Actions observation note:
 
@@ -430,6 +456,7 @@ The strongest current bounded implementation state on `main` is now:
 - minimal local source fixture selection;
 - local JSON response observation summary;
 - agent-readable response use guidance;
+- agent request/response schema export;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -509,8 +536,14 @@ The repository currently has:
 - `scripts/verify-local-json-single-command-run-wrapper.mjs`;
 - `npm run tool:local-json-single-command-run:verify`;
 - CI `Proof Output Regression` step for local JSON single-command run wrapper;
+- `packages/integration-contracts` local JSON agent request/response contract schema export;
+- `scripts/local-json-agent-contract-schema-cli.mjs`;
+- `npm run tool:agent-request-response-schema:print`;
+- `scripts/verify-agent-request-response-schema-export.mjs`;
+- `npm run tool:agent-request-response-schema:verify`;
+- CI `Proof Output Regression` step for agent request-response schema export;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
-- `docs/04-implementation/execution-reports/2026-04-27-97-local-json-single-command-run-wrapper.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-107-agent-request-response-schema-export.md`.
 
 The repository still does **not** have:
 
@@ -617,7 +650,7 @@ Current limits after first local JSON CLI file IO boundary:
 - actual local CLI/file IO is limited to one fixture input path and one fixture output path;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
-- no generalized CLI UX, arbitrary source loading, agent request/response schema export, or multi-request runner yet;
+- no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -632,15 +665,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** agent request/response schema export.
+**Bounded Pass:** schema-aware local JSON fixture examples.
 
 Recommended branch:
 
-`feat/agent-request-response-schema-export`
+`feat/schema-aware-local-json-fixture-examples`
 
-That pass should export a compact machine-readable schema/contract artifact for the local JSON agent request and response shapes so external AI agents can integrate without reading TypeScript source.
+That pass should add small deterministic example fixtures or a verified example command that uses the exported schema contract to show an external AI agent the minimal valid request and expected response observation summary.
 
-After agent-readable response guidance, the useful next step is making the request/response contract discoverable to external AI agents, not adding a human-first UI.
+After the schema export, the useful next step is making the contract immediately runnable and inspectable by an external AI agent without requiring source-code reading or manual fixture construction.
 
 Keep the local CLI bounded:
 

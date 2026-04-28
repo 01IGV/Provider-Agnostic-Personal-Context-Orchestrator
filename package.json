@@ -30,7 +30,9 @@
     "tool:constrained-local-json-request-variation:verify": "npm run build:force && node scripts/verify-constrained-local-json-request-variation.mjs",
     "tool:minimal-local-source-fixture-selection:verify": "npm run build:force && node scripts/verify-minimal-local-source-fixture-selection.mjs",
     "tool:local-json-response-observation-summary:verify": "npm run build:force && node scripts/verify-local-json-response-observation-summary.mjs",
-    "tool:agent-readable-response-use-guidance:verify": "npm run build:force && node scripts/verify-agent-readable-response-use-guidance.mjs"
+    "tool:agent-readable-response-use-guidance:verify": "npm run build:force && node scripts/verify-agent-readable-response-use-guidance.mjs",
+    "tool:agent-request-response-schema:print": "npm run build:force && node scripts/local-json-agent-contract-schema-cli.mjs",
+    "tool:agent-request-response-schema:verify": "npm run build:force && node scripts/verify-agent-request-response-schema-export.mjs"
   },
   "devDependencies": {
     "typescript": "^5.9.3"

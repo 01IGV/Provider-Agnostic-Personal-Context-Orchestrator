@@ -23,6 +23,8 @@ The latest docs-only verdict confirms that the strongest next bounded implementa
 
 PR #79 merged as `3d1509a` after GitHub Actions `Proof Output Regression` run `25058108306` passed, including the new `Verify local JSON agent local v0 acceptance proof` step.
 
+The latest docs-only verdict confirms that the strongest next bounded implementation direction is a local v0 single-command runner for AI-agent usage.
+
 The verifier is available through:
 
 ```bash
@@ -1027,6 +1029,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-137-repo-first-verdict-after-local-json-agent-local-v0-tool-pack-artifact-set.md`
 - `2026-04-28-138-local-json-agent-local-v0-acceptance-proof.md`
 - `2026-04-28-139-state-next-step-alignment-after-local-json-agent-local-v0-acceptance-proof.md`
+- `2026-04-28-140-repo-first-verdict-after-local-json-agent-local-v0-acceptance-proof.md`
 
 ---
 
@@ -1065,13 +1068,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after local JSON agent local v0 acceptance proof.
+**Bounded Pass:** local JSON agent local v0 single-command runner.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-json-agent-local-v0-acceptance-proof`
+`feat/local-json-agent-local-v0-single-command-runner`
 
-That docs-only pass should select the next bounded implementation step toward a real-life local v0 tool now that the AI-agent self-serve acceptance path is machine-checked.
+That implementation pass should add one bounded agent-facing local v0 command that authors a constrained request artifact, runs the direct local JSON agent request runner, and writes explicit response and summary artifacts.
 
 Keep the local CLI bounded:
 

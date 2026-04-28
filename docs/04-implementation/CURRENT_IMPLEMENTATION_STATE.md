@@ -85,6 +85,10 @@ The command turns the verified catalog-guided proof path into an agent-facing bo
 
 PR #95 merged as `d813da2` after local verification passed. The GitHub merge gate accepted the PR; push-run CI observation should be recorded after GitHub Actions completes on `main`.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local v0 source-catalog-guided command sample artifact set.
+
+`feat/local-v0-source-catalog-guided-command-sample-artifacts` should materialize a small agent-ready sample set for the guided command, starting from explicit tool-pack artifacts and producing explicit guided request/response/summary/index artifacts.
+
 The verifier is available through:
 
 ```bash
@@ -1137,6 +1141,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-153-repo-first-verdict-after-local-v0-source-catalog-guided-run-proof.md`
 - `2026-04-28-154-local-v0-source-catalog-guided-command.md`
 - `2026-04-28-155-state-next-step-alignment-after-local-v0-source-catalog-guided-command.md`
+- `2026-04-28-156-repo-first-verdict-after-local-v0-source-catalog-guided-command.md`
 
 ---
 
@@ -1177,13 +1182,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after source-catalog-guided local v0 command.
+**Bounded Pass:** source-catalog-guided local v0 command sample artifacts.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-local-v0-source-catalog-guided-command`
+`feat/local-v0-source-catalog-guided-command-sample-artifacts`
 
-That docs-only verdict should inspect `main` after the guided command merge and choose the next bounded implementation step toward a real-life local v0 AI-agent tool.
+That implementation pass should materialize an agent-ready sample artifact set for the guided command without adding arbitrary source loading, runtime behavior, MCP/API transport, or self-dogfooding repo scopes yet.
 
 Keep the local CLI bounded:
 

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Minimal local source fixture selection merged to main.**
+**Local JSON response observation summary implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -98,6 +98,28 @@ The new verifier proves that a scoped request selects the matching local fixture
 
 ```bash
 npm run tool:minimal-local-source-fixture-selection:verify
+```
+
+Feature branch `feat/local-json-response-observation-summary` now adds a compact response observation summary to the local JSON runner response and single-command output.
+
+The summary exposes:
+
+- `selected_source_item_count`;
+- `selected_source_refs`;
+- `selected_scope_ids`;
+- bounded context response/package/protocol adapter refs;
+- default-deny runtime posture flags.
+
+Example:
+
+```bash
+npm run tool:local-json:run -- --request request.json --response response.json --task-signal "observe selection" --read-mode quick_answer --depth shallow --scope-hints scope:active-boundary-chain
+```
+
+The new verifier proves the observation summary matches the nested response payload and remains non-executing:
+
+```bash
+npm run tool:local-json-response-observation-summary:verify
 ```
 
 This is still a contract/interface layer only.
@@ -262,6 +284,7 @@ npm run tool:local-json-request-fixture-authoring:verify
 npm run tool:local-json-single-command-run:verify
 npm run tool:constrained-local-json-request-variation:verify
 npm run tool:minimal-local-source-fixture-selection:verify
+npm run tool:local-json-response-observation-summary:verify
 ```
 
 Observed local verification results:
@@ -287,6 +310,8 @@ Observed local verification results:
 - local constrained single-command smoke returned `local_json_single_command_run_completed`.
 - `minimal_local_source_fixture_selection_verified`.
 - local source-selection smoke returned `local_json_single_command_run_completed` with `selected_source_item_count: 1`.
+- `local_json_response_observation_summary_verified`.
+- local observation smoke returned `local_json_single_command_run_completed` with `response_observation_summary_result: local_json_response_observation_summary_ready`.
 
 GitHub Actions observation note:
 
@@ -377,6 +402,7 @@ The strongest current bounded implementation state on `main` is now:
 - minimal local JSON fixture runner CLI boundary;
 - constrained local JSON request variation;
 - minimal local source fixture selection;
+- local JSON response observation summary on feature branch;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -564,7 +590,7 @@ Current limits after first local JSON CLI file IO boundary:
 - actual local CLI/file IO is limited to one fixture input path and one fixture output path;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
-- no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
+- no generalized CLI UX, arbitrary source loading, compact human CLI rendering, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;

@@ -79,3 +79,6 @@ jobs:
 
       - name: Verify minimal local source fixture selection
         run: npm run tool:minimal-local-source-fixture-selection:verify
+
+      - name: Verify local JSON response observation summary
+        run: npm run tool:local-json-response-observation-summary:verify

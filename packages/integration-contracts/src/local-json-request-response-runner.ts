@@ -5,7 +5,8 @@ import type {
   LocalJsonRequestResponseRunnerRequestEnvelopeShape,
   LocalJsonRequestResponseRunnerResponseBuilderInputShape,
   LocalJsonRequestResponseRunnerResponseEnvelopeShape,
-  LocalJsonRequestResponseRunnerSummaryShape
+  LocalJsonRequestResponseRunnerSummaryShape,
+  LocalJsonResponseObservationSummaryShape
 } from "./local-json-request-response-runner-types.js";
 
 const defaultExecutionPosture = (): LocalJsonRequestResponseRunnerExecutionPostureShape => ({
@@ -40,6 +41,47 @@ const defaultResponseNotes = (): string[] => [
   "The response is machine-readable and deterministic, but it is not runtime execution."
 ];
 
+const createResponseObservationSummary = (
+  runner_response_id: string,
+  runner_request: LocalJsonRequestResponseRunnerRequestEnvelopeShape,
+  response_json: LocalJsonRequestResponseRunnerResponseBuilderInputShape["response_json"]
+): LocalJsonResponseObservationSummaryShape => {
+  const payload = response_json.response.response_payload;
+  const sourceItems = Array.isArray(payload.source_items) ? payload.source_items : [];
+  const packageEnvelope =
+    typeof payload.bounded_context_package === "object" && payload.bounded_context_package !== null
+      ? payload.bounded_context_package
+      : {};
+  const packageItems =
+    "package_items" in packageEnvelope && Array.isArray(packageEnvelope.package_items)
+      ? packageEnvelope.package_items
+      : [];
+
+  return {
+    observation_result: "local_json_response_observation_summary_ready",
+    runner_response_id,
+    agent_context_request_id: response_json.refs.agent_context_request_id,
+    bounded_context_response_id: response_json.refs.bounded_context_response_id,
+    bounded_context_package_id: response_json.refs.bounded_context_package_id,
+    protocol_adapter_shape_id: response_json.adapter_shape_id,
+    response_status: response_json.response.response_status,
+    selected_source_item_count: sourceItems.length,
+    selected_source_refs: sourceItems
+      .map((item) => item?.source_ref)
+      .filter((sourceRef): sourceRef is string => typeof sourceRef === "string"),
+    selected_scope_ids: sourceItems
+      .map((item) => item?.scope_id)
+      .filter((scopeId): scopeId is string => typeof scopeId === "string"),
+    package_item_count: packageItems.length,
+    local_json_only: runner_request.execution_posture.local_json_only,
+    deterministic: runner_request.execution_posture.deterministic,
+    fixture_driven: runner_request.execution_posture.fixture_driven,
+    runtime_permission_granted: runner_request.execution_posture.runtime_permission_granted,
+    actual_contour_execution_allowed_now:
+      runner_request.execution_posture.actual_contour_execution_allowed_now
+  };
+};
+
 export const createLocalJsonRequestResponseRunnerBuilder =
   (): LocalJsonRequestResponseRunnerBuilder => ({
     createRequest(
@@ -66,9 +108,10 @@ export const createLocalJsonRequestResponseRunnerBuilder =
       input: LocalJsonRequestResponseRunnerResponseBuilderInputShape
     ): LocalJsonRequestResponseRunnerResponseEnvelopeShape {
       const { runner_request, response_json, response_summary_json } = input;
+      const runner_response_id = `${runner_request.runner_request_id}:verified-response-json`;
 
       return {
-        runner_response_id: `${runner_request.runner_request_id}:verified-response-json`,
+        runner_response_id,
         runner_request_id: runner_request.runner_request_id,
         runner_status: "local_json_runner_shape_ready",
         output_kind: "verified_protocol_surface_adapter_json_fixture",
@@ -81,6 +124,11 @@ export const createLocalJsonRequestResponseRunnerBuilder =
         },
         response_json,
         response_summary_json,
+        response_observation_summary_json: createResponseObservationSummary(
+          runner_response_id,
+          runner_request,
+          response_json
+        ),
         execution_posture: runner_request.execution_posture,
         json_serializable: true,
         served_at: input.served_at,

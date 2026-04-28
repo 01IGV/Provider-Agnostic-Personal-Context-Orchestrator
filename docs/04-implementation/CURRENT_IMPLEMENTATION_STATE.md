@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Repo-first verdict after local JSON agent request runner in progress.**
+**Local JSON agent request runner sample artifact set in progress.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -379,6 +379,22 @@ local JSON agent request runner sample artifact set
 
 That pass should materialize a deterministic sample request, response, run summary, and optional sample index artifact so an AI agent can inspect and repeat the exact local v0 file contract before any MCP/API transport is added.
 
+`feat/local-json-agent-request-runner-sample-artifact-set` adds that reproducible sample artifact command.
+
+The command is available through:
+
+```bash
+npm run tool:local-json-agent-request-runner-sample:write -- --request-output agent-context-request.sample.json --response-output verified-protocol-surface-adapter.sample.response.json --summary-output local-json-agent-request-run.sample.summary.json --index-output local-json-agent-request-runner.sample.index.json
+```
+
+The command writes only the explicitly provided sample artifact paths, uses the existing schema-aware request example, runs the direct local JSON agent request runner, and writes a sample index artifact for AI-agent inspection.
+
+The verifier is available through:
+
+```bash
+npm run tool:local-json-agent-request-runner-sample:verify
+```
+
 This is still a contract/interface layer only.
 
 It is not an MCP server, not an API route/controller, not a runtime handler, not an auth/IAM implementation, not a policy engine, not a permission grant, and not a runtime execution pass.
@@ -711,6 +727,7 @@ The strongest current bounded implementation state on `main` is now:
 - local JSON agent handoff bundle round-trip proof;
 - local JSON agent handoff bundle consumption CLI boundary;
 - local JSON agent request runner from explicit request artifact;
+- local JSON agent request runner sample artifact set;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -829,12 +846,17 @@ The repository currently has:
 - `npm run tool:local-json-agent-request:run -- --request <path> --response <path> --summary <path>`;
 - `scripts/verify-local-json-agent-request-runner.mjs`;
 - `npm run tool:local-json-agent-request:run:verify`;
+- `scripts/local-json-agent-request-runner-sample-cli.mjs`;
+- `npm run tool:local-json-agent-request-runner-sample:write -- --request-output <path> --response-output <path> --summary-output <path> --index-output <path>`;
+- `scripts/verify-local-json-agent-request-runner-sample-artifact-set.mjs`;
+- `npm run tool:local-json-agent-request-runner-sample:verify`;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle round-trip proof;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle consumption CLI boundary;
 - CI `Proof Output Regression` step for local JSON agent request runner;
+- CI `Proof Output Regression` step for local JSON agent request runner sample artifact set;
 - exports for the minimal local JSON fixture runner CLI boundary contracts and composition helpers;
 - `docs/04-implementation/execution-reports/2026-04-28-116-local-json-agent-tool-manifest.md`;
 - `docs/04-implementation/execution-reports/2026-04-28-118-local-json-agent-tool-manifest-artifact-writer.md`;
@@ -850,6 +872,7 @@ The repository currently has:
 - `docs/04-implementation/execution-reports/2026-04-28-129-local-json-agent-request-runner-from-explicit-request-artifact.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-130-state-next-step-alignment-after-local-json-agent-request-runner.md`.
 - `docs/04-implementation/execution-reports/2026-04-28-131-repo-first-verdict-after-local-json-agent-request-runner.md`.
+- `docs/04-implementation/execution-reports/2026-04-28-132-local-json-agent-request-runner-sample-artifact-set.md`.
 
 The repository still does **not** have:
 
@@ -960,7 +983,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, and explicit direct agent request-run response/summary output paths;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, and explicit sample artifact set output paths;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -978,13 +1001,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON agent request runner sample artifact set.
+**Bounded Pass:** state next-step alignment after local JSON agent request runner sample artifact set.
 
 Recommended branch:
 
-`feat/local-json-agent-request-runner-sample-artifact-set`
+`docs/state-next-step-alignment-after-local-json-agent-request-runner-sample-artifact-set`
 
-That implementation pass should materialize a deterministic sample request artifact, direct runner response artifact, run summary artifact, and optional sample index artifact through explicit output paths, then verify refs and default-deny posture.
+That docs-only pass should align `CURRENT_IMPLEMENTATION_STATE.md` after the sample artifact set merge/CI result and select whether the next bounded pass should be a repo-first verdict for the next real-life local v0 usability step.
 
 Keep the local CLI bounded:
 

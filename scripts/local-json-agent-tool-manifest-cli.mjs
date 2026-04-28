@@ -40,6 +40,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-json-example-artifacts:write",
       "tool:local-json-agent-handoff-bundle:write",
       "proof:local-json-agent-handoff-bundle-round-trip:verify",
+      "tool:local-json-agent-handoff-bundle:consume",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
     ],
@@ -98,6 +99,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-json-agent-handoff-bundle:consume",
+        command:
+          "npm run tool:local-json-agent-handoff-bundle:consume -- --bundle-summary <path> --manifest <path> --schema <path> --request <path> --expected-response <path> --examples-summary <path> --actual-response <path>",
+        purpose:
+          "Consume an explicitly provided handoff bundle artifact set through the bounded local JSON runner and write one explicitly provided actual response artifact.",
+        output_contract_ref: "local-json-agent-handoff-bundle-consumption/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -130,6 +141,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_manifest_artifact_path: true,
       writes_only_explicit_example_artifact_paths: true,
       writes_only_explicit_handoff_bundle_artifact_paths: true,
+      writes_only_explicit_handoff_bundle_consumption_output_path: true,
       arbitrary_source_loading_allowed: false,
       multi_request_runner_implemented: false
     },

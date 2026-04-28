@@ -91,7 +91,7 @@ export const writeLocalJsonAgentHandoffBundle = ({
       examples_summary: "schema-aware-local-json-fixture-examples/v1"
     },
     recommended_next_command:
-      "npm run tool:local-json:run -- --request <request-output-path> --response <response-output-path>",
+      "npm run tool:local-json-agent-handoff-bundle:consume -- --bundle-summary <bundle-summary-path> --manifest <manifest-path> --schema <schema-path> --request <request-path> --expected-response <expected-response-path> --examples-summary <examples-summary-path> --actual-response <actual-response-path>",
     file_read_performed: true,
     file_write_performed: true,
     writes_only_explicit_bundle_artifact_paths: true,

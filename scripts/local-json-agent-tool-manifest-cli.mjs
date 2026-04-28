@@ -46,6 +46,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-json-agent-local-v0-tool-pack:write",
       "tool:local-v0-source-catalog-guided:run",
       "tool:local-v0-source-catalog-guided-sample:write",
+      "tool:local-v0-repo-work-context-guided-sample:write",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -175,6 +176,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-v0-repo-work-context-guided-sample:write",
+        command:
+          "npm run tool:local-v0-repo-work-context-guided-sample:write -- --manifest-output <path> --schema-output <path> --source-catalog-output <path> --tool-pack-sample-request-output <path> --tool-pack-sample-response-output <path> --tool-pack-sample-summary-output <path> --tool-pack-sample-index-output <path> --tool-pack-index-output <path> --guided-request-output <path> --guided-response-output <path> --guided-summary-output <path> --guided-index-output <path>",
+        purpose:
+          "Write a complete repo-work-context guided local v0 sample artifact set for AI-agent inspection without direct repo file access.",
+        output_contract_ref: "local-v0-repo-work-context-guided-sample-artifact-set/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -213,6 +224,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_v0_tool_pack_artifact_paths: true,
       writes_only_explicit_local_v0_single_command_paths: true,
       writes_only_explicit_local_v0_guided_sample_artifact_paths: true,
+      writes_only_explicit_local_v0_repo_work_guided_sample_artifact_paths: true,
       arbitrary_source_loading_allowed: false,
       multi_request_runner_implemented: false
     },

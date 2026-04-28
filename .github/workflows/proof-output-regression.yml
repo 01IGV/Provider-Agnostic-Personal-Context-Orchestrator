@@ -137,5 +137,8 @@ jobs:
       - name: Verify local v0 source catalog guided command sample artifacts
         run: npm run tool:local-v0-source-catalog-guided-sample:verify
 
+      - name: Verify local v0 repo-work context guided sample artifacts
+        run: npm run tool:local-v0-repo-work-context-guided-sample:verify
+
       - name: Verify local JSON agent local v0 single-command runner
         run: npm run tool:local-json-agent-local-v0:run:verify

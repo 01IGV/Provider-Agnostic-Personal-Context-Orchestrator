@@ -130,7 +130,19 @@ The next bounded pass should be a repo-first verdict after the first repo-work c
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local v0 repo-work context guided sample artifact.
 
-`feat/local-v0-repo-work-context-guided-sample-artifact` should materialize a replayable sample artifact for `scope:repo-work-context` through the existing source-catalog-guided command path. This should make the repo-work context self-dogfooding path inspectable by an AI agent without granting direct repo file access.
+`feat/local-v0-repo-work-context-guided-sample-artifact` materializes a replayable sample artifact for `scope:repo-work-context` through the existing source-catalog-guided command path. This makes the repo-work context self-dogfooding path inspectable by an AI agent without granting direct repo file access.
+
+The repo-work context guided sample writer is available through:
+
+```bash
+npm run tool:local-v0-repo-work-context-guided-sample:write -- --manifest-output local-json-agent-tool-manifest.json --schema-output local-json-agent-request-response-schema.json --source-catalog-output local-v0-source-catalog.json --tool-pack-sample-request-output agent-context-request.sample.json --tool-pack-sample-response-output verified-protocol-surface-adapter.sample.response.json --tool-pack-sample-summary-output local-json-agent-request-run.sample.summary.json --tool-pack-sample-index-output local-json-agent-request-runner.sample.index.json --tool-pack-index-output local-json-agent-local-v0-tool-pack.index.json --guided-request-output agent-context-request.repo-work-context.guided-sample.json --guided-response-output verified-protocol-surface-adapter.repo-work-context.guided-sample.response.json --guided-summary-output local-v0-repo-work-context-guided-sample.summary.json --guided-index-output local-v0-repo-work-context-guided-sample.index.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-v0-repo-work-context-guided-sample:verify
+```
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1017,8 +1029,13 @@ The repository currently has:
 - `npm run tool:local-v0-source-catalog-guided-sample:write -- --manifest-output <path> --schema-output <path> --source-catalog-output <path> --tool-pack-sample-request-output <path> --tool-pack-sample-response-output <path> --tool-pack-sample-summary-output <path> --tool-pack-sample-index-output <path> --tool-pack-index-output <path> --guided-request-output <path> --guided-response-output <path> --guided-summary-output <path> --guided-index-output <path>`;
 - `scripts/verify-local-v0-source-catalog-guided-command-sample-artifact-set.mjs`;
 - `npm run tool:local-v0-source-catalog-guided-sample:verify`;
+- `scripts/local-v0-repo-work-context-guided-sample-cli.mjs`;
+- `npm run tool:local-v0-repo-work-context-guided-sample:write -- --manifest-output <path> --schema-output <path> --source-catalog-output <path> --tool-pack-sample-request-output <path> --tool-pack-sample-response-output <path> --tool-pack-sample-summary-output <path> --tool-pack-sample-index-output <path> --tool-pack-index-output <path> --guided-request-output <path> --guided-response-output <path> --guided-summary-output <path> --guided-index-output <path>`;
+- `scripts/verify-local-v0-repo-work-context-guided-sample-artifact-set.mjs`;
+- `npm run tool:local-v0-repo-work-context-guided-sample:verify`;
 - CI `Proof Output Regression` step for local v0 source catalog contracts;
 - CI `Proof Output Regression` step for local v0 source catalog guided command sample artifacts;
+- CI `Proof Output Regression` step for local v0 repo-work context guided sample artifacts;
 - CI `Proof Output Regression` step for local JSON agent tool manifest;
 - CI `Proof Output Regression` step for local JSON agent tool manifest artifact writer;
 - CI `Proof Output Regression` step for local JSON agent handoff bundle writer;
@@ -1167,6 +1184,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-160-local-v0-repo-work-context-source-catalog-contracts.md`
 - `2026-04-28-161-state-next-step-alignment-after-local-v0-repo-work-context-source-catalog-contracts.md`
 - `2026-04-28-162-repo-first-verdict-after-local-v0-repo-work-context-source-catalog-contracts.md`
+- `2026-04-28-163-local-v0-repo-work-context-guided-sample-artifact.md`
 
 ---
 
@@ -1207,13 +1225,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local v0 repo-work context guided sample artifact.
+**Bounded Pass:** state alignment after local v0 repo-work context guided sample artifact.
 
 Recommended branch:
 
-`feat/local-v0-repo-work-context-guided-sample-artifact`
+`docs/state-next-step-alignment-after-local-v0-repo-work-context-guided-sample-artifact`
 
-That implementation should produce an explicit artifact set for requesting `scope:repo-work-context` through the existing source-catalog-guided command path, without giving the agent direct repo file access.
+After merge and CI observation, the next pass should align state docs with the merged repo-work context guided sample artifact before choosing the next implementation direction.
 
 Keep the local CLI bounded:
 

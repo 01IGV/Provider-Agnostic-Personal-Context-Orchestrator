@@ -71,6 +71,11 @@ export interface LocalJsonResponseObservationSummaryShape {
   selected_source_item_count: number;
   selected_source_refs: string[];
   selected_scope_ids: string[];
+  source_materialization_receipt_id?: string;
+  source_materialization_receipt_ref?: "local-v0-source-materialization-receipt/v1";
+  source_materialization_receipt_boundary?: string;
+  source_materialization_receipt_direct_agent_repo_file_access_allowed_now?: false;
+  source_materialization_receipt_live_source_read_performed?: false;
   package_item_count: number;
   local_json_only: true;
   deterministic: true;

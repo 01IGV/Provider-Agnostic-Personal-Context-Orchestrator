@@ -60,6 +60,8 @@ export interface LocalJsonRequestResponseRunnerResponseRefsShape {
 
 export interface LocalJsonResponseObservationSummaryShape {
   observation_result: "local_json_response_observation_summary_ready";
+  agent_readable_contract: "agent-readable-local-json-response-observation/v1";
+  agent_response_status: "bounded_context_ready_for_agent_use";
   runner_response_id: string;
   agent_context_request_id: string;
   bounded_context_response_id: string;
@@ -75,6 +77,8 @@ export interface LocalJsonResponseObservationSummaryShape {
   fixture_driven: true;
   runtime_permission_granted: false;
   actual_contour_execution_allowed_now: false;
+  safe_agent_use_hints: string[];
+  denied_agent_action_hints: string[];
 }
 
 export interface LocalJsonRequestResponseRunnerResponseEnvelopeShape {

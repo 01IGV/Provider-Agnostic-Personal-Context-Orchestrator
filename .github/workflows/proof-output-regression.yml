@@ -82,3 +82,6 @@ jobs:
 
       - name: Verify local JSON response observation summary
         run: npm run tool:local-json-response-observation-summary:verify
+
+      - name: Verify agent-readable response use guidance
+        run: npm run tool:agent-readable-response-use-guidance:verify

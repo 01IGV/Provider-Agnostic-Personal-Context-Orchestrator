@@ -137,7 +137,7 @@ Post-merge verification note (April 28, 2026): local `npm install`, `npm run typ
 - **Layer / Area:** local JSON request/response runner boundary
 - **Status:** open
 - **Severity:** medium
-- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, minimal local JSON fixture runner CLI/file boundary, first scoped local CLI file IO path, deterministic request fixture authoring helper, single-command local wrapper, constrained request-intent variation, minimal local source fixture selection, and local JSON response observation summary create pressure to expand into generalized file loading, process orchestration, MCP/API transport behavior, provider calls, persistence adapters, model calls, or direct runtime invocation.
+- **Description:** the local JSON request/response runner shape, local JSON fixture runner proof, minimal local JSON fixture runner CLI/file boundary, first scoped local CLI file IO path, deterministic request fixture authoring helper, single-command local wrapper, constrained request-intent variation, minimal local source fixture selection, local JSON response observation summary, and agent-readable response use guidance create pressure to expand into generalized file loading, process orchestration, MCP/API transport behavior, provider calls, persistence adapters, model calls, or direct runtime invocation.
 - **Impact:** the project could accidentally turn the first useful local tool path into an unbounded runtime surface.
 - **Recommended next action:** keep the local CLI fixture-scoped, deterministic, and default-deny; expand only through explicit bounded passes with verification.
 

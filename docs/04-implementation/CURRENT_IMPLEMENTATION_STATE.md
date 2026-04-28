@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local JSON response observation summary merged to main.**
+**Agent-readable response use guidance implemented on feature branch.**
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -120,6 +120,25 @@ The new verifier proves the observation summary matches the nested response payl
 
 ```bash
 npm run tool:local-json-response-observation-summary:verify
+```
+
+Feature branch `feat/agent-readable-response-use-guidance` now adds explicit AI-agent use guidance to the local JSON response observation summary and single-command output.
+
+The agent-readable response summary includes:
+
+- `agent_readable_contract`;
+- `agent_response_status`;
+- `safe_agent_use_hints`;
+- `denied_agent_action_hints`;
+- selected source refs and scope ids;
+- default-deny runtime posture flags.
+
+Example single-command output now tells an agent that the bounded context is ready for safe read/grounding use while explicitly denying runtime handlers, provider SDK calls, persistence access, permission grants, model calls, storage writes, and contour invocation.
+
+The new verifier proves the agent-readable guidance is present and default-deny:
+
+```bash
+npm run tool:agent-readable-response-use-guidance:verify
 ```
 
 This is still a contract/interface layer only.
@@ -285,6 +304,7 @@ npm run tool:local-json-single-command-run:verify
 npm run tool:constrained-local-json-request-variation:verify
 npm run tool:minimal-local-source-fixture-selection:verify
 npm run tool:local-json-response-observation-summary:verify
+npm run tool:agent-readable-response-use-guidance:verify
 ```
 
 Observed local verification results:
@@ -312,6 +332,8 @@ Observed local verification results:
 - local source-selection smoke returned `local_json_single_command_run_completed` with `selected_source_item_count: 1`.
 - `local_json_response_observation_summary_verified`.
 - local observation smoke returned `local_json_single_command_run_completed` with `response_observation_summary_result: local_json_response_observation_summary_ready`.
+- `agent_readable_response_use_guidance_verified`.
+- local agent-readable smoke returned `local_json_single_command_run_completed` with `agent_response_status: bounded_context_ready_for_agent_use`.
 
 GitHub Actions observation note:
 
@@ -405,6 +427,7 @@ The strongest current bounded implementation state on `main` is now:
 - constrained local JSON request variation;
 - minimal local source fixture selection;
 - local JSON response observation summary;
+- agent-readable response use guidance on feature branch;
 - local verification green for all current proof commands.
 
 All of this remains execution-free.
@@ -592,7 +615,7 @@ Current limits after first local JSON CLI file IO boundary:
 - actual local CLI/file IO is limited to one fixture input path and one fixture output path;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
-- no generalized CLI UX, arbitrary source loading, compact human CLI rendering, or multi-request runner yet;
+- no generalized CLI UX, arbitrary source loading, agent request/response schema export, or multi-request runner yet;
 - no delivery runtime implementation yet;
 - no actual publication delivery implementation yet;
 - no actual dispatch execution implementation yet;
@@ -607,15 +630,15 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local JSON human-readable summary output.
+**Bounded Pass:** agent-readable response use guidance.
 
 Recommended branch:
 
-`feat/local-json-human-readable-summary-output`
+`feat/agent-readable-response-use-guidance`
 
-That pass should add a small human-readable summary output mode or companion command derived from the bounded response observation summary, without making it a new authority source.
+That pass should add explicit machine-readable guidance for AI agents about safe use and denied actions in the local JSON response observation summary, without making it a new authority source.
 
-After machine-readable response observation, the useful next step is making the local tool comfortable for real humans to inspect while preserving the machine-readable JSON artifact as the source of truth.
+After machine-readable response observation, the useful next step is making the local tool clearer for AI agents to consume safely, not adding a human-first UI.
 
 Keep the local CLI bounded:
 

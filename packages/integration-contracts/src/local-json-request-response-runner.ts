@@ -59,6 +59,8 @@ const createResponseObservationSummary = (
 
   return {
     observation_result: "local_json_response_observation_summary_ready",
+    agent_readable_contract: "agent-readable-local-json-response-observation/v1",
+    agent_response_status: "bounded_context_ready_for_agent_use",
     runner_response_id,
     agent_context_request_id: response_json.refs.agent_context_request_id,
     bounded_context_response_id: response_json.refs.bounded_context_response_id,
@@ -78,7 +80,22 @@ const createResponseObservationSummary = (
     fixture_driven: runner_request.execution_posture.fixture_driven,
     runtime_permission_granted: runner_request.execution_posture.runtime_permission_granted,
     actual_contour_execution_allowed_now:
-      runner_request.execution_posture.actual_contour_execution_allowed_now
+      runner_request.execution_posture.actual_contour_execution_allowed_now,
+    safe_agent_use_hints: [
+      "read_selected_bounded_context",
+      "use_selected_source_refs_for_grounding",
+      "preserve_authority_provenance_permission_audit_refs",
+      "treat_response_as_non_executing_context"
+    ],
+    denied_agent_action_hints: [
+      "do_not_execute_runtime_handlers",
+      "do_not_call_provider_sdks",
+      "do_not_read_or_write_concrete_persistence",
+      "do_not_issue_permission_grants",
+      "do_not_perform_model_calls",
+      "do_not_perform_storage_writes",
+      "do_not_invoke_contours"
+    ]
   };
 };
 

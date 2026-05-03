@@ -180,6 +180,8 @@ PR #113 merged as `9734d93` after GitHub Actions `Proof Output Regression` PR ru
 
 The next bounded pass should be a repo-first verdict after the bounded real-source adapter contract. The verdict should decide whether the next implementation should add a verifier-backed handoff/sample artifact for the future adapter contract or define the first narrow read boundary design. Do not jump directly to live reads before that verdict.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a bounded real-source adapter contract sample artifact. The contract exists and is machine-verified, but an AI agent cannot yet inspect it as part of a local v0 artifact/handoff path. The next useful step is to materialize a deterministic sample artifact for the bounded real-source adapter contract so agents can inspect the future adapter gate before live source reads exist.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1231,6 +1233,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-171-repo-first-verdict-after-local-v0-source-materialization-receipt-contracts.md`
 - `2026-05-03-172-bounded-real-source-adapter-contract.md`
 - `2026-05-03-173-state-next-step-alignment-after-bounded-real-source-adapter-contract.md`
+- `2026-05-03-174-repo-first-verdict-after-bounded-real-source-adapter-contract.md`
 
 ---
 
@@ -1271,13 +1274,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** bounded real-source adapter contract.
+**Bounded Pass:** bounded real-source adapter contract sample artifact.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-bounded-real-source-adapter-contract`
+`feat/bounded-real-source-adapter-contract-sample-artifact`
 
-Choose the next implementation direction from repo evidence after the bounded real-source adapter contract. The likely choices are a verifier-backed bounded real-source adapter handoff/sample artifact or the first narrow read boundary design. Keep live source reads closed unless a separate bounded verdict explicitly opens that boundary.
+Materialize an agent-inspectable deterministic sample artifact for the bounded real-source adapter contract, with verifier coverage proving that the artifact carries the contract boundary, source catalog ref, receipt contract ref, provenance/permission/audit refs, and default-deny posture without adding live source reads or direct agent file access.
 
 Keep the local CLI bounded:
 

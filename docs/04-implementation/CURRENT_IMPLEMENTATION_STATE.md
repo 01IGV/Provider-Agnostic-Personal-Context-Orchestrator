@@ -176,6 +176,10 @@ npm run contract:bounded-real-source-adapter:verify
 
 It defines a declaration-only capability contract for a future real source adapter: allowlisted scope selection, `local-v0-source-catalog/v1` compatibility, required `local-v0-source-materialization-receipt/v1`, required provenance/permission/audit refs, and explicit denial of direct agent repo file access, live source reads, arbitrary paths, runtime/MCP/API behavior, provider calls, persistence, auth/IAM implementation, permission grants, model calls, storage writes, and contour execution.
 
+PR #113 merged as `9734d93` after GitHub Actions `Proof Output Regression` PR run `25275804944` passed, including the new `Verify bounded real source adapter contract` step.
+
+The next bounded pass should be a repo-first verdict after the bounded real-source adapter contract. The verdict should decide whether the next implementation should add a verifier-backed handoff/sample artifact for the future adapter contract or define the first narrow read boundary design. Do not jump directly to live reads before that verdict.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1226,6 +1230,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-170-state-next-step-alignment-after-local-v0-source-materialization-receipt-contracts.md`
 - `2026-04-28-171-repo-first-verdict-after-local-v0-source-materialization-receipt-contracts.md`
 - `2026-05-03-172-bounded-real-source-adapter-contract.md`
+- `2026-05-03-173-state-next-step-alignment-after-bounded-real-source-adapter-contract.md`
 
 ---
 
@@ -1270,9 +1275,9 @@ Current limits after first local JSON CLI file IO boundary:
 
 Recommended branch:
 
-`docs/state-next-step-alignment-after-bounded-real-source-adapter-contract`
+`docs/repo-first-verdict-after-bounded-real-source-adapter-contract`
 
-Record the post-merge state after the bounded real-source adapter contract and confirm the next implementation direction from repo evidence. The likely next implementation direction is a verifier-backed bounded real-source adapter handoff/sample artifact or the first narrow read boundary design, but it should be selected through repo-first state alignment rather than jumping directly to live reads.
+Choose the next implementation direction from repo evidence after the bounded real-source adapter contract. The likely choices are a verifier-backed bounded real-source adapter handoff/sample artifact or the first narrow read boundary design. Keep live source reads closed unless a separate bounded verdict explicitly opens that boundary.
 
 Keep the local CLI bounded:
 

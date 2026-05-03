@@ -47,6 +47,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-v0-source-catalog-guided:run",
       "tool:local-v0-source-catalog-guided-sample:write",
       "tool:local-v0-repo-work-context-guided-sample:write",
+      "tool:bounded-real-source-adapter-contract-sample:write",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -186,6 +187,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:bounded-real-source-adapter-contract-sample:write",
+        command:
+          "npm run tool:bounded-real-source-adapter-contract-sample:write -- --contract-output <path> --index-output <path>",
+        purpose:
+          "Write a deterministic bounded real-source adapter contract sample artifact and index for AI-agent inspection before live source reads exist.",
+        output_contract_ref: "bounded-real-source-adapter-contract-sample-artifact-set/v1",
+        file_read_allowed: false,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -225,6 +236,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_v0_single_command_paths: true,
       writes_only_explicit_local_v0_guided_sample_artifact_paths: true,
       writes_only_explicit_local_v0_repo_work_guided_sample_artifact_paths: true,
+      writes_only_explicit_bounded_real_source_adapter_contract_sample_paths: true,
       arbitrary_source_loading_allowed: false,
       multi_request_runner_implemented: false
     },

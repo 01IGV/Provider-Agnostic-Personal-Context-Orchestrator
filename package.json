@@ -18,6 +18,8 @@
     "contract:local-deterministic-context-source:verify": "npm run build:force && node scripts/verify-local-deterministic-context-source-adapter.mjs",
     "contract:local-v0-source-catalog:verify": "npm run build:force && node scripts/verify-local-v0-source-catalog-contracts.mjs",
     "contract:bounded-real-source-adapter:verify": "npm run build:force && node scripts/verify-bounded-real-source-adapter-contract.mjs",
+    "tool:bounded-real-source-adapter-contract-sample:write": "npm run build:force && node scripts/bounded-real-source-adapter-contract-sample-cli.mjs",
+    "tool:bounded-real-source-adapter-contract-sample:verify": "npm run build:force && node scripts/verify-bounded-real-source-adapter-contract-sample-artifact.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

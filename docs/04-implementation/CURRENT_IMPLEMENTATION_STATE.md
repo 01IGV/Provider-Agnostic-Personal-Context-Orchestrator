@@ -182,6 +182,22 @@ The next bounded pass should be a repo-first verdict after the bounded real-sour
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a bounded real-source adapter contract sample artifact. The contract exists and is machine-verified, but an AI agent cannot yet inspect it as part of a local v0 artifact/handoff path. The next useful step is to materialize a deterministic sample artifact for the bounded real-source adapter contract so agents can inspect the future adapter gate before live source reads exist.
 
+`feat/bounded-real-source-adapter-contract-sample-artifact` adds that deterministic sample artifact set.
+
+The writer is available through:
+
+```bash
+npm run tool:bounded-real-source-adapter-contract-sample:write -- --contract-output bounded-real-source-adapter-contract.sample.json --index-output bounded-real-source-adapter-contract.sample.index.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:bounded-real-source-adapter-contract-sample:verify
+```
+
+The sample artifact carries the bounded real-source adapter contract, source catalog ref, receipt contract ref, supported scope ids/source kinds, provenance/permission/audit refs, and default-deny posture for AI-agent inspection. It writes only explicitly provided artifact paths and still performs no live source reads, no direct agent repo file access, no arbitrary path reads, and no runtime/MCP/API/provider/persistence/auth/model/storage/contour execution.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1234,6 +1250,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-03-172-bounded-real-source-adapter-contract.md`
 - `2026-05-03-173-state-next-step-alignment-after-bounded-real-source-adapter-contract.md`
 - `2026-05-03-174-repo-first-verdict-after-bounded-real-source-adapter-contract.md`
+- `2026-05-03-175-bounded-real-source-adapter-contract-sample-artifact.md`
 
 ---
 
@@ -1274,13 +1291,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** bounded real-source adapter contract sample artifact.
+**Bounded Pass:** state alignment after bounded real-source adapter contract sample artifact.
 
 Recommended branch:
 
-`feat/bounded-real-source-adapter-contract-sample-artifact`
+`docs/state-next-step-alignment-after-bounded-real-source-adapter-contract-sample-artifact`
 
-Materialize an agent-inspectable deterministic sample artifact for the bounded real-source adapter contract, with verifier coverage proving that the artifact carries the contract boundary, source catalog ref, receipt contract ref, provenance/permission/audit refs, and default-deny posture without adding live source reads or direct agent file access.
+Record the post-merge state after the bounded real-source adapter contract sample artifact and confirm the next repo-first verdict step. Do not jump directly to live source reads before that state alignment and verdict pass.
 
 Keep the local CLI bounded:
 

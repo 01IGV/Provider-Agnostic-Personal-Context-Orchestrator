@@ -53,6 +53,9 @@ jobs:
       - name: Verify local v0 source catalog contracts
         run: npm run contract:local-v0-source-catalog:verify
 
+      - name: Verify bounded real source adapter contract
+        run: npm run contract:bounded-real-source-adapter:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

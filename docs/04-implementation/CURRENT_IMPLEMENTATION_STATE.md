@@ -166,6 +166,16 @@ The next bounded pass should be a repo-first verdict after the local v0 source m
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a bounded real-source adapter contract. The local v0 path now has request/response, source catalog, guided sample artifacts, refreshed repo-work context, and source materialization receipts. The next useful step is to define the contract a future real source adapter must satisfy before any live source reads are introduced.
 
+`feat/bounded-real-source-adapter-contract` adds that non-executing contract boundary.
+
+The new contract is available through:
+
+```bash
+npm run contract:bounded-real-source-adapter:verify
+```
+
+It defines a declaration-only capability contract for a future real source adapter: allowlisted scope selection, `local-v0-source-catalog/v1` compatibility, required `local-v0-source-materialization-receipt/v1`, required provenance/permission/audit refs, and explicit denial of direct agent repo file access, live source reads, arbitrary paths, runtime/MCP/API behavior, provider calls, persistence, auth/IAM implementation, permission grants, model calls, storage writes, and contour execution.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1215,6 +1225,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-04-28-169-local-v0-source-materialization-receipt-contracts.md`
 - `2026-04-28-170-state-next-step-alignment-after-local-v0-source-materialization-receipt-contracts.md`
 - `2026-04-28-171-repo-first-verdict-after-local-v0-source-materialization-receipt-contracts.md`
+- `2026-05-03-172-bounded-real-source-adapter-contract.md`
 
 ---
 
@@ -1259,9 +1270,9 @@ Current limits after first local JSON CLI file IO boundary:
 
 Recommended branch:
 
-`feat/bounded-real-source-adapter-contract`
+`docs/state-next-step-alignment-after-bounded-real-source-adapter-contract`
 
-Define the non-executing contract that any future real source adapter must satisfy before live source reads are introduced: declared source capability, allowlisted source boundary, authority/provenance/permission/audit refs, materialization receipt compatibility, and explicit denial of direct agent file access/runtime behavior.
+Record the post-merge state after the bounded real-source adapter contract and confirm the next implementation direction from repo evidence. The likely next implementation direction is a verifier-backed bounded real-source adapter handoff/sample artifact or the first narrow read boundary design, but it should be selected through repo-first state alignment rather than jumping directly to live reads.
 
 Keep the local CLI bounded:
 

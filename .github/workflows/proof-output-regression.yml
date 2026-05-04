@@ -74,6 +74,9 @@ jobs:
       - name: Verify local real source single-command sample artifacts
         run: npm run tool:local-real-source-single-command-sample:verify
 
+      - name: Verify local real source tool pack artifacts
+        run: npm run tool:local-real-source-tool-pack:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

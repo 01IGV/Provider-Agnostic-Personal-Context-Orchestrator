@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source single-command sample artifacts ready for PR.**
+**Local real-source single-command sample artifacts merged and CI verified.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -303,6 +303,30 @@ npm run tool:local-real-source-single-command-sample:verify
 The sample writer produces a constrained sample request, bounded real-source response, single-command summary, single-command run index, and sample artifact-set index for AI-agent inspection. It proves selected refs, content digests, source materialization receipt refs, and default-deny posture without widening source authority or adding runtime/MCP/API/provider/persistence/model execution.
 
 Local milestone verification passed for the sample writer, single-command agent tool, request-native real-source runner, real-source adapter, narrow read boundary, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-single-command-sample-artifacts`.
+
+PR #123 merged to `main` as `1c834fd` after GitHub Actions PR run `25310897241` passed all 50 verification steps, including `Verify local real source single-command sample artifacts`.
+
+The next bounded pass should be a repo-first verdict after the local real-source single-command sample artifact set, deciding the next agent-facing real-source usage layer without assuming runtime/MCP/API execution.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local real-source tool-pack artifact set. The single-command real-source path now works and has sample artifacts, but an AI agent should be able to inspect one top-level package index that points to the manifest, command, sample artifacts, allowed scope/source refs, receipt/provenance/permission/audit refs, denial posture, and verifier.
+
+`feat/local-real-source-tool-pack-artifact-set` adds that top-level package.
+
+The writer is available through:
+
+```bash
+npm run tool:local-real-source-tool-pack:write -- --manifest-output local-json-agent-tool-manifest.json --request-output agent-context-request.real-source-tool-pack.sample.json --response-output local-real-source-tool-pack.sample.response.json --summary-output local-real-source-tool-pack.sample.summary.json --index-output local-real-source-tool-pack.sample.index.json --sample-index-output local-real-source-tool-pack.sample.artifact-set.index.json --tool-pack-index-output local-real-source-tool-pack.index.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-real-source-tool-pack:verify
+```
+
+The tool-pack writer packages the local JSON agent manifest and the local real-source single-command sample artifacts behind one top-level index for AI-agent inspection. It proves the single-command ref, sample writer ref, selected scope/source refs, source materialization receipt refs, content digests, provenance/permission/audit refs, verifier command, and default-deny posture.
+
+Local milestone verification passed for the real-source tool-pack, local JSON agent manifest, single-command sample artifacts, single-command agent tool, request-native real-source runner, real-source adapter, narrow read boundary, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-tool-pack-artifact-set`.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1375,6 +1399,10 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-04-191-repo-first-verdict-for-local-real-source-single-command-sample-artifacts.md`
 - `2026-05-04-192-local-real-source-single-command-sample-artifacts.md`
 - `2026-05-04-193-local-real-source-single-command-sample-artifacts-milestone-verification.md`
+- `2026-05-04-194-state-next-step-alignment-after-local-real-source-single-command-sample-artifacts.md`
+- `2026-05-04-195-repo-first-verdict-after-local-real-source-single-command-sample-artifacts.md`
+- `2026-05-04-196-local-real-source-tool-pack-artifact-set.md`
+- `2026-05-04-197-local-real-source-tool-pack-artifact-set-milestone-verification.md`
 
 ---
 
@@ -1397,7 +1425,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, and the two allowlisted narrow local real-source read boundary refs;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, explicit local real-source tool-pack artifact output paths, and the two allowlisted narrow local real-source read boundary refs;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1415,13 +1443,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** PR/CI/merge for local real-source single-command sample artifact set.
+**Bounded Pass:** PR/CI/merge for local real-source tool-pack artifact set.
 
 Recommended branch:
 
-`feat/local-real-source-single-command-sample-artifacts`
+`feat/local-real-source-tool-pack-artifact-set`
 
-Use the same milestone branch to open one PR, observe CI, merge if green, and then align `main` state after merge. The sample writes request, response, summary, run index, and sample index artifacts to explicit output paths and proves selected refs, digests, receipt refs, and default-deny posture for AI-agent inspection.
+Use the same milestone branch to open one PR, observe CI, merge if green, and then align `main` state after merge.
 
 Keep the local CLI bounded:
 
@@ -1429,7 +1457,7 @@ Keep the local CLI bounded:
 - do not read live repo files as runtime data;
 - do not allow user-selected source paths;
 - keep the repo-work context scope allowlisted, deterministic, and machine-verifiable;
-- write only explicitly provided sample artifact output paths;
+- write only explicitly provided real-source tool-pack artifact output paths;
 - do not add MCP/API server behavior, runtime handlers, provider SDK calls, concrete persistence adapters, model calls, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.

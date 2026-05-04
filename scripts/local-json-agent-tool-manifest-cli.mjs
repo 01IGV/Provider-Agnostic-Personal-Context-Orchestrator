@@ -52,6 +52,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-agent-request-runner-v0:run",
       "tool:local-real-source-single-command-agent-tool-v0:run",
       "tool:local-real-source-single-command-sample:write",
+      "tool:local-real-source-tool-pack:write",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -241,6 +242,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-real-source-tool-pack:write",
+        command:
+          "npm run tool:local-real-source-tool-pack:write -- --manifest-output <path> --request-output <path> --response-output <path> --summary-output <path> --index-output <path> --sample-index-output <path> --tool-pack-index-output <path>",
+        purpose:
+          "Write a local real-source tool-pack artifact set that packages the manifest and single-command sample artifacts behind one top-level index for AI-agent inspection.",
+        output_contract_ref: "local-real-source-tool-pack-artifact-set/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -285,6 +296,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_real_source_agent_request_runner_v0_paths: true,
       writes_only_explicit_local_real_source_single_command_agent_tool_v0_paths: true,
       writes_only_explicit_local_real_source_single_command_sample_artifact_paths: true,
+      writes_only_explicit_local_real_source_tool_pack_artifact_paths: true,
       reads_only_narrow_local_real_source_boundary_refs: true,
       reads_only_explicit_request_and_narrow_real_source_refs: true,
       reads_only_authored_request_and_narrow_real_source_refs: true,

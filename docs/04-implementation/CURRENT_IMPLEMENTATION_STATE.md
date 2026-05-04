@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool readiness index in progress.**
+**Local real-source agent tool readiness acceptance proof ready for PR.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -453,6 +453,22 @@ npm run tool:local-real-source-agent-tool-readiness-index:verify
 The readiness index is a top-level AI-agent discovery artifact for the local real-source tool. It references the primary run/consume command, sample writer, verifier commands, artifact paths, selected `scope:repo-work-context`, allowlisted source refs, provenance/permission/audit refs, and default-deny posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, or contour execution.
 
 Local milestone verification passed for the local real-source agent tool readiness index, single-command consumption sample artifacts, single-command consumption v0, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-agent-tool-readiness-index`.
+
+PR #130 merged to `main` as `a3026e6` after GitHub Actions PR run `25316716117` passed all 57 verification steps, including `Verify local real source agent tool readiness index`.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local real-source agent tool readiness acceptance proof. The readiness index exists; the next proof should show that an AI agent can start from that one top-level artifact, discover the primary command, sample artifacts, verifier commands, selected refs, and default-deny posture, and validate the local real-source tool path without direct repo file access.
+
+`feat/local-real-source-agent-tool-readiness-acceptance-proof` adds that proof.
+
+The verifier is available through:
+
+```bash
+npm run proof:local-real-source-agent-tool-readiness-acceptance:verify
+```
+
+The proof starts from the readiness index as the single entrypoint, follows only readiness-discovered artifact paths, verifies the manifest/tool-pack/consumption/run-consumption contracts, confirms selected `scope:repo-work-context` and the two allowlisted source refs, and preserves runtime denial posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, or contour execution.
+
+Local milestone verification passed for the local real-source agent tool readiness acceptance proof, readiness index, single-command consumption sample artifacts, single-command consumption v0, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-agent-tool-readiness-acceptance-proof`.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1553,6 +1569,10 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-04-219-repo-first-verdict-after-local-real-source-tool-pack-single-command-consumption-sample-artifacts.md`
 - `2026-05-04-220-local-real-source-agent-tool-readiness-index.md`
 - `2026-05-04-221-local-real-source-agent-tool-readiness-index-milestone-verification.md`
+- `2026-05-04-222-state-next-step-alignment-after-local-real-source-agent-tool-readiness-index.md`
+- `2026-05-04-223-repo-first-verdict-after-local-real-source-agent-tool-readiness-index.md`
+- `2026-05-04-224-local-real-source-agent-tool-readiness-acceptance-proof.md`
+- `2026-05-04-225-local-real-source-agent-tool-readiness-acceptance-proof-milestone-verification.md`
 
 ---
 
@@ -1575,7 +1595,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, explicit local real-source tool-pack artifact output paths, explicit local real-source tool-pack acceptance proof temp artifact paths, explicit local real-source tool-pack consumption summary output paths, explicit local real-source tool-pack index consumption summary output paths, explicit local real-source tool-pack single-command consumption artifact paths, explicit local real-source tool-pack single-command consumption sample artifact paths, explicit local real-source agent tool readiness index artifact paths, and the two allowlisted narrow local real-source read boundary refs;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, explicit local real-source tool-pack artifact output paths, explicit local real-source tool-pack acceptance proof temp artifact paths, explicit local real-source tool-pack consumption summary output paths, explicit local real-source tool-pack index consumption summary output paths, explicit local real-source tool-pack single-command consumption artifact paths, explicit local real-source tool-pack single-command consumption sample artifact paths, explicit local real-source agent tool readiness index artifact paths, explicit local real-source agent tool readiness acceptance proof temp artifact paths, and the two allowlisted narrow local real-source read boundary refs;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1593,11 +1613,11 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** PR/CI/merge for local real-source agent tool readiness index.
+**Bounded Pass:** PR/CI/merge for local real-source agent tool readiness acceptance proof.
 
 Recommended branch:
 
-`feat/local-real-source-agent-tool-readiness-index`
+`feat/local-real-source-agent-tool-readiness-acceptance-proof`
 
 Use the same milestone branch for state alignment, repo-first verdict, implementation, verification, PR, CI, and merge.
 
@@ -1606,10 +1626,10 @@ Keep the local CLI bounded:
 - do not add arbitrary file or directory reads;
 - do not read live repo files as runtime data;
 - do not allow user-selected source paths;
-- write a top-level readiness index for the real-source local agent tool;
+- verify the top-level readiness index as the single AI-agent entrypoint for the real-source local agent tool;
 - require tool-pack, consumption, sample-index, and readiness-index artifact paths to stay confined to the tool-pack artifact directory;
 - keep the repo-work context scope allowlisted, deterministic, and machine-verifiable;
-- write only explicitly provided real-source tool-pack, acceptance proof, consumption summary, index-consumption summary, single-command consumption, single-command sample, and readiness index artifact output paths;
+- write only explicitly provided real-source tool-pack, acceptance proof, consumption summary, index-consumption summary, single-command consumption, single-command sample, readiness index artifact output paths, and readiness acceptance proof temp artifact paths;
 - do not add MCP/API server behavior, runtime handlers, provider SDK calls, concrete persistence adapters, model calls, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.

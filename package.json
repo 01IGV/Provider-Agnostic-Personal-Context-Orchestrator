@@ -23,6 +23,8 @@
     "contract:narrow-local-real-source-read-boundary:verify": "npm run build:force && node scripts/verify-narrow-local-real-source-read-boundary-contracts.mjs",
     "tool:local-real-source-adapter-v0:run": "npm run build:force && node scripts/local-real-source-adapter-v0-cli.mjs",
     "tool:local-real-source-adapter-v0:verify": "npm run build:force && node scripts/verify-local-real-source-adapter-v0.mjs",
+    "tool:local-real-source-agent-request-runner-v0:run": "npm run build:force && node scripts/local-real-source-agent-request-runner-v0-cli.mjs",
+    "tool:local-real-source-agent-request-runner-v0:verify": "npm run build:force && node scripts/verify-local-real-source-agent-request-runner-v0.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

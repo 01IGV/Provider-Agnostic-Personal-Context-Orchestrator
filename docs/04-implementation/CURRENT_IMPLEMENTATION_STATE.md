@@ -202,6 +202,8 @@ PR #116 merged as `46280bf` after GitHub Actions `Proof Output Regression` PR ru
 
 The next bounded pass should be a repo-first verdict after the bounded real-source adapter contract sample artifact. The verdict should decide whether the next implementation can safely move to the first narrow read boundary design for a local real-source adapter v0, or whether another agent-facing artifact hardening pass is needed first.
 
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a narrow local real-source read boundary contract. The future adapter contract is now agent-inspectable, so the next useful step is to define the first scoped read boundary a local real-source adapter v0 must satisfy before any live read implementation is introduced.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1256,6 +1258,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-03-174-repo-first-verdict-after-bounded-real-source-adapter-contract.md`
 - `2026-05-03-175-bounded-real-source-adapter-contract-sample-artifact.md`
 - `2026-05-04-176-state-next-step-alignment-after-bounded-real-source-adapter-contract-sample-artifact.md`
+- `2026-05-04-177-repo-first-verdict-after-bounded-real-source-adapter-contract-sample-artifact.md`
 
 ---
 
@@ -1296,13 +1299,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** repo-first verdict after bounded real-source adapter contract sample artifact.
+**Bounded Pass:** narrow local real-source read boundary contract.
 
 Recommended branch:
 
-`docs/repo-first-verdict-after-bounded-real-source-adapter-contract-sample-artifact`
+`feat/narrow-local-real-source-read-boundary-contracts`
 
-Choose whether the next implementation should move to the first narrow read boundary design for a local real-source adapter v0. Keep live source reads and direct agent file access closed unless that verdict explicitly opens a scoped, machine-verified boundary.
+Define the first contract-only read boundary for a future local real-source adapter v0: allowlisted source roots/refs, maximum read scope, source materialization receipt requirements, provenance/permission/audit refs, and explicit denial of direct agent file access, arbitrary paths, directory traversal, repo scanning, runtime/MCP/API/provider/persistence/auth/model/storage/contour execution, and live reads until a later explicitly scoped implementation pass.
 
 Keep the local CLI bounded:
 

@@ -90,6 +90,8 @@ export * from "./local-v0-source-catalog-contracts-types.js";
 export * from "./local-v0-source-catalog-contracts.js";
 export * from "./bounded-real-source-adapter-contract-types.js";
 export * from "./bounded-real-source-adapter-contract.js";
+export * from "./narrow-local-real-source-read-boundary-contracts-types.js";
+export * from "./narrow-local-real-source-read-boundary-contracts.js";
 export * from "./first-protocol-surface-adapter-shape-for-verified-response-types.js";
 export * from "./first-protocol-surface-adapter-shape-for-verified-response.js";
 export * from "./local-json-request-response-runner-shape-types.js";

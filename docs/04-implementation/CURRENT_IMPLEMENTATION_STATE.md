@@ -204,6 +204,16 @@ The next bounded pass should be a repo-first verdict after the bounded real-sour
 
 The latest repo-first verdict confirms that the strongest next bounded implementation direction is a narrow local real-source read boundary contract. The future adapter contract is now agent-inspectable, so the next useful step is to define the first scoped read boundary a local real-source adapter v0 must satisfy before any live read implementation is introduced.
 
+`feat/narrow-local-real-source-read-boundary-contracts` adds that contract-only boundary.
+
+The verifier is available through:
+
+```bash
+npm run contract:narrow-local-real-source-read-boundary:verify
+```
+
+The boundary declares one allowlisted repo-relative docs root and two allowlisted documentation refs for a future local real-source adapter v0. It records path policy constraints, max bytes per read, required content digest after a future read, source catalog/receipt compatibility, provenance/permission/audit refs, and default-deny posture. It performs no live reads and still denies direct agent repo file access, arbitrary paths, directory traversal, directory listing, repo scanning, runtime/MCP/API/provider/persistence/auth/model/storage/contour execution, and permission grants.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1259,6 +1269,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-03-175-bounded-real-source-adapter-contract-sample-artifact.md`
 - `2026-05-04-176-state-next-step-alignment-after-bounded-real-source-adapter-contract-sample-artifact.md`
 - `2026-05-04-177-repo-first-verdict-after-bounded-real-source-adapter-contract-sample-artifact.md`
+- `2026-05-04-178-narrow-local-real-source-read-boundary-contracts.md`
 
 ---
 
@@ -1299,13 +1310,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** narrow local real-source read boundary contract.
+**Bounded Pass:** state alignment after narrow local real-source read boundary contracts.
 
 Recommended branch:
 
-`feat/narrow-local-real-source-read-boundary-contracts`
+`docs/state-next-step-alignment-after-narrow-local-real-source-read-boundary-contracts`
 
-Define the first contract-only read boundary for a future local real-source adapter v0: allowlisted source roots/refs, maximum read scope, source materialization receipt requirements, provenance/permission/audit refs, and explicit denial of direct agent file access, arbitrary paths, directory traversal, repo scanning, runtime/MCP/API/provider/persistence/auth/model/storage/contour execution, and live reads until a later explicitly scoped implementation pass.
+Record the post-merge state after the narrow local real-source read boundary contracts and confirm the next repo-first verdict step. Do not implement live reads until that state alignment and verdict pass selects the next bounded implementation.
 
 Keep the local CLI bounded:
 

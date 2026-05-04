@@ -62,6 +62,9 @@ jobs:
       - name: Verify narrow local real source read boundary contracts
         run: npm run contract:narrow-local-real-source-read-boundary:verify
 
+      - name: Verify local real source adapter v0
+        run: npm run tool:local-real-source-adapter-v0:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

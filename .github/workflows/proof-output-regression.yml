@@ -80,6 +80,9 @@ jobs:
       - name: Verify local real source tool pack acceptance proof
         run: npm run proof:local-real-source-tool-pack-acceptance:verify
 
+      - name: Verify local real source tool pack consumption CLI boundary
+        run: npm run tool:local-real-source-tool-pack-consumption:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

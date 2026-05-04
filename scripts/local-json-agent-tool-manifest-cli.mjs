@@ -54,6 +54,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-single-command-sample:write",
       "tool:local-real-source-tool-pack:write",
       "proof:local-real-source-tool-pack-acceptance:verify",
+      "tool:local-real-source-tool-pack:consume",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -262,6 +263,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-real-source-tool-pack:consume",
+        command:
+          "npm run tool:local-real-source-tool-pack:consume -- --tool-pack-index <path> --manifest <path> --request <path> --response <path> --summary <path> --index <path> --sample-index <path> --consumption-summary-output <path>",
+        purpose:
+          "Consume an explicitly provided local real-source tool-pack artifact set and write one bounded consumption summary artifact.",
+        output_contract_ref: "local-real-source-tool-pack-consumption/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -307,6 +318,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_real_source_single_command_agent_tool_v0_paths: true,
       writes_only_explicit_local_real_source_single_command_sample_artifact_paths: true,
       writes_only_explicit_local_real_source_tool_pack_artifact_paths: true,
+      writes_only_explicit_local_real_source_tool_pack_consumption_summary_path: true,
       reads_only_narrow_local_real_source_boundary_refs: true,
       reads_only_explicit_request_and_narrow_real_source_refs: true,
       reads_only_authored_request_and_narrow_real_source_refs: true,

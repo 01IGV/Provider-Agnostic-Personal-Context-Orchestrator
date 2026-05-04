@@ -331,9 +331,9 @@ export const readLocalJsonAgentToolManifest = () => {
       {
         command_ref: "tool:local-real-source-agent-tool-entrypoint-v0:run",
         command:
-          "npm run tool:local-real-source-agent-tool-entrypoint-v0:run -- --artifact-dir <path>",
+          "npm run tool:local-real-source-agent-tool-entrypoint-v0:run -- --artifact-dir <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]",
         purpose:
-          "Run the local real-source agent tool entrypoint from one explicit artifact directory and write fixed agent-discovery artifacts.",
+          "Run the local real-source agent tool entrypoint from one explicit artifact directory and optional allowlisted request intent hints, then write fixed agent-discovery artifacts.",
         output_contract_ref: "local-real-source-agent-tool-entrypoint-v0/v1",
         file_read_allowed: true,
         file_write_allowed: true

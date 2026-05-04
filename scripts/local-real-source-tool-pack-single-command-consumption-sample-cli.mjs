@@ -101,7 +101,8 @@ export const writeLocalRealSourceToolPackSingleCommandConsumptionSample = (args)
     index_output_path: args.index_output_path,
     sample_index_output_path: args.sample_index_output_path,
     tool_pack_index_output_path: args.tool_pack_index_output_path,
-    consumption_summary_output_path: args.consumption_summary_output_path
+    consumption_summary_output_path: args.consumption_summary_output_path,
+    variation: args.variation
   });
   const manifestArtifact = readJson(args.manifest_output_path);
   const requestArtifact = readJson(args.request_output_path);
@@ -138,6 +139,9 @@ export const writeLocalRealSourceToolPackSingleCommandConsumptionSample = (args)
       source_catalog: responseArtifact.source_catalog_ref
     },
     agent_context_request_id: runResult.agent_context_request_id,
+    request_task_signal: runResult.request_task_signal,
+    request_read_mode_hint: runResult.request_read_mode_hint,
+    request_depth_hint: runResult.request_depth_hint,
     selected_scope_ids: runResult.selected_scope_ids,
     selected_source_refs: runResult.selected_source_refs,
     selected_source_item_count: toolPackIndexArtifact.selected_source_item_count,

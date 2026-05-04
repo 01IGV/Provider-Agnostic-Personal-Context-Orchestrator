@@ -53,7 +53,8 @@ export const writeLocalRealSourceSingleCommandSampleArtifactSet = ({
   response_output_path,
   summary_output_path,
   index_output_path,
-  sample_index_output_path
+  sample_index_output_path,
+  variation
 }) => {
   const runResult = runLocalRealSourceSingleCommandAgentToolV0({
     request_output_path,
@@ -61,9 +62,10 @@ export const writeLocalRealSourceSingleCommandSampleArtifactSet = ({
     summary_output_path,
     index_output_path,
     variation: {
-      task_signal: "sample real-source single-command repo-work context request",
-      read_mode_hint: "planning",
-      depth_hint: "standard"
+      task_signal:
+        variation?.task_signal ?? "sample real-source single-command repo-work context request",
+      read_mode_hint: variation?.read_mode_hint ?? "planning",
+      depth_hint: variation?.depth_hint ?? "standard"
     }
   });
   const requestArtifact = readJson(request_output_path);
@@ -94,6 +96,9 @@ export const writeLocalRealSourceSingleCommandSampleArtifactSet = ({
       source_catalog: responseArtifact.source_catalog_ref
     },
     agent_context_request_id: runResult.agent_context_request_id,
+    request_task_signal: runResult.request_task_signal,
+    request_read_mode_hint: runResult.request_read_mode_hint,
+    request_depth_hint: runResult.request_depth_hint,
     requested_scope_hints: runResult.requested_scope_hints,
     selected_scope_ids: runResult.selected_scope_ids,
     selected_source_refs: runResult.selected_source_refs,

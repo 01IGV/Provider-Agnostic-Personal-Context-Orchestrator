@@ -58,7 +58,8 @@ export const writeLocalRealSourceToolPackArtifactSet = ({
   summary_output_path,
   index_output_path,
   sample_index_output_path,
-  tool_pack_index_output_path
+  tool_pack_index_output_path,
+  variation
 }) => {
   const manifestWriteResult = writeLocalJsonAgentToolManifestArtifact({
     manifest_output_path
@@ -68,7 +69,8 @@ export const writeLocalRealSourceToolPackArtifactSet = ({
     response_output_path,
     summary_output_path,
     index_output_path,
-    sample_index_output_path
+    sample_index_output_path,
+    variation
   });
   const manifestArtifact = readJson(manifest_output_path);
   const requestArtifact = readJson(request_output_path);
@@ -115,6 +117,9 @@ export const writeLocalRealSourceToolPackArtifactSet = ({
       "tool:local-real-source-tool-pack:write"
     ],
     agent_context_request_id: sampleIndexArtifact.agent_context_request_id,
+    request_task_signal: sampleIndexArtifact.request_task_signal,
+    request_read_mode_hint: sampleIndexArtifact.request_read_mode_hint,
+    request_depth_hint: sampleIndexArtifact.request_depth_hint,
     requested_scope_hints: sampleIndexArtifact.requested_scope_hints,
     selected_scope_ids: sampleIndexArtifact.selected_scope_ids,
     selected_source_refs: sampleIndexArtifact.selected_source_refs,

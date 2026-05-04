@@ -9,15 +9,35 @@ import {
 
 const stableJson = (value) => `${JSON.stringify(value, null, 2)}\n`;
 const usage =
-  "Usage: node scripts/local-real-source-agent-tool-entrypoint-v0-cli.mjs --artifact-dir <path>";
+  "Usage: node scripts/local-real-source-agent-tool-entrypoint-v0-cli.mjs --artifact-dir <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]";
 
 const parseArgs = (argv) => {
-  if (argv.length !== 2 || argv[0] !== "--artifact-dir" || !argv[1]) {
+  const args = new Map();
+
+  for (let index = 0; index < argv.length; index += 2) {
+    const key = argv[index];
+    const value = argv[index + 1];
+
+    if (!key?.startsWith("--") || !value) {
+      throw new Error(usage);
+    }
+
+    args.set(key.slice(2), value);
+  }
+
+  const allowedArgs = new Set(["artifact-dir", "task-signal", "read-mode", "depth"]);
+
+  if (!args.has("artifact-dir") || [...args.keys()].some((key) => !allowedArgs.has(key))) {
     throw new Error(usage);
   }
 
   return {
-    artifact_dir_path: resolve(argv[1])
+    artifact_dir_path: resolve(args.get("artifact-dir")),
+    variation: {
+      task_signal: args.get("task-signal"),
+      read_mode_hint: args.get("read-mode"),
+      depth_hint: args.get("depth")
+    }
   };
 };
 
@@ -45,7 +65,7 @@ const buildArtifactPaths = (artifactDirPath) =>
 const fixedArtifactPathsStayInDirectory = (artifactDirPath, artifactPaths) =>
   artifactPathKeys.every((key) => dirname(artifactPaths[key]) === artifactDirPath);
 
-export const runLocalRealSourceAgentToolEntrypointV0 = ({ artifact_dir_path }) => {
+export const runLocalRealSourceAgentToolEntrypointV0 = ({ artifact_dir_path, variation }) => {
   const artifactPaths = buildArtifactPaths(artifact_dir_path);
   const fixedPathsConfined = fixedArtifactPathsStayInDirectory(artifact_dir_path, artifactPaths);
 
@@ -71,7 +91,10 @@ export const runLocalRealSourceAgentToolEntrypointV0 = ({ artifact_dir_path }) =
 
   mkdirSync(artifact_dir_path, { recursive: true });
 
-  const readinessResult = writeLocalRealSourceAgentToolReadinessIndex(artifactPaths);
+  const readinessResult = writeLocalRealSourceAgentToolReadinessIndex({
+    ...artifactPaths,
+    variation
+  });
   const readinessIndexArtifact = readJson(artifactPaths.readiness_index_output_path);
   const failures = readinessResult.failures ?? [];
   const entrypointSummary = {
@@ -86,6 +109,9 @@ export const runLocalRealSourceAgentToolEntrypointV0 = ({ artifact_dir_path }) =
     readiness_index_output_path: artifactPaths.readiness_index_output_path,
     readiness_index_contract_ref: readinessIndexArtifact.output_contract_ref,
     primary_command_ref: readinessIndexArtifact.primary_command_ref,
+    request_task_signal: readinessIndexArtifact.request_task_signal,
+    request_read_mode_hint: readinessIndexArtifact.request_read_mode_hint,
+    request_depth_hint: readinessIndexArtifact.request_depth_hint,
     recommended_command: readinessIndexArtifact.recommended_command,
     verifier_commands: [
       "npm run tool:local-real-source-agent-tool-entrypoint-v0:verify",

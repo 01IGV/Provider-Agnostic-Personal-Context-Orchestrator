@@ -179,7 +179,9 @@ const assertions = {
   manifest_exposes_local_real_source_agent_tool_entrypoint_v0:
     manifest.commands.find(
       (command) => command.command_ref === "tool:local-real-source-agent-tool-entrypoint-v0:run"
-    )?.command.includes("--artifact-dir <path>") === true,
+    )?.command.includes(
+      "--artifact-dir <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]"
+    ) === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&

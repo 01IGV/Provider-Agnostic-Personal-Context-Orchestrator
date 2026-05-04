@@ -96,7 +96,8 @@ export const runLocalRealSourceToolPackSingleCommandConsumptionV0 = (args) => {
     summary_output_path: args.summary_output_path,
     index_output_path: args.index_output_path,
     sample_index_output_path: args.sample_index_output_path,
-    tool_pack_index_output_path: args.tool_pack_index_output_path
+    tool_pack_index_output_path: args.tool_pack_index_output_path,
+    variation: args.variation
   });
 
   if (toolPackWriteResult.failure_count !== 0) {
@@ -139,6 +140,9 @@ export const runLocalRealSourceToolPackSingleCommandConsumptionV0 = (args) => {
     tool_pack_written: true,
     index_consumption_completed: failures.length === 0,
     agent_context_request_id: indexConsumptionResult.agent_context_request_id,
+    request_task_signal: toolPackWriteResult.request_task_signal,
+    request_read_mode_hint: toolPackWriteResult.request_read_mode_hint,
+    request_depth_hint: toolPackWriteResult.request_depth_hint,
     selected_scope_ids: indexConsumptionResult.selected_scope_ids,
     selected_source_refs: indexConsumptionResult.selected_source_refs,
     source_materialization_receipt_ref:

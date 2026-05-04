@@ -12,7 +12,12 @@ const artifactDirPath = join(tempDir, "agent-tool-artifacts");
 const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
 
 const entrypointResult = runLocalRealSourceAgentToolEntrypointV0({
-  artifact_dir_path: artifactDirPath
+  artifact_dir_path: artifactDirPath,
+  variation: {
+    task_signal: "entrypoint custom repo-work context request",
+    read_mode_hint: "planning",
+    depth_hint: "standard"
+  }
 });
 const entrypointSummaryArtifact = readJson(entrypointResult.artifact_paths.entrypoint_summary_output_path);
 const readinessIndexArtifact = readJson(entrypointResult.readiness_index_output_path);
@@ -46,6 +51,11 @@ const assertions = {
     readinessIndexArtifact.failure_count === 0 &&
     readinessIndexArtifact.primary_command_ref ===
       "tool:local-real-source-tool-pack:run-consume-v0",
+  request_options_are_preserved_as_intent_only:
+    entrypointResult.request_task_signal === "entrypoint custom repo-work context request" &&
+    entrypointResult.request_read_mode_hint === "planning" &&
+    entrypointResult.request_depth_hint === "standard" &&
+    readinessIndexArtifact.request_task_signal === entrypointResult.request_task_signal,
   manifest_advertises_entrypoint:
     commandRefs.includes("tool:local-real-source-agent-tool-entrypoint-v0:run") &&
     manifestArtifact.recommended_sequence.includes(

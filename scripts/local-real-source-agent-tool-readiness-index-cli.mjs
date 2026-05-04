@@ -102,7 +102,8 @@ export const writeLocalRealSourceAgentToolReadinessIndex = (args) => {
     sample_index_output_path: args.sample_index_output_path,
     tool_pack_index_output_path: args.tool_pack_index_output_path,
     consumption_summary_output_path: args.consumption_summary_output_path,
-    run_consumption_index_output_path: args.run_consumption_index_output_path
+    run_consumption_index_output_path: args.run_consumption_index_output_path,
+    variation: args.variation
   });
   const manifestArtifact = readJson(args.manifest_output_path);
   const toolPackIndexArtifact = readJson(args.tool_pack_index_output_path);
@@ -144,6 +145,9 @@ export const writeLocalRealSourceAgentToolReadinessIndex = (args) => {
       "tool:local-real-source-agent-tool-readiness-index:write"
     ],
     agent_context_request_id: sampleResult.agent_context_request_id,
+    request_task_signal: sampleResult.request_task_signal,
+    request_read_mode_hint: sampleResult.request_read_mode_hint,
+    request_depth_hint: sampleResult.request_depth_hint,
     selected_scope_ids: sampleResult.selected_scope_ids,
     selected_source_refs: sampleResult.selected_source_refs,
     selected_source_item_count: sampleResult.selected_source_item_count,

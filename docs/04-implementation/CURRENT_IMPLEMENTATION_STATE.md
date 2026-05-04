@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source tool-pack single-command consumption sample artifacts in progress.**
+**Local real-source agent tool readiness index in progress.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -431,6 +431,28 @@ npm run tool:local-real-source-tool-pack-run-consume-sample:verify
 The writer runs the single-command consumption flow and writes a sample index that references the manifest, request, response, run summary, run index, sample index, tool-pack index, and consumption summary. It preserves explicit artifact paths, the allowlisted `scope:repo-work-context`, narrow real-source refs, provenance/permission/audit refs, and default-deny posture.
 
 Local milestone verification passed for local real-source tool-pack single-command consumption sample artifacts, single-command consumption v0, index consumption boundary, real-source tool-pack, local JSON agent manifest, real-source tool-pack acceptance proof, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-tool-pack-single-command-consumption-sample`.
+
+PR #129 merged to `main` as `f7a8f3f` after GitHub Actions PR run `25315950275` passed all 56 verification steps, including `Verify local real source tool pack single-command consumption sample artifacts`.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local real-source agent tool readiness index. The current flow is usable, but an AI agent should have one top-level readiness artifact that points to the primary command, sample writer, sample artifacts, verifier commands, selected refs, and default-deny posture.
+
+`feat/local-real-source-agent-tool-readiness-index` adds that readiness writer.
+
+The readiness writer is available through:
+
+```bash
+npm run tool:local-real-source-agent-tool-readiness-index:write -- --manifest-output local-json-agent-tool-manifest.json --request-output agent-context-request.real-source-readiness.sample.json --response-output local-real-source-readiness.sample.response.json --summary-output local-real-source-readiness.sample.summary.json --index-output local-real-source-readiness.sample.index.json --sample-index-output local-real-source-readiness.sample.artifact-set.index.json --tool-pack-index-output local-real-source-tool-pack.index.json --consumption-summary-output local-real-source-readiness.consumption.summary.json --run-consumption-index-output local-real-source-readiness.run-consumption.index.json --readiness-index-output local-real-source-agent-tool.readiness.index.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-real-source-agent-tool-readiness-index:verify
+```
+
+The readiness index is a top-level AI-agent discovery artifact for the local real-source tool. It references the primary run/consume command, sample writer, verifier commands, artifact paths, selected `scope:repo-work-context`, allowlisted source refs, provenance/permission/audit refs, and default-deny posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, or contour execution.
+
+Local milestone verification passed for the local real-source agent tool readiness index, single-command consumption sample artifacts, single-command consumption v0, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-agent-tool-readiness-index`.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1527,6 +1549,10 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-04-215-repo-first-verdict-after-local-real-source-tool-pack-single-command-consumption-v0.md`
 - `2026-05-04-216-local-real-source-tool-pack-single-command-consumption-sample-artifacts.md`
 - `2026-05-04-217-local-real-source-tool-pack-single-command-consumption-sample-artifacts-milestone-verification.md`
+- `2026-05-04-218-state-next-step-alignment-after-local-real-source-tool-pack-single-command-consumption-sample-artifacts.md`
+- `2026-05-04-219-repo-first-verdict-after-local-real-source-tool-pack-single-command-consumption-sample-artifacts.md`
+- `2026-05-04-220-local-real-source-agent-tool-readiness-index.md`
+- `2026-05-04-221-local-real-source-agent-tool-readiness-index-milestone-verification.md`
 
 ---
 
@@ -1549,7 +1575,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, explicit local real-source tool-pack artifact output paths, explicit local real-source tool-pack acceptance proof temp artifact paths, explicit local real-source tool-pack consumption summary output paths, explicit local real-source tool-pack index consumption summary output paths, explicit local real-source tool-pack single-command consumption artifact paths, explicit local real-source tool-pack single-command consumption sample artifact paths, and the two allowlisted narrow local real-source read boundary refs;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, explicit local real-source tool-pack artifact output paths, explicit local real-source tool-pack acceptance proof temp artifact paths, explicit local real-source tool-pack consumption summary output paths, explicit local real-source tool-pack index consumption summary output paths, explicit local real-source tool-pack single-command consumption artifact paths, explicit local real-source tool-pack single-command consumption sample artifact paths, explicit local real-source agent tool readiness index artifact paths, and the two allowlisted narrow local real-source read boundary refs;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1567,11 +1593,11 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** PR/CI/merge for local real-source tool-pack single-command consumption sample artifacts.
+**Bounded Pass:** PR/CI/merge for local real-source agent tool readiness index.
 
 Recommended branch:
 
-`feat/local-real-source-tool-pack-single-command-consumption-sample`
+`feat/local-real-source-agent-tool-readiness-index`
 
 Use the same milestone branch for state alignment, repo-first verdict, implementation, verification, PR, CI, and merge.
 
@@ -1580,10 +1606,10 @@ Keep the local CLI bounded:
 - do not add arbitrary file or directory reads;
 - do not read live repo files as runtime data;
 - do not allow user-selected source paths;
-- write sample artifacts for the real-source tool-pack single-command consumption flow;
-- require tool-pack, consumption, and sample-index artifact paths to stay confined to the tool-pack artifact directory;
+- write a top-level readiness index for the real-source local agent tool;
+- require tool-pack, consumption, sample-index, and readiness-index artifact paths to stay confined to the tool-pack artifact directory;
 - keep the repo-work context scope allowlisted, deterministic, and machine-verifiable;
-- write only explicitly provided real-source tool-pack, acceptance proof, consumption summary, index-consumption summary, single-command consumption, and single-command sample artifact output paths;
+- write only explicitly provided real-source tool-pack, acceptance proof, consumption summary, index-consumption summary, single-command consumption, single-command sample, and readiness index artifact output paths;
 - do not add MCP/API server behavior, runtime handlers, provider SDK calls, concrete persistence adapters, model calls, permission grants, or contour execution.
 
 Do not add real auth/IAM implementation, token validation, sessions, IAM provider calls, policy engine execution, permission grants, MCP server, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, transport execution, concrete persistence, payment rails, contour execution, real model calls, real storage writes, or another placeholder layer.

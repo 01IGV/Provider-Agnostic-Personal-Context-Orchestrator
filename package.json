@@ -36,6 +36,8 @@
     "tool:local-real-source-tool-pack-consumption:verify": "npm run build:force && node scripts/verify-local-real-source-tool-pack-consumption-cli-boundary.mjs",
     "tool:local-real-source-tool-pack:index-consume": "npm run build:force && node scripts/local-real-source-tool-pack-index-consumption-cli.mjs",
     "tool:local-real-source-tool-pack-index-consumption:verify": "npm run build:force && node scripts/verify-local-real-source-tool-pack-index-consumption-boundary.mjs",
+    "tool:local-real-source-tool-pack:run-consume-v0": "npm run build:force && node scripts/local-real-source-tool-pack-single-command-consumption-v0-cli.mjs",
+    "tool:local-real-source-tool-pack-run-consume-v0:verify": "npm run build:force && node scripts/verify-local-real-source-tool-pack-single-command-consumption-v0.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

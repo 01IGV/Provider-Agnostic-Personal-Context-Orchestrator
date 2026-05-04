@@ -53,6 +53,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-single-command-agent-tool-v0:run",
       "tool:local-real-source-single-command-sample:write",
       "tool:local-real-source-tool-pack:write",
+      "proof:local-real-source-tool-pack-acceptance:verify",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -248,6 +249,15 @@ export const readLocalJsonAgentToolManifest = () => {
         purpose:
           "Write a local real-source tool-pack artifact set that packages the manifest and single-command sample artifacts behind one top-level index for AI-agent inspection.",
         output_contract_ref: "local-real-source-tool-pack-artifact-set/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
+        command_ref: "proof:local-real-source-tool-pack-acceptance:verify",
+        command: "npm run proof:local-real-source-tool-pack-acceptance:verify",
+        purpose:
+          "Verify an AI agent can start from the local real-source tool-pack index and validate the bounded real-source usage path without direct repo file access.",
+        output_contract_ref: "local-real-source-tool-pack-acceptance-proof/v1",
         file_read_allowed: true,
         file_write_allowed: true
       },

@@ -31,6 +31,7 @@
     "tool:local-real-source-single-command-sample:verify": "npm run build:force && node scripts/verify-local-real-source-single-command-sample-artifact-set.mjs",
     "tool:local-real-source-tool-pack:write": "npm run build:force && node scripts/local-real-source-tool-pack-cli.mjs",
     "tool:local-real-source-tool-pack:verify": "npm run build:force && node scripts/verify-local-real-source-tool-pack-artifact-set.mjs",
+    "proof:local-real-source-tool-pack-acceptance:verify": "npm run build:force && node scripts/verify-local-real-source-tool-pack-acceptance-proof.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

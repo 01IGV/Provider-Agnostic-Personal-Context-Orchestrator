@@ -31,6 +31,7 @@ const assertions = {
     manifest.recommended_sequence.includes("tool:local-real-source-single-command-sample:write") &&
     manifest.recommended_sequence.includes("tool:local-real-source-tool-pack:write") &&
     manifest.recommended_sequence.includes("proof:local-real-source-tool-pack-acceptance:verify") &&
+    manifest.recommended_sequence.includes("tool:local-real-source-tool-pack:consume") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -55,6 +56,7 @@ const assertions = {
     commandRefs.includes("tool:local-real-source-single-command-sample:write") &&
     commandRefs.includes("tool:local-real-source-tool-pack:write") &&
     commandRefs.includes("proof:local-real-source-tool-pack-acceptance:verify") &&
+    commandRefs.includes("tool:local-real-source-tool-pack:consume") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -116,6 +118,12 @@ const assertions = {
       (command) =>
         command.command_ref === "proof:local-real-source-tool-pack-acceptance:verify"
     )?.command === "npm run proof:local-real-source-tool-pack-acceptance:verify",
+  manifest_exposes_local_real_source_tool_pack_consumer:
+    manifest.commands.find(
+      (command) => command.command_ref === "tool:local-real-source-tool-pack:consume"
+    )?.command.includes(
+      "--tool-pack-index <path> --manifest <path> --request <path> --response <path> --summary <path> --index <path> --sample-index <path> --consumption-summary-output <path>"
+    ) === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&
@@ -150,6 +158,7 @@ const assertions = {
     manifest.local_io_policy.writes_only_explicit_local_real_source_single_command_agent_tool_v0_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_single_command_sample_artifact_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_artifact_paths === true &&
+    manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_consumption_summary_path === true &&
     manifest.local_io_policy.reads_only_narrow_local_real_source_boundary_refs === true &&
     manifest.local_io_policy.reads_only_explicit_request_and_narrow_real_source_refs === true &&
     manifest.local_io_policy.reads_only_authored_request_and_narrow_real_source_refs === true &&

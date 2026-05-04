@@ -260,6 +260,28 @@ npm run tool:local-real-source-agent-request-runner-v0:verify
 
 The runner reads one explicit agent request artifact, accepts only `scope:repo-work-context` in this v0 path, denies unsupported scopes before source reads, invokes the existing local real-source adapter v0 after request validation, and writes bounded response/summary/index artifacts to explicit paths. It preserves no direct agent repo file access, no arbitrary source loading, no directory traversal/listing, no repo scanning, and no runtime/MCP/API/provider/persistence/auth/model/storage/contour execution.
 
+PR #121 merged to `main` as `e15f522` after GitHub Actions PR run `25309334565` passed all 48 verification steps, including `Verify local real source agent request runner v0`.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local real-source single-command agent tool v0. The request-native runner works, but a practical agent workflow still requires two commands: author request, then run. The next implementation should collapse that into one bounded command while keeping `scope:repo-work-context` fixed and preserving all read/permission/runtime guardrails.
+
+`feat/local-real-source-single-command-agent-tool-v0` adds that single-command tool.
+
+The command is available through:
+
+```bash
+npm run tool:local-real-source-single-command-agent-tool-v0:run -- --request-output agent-context-request.real-source-single-command.json --response-output local-real-source-single-command.response.json --summary-output local-real-source-single-command.summary.json --index-output local-real-source-single-command.index.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-real-source-single-command-agent-tool-v0:verify
+```
+
+The command authors a constrained `scope:repo-work-context` request, runs the local real-source agent request runner v0, and writes bounded request/response/summary/index artifacts to explicit output paths. It keeps source reads bounded by `narrow-local-real-source-read-boundary/v1` and preserves no direct agent repo file access, no arbitrary source loading, no directory traversal/listing, no repo scanning, and no runtime/MCP/API/provider/persistence/auth/model/storage/contour execution.
+
+Local milestone verification passed for the single-command tool, request-native real-source runner, real-source adapter, narrow read boundary, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-single-command-agent-tool-v0`.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1323,6 +1345,10 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-04-183-state-next-step-alignment-after-local-real-source-adapter-v0.md`
 - `2026-05-04-184-repo-first-verdict-for-local-real-source-agent-request-runner-v0.md`
 - `2026-05-04-185-local-real-source-agent-request-runner-v0.md`
+- `2026-05-04-186-state-next-step-alignment-after-local-real-source-agent-request-runner-v0.md`
+- `2026-05-04-187-repo-first-verdict-for-local-real-source-single-command-agent-tool-v0.md`
+- `2026-05-04-188-local-real-source-single-command-agent-tool-v0.md`
+- `2026-05-04-189-local-real-source-single-command-agent-tool-v0-milestone-verification.md`
 
 ---
 
@@ -1345,7 +1371,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, and the two allowlisted narrow local real-source read boundary refs;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, and the two allowlisted narrow local real-source read boundary refs;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1363,13 +1389,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** local real-source agent request runner v0 milestone verification.
+**Bounded Pass:** open milestone PR and observe CI for local real-source single-command agent tool v0.
 
 Recommended branch:
 
-`feat/local-real-source-agent-request-runner-v0`
+`feat/local-real-source-single-command-agent-tool-v0`
 
-Use the same milestone branch to finish verification and documentation for the request-native local real-source runner. The runner now reads one explicit agent request artifact, accepts only `scope:repo-work-context` initially, calls the existing local real-source adapter v0 after request validation, and writes bounded response/summary/index artifacts to explicit output paths. Unsupported scope requests are denied before source reads.
+Open one PR for the full `feat/local-real-source-single-command-agent-tool-v0` milestone branch. The command now authors a constrained `scope:repo-work-context` request artifact and runs it through the local real-source agent request runner v0, writing request, response, summary, and index artifacts to explicit output paths while keeping source reads bounded by `narrow-local-real-source-read-boundary/v1`.
 
 Keep the local CLI bounded:
 

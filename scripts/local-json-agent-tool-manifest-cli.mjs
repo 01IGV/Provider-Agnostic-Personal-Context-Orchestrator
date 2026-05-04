@@ -50,6 +50,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:bounded-real-source-adapter-contract-sample:write",
       "tool:local-real-source-adapter-v0:run",
       "tool:local-real-source-agent-request-runner-v0:run",
+      "tool:local-real-source-single-command-agent-tool-v0:run",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -219,6 +220,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-real-source-single-command-agent-tool-v0:run",
+        command:
+          "npm run tool:local-real-source-single-command-agent-tool-v0:run -- --request-output <path> --response-output <path> --summary-output <path> --index-output <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]",
+        purpose:
+          "Author one constrained repo-work context request and run it through the bounded local real-source agent request runner v0 in a single command.",
+        output_contract_ref: "local-real-source-single-command-agent-tool-v0-summary/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -261,8 +272,10 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_bounded_real_source_adapter_contract_sample_paths: true,
       writes_only_explicit_local_real_source_adapter_v0_paths: true,
       writes_only_explicit_local_real_source_agent_request_runner_v0_paths: true,
+      writes_only_explicit_local_real_source_single_command_agent_tool_v0_paths: true,
       reads_only_narrow_local_real_source_boundary_refs: true,
       reads_only_explicit_request_and_narrow_real_source_refs: true,
+      reads_only_authored_request_and_narrow_real_source_refs: true,
       arbitrary_source_loading_allowed: false,
       multi_request_runner_implemented: false
     },

@@ -56,6 +56,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "proof:local-real-source-tool-pack-acceptance:verify",
       "tool:local-real-source-tool-pack:consume",
       "tool:local-real-source-tool-pack:index-consume",
+      "tool:local-real-source-tool-pack:run-consume-v0",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -284,6 +285,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-real-source-tool-pack:run-consume-v0",
+        command:
+          "npm run tool:local-real-source-tool-pack:run-consume-v0 -- --manifest-output <path> --request-output <path> --response-output <path> --summary-output <path> --index-output <path> --sample-index-output <path> --tool-pack-index-output <path> --consumption-summary-output <path>",
+        purpose:
+          "Run one local real-source tool-pack flow: write bounded tool-pack artifacts, consume them from the top-level index, and write one consumption summary.",
+        output_contract_ref: "local-real-source-tool-pack-single-command-consumption-v0/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -330,6 +341,8 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_real_source_single_command_sample_artifact_paths: true,
       writes_only_explicit_local_real_source_tool_pack_artifact_paths: true,
       writes_only_explicit_local_real_source_tool_pack_consumption_summary_path: true,
+      writes_only_explicit_local_real_source_tool_pack_index_consumption_summary_path: true,
+      writes_only_explicit_local_real_source_tool_pack_single_command_consumption_paths: true,
       reads_only_narrow_local_real_source_boundary_refs: true,
       reads_only_explicit_request_and_narrow_real_source_refs: true,
       reads_only_authored_request_and_narrow_real_source_refs: true,

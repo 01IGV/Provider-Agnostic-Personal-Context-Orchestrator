@@ -32,6 +32,8 @@ const assertions = {
     manifest.recommended_sequence.includes("tool:local-real-source-tool-pack:write") &&
     manifest.recommended_sequence.includes("proof:local-real-source-tool-pack-acceptance:verify") &&
     manifest.recommended_sequence.includes("tool:local-real-source-tool-pack:consume") &&
+    manifest.recommended_sequence.includes("tool:local-real-source-tool-pack:index-consume") &&
+    manifest.recommended_sequence.includes("tool:local-real-source-tool-pack:run-consume-v0") &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -57,6 +59,8 @@ const assertions = {
     commandRefs.includes("tool:local-real-source-tool-pack:write") &&
     commandRefs.includes("proof:local-real-source-tool-pack-acceptance:verify") &&
     commandRefs.includes("tool:local-real-source-tool-pack:consume") &&
+    commandRefs.includes("tool:local-real-source-tool-pack:index-consume") &&
+    commandRefs.includes("tool:local-real-source-tool-pack:run-consume-v0") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -124,6 +128,18 @@ const assertions = {
     )?.command.includes(
       "--tool-pack-index <path> --manifest <path> --request <path> --response <path> --summary <path> --index <path> --sample-index <path> --consumption-summary-output <path>"
     ) === true,
+  manifest_exposes_local_real_source_tool_pack_index_consumer:
+    manifest.commands.find(
+      (command) => command.command_ref === "tool:local-real-source-tool-pack:index-consume"
+    )?.command.includes("--tool-pack-index <path> --consumption-summary-output <path>") ===
+    true,
+  manifest_exposes_local_real_source_tool_pack_single_command_consumption:
+    manifest.commands.find(
+      (command) =>
+        command.command_ref === "tool:local-real-source-tool-pack:run-consume-v0"
+    )?.command.includes(
+      "--manifest-output <path> --request-output <path> --response-output <path> --summary-output <path> --index-output <path> --sample-index-output <path> --tool-pack-index-output <path> --consumption-summary-output <path>"
+    ) === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&
@@ -159,6 +175,8 @@ const assertions = {
     manifest.local_io_policy.writes_only_explicit_local_real_source_single_command_sample_artifact_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_artifact_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_consumption_summary_path === true &&
+    manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_index_consumption_summary_path === true &&
+    manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_single_command_consumption_paths === true &&
     manifest.local_io_policy.reads_only_narrow_local_real_source_boundary_refs === true &&
     manifest.local_io_policy.reads_only_explicit_request_and_narrow_real_source_refs === true &&
     manifest.local_io_policy.reads_only_authored_request_and_narrow_real_source_refs === true &&

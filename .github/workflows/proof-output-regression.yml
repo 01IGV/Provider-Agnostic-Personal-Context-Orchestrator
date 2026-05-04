@@ -86,6 +86,9 @@ jobs:
       - name: Verify local real source tool pack index consumption boundary
         run: npm run tool:local-real-source-tool-pack-index-consumption:verify
 
+      - name: Verify local real source tool pack single-command consumption v0
+        run: npm run tool:local-real-source-tool-pack-run-consume-v0:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

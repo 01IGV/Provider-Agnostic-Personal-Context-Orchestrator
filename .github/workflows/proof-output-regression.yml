@@ -59,6 +59,9 @@ jobs:
       - name: Verify bounded real source adapter contract sample artifact
         run: npm run tool:bounded-real-source-adapter-contract-sample:verify
 
+      - name: Verify narrow local real source read boundary contracts
+        run: npm run contract:narrow-local-real-source-read-boundary:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

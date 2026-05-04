@@ -55,6 +55,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-tool-pack:write",
       "proof:local-real-source-tool-pack-acceptance:verify",
       "tool:local-real-source-tool-pack:consume",
+      "tool:local-real-source-tool-pack:index-consume",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -269,6 +270,16 @@ export const readLocalJsonAgentToolManifest = () => {
         purpose:
           "Consume an explicitly provided local real-source tool-pack artifact set and write one bounded consumption summary artifact.",
         output_contract_ref: "local-real-source-tool-pack-consumption/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
+        command_ref: "tool:local-real-source-tool-pack:index-consume",
+        command:
+          "npm run tool:local-real-source-tool-pack:index-consume -- --tool-pack-index <path> --consumption-summary-output <path>",
+        purpose:
+          "Consume a local real-source tool-pack from one explicit top-level index path and write one bounded consumption summary artifact.",
+        output_contract_ref: "local-real-source-tool-pack-index-consumption/v1",
         file_read_allowed: true,
         file_write_allowed: true
       },

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local v0 source catalog guided command sample artifacts merged and CI verified.**
+**Local real-source single-command sample artifacts ready for PR.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -281,6 +281,28 @@ npm run tool:local-real-source-single-command-agent-tool-v0:verify
 The command authors a constrained `scope:repo-work-context` request, runs the local real-source agent request runner v0, and writes bounded request/response/summary/index artifacts to explicit output paths. It keeps source reads bounded by `narrow-local-real-source-read-boundary/v1` and preserves no direct agent repo file access, no arbitrary source loading, no directory traversal/listing, no repo scanning, and no runtime/MCP/API/provider/persistence/auth/model/storage/contour execution.
 
 Local milestone verification passed for the single-command tool, request-native real-source runner, real-source adapter, narrow read boundary, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-single-command-agent-tool-v0`.
+
+PR #122 merged to `main` as `7ae76c2` after GitHub Actions PR run `25310160142` passed all 49 verification steps, including `Verify local real source single-command agent tool v0`.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local real-source single-command sample artifact set. The single-command tool is usable, but an AI agent still benefits from an inspectable deterministic sample request/response/summary/index artifact set that demonstrates the exact tool output shape without expanding read authority.
+
+`feat/local-real-source-single-command-sample-artifacts` adds that sample artifact set.
+
+The writer is available through:
+
+```bash
+npm run tool:local-real-source-single-command-sample:write -- --request-output agent-context-request.real-source-single-command.sample.json --response-output local-real-source-single-command.sample.response.json --summary-output local-real-source-single-command.sample.summary.json --index-output local-real-source-single-command.sample.index.json --sample-index-output local-real-source-single-command.sample.artifact-set.index.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-real-source-single-command-sample:verify
+```
+
+The sample writer produces a constrained sample request, bounded real-source response, single-command summary, single-command run index, and sample artifact-set index for AI-agent inspection. It proves selected refs, content digests, source materialization receipt refs, and default-deny posture without widening source authority or adding runtime/MCP/API/provider/persistence/model execution.
+
+Local milestone verification passed for the sample writer, single-command agent tool, request-native real-source runner, real-source adapter, narrow read boundary, local JSON agent manifest, end-to-end non-executing proof, and authority-boundary denial proof. The milestone is ready for one PR from `feat/local-real-source-single-command-sample-artifacts`.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
@@ -1349,6 +1371,10 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-04-187-repo-first-verdict-for-local-real-source-single-command-agent-tool-v0.md`
 - `2026-05-04-188-local-real-source-single-command-agent-tool-v0.md`
 - `2026-05-04-189-local-real-source-single-command-agent-tool-v0-milestone-verification.md`
+- `2026-05-04-190-state-next-step-alignment-after-local-real-source-single-command-agent-tool-v0.md`
+- `2026-05-04-191-repo-first-verdict-for-local-real-source-single-command-sample-artifacts.md`
+- `2026-05-04-192-local-real-source-single-command-sample-artifacts.md`
+- `2026-05-04-193-local-real-source-single-command-sample-artifacts-milestone-verification.md`
 
 ---
 
@@ -1371,7 +1397,7 @@ Current limits after first local JSON CLI file IO boundary:
 - no MCP/API route/controller implementation yet;
 - no MCP server implementation yet;
 - no MCP tool or resource registration yet;
-- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, and the two allowlisted narrow local real-source read boundary refs;
+- actual local CLI/file IO is limited to explicit fixture input/output paths, explicit example artifact paths, one explicit manifest artifact output path, explicit handoff bundle artifact paths, one explicit handoff bundle consumption response output path, explicit direct agent request-run response/summary output paths, explicit sample artifact set output paths, explicit local v0 tool-pack artifact output paths, explicit local v0 guided command paths, explicit local v0 guided command sample artifact paths, explicit local real-source adapter v0 artifact output paths, explicit local real-source agent request runner v0 artifact output paths, explicit local real-source single-command agent tool v0 artifact output paths, explicit local real-source single-command sample artifact output paths, and the two allowlisted narrow local real-source read boundary refs;
 - request fixture authoring supports allowlisted intent variation only;
 - single-command local run supports allowlisted intent variation and deterministic local source fixture selection only;
 - no generalized CLI UX, arbitrary source loading, or multi-request runner yet;
@@ -1389,13 +1415,13 @@ Current limits after first local JSON CLI file IO boundary:
 
 ## Next Recommended Bounded Pass
 
-**Bounded Pass:** open milestone PR and observe CI for local real-source single-command agent tool v0.
+**Bounded Pass:** PR/CI/merge for local real-source single-command sample artifact set.
 
 Recommended branch:
 
-`feat/local-real-source-single-command-agent-tool-v0`
+`feat/local-real-source-single-command-sample-artifacts`
 
-Open one PR for the full `feat/local-real-source-single-command-agent-tool-v0` milestone branch. The command now authors a constrained `scope:repo-work-context` request artifact and runs it through the local real-source agent request runner v0, writing request, response, summary, and index artifacts to explicit output paths while keeping source reads bounded by `narrow-local-real-source-read-boundary/v1`.
+Use the same milestone branch to open one PR, observe CI, merge if green, and then align `main` state after merge. The sample writes request, response, summary, run index, and sample index artifacts to explicit output paths and proves selected refs, digests, receipt refs, and default-deny posture for AI-agent inspection.
 
 Keep the local CLI bounded:
 

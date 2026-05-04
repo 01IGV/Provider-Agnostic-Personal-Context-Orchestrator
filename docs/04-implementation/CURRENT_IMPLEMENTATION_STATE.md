@@ -220,6 +220,8 @@ The current milestone branch is `feat/local-real-source-adapter-v0`. It should k
 
 The milestone should now decide and implement the first scoped local real-source adapter v0 only if it stays inside the verified narrow read boundary.
 
+The milestone verdict confirms that the next implementation inside `feat/local-real-source-adapter-v0` should add the first scoped local real-source adapter v0. The adapter may perform local file reads only for source refs declared by `narrow-local-real-source-read-boundary/v1`, must enforce path policy, must emit content digests and source materialization receipt data, and must not expose direct file access to agents.
+
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 
 The latest docs-only verdict confirms that the strongest next bounded implementation direction is local deterministic context source adapter contracts.
@@ -1277,6 +1279,7 @@ Execution documentation protocol is exercised across bounded passes, including t
 - `2026-05-04-177-repo-first-verdict-after-bounded-real-source-adapter-contract-sample-artifact.md`
 - `2026-05-04-178-narrow-local-real-source-read-boundary-contracts.md`
 - `2026-05-04-179-state-next-step-alignment-after-narrow-local-real-source-read-boundary-contracts.md`
+- `2026-05-04-180-repo-first-verdict-for-local-real-source-adapter-v0.md`
 
 ---
 

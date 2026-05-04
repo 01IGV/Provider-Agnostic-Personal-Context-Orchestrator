@@ -59,6 +59,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-tool-pack:run-consume-v0",
       "tool:local-real-source-tool-pack-run-consume-sample:write",
       "tool:local-real-source-agent-tool-readiness-index:write",
+      "proof:local-real-source-agent-tool-readiness-acceptance:verify",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -314,6 +315,15 @@ export const readLocalJsonAgentToolManifest = () => {
         purpose:
           "Write the top-level local real-source agent tool readiness index for AI-agent discovery.",
         output_contract_ref: "local-real-source-agent-tool-readiness-index/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
+        command_ref: "proof:local-real-source-agent-tool-readiness-acceptance:verify",
+        command: "npm run proof:local-real-source-agent-tool-readiness-acceptance:verify",
+        purpose:
+          "Verify an AI agent can start from the local real-source agent tool readiness index and validate the tool path without direct repo file access.",
+        output_contract_ref: "local-real-source-agent-tool-readiness-acceptance-proof/v1",
         file_read_allowed: true,
         file_write_allowed: true
       },

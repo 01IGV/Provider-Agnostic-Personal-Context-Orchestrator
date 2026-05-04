@@ -95,6 +95,9 @@ jobs:
       - name: Verify local real source agent tool readiness index
         run: npm run tool:local-real-source-agent-tool-readiness-index:verify
 
+      - name: Verify local real source agent tool readiness acceptance proof
+        run: npm run proof:local-real-source-agent-tool-readiness-acceptance:verify
+
       - name: Verify agent-consumable response contract
         run: npm run contract:agent-consumable-response:verify
 

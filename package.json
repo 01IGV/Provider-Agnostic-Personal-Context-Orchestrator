@@ -42,6 +42,7 @@
     "tool:local-real-source-tool-pack-run-consume-sample:verify": "npm run build:force && node scripts/verify-local-real-source-tool-pack-single-command-consumption-sample.mjs",
     "tool:local-real-source-agent-tool-readiness-index:write": "npm run build:force && node scripts/local-real-source-agent-tool-readiness-index-cli.mjs",
     "tool:local-real-source-agent-tool-readiness-index:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-readiness-index.mjs",
+    "proof:local-real-source-agent-tool-readiness-acceptance:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-readiness-acceptance-proof.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

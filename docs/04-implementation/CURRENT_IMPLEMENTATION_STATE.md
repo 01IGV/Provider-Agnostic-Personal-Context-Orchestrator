@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool run receipt v0 in progress.**
+**Local real-source agent tool run receipt v0 merged; repo-first verdict after run receipt is next.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -551,6 +551,10 @@ npm run tool:local-real-source-agent-tool-run-receipt-v0:verify
 ```
 
 The receipt starts from an existing entrypoint summary, follows only entrypoint-discovered artifact refs, and writes one compact AI-agent-facing run receipt under an explicit output path confined to the entrypoint artifact directory. It summarizes request intent hints, selected scope/source refs, bounded response/run artifact paths, contract refs, content digests, source materialization receipt, provenance/permission/audit refs, verifier commands, and default-deny runtime posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, arbitrary source loading, direct repo file access for agents, or contour execution.
+
+PR #136 merged to `main` as `b6df37a` after GitHub Actions PR run `25729689340` passed all 61 verification steps, including `Verify local real source agent tool run receipt v0`.
+
+The next bounded pass should be a repo-first verdict after the local real-source agent tool run receipt v0, deciding whether the next implementation should tighten the receipt into an acceptance proof, add a one-command entrypoint-plus-receipt wrapper, or move to the first explicitly scoped protocol/transport-adjacent shape without registering any MCP/API runtime.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 

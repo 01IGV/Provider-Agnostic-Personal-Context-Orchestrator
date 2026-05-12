@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool entrypoint request options v0 ready for PR.**
+**Local real-source agent tool entrypoint acceptance proof in progress.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -507,6 +507,22 @@ npm run tool:local-real-source-agent-tool-entrypoint-v0:run -- --artifact-dir lo
 The options are carried as request intent hints only. They do not modify authority, permission, source selection policy, source refs, runtime execution posture, or transport behavior.
 
 Local milestone verification passed for entrypoint request options v0, entrypoint v0, local JSON agent manifest, single-command sample artifacts, tool-pack single-command consumption sample artifacts, tool-pack single-command consumption v0, readiness acceptance proof, and authority-boundary denial proof. A smoke run with `--task-signal`, `--read-mode`, and `--depth` also passed against `/private/tmp/local-real-source-agent-tool-entrypoint-request-options-smoke`. The milestone is ready for one PR from `feat/local-real-source-agent-tool-entrypoint-request-options-v0`.
+
+PR #133 merged to `main` as `3a81a13` after GitHub Actions PR run `25321067140` passed all 60 verification steps, including `Verify local real source agent tool entrypoint v0`.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is a local real-source agent tool entrypoint acceptance proof. The entrypoint now accepts one artifact directory plus request intent hints; the next proof should show that an AI agent can start from the generated entrypoint summary, discover the readiness index and bounded context artifacts, validate selected refs and envelopes, and keep runtime permission denied.
+
+`feat/local-real-source-agent-tool-entrypoint-acceptance-proof` adds that proof.
+
+The verifier is available through:
+
+```bash
+npm run proof:local-real-source-agent-tool-entrypoint-acceptance:verify
+```
+
+The proof starts from the entrypoint summary as the AI-agent-facing starting artifact, follows only discovered entrypoint/readiness artifact refs, verifies the manifest, tool-pack index, response, consumption summary, run-consumption index, selected `scope:repo-work-context`, the two allowlisted source refs, provenance/permission/audit refs, and default-deny posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, arbitrary source loading, direct repo file access for agents, or contour execution.
+
+Local milestone verification passed for the entrypoint acceptance proof via direct verifier scripts, the local JSON agent manifest verifier, entrypoint v0 verifier, readiness acceptance proof, authority-boundary denial proof, and non-force TypeScript project build. In this local session, `tsc -b --force` stalled during forced `system-assembly` rebuild, so GitHub Actions remains the final required gate for the npm-script wrapper. The milestone is ready for PR/CI from `feat/local-real-source-agent-tool-entrypoint-acceptance-proof`.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 

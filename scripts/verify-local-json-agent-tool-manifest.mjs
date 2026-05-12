@@ -46,6 +46,9 @@ const assertions = {
     manifest.recommended_sequence.includes(
       "tool:local-real-source-agent-tool-entrypoint-v0:run"
     ) &&
+    manifest.recommended_sequence.includes(
+      "proof:local-real-source-agent-tool-entrypoint-acceptance:verify"
+    ) &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -77,6 +80,7 @@ const assertions = {
     commandRefs.includes("tool:local-real-source-agent-tool-readiness-index:write") &&
     commandRefs.includes("proof:local-real-source-agent-tool-readiness-acceptance:verify") &&
     commandRefs.includes("tool:local-real-source-agent-tool-entrypoint-v0:run") &&
+    commandRefs.includes("proof:local-real-source-agent-tool-entrypoint-acceptance:verify") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -182,6 +186,12 @@ const assertions = {
     )?.command.includes(
       "--artifact-dir <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]"
     ) === true,
+  manifest_exposes_local_real_source_agent_tool_entrypoint_acceptance_proof:
+    manifest.commands.find(
+      (command) =>
+        command.command_ref ===
+        "proof:local-real-source-agent-tool-entrypoint-acceptance:verify"
+    )?.command === "npm run proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&

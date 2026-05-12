@@ -45,6 +45,7 @@
     "proof:local-real-source-agent-tool-readiness-acceptance:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-readiness-acceptance-proof.mjs",
     "tool:local-real-source-agent-tool-entrypoint-v0:run": "npm run build:force && node scripts/local-real-source-agent-tool-entrypoint-v0-cli.mjs",
     "tool:local-real-source-agent-tool-entrypoint-v0:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-entrypoint-v0.mjs",
+    "proof:local-real-source-agent-tool-entrypoint-acceptance:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-entrypoint-acceptance-proof.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

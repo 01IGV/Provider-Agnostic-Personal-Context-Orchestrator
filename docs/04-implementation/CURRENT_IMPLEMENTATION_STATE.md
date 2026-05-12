@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool run receipt v0 selected as next bounded implementation direction.**
+**Local real-source agent tool run receipt v0 in progress.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -535,6 +535,22 @@ feat/local-real-source-agent-tool-run-receipt-v0
 ```
 
 The run receipt must remain artifact-only and local: no MCP/API transport, no runtime handler, no provider SDK calls, no concrete persistence, no model calls, no permission grants, no arbitrary source loading, no direct repo file access for agents, and no contour execution.
+
+`feat/local-real-source-agent-tool-run-receipt-v0` adds that receipt writer.
+
+The command is available through:
+
+```bash
+npm run tool:local-real-source-agent-tool-run-receipt-v0:write -- --entrypoint-summary local-real-source-agent-tool.entrypoint.summary.json --receipt-output local-real-source-agent-tool.run-receipt.json
+```
+
+The verifier is available through:
+
+```bash
+npm run tool:local-real-source-agent-tool-run-receipt-v0:verify
+```
+
+The receipt starts from an existing entrypoint summary, follows only entrypoint-discovered artifact refs, and writes one compact AI-agent-facing run receipt under an explicit output path confined to the entrypoint artifact directory. It summarizes request intent hints, selected scope/source refs, bounded response/run artifact paths, contract refs, content digests, source materialization receipt, provenance/permission/audit refs, verifier commands, and default-deny runtime posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, arbitrary source loading, direct repo file access for agents, or contour execution.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 

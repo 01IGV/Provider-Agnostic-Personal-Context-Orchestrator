@@ -49,6 +49,9 @@ const assertions = {
     manifest.recommended_sequence.includes(
       "proof:local-real-source-agent-tool-entrypoint-acceptance:verify"
     ) &&
+    manifest.recommended_sequence.includes(
+      "tool:local-real-source-agent-tool-run-receipt-v0:write"
+    ) &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -81,6 +84,7 @@ const assertions = {
     commandRefs.includes("proof:local-real-source-agent-tool-readiness-acceptance:verify") &&
     commandRefs.includes("tool:local-real-source-agent-tool-entrypoint-v0:run") &&
     commandRefs.includes("proof:local-real-source-agent-tool-entrypoint-acceptance:verify") &&
+    commandRefs.includes("tool:local-real-source-agent-tool-run-receipt-v0:write") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -192,6 +196,11 @@ const assertions = {
         command.command_ref ===
         "proof:local-real-source-agent-tool-entrypoint-acceptance:verify"
     )?.command === "npm run proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
+  manifest_exposes_local_real_source_agent_tool_run_receipt_v0:
+    manifest.commands.find(
+      (command) =>
+        command.command_ref === "tool:local-real-source-agent-tool-run-receipt-v0:write"
+    )?.command.includes("--entrypoint-summary <path> --receipt-output <path>") === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&
@@ -231,9 +240,11 @@ const assertions = {
     manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_single_command_consumption_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_single_command_consumption_sample_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_agent_tool_readiness_index_paths === true &&
+    manifest.local_io_policy.writes_only_explicit_local_real_source_agent_tool_run_receipt_path === true &&
     manifest.local_io_policy.reads_only_narrow_local_real_source_boundary_refs === true &&
     manifest.local_io_policy.reads_only_explicit_request_and_narrow_real_source_refs === true &&
     manifest.local_io_policy.reads_only_authored_request_and_narrow_real_source_refs === true &&
+    manifest.local_io_policy.reads_only_entrypoint_discovered_artifacts === true &&
     manifest.local_io_policy.arbitrary_source_loading_allowed === false &&
     manifest.local_io_policy.multi_request_runner_implemented === false,
   default_deny_posture_preserved:

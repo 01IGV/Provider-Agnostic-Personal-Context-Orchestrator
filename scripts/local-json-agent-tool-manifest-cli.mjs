@@ -61,6 +61,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-agent-tool-readiness-index:write",
       "proof:local-real-source-agent-tool-readiness-acceptance:verify",
       "tool:local-real-source-agent-tool-entrypoint-v0:run",
+      "proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -335,6 +336,15 @@ export const readLocalJsonAgentToolManifest = () => {
         purpose:
           "Run the local real-source agent tool entrypoint from one explicit artifact directory and optional allowlisted request intent hints, then write fixed agent-discovery artifacts.",
         output_contract_ref: "local-real-source-agent-tool-entrypoint-v0/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
+        command_ref: "proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
+        command: "npm run proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
+        purpose:
+          "Verify an AI agent can start from the local real-source entrypoint summary and validate the bounded context result without direct repo file access.",
+        output_contract_ref: "local-real-source-agent-tool-entrypoint-acceptance-proof/v1",
         file_read_allowed: true,
         file_write_allowed: true
       },

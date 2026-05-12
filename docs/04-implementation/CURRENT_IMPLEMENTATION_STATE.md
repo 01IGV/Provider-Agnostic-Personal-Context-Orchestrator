@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool entrypoint acceptance proof in progress.**
+**Local real-source agent tool run receipt v0 selected as next bounded implementation direction.**
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 
@@ -522,7 +522,19 @@ npm run proof:local-real-source-agent-tool-entrypoint-acceptance:verify
 
 The proof starts from the entrypoint summary as the AI-agent-facing starting artifact, follows only discovered entrypoint/readiness artifact refs, verifies the manifest, tool-pack index, response, consumption summary, run-consumption index, selected `scope:repo-work-context`, the two allowlisted source refs, provenance/permission/audit refs, and default-deny posture. It does not add MCP/API runtime, provider calls, concrete persistence, model calls, permission grants, arbitrary source loading, direct repo file access for agents, or contour execution.
 
-Local milestone verification passed for the entrypoint acceptance proof via direct verifier scripts, the local JSON agent manifest verifier, entrypoint v0 verifier, readiness acceptance proof, authority-boundary denial proof, and non-force TypeScript project build. In this local session, `tsc -b --force` stalled during forced `system-assembly` rebuild, so GitHub Actions remains the final required gate for the npm-script wrapper. The milestone is ready for PR/CI from `feat/local-real-source-agent-tool-entrypoint-acceptance-proof`.
+Local milestone verification passed for the entrypoint acceptance proof via direct verifier scripts, the local JSON agent manifest verifier, entrypoint v0 verifier, readiness acceptance proof, authority-boundary denial proof, and non-force TypeScript project build. In that local session, `tsc -b --force` stalled during forced `system-assembly` rebuild, so GitHub Actions remained the final required gate for the npm-script wrapper.
+
+PR #134 merged to `main` as `a700b08` after GitHub Actions PR run `25727849600` passed all 60 verification steps, including `Verify local real source agent tool entrypoint acceptance proof`.
+
+The latest repo-first verdict confirms that the strongest next bounded implementation direction is local real-source agent tool run receipt v0. The entrypoint is accepted as an AI-agent starting point; the next practical usability step is one compact machine-readable run receipt that an agent can use after an entrypoint run to understand request intent, selected source refs, bounded response paths, provenance/permission/audit refs, content digests, and default-deny runtime posture without inspecting every generated artifact first.
+
+The next implementation branch should be:
+
+```text
+feat/local-real-source-agent-tool-run-receipt-v0
+```
+
+The run receipt must remain artifact-only and local: no MCP/API transport, no runtime handler, no provider SDK calls, no concrete persistence, no model calls, no permission grants, no arbitrary source loading, no direct repo file access for agents, and no contour execution.
 
 `main` now includes the first AI-agent context request boundary contract and bounded context response envelope after the machine-checked authority-boundary denial proof.
 

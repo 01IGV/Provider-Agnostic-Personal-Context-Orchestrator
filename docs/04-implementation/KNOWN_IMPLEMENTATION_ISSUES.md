@@ -159,6 +159,14 @@ Post-merge verification note (April 28, 2026): local `npm run typecheck`, `npm r
 - **Impact:** the project could accidentally turn the first useful local tool path into an unbounded runtime surface.
 - **Recommended next action:** keep the local CLI fixture-scoped, deterministic, and default-deny; expand only through explicit bounded passes with verification.
 
+### 9. Local real-source verifier import stall in this desktop session
+- **Layer / Area:** local real-source agent tool verification
+- **Status:** open
+- **Severity:** medium
+- **Description:** during `codex/feat-local-real-source-agent-tool-one-command-run-v0`, direct local `node` verification of the new one-command verifier stalled while importing the pre-existing local real-source entrypoint chain. A control check showed the already-existing `verify-local-real-source-agent-tool-entrypoint-v0.mjs` path also stalled in this desktop session, so the stall is not isolated to the new wrapper logic. GitHub Actions PR run `26972911431` passed for PR #141, including the new one-command verifier step.
+- **Impact:** local desktop verification may be unable to complete real-source entrypoint-derived verifier commands even when syntax checks and manifest verification pass. CI can still verify the affected npm command in a clean runner.
+- **Recommended next action:** use CI as the final proof gate for the one-command verifier in this pass, and consider a later bounded maintenance pass to reduce real-source CLI import-chain weight or add a faster non-runtime smoke verifier.
+
 ## Update Policy
 
 This file should be updated when:

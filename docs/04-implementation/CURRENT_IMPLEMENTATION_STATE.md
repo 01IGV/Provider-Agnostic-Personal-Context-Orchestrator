@@ -11,7 +11,31 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool one-command entrypoint plus receipt wrapper selected as the next bounded implementation direction.**
+**Local real-source agent tool one-command entrypoint plus receipt wrapper is in feature-branch implementation.**
+
+`codex/feat-local-real-source-agent-tool-one-command-run-v0` adds a bounded
+one-command wrapper around the existing local real-source agent tool entrypoint
+and run-receipt writer. The new command keeps one explicit artifact directory,
+writes a fixed run receipt and one-command summary under that directory, and
+points the AI agent at the run receipt as the primary output artifact.
+
+The command is intended to be:
+
+```bash
+npm run tool:local-real-source-agent-tool-one-command-run-v0:run -- --artifact-dir local-real-source-agent-tool-artifacts --task-signal "summarize current repo state" --read-mode planning --depth standard
+```
+
+The verifier is wired as:
+
+```bash
+npm run tool:local-real-source-agent-tool-one-command-run-v0:verify
+```
+
+Local syntax checks and the local JSON agent tool manifest verifier passed. In
+this local session, direct real-source entrypoint import verification stalled in
+the pre-existing real-source script import chain, including the already-existing
+entrypoint verifier. GitHub Actions PR run `26972911431` passed for PR #141,
+including the new `Verify local real source agent tool one-command run v0` step.
 
 PR #140 also carries a bounded documentation drift audit after the README layout
 alignment. The audit aligns early repo-structure and integration-surface docs
@@ -20,7 +44,7 @@ with the current materialized repo shape: `/docs`, `/packages`, `/scripts`, and
 deferred. It also clarifies that early MCP/API/tool-surface documents describe
 intended protocol surfaces, not current proof-stage runtime permissions.
 
-The latest repo-first verdict after the local real-source agent tool run receipt acceptance proof confirms that the strongest next bounded implementation direction is a one-command entrypoint plus receipt wrapper.
+The latest repo-first verdict after the local real-source agent tool run receipt acceptance proof confirmed that the strongest next bounded implementation direction is a one-command entrypoint plus receipt wrapper.
 
 `main` now proves that an AI agent can start from a run receipt and validate the bounded response path without direct repo file access. The remaining usability gap is that an agent still needs to run the entrypoint and receipt writer as separate commands.
 

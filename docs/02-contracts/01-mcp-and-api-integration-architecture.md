@@ -17,6 +17,13 @@ This document answers questions such as:
 This is not the tool contract specification itself.
 It is the architectural definition of the external integration surfaces.
 
+Current implementation note: this document defines intended integration
+architecture. In the current proof-stage repository, MCP and API remain
+protocol-surface contracts and boundary modules. This document does not grant
+permission to add an MCP server, MCP tool/resource registration, API routes,
+controllers, runtime handlers, provider calls, or execution behavior without an
+explicit bounded implementation scope.
+
 ---
 
 ## 1. Integration architecture thesis

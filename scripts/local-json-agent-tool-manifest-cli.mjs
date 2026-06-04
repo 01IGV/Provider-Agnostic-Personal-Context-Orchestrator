@@ -63,6 +63,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "tool:local-real-source-agent-tool-entrypoint-v0:run",
       "proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
       "tool:local-real-source-agent-tool-run-receipt-v0:write",
+      "proof:local-real-source-agent-tool-run-receipt-acceptance:verify",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -360,6 +361,17 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "proof:local-real-source-agent-tool-run-receipt-acceptance:verify",
+        command:
+          "npm run proof:local-real-source-agent-tool-run-receipt-acceptance:verify",
+        purpose:
+          "Verify an AI agent can start from the local real-source run receipt and validate the bounded response path without direct repo file access.",
+        output_contract_ref:
+          "local-real-source-agent-tool-run-receipt-acceptance-proof/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -411,6 +423,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_real_source_tool_pack_single_command_consumption_sample_paths: true,
       writes_only_explicit_local_real_source_agent_tool_readiness_index_paths: true,
       writes_only_explicit_local_real_source_agent_tool_run_receipt_path: true,
+      reads_only_run_receipt_declared_artifacts: true,
       reads_only_narrow_local_real_source_boundary_refs: true,
       reads_only_explicit_request_and_narrow_real_source_refs: true,
       reads_only_authored_request_and_narrow_real_source_refs: true,

@@ -11,7 +11,7 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool run receipt acceptance proof selected as the next bounded implementation direction.**
+**Local real-source agent tool run receipt acceptance proof implementation in progress.**
 
 The latest repo-first verdict after the local real-source agent tool run receipt v0 confirms that the strongest next bounded implementation direction is a run receipt acceptance proof.
 
@@ -24,6 +24,16 @@ feat/local-real-source-agent-tool-run-receipt-acceptance-proof
 ```
 
 It should remain proof-only and local artifact based. It must not add MCP/API transport, MCP tool/resource registration, API routes/controllers, runtime handlers, provider SDK calls, concrete persistence, auth/IAM implementation, policy execution, permission grants, model calls, arbitrary source loading, direct repo file access for agents, or contour execution.
+
+`feat/local-real-source-agent-tool-run-receipt-acceptance-proof` adds that proof.
+
+The verifier is available through:
+
+```bash
+npm run proof:local-real-source-agent-tool-run-receipt-acceptance:verify
+```
+
+The proof starts from a generated local real-source agent tool run receipt, follows only receipt-declared artifact paths, validates the bounded response contract, selected scope/source refs, content digests, source materialization receipt, provenance/permission/audit refs, and default-deny posture, and preserves the no direct agent repo file access boundary.
 
 `main` now includes a complete bounded local v0 tool-pack artifact set for AI-agent inspection.
 

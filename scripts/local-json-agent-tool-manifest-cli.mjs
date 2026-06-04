@@ -64,6 +64,7 @@ export const readLocalJsonAgentToolManifest = () => {
       "proof:local-real-source-agent-tool-entrypoint-acceptance:verify",
       "tool:local-real-source-agent-tool-run-receipt-v0:write",
       "proof:local-real-source-agent-tool-run-receipt-acceptance:verify",
+      "tool:local-real-source-agent-tool-one-command-run-v0:run",
       "tool:local-json-agent-local-v0:run",
       "proof:local-json-example-artifact-round-trip:verify",
       "tool:local-json:run"
@@ -372,6 +373,16 @@ export const readLocalJsonAgentToolManifest = () => {
         file_write_allowed: true
       },
       {
+        command_ref: "tool:local-real-source-agent-tool-one-command-run-v0:run",
+        command:
+          "npm run tool:local-real-source-agent-tool-one-command-run-v0:run -- --artifact-dir <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]",
+        purpose:
+          "Run the local real-source agent tool entrypoint and run-receipt writer as one bounded command, returning the run receipt as the primary AI-agent output artifact.",
+        output_contract_ref: "local-real-source-agent-tool-one-command-run-v0/v1",
+        file_read_allowed: true,
+        file_write_allowed: true
+      },
+      {
         command_ref: "proof:local-json-example-artifact-round-trip:verify",
         command: "npm run proof:local-json-example-artifact-round-trip:verify",
         purpose:
@@ -423,6 +434,7 @@ export const readLocalJsonAgentToolManifest = () => {
       writes_only_explicit_local_real_source_tool_pack_single_command_consumption_sample_paths: true,
       writes_only_explicit_local_real_source_agent_tool_readiness_index_paths: true,
       writes_only_explicit_local_real_source_agent_tool_run_receipt_path: true,
+      writes_only_explicit_local_real_source_agent_tool_one_command_run_artifact_dir: true,
       reads_only_run_receipt_declared_artifacts: true,
       reads_only_narrow_local_real_source_boundary_refs: true,
       reads_only_explicit_request_and_narrow_real_source_refs: true,

@@ -55,6 +55,9 @@ const assertions = {
     manifest.recommended_sequence.includes(
       "proof:local-real-source-agent-tool-run-receipt-acceptance:verify"
     ) &&
+    manifest.recommended_sequence.includes(
+      "tool:local-real-source-agent-tool-one-command-run-v0:run"
+    ) &&
     manifest.recommended_sequence.includes("tool:local-json-agent-local-v0:run") &&
     manifest.recommended_sequence.includes("proof:local-json-example-artifact-round-trip:verify") &&
     manifest.recommended_sequence.includes("tool:local-json:run"),
@@ -89,6 +92,7 @@ const assertions = {
     commandRefs.includes("proof:local-real-source-agent-tool-entrypoint-acceptance:verify") &&
     commandRefs.includes("tool:local-real-source-agent-tool-run-receipt-v0:write") &&
     commandRefs.includes("proof:local-real-source-agent-tool-run-receipt-acceptance:verify") &&
+    commandRefs.includes("tool:local-real-source-agent-tool-one-command-run-v0:run") &&
     commandRefs.includes("tool:local-json-agent-local-v0:run") &&
     commandRefs.includes("proof:local-json-example-artifact-round-trip:verify") &&
     commandRefs.includes("tool:local-json:run"),
@@ -212,6 +216,13 @@ const assertions = {
         "proof:local-real-source-agent-tool-run-receipt-acceptance:verify"
     )?.command ===
     "npm run proof:local-real-source-agent-tool-run-receipt-acceptance:verify",
+  manifest_exposes_local_real_source_agent_tool_one_command_run_v0:
+    manifest.commands.find(
+      (command) =>
+        command.command_ref === "tool:local-real-source-agent-tool-one-command-run-v0:run"
+    )?.command.includes(
+      "--artifact-dir <path> [--task-signal <text>] [--read-mode <mode>] [--depth <hint>]"
+    ) === true,
   manifest_points_to_schema_contract:
     manifest.schema_contract_ref === "local-json-agent-request-response-contract-schema/v1" &&
     manifest.request_shape_ref === "AgentContextRequestBoundaryShape" &&
@@ -252,6 +263,7 @@ const assertions = {
     manifest.local_io_policy.writes_only_explicit_local_real_source_tool_pack_single_command_consumption_sample_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_agent_tool_readiness_index_paths === true &&
     manifest.local_io_policy.writes_only_explicit_local_real_source_agent_tool_run_receipt_path === true &&
+    manifest.local_io_policy.writes_only_explicit_local_real_source_agent_tool_one_command_run_artifact_dir === true &&
     manifest.local_io_policy.reads_only_run_receipt_declared_artifacts === true &&
     manifest.local_io_policy.reads_only_narrow_local_real_source_boundary_refs === true &&
     manifest.local_io_policy.reads_only_explicit_request_and_narrow_real_source_refs === true &&

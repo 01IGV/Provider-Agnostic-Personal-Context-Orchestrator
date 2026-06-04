@@ -49,6 +49,8 @@
     "tool:local-real-source-agent-tool-run-receipt-v0:write": "npm run build:force && node scripts/local-real-source-agent-tool-run-receipt-v0-cli.mjs",
     "tool:local-real-source-agent-tool-run-receipt-v0:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-run-receipt-v0.mjs",
     "proof:local-real-source-agent-tool-run-receipt-acceptance:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-run-receipt-acceptance-proof.mjs",
+    "tool:local-real-source-agent-tool-one-command-run-v0:run": "npm run build:force && node scripts/local-real-source-agent-tool-one-command-run-v0-cli.mjs",
+    "tool:local-real-source-agent-tool-one-command-run-v0:verify": "npm run build:force && node scripts/verify-local-real-source-agent-tool-one-command-run-v0.mjs",
     "contract:agent-consumable-response:verify": "npm run build:force && node scripts/verify-agent-consumable-response-contract.mjs",
     "contract:first-protocol-surface-adapter:verify": "npm run build:force && node scripts/verify-first-protocol-surface-adapter-shape.mjs",
     "contract:local-json-request-response-runner:verify": "npm run build:force && node scripts/verify-local-json-request-response-runner-shape.mjs",

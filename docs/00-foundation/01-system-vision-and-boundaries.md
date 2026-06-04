@@ -180,6 +180,11 @@ Inside the boundary:
 - provider adapter interface;
 - model-facing context tool surface.
 
+Current implementation note: these are intended system-boundary responsibilities,
+not proof-stage runtime permissions. The current repository keeps MCP/API as
+protocol-surface contracts and boundary modules until a bounded implementation
+pass explicitly introduces runtime exposure.
+
 ---
 
 ## 9. What is outside the system boundary

@@ -56,15 +56,16 @@ It should not optimize for:
 
 ## 3. Top-level repository layout
 
-The repository should use a top-level structure similar to the following.
+The originally intended top-level structure distinguished canonical docs, reusable
+packages, runtime entrypoints, operational services, tools, and infrastructure.
+The current implementation has intentionally materialized only the areas needed
+for the provider-agnostic context gateway/control-plane proof contour.
 
 ```text
 /docs
-/apps
 /packages
-/services
-/tools
-/infrastructure
+/scripts
+/.github/workflows
 ```
 
 ### Top-level meanings
@@ -72,20 +73,26 @@ The repository should use a top-level structure similar to the following.
 #### `/docs`
 Canonical system definition, architecture, contracts, governance, and implementation sequencing.
 
-#### `/apps`
-Executable applications or entrypoints where needed later.
-
 #### `/packages`
-Reusable core packages that encode domain semantics, contours, governance, adapters, and shared contracts.
+Reusable core packages that encode domain semantics, contours, governance, adapters,
+shared contracts, system assembly, and protocol-surface boundaries.
 
-#### `/services`
-Runtime services or deployable service units if the system is split into service processes later.
+#### `/scripts`
+Local proof commands, deterministic artifact writers, verification utilities, and
+developer-facing command wrappers.
 
-#### `/tools`
-Optional tooling, scripts, developer utilities, code generation helpers, evaluation scripts.
+#### `/.github/workflows`
+CI proof-output regression and verification wiring.
 
-#### `/infrastructure`
-Deployment, ops, environment, provisioning, and control-plane infrastructure artifacts.
+### Deferred top-level areas
+
+The repository does not currently include `/apps`, `/services`, or `/infrastructure`.
+Those areas remain deferred until a bounded pass explicitly introduces runtime
+entrypoints, deployable services, or deployment/ops artifacts.
+
+The earlier `/tools` concept has currently materialized as `/scripts` because the
+repo is still in a local proof/tool-command stage rather than a packaged runtime
+tooling stage.
 
 ### Rule
 
@@ -156,6 +163,7 @@ At minimum:
 - `integration-contracts`
 - `provider-adapters`
 - `system-assembly`
+- `runtime-surface`
 
 These names may evolve slightly, but the semantic boundaries should remain.
 
@@ -183,6 +191,7 @@ A strong early repository shape under `/packages` should look conceptually like 
   /integration-contracts
   /provider-adapters
   /system-assembly
+  /runtime-surface
 ```
 
 ### Constraint
@@ -223,6 +232,7 @@ The recommended first module sequence is:
 10. `integration-contracts`
 11. `provider-adapters`
 12. `system-assembly`
+13. `runtime-surface`
 
 ### Why this order
 - semantics must exist before domain logic;
@@ -232,6 +242,8 @@ The recommended first module sequence is:
 - pack must precede provider projection;
 - write must precede rich handoff refresh logic;
 - audit/eval should be present before edge integrations grow too opaque.
+- runtime surfaces must remain boundary modules until the authority, request, and
+  proof contours justify actual runtime exposure.
 
 ### Rule
 

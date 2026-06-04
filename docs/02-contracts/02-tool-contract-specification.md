@@ -17,6 +17,11 @@ This document answers questions such as:
 This is not the protocol transport document.
 It is the **semantic contract layer for externally invokable operations**.
 
+Current implementation note: the named tool families define the future semantic
+tool surface. In the current proof-stage repository, they remain contracts and
+verification targets; they are not MCP registrations, API endpoints, runtime
+handlers, permission grants, or authority to execute contours.
+
 ---
 
 ## 1. Tool contract thesis

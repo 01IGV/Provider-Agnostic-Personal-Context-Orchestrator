@@ -13,6 +13,13 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 **Local real-source agent tool one-command entrypoint plus receipt wrapper selected as the next bounded implementation direction.**
 
+PR #140 also carries a bounded documentation drift audit after the README layout
+alignment. The audit aligns early repo-structure and integration-surface docs
+with the current materialized repo shape: `/docs`, `/packages`, `/scripts`, and
+`/.github/workflows`, with `/apps`, `/services`, and `/infrastructure` still
+deferred. It also clarifies that early MCP/API/tool-surface documents describe
+intended protocol surfaces, not current proof-stage runtime permissions.
+
 The latest repo-first verdict after the local real-source agent tool run receipt acceptance proof confirms that the strongest next bounded implementation direction is a one-command entrypoint plus receipt wrapper.
 
 `main` now proves that an AI agent can start from a run receipt and validate the bounded response path without direct repo file access. The remaining usability gap is that an agent still needs to run the entrypoint and receipt writer as separate commands.

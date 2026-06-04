@@ -11,15 +11,19 @@ It is not a historical changelog and not a replacement for per-pass execution re
 
 ## Current Phase
 
-**Local real-source agent tool one-command entrypoint plus receipt wrapper is in feature-branch implementation.**
+**Local real-source agent tool one-command run v0 is on `main`; one-command acceptance proof is the next bounded direction.**
 
-`codex/feat-local-real-source-agent-tool-one-command-run-v0` adds a bounded
-one-command wrapper around the existing local real-source agent tool entrypoint
-and run-receipt writer. The new command keeps one explicit artifact directory,
-writes a fixed run receipt and one-command summary under that directory, and
-points the AI agent at the run receipt as the primary output artifact.
+PR #141 merged to `main` as `82ed183` after GitHub Actions `Proof Output
+Regression` push run `26974367236` passed, including the new `Verify local real
+source agent tool one-command run v0` step.
 
-The command is intended to be:
+`main` now includes a bounded one-command wrapper around the existing local
+real-source agent tool entrypoint and run-receipt writer. The command keeps one
+explicit artifact directory, writes a fixed run receipt and one-command summary
+under that directory, and points the AI agent at the run receipt as the primary
+output artifact.
+
+The command is available as:
 
 ```bash
 npm run tool:local-real-source-agent-tool-one-command-run-v0:run -- --artifact-dir local-real-source-agent-tool-artifacts --task-signal "summarize current repo state" --read-mode planning --depth standard
@@ -34,15 +38,28 @@ npm run tool:local-real-source-agent-tool-one-command-run-v0:verify
 Local syntax checks and the local JSON agent tool manifest verifier passed. In
 this local session, direct real-source entrypoint import verification stalled in
 the pre-existing real-source script import chain, including the already-existing
-entrypoint verifier. GitHub Actions PR run `26972911431` passed for PR #141,
-including the new `Verify local real source agent tool one-command run v0` step.
+entrypoint verifier. GitHub Actions verified the affected npm command in a clean
+runner.
 
-PR #140 also carries a bounded documentation drift audit after the README layout
-alignment. The audit aligns early repo-structure and integration-surface docs
-with the current materialized repo shape: `/docs`, `/packages`, `/scripts`, and
-`/.github/workflows`, with `/apps`, `/services`, and `/infrastructure` still
-deferred. It also clarifies that early MCP/API/tool-surface documents describe
-intended protocol surfaces, not current proof-stage runtime permissions.
+The latest repo-first verdict after the local real-source agent tool
+one-command run v0 confirms that the strongest next bounded implementation
+direction is a one-command acceptance proof.
+
+The next implementation should be:
+
+```text
+feat/local-real-source-agent-tool-one-command-run-acceptance-proof
+```
+
+It should prove that an AI agent can start from the one-command run output,
+follow the primary run receipt and receipt-declared artifacts, validate the
+bounded response path, selected scope/source refs, content digests,
+provenance/permission/audit refs, and default-deny posture without direct repo
+file access. It must not add MCP/API transport, MCP tool/resource registration,
+API routes/controllers, runtime handlers, provider SDK calls, concrete
+persistence, auth/IAM implementation, policy execution, permission grants, model
+calls, arbitrary source loading, direct repo file access for agents, or contour
+execution.
 
 The latest repo-first verdict after the local real-source agent tool run receipt acceptance proof confirmed that the strongest next bounded implementation direction is a one-command entrypoint plus receipt wrapper.
 

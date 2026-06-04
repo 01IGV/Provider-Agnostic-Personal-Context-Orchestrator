@@ -34,8 +34,8 @@ npm run tool:local-real-source-agent-tool-one-command-run-v0:verify
 Local syntax checks and the local JSON agent tool manifest verifier passed. In
 this local session, direct real-source entrypoint import verification stalled in
 the pre-existing real-source script import chain, including the already-existing
-entrypoint verifier. GitHub Actions remains the required gate for this new
-one-command verifier before merge.
+entrypoint verifier. GitHub Actions PR run `26972911431` passed for PR #141,
+including the new `Verify local real source agent tool one-command run v0` step.
 
 PR #140 also carries a bounded documentation drift audit after the README layout
 alignment. The audit aligns early repo-structure and integration-surface docs

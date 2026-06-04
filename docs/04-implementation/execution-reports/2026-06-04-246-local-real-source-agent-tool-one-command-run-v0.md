@@ -95,7 +95,10 @@ it stalled in the pre-existing local real-source entrypoint import chain. A
 control attempt against the existing
 `node scripts/verify-local-real-source-agent-tool-entrypoint-v0.mjs` also
 stalled in this desktop session. The affected verification path is therefore
-recorded as a local verification gap pending GitHub Actions.
+recorded as a local desktop verification gap.
+
+GitHub Actions PR run `26972911431` passed for PR #141, including the new
+`Verify local real source agent tool one-command run v0` workflow step.
 
 ## Current Outcome
 The repository now has a bounded one-command local artifact wrapper that gives an
@@ -103,16 +106,16 @@ AI agent a single primary run receipt artifact after a local real-source
 entrypoint run, without opening direct repo file access or runtime execution.
 
 ## Known Limitations After This Pass
-The direct local real-source verifier path stalled in this desktop session and
-needs CI confirmation before merge.
+The direct local real-source verifier path stalled in this desktop session. CI
+verification passed in a clean GitHub Actions runner.
 
 ## Known Issues Introduced or Updated
 Updated `KNOWN_IMPLEMENTATION_ISSUES.md` with the local real-source verifier
 import stall observed in this session.
 
 ## Next Recommended Bounded Step
-Open or update the PR for this feature branch and use GitHub Actions as the
-required verification gate for the new one-command verifier.
+Merge the stacked documentation and implementation PRs in order, then run a
+repo-first verdict after the one-command run v0 pass.
 
 ## Notes for Next Agent or Session
 Do not broaden this into MCP/API runtime. If CI passes, the next repo-first
